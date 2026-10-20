@@ -48,6 +48,21 @@
   padding-left: theme.$space-36;
 }
 
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .page-intro {
+    min-height: 0;
+
+    .row {
+      padding-bottom: theme.$space-80;
+    }
+  }
+
+  .page-intro-eyebrow {
+    max-width: 320px;
+    margin-bottom: theme.$space-28;
+  }
+}
+
 @include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
   .page-intro-copy-column {
     border-left: 1px solid theme.$brand-red;
@@ -55,9 +70,13 @@
 }
 
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
-  .page-intro {
+  .page-intro--wide-title {
+    .container {
+      padding-right: 0;
+    }
+
     .page-intro-copy-column {
-      min-height: 221px;
+      width: 600px;
     }
   }
 }
@@ -110,4 +129,10 @@
     color: theme.$ink-mobile;
   }
 
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .page-intro--wide-title .type-page-title {
+    font-size: min(theme.$font-size-page-title-mobile, 15.4vw);
+  }
 }

@@ -1,0 +1,28 @@
+---
+import '../styles/components/call-to-action.scss';
+
+interface Props {
+  eyebrow: string;
+  href: string;
+  label: string;
+}
+
+const { eyebrow, href, label } = Astro.props;
+---
+
+<section class="call-to-action" aria-labelledby="cta-title">
+  <div class="row align-items-center justify-content-between g-0 gap-5 gap-lg-4">
+    <div class="col-lg">
+      <div class="call-to-action-content">
+        <p class="call-to-action-eyebrow">{eyebrow}</p>
+        <h2 id="cta-title" class="call-to-action-title"><slot name="title" /></h2>
+        <p class="call-to-action-copy mb-0"><slot /></p>
+      </div>
+    </div>
+    <div class="col-lg-auto">
+      <a class="btn site-button site-button--light call-to-action-link" href={href}>
+        {label} <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

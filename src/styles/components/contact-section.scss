@@ -30,8 +30,6 @@
 
 .contact-section-copy {
   color: rgba(theme.$ink-deep, 0.75);
-  font-size: theme.$font-size-section-lead;
-  line-height: theme.$line-height-section-copy;
 }
 
 .contact-form {
@@ -73,13 +71,19 @@
   }
 }
 
-.contact-form-submit {
+.contact-form .contact-form-submit {
   gap: theme.$space-4;
   margin-top: 25px;
   font-weight: theme.$font-weight-regular;
 }
 
 @include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .contact-section-title {
+    font-size: theme.$font-size-section-title-tablet;
+    line-height: theme.$line-height-section-title-tablet;
+    letter-spacing: normal;
+  }
+
   .contact-section .container {
     max-width: 960px;
   }
@@ -118,8 +122,6 @@
 
   .contact-section-copy {
     color: theme.$footer-text;
-    font-size: theme.$font-size-body;
-    line-height: theme.$line-height-section-lead-mobile;
   }
 
   .contact-form {
@@ -147,7 +149,7 @@
     }
   }
 
-  .contact-form-submit {
+  .contact-form .contact-form-submit {
     --bs-btn-disabled-color: #{theme.$text-on-red-mobile};
     --bs-btn-disabled-bg: #{theme.$red-mobile};
     --bs-btn-disabled-border-color: #{theme.$red-mobile};

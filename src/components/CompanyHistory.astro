@@ -9,7 +9,7 @@ const { steps } = Astro.props;
 const highlightedIndex = 2;
 ---
 
-<section class="company-history" aria-labelledby="history-title">
+<section class="company-history section-spacing" aria-labelledby="history-title">
   <div class="container history-frame">
     <div class="row history-heading">
       <div class="col-lg-6 history-heading-label">
@@ -24,7 +24,7 @@ const highlightedIndex = 2;
 
     <ol class="row gx-0 history-cards list-unstyled d-none d-lg-flex mb-0">
       {steps.map((step, index) => (
-        <li class:list={['col-lg-3 history-card', { 'history-card--highlighted': index === highlightedIndex }]}>
+        <li class:list={['col-6 col-xxl-3 history-card', { 'history-card--highlighted': index === highlightedIndex }]}>
           <p class="history-card-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
           <span class="history-marker" aria-hidden="true"></span>
           <h3>{step.title}</h3>

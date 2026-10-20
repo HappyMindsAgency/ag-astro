@@ -1,0 +1,368 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.vision-eyebrow {
+  margin-bottom: theme.$space-40;
+  color: theme.$brand-red;
+}
+
+.vision-overview {
+  padding-top: 120px;
+
+  > .row {
+    max-width: theme.$wide-layout-max-width;
+    margin-inline: auto;
+  }
+}
+
+.vision-overview-image {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 878px;
+  aspect-ratio: 878 / 669;
+  box-shadow: 0 36px 80px -32px rgba(theme.$ink-deep, 0.32);
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+  }
+
+  &::before {
+    background: linear-gradient(180deg, transparent 15%, rgba(theme.$image-overlay, 0.1) 65%, rgba(theme.$image-overlay, 0.85));
+  }
+
+  &::after {
+    background: rgba(theme.$brand-blue, 0.5);
+    mix-blend-mode: multiply;
+  }
+}
+
+.vision-overview .vision-overview-content {
+  padding: theme.$space-64 160px theme.$space-64 theme.$space-12;
+
+  .vision-eyebrow {
+    margin-bottom: theme.$space-28;
+  }
+}
+
+.vision-overview-copy {
+  margin-top: theme.$space-28;
+  border-top: 1px solid theme.$editorial-border;
+  padding-top: theme.$space-28;
+  color: theme.$editorial-text;
+  font-size: theme.$font-size-section-lead;
+  line-height: theme.$line-height-section-copy;
+}
+
+.vision-services {
+  --section-gradient-angle: 131deg;
+  padding-block: 110px;
+  color: white;
+  background: linear-gradient(var(--section-gradient-angle), rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/sfondo-servizi.jpg') center;
+  background-size: cover, 110% 100%;
+}
+
+.vision-services-heading {
+  max-width: 1000px;
+}
+
+.vision-services-eyebrow {
+  margin-bottom: 0;
+}
+
+.vision-services-title {
+  margin-bottom: 0;
+  font-size: theme.$font-size-service-heading;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-service-heading;
+  letter-spacing: theme.$letter-spacing-service-heading;
+}
+
+.vision-services-copy {
+  color: theme.$muted-on-gradient;
+  font-size: theme.$font-size-section-copy;
+  line-height: theme.$line-height-service-copy;
+}
+
+.vision-services-list {
+  max-width: 1000px;
+  margin-top: theme.$space-64;
+  border-top: 0.8px solid rgba(white, 0.28);
+  padding-top: theme.$space-24;
+}
+
+.vision-service {
+  min-height: 96px;
+  border-bottom: 0.8px solid rgba(white, 0.25);
+}
+
+.vision-service-index {
+  color: theme.$service-index;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-body;
+}
+
+.vision-service .vision-service-title {
+  padding-right: theme.$space-24;
+  font-size: theme.$font-size-card-title;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-card-title;
+}
+
+.vision-service-copy {
+  color: theme.$muted-on-gradient;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-body;
+}
+
+.vision-services-action {
+  margin-top: theme.$space-40;
+}
+
+.site-button.vision-services-link {
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: #{rgba(white, 0.45)};
+  --bs-btn-hover-bg: #{rgba(white, 0.1)};
+  --bs-btn-hover-border-color: white;
+  --bs-btn-active-bg: #{rgba(white, 0.1)};
+  --bs-btn-active-border-color: white;
+  font-weight: theme.$font-weight-medium;
+}
+
+.vision-story,
+.vision-method {
+  padding-block: 144px;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.vision-story {
+  display: flex;
+  align-items: center;
+  min-height: 554px;
+  background: theme.$surface-mist;
+}
+
+.vision-editorial-copy {
+  color: rgba(theme.$editorial-text, 0.75);
+}
+
+.vision-method {
+  padding-block: 160px;
+}
+
+.vision-method-introduction {
+  font-size: theme.$font-size-section-copy;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-section-copy;
+}
+
+.vision-method .vision-method-steps {
+  margin-top: theme.$space-40;
+  border-top: 1px solid theme.$ink;
+  border-left: 1px solid theme.$ink;
+}
+
+.vision-method-steps .vision-method-step {
+  min-height: 278px;
+  border-right: 1px solid theme.$ink;
+  border-bottom: 1px solid theme.$ink;
+  padding: 38px theme.$space-32 theme.$space-64;
+
+  h3 {
+    margin: theme.$space-48 0 theme.$space-20;
+    color: theme.$ink;
+    font-size: theme.$font-size-card-title;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-card-title;
+  }
+}
+
+.vision-method-index {
+  font-size: theme.$font-size-small;
+  line-height: theme.$line-height-small;
+}
+
+.vision-method-copy {
+  color: theme.$ink;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-body;
+}
+
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .vision-overview .vision-overview-content {
+    padding-right: theme.$space-48;
+  }
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .vision-overview {
+    padding-top: theme.$space-80;
+  }
+
+  .vision-overview .vision-overview-content {
+    padding: theme.$space-40 theme.$space-32 theme.$space-40 theme.$space-24;
+  }
+
+  .vision-story {
+    min-height: 0;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .vision-eyebrow {
+    margin-bottom: theme.$space-28;
+  }
+
+  .vision-overview {
+    padding-top: 0;
+  }
+
+  .vision-overview-image {
+    max-width: none;
+    aspect-ratio: 390 / 350;
+    box-shadow: none;
+  }
+
+  .vision-overview .vision-overview-content {
+    padding: theme.$space-32 theme.$page-gutter-mobile;
+  }
+
+  .vision-overview-copy {
+    margin-top: theme.$space-28;
+    border-top-color: theme.$button-border-light;
+    padding-top: theme.$space-24;
+    color: theme.$footer-text;
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-editorial-copy-mobile;
+  }
+
+  .vision-services {
+    --section-gradient-angle: 99deg;
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .vision-services-eyebrow {
+    margin-bottom: theme.$space-28;
+    color: rgba(white, 0.7);
+  }
+
+  .vision-services-title {
+    margin-bottom: theme.$space-28;
+    font-size: theme.$font-size-section-title-mobile;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-section-title-mobile;
+    letter-spacing: normal;
+  }
+
+  .vision-services-copy {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-editorial-copy-mobile;
+  }
+
+  .vision-services-list {
+    margin-top: theme.$space-28;
+    padding-top: 0;
+  }
+
+  .vision-service {
+    min-height: 130px;
+    padding-block: theme.$space-24;
+  }
+
+  .vision-service-index {
+    font-size: theme.$font-size-small;
+    line-height: theme.$line-height-small;
+  }
+
+  .vision-service .vision-service-title {
+    padding-right: theme.$space-4;
+    font-size: clamp(theme.$font-size-service-copy-mobile, 4.1vw, theme.$font-size-body);
+    line-height: theme.$line-height-body;
+  }
+
+  .vision-service-copy {
+    font-size: theme.$font-size-service-copy-mobile;
+    line-height: theme.$line-height-service-item-mobile;
+  }
+
+  .vision-services-action {
+    margin-top: theme.$space-28;
+  }
+
+  .vision-story,
+  .vision-method {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .vision-story {
+    min-height: 0;
+  }
+
+  .vision-editorial-copy {
+    color: theme.$footer-text;
+  }
+
+  .vision-method-introduction {
+    font-size: theme.$font-size-body;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-section-lead-mobile;
+  }
+
+  .vision-method .vision-method-steps {
+    margin-top: theme.$space-48;
+    border-color: theme.$footer-border;
+  }
+
+  .vision-method-steps .vision-method-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 249px;
+    border-color: theme.$footer-border;
+    padding: theme.$space-24;
+
+    h3 {
+      margin-top: theme.$space-20;
+      color: theme.$brand-blue;
+      font-size: theme.$font-size-card-title-mobile;
+      font-weight: theme.$font-weight-medium;
+    }
+  }
+
+  .vision-method-index {
+    color: theme.$brand-red;
+    font-size: theme.$font-size-card-copy-mobile;
+    line-height: theme.$line-height-compact-copy;
+  }
+
+  .vision-method-copy {
+    color: theme.$footer-text;
+    font-size: theme.$font-size-card-copy-mobile;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-compact-copy;
+  }
+}

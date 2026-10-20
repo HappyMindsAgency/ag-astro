@@ -1,0 +1,134 @@
+---
+import Layout from '../components/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import CallToAction from '../components/CallToAction.astro';
+import '../styles/pages/visione-e-metodologia.scss';
+
+const services = [
+  'Amministrazione',
+  'Family Office',
+  'Servizio numero 3',
+  'Servizio numero 4',
+];
+
+const serviceDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+const servicesIntroduction = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula augue, id ultrices turpis ullamcorper in. In porttitor quam ultricies elementum commodo.';
+const storyDescription = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum dolor. Vivamus ac augue odio. Sed cursus lorem in maximus ornare. Nullam interdum leo vitae sem gravida imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.';
+const methodIntroduction = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum dolor.';
+
+const methodSteps = [
+  {
+    title: 'Comprendere',
+    description: 'Conosciamo le persone, le relazioni, il patrimonio e le finalità che hanno dato origine al trust.',
+  },
+  {
+    title: 'Amministrare',
+    description: 'Operiamo con competenza giuridica, rigore e responsabilità, nel rispetto dell’atto istitutivo e degli interessi coinvolti.',
+  },
+  {
+    title: 'Accompagnare',
+    description: 'Manteniamo una relazione stabile nel tempo e supportiamo le decisioni necessarie all’evoluzione del progetto.',
+  },
+];
+---
+
+<Layout
+  title="Visione e metodologia | AG Trustees"
+  description="La visione e il metodo di AG Trustees: comprendere le persone, amministrare con responsabilità e accompagnare ogni progetto nel tempo."
+>
+  <PageIntro breadcrumb="Visione e metodologia" eyebrow="Due esperienze. Una visione condivisa." mobileTitleLeading="relaxed" wideTitle>
+    <Fragment slot="title">
+      <span class="d-block">Visione e</span>
+      <span class="d-block text-secondary">metodologia</span>
+    </Fragment>
+    AG Trustees nasce dall’incontro tra competenze consolidate e da un’idea comune di responsabilità fiduciaria vicina alle persone.
+  </PageIntro>
+
+  <section class="vision-overview" aria-labelledby="vision-title">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6">
+        <div class="vision-overview-image">
+          <img src="/assets/immagini/visione-persone.png" alt="" width="1170" height="780" loading="lazy" />
+        </div>
+      </div>
+      <div class="col-lg-6 vision-overview-content">
+        <p class="type-eyebrow type-eyebrow--section vision-eyebrow">La nostra visione</p>
+        <h2 id="vision-title" class="type-section-title mb-0">Titolo <span class="type-section-title-accent d-block">della sezione</span></h2>
+        <p class="vision-overview-copy mb-0">Una storia fatta di persone, legami, lavoro, responsabilità e visione. AG Trustees esiste per custodirla e accompagnarla nel tempo, contribuendo a garantirne stabilità e continuità tra generazioni.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="vision-services section-spacing" aria-labelledby="services-title">
+    <div class="container">
+      <div class="vision-services-heading text-lg-center mx-auto">
+        <p class="type-eyebrow type-eyebrow--section vision-services-eyebrow">Aree di attività</p>
+        <h2 id="services-title" class="vision-services-title">Servizi professionali</h2>
+        <p class="vision-services-copy mb-0">{servicesIntroduction}</p>
+      </div>
+      <ol class="vision-services-list list-unstyled mx-auto mb-0">
+        {services.map((title, index) => (
+          <li class="row g-0 align-items-center vision-service">
+            <span class="col-1 vision-service-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="col-5 vision-service-title mb-0">{title}</h3>
+            <p class="col-5 vision-service-copy mb-0">{serviceDescription}</p>
+            <span class="col-1 text-end" aria-hidden="true">→</span>
+          </li>
+        ))}
+      </ol>
+      <div class="vision-services-action text-end">
+        <a class="btn site-button vision-services-link" href="/servizi/">Tutti i servizi <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="vision-story section-spacing" aria-labelledby="vision-story-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-xxl-7">
+          <p class="type-eyebrow type-eyebrow--section vision-eyebrow">Come nasce AG Trustees</p>
+          <h2 id="vision-story-title" class="type-section-title mb-0">
+            <span class="d-xxl-block">Lorem ipsum</span>{' '}dolor{' '}<span class="type-section-title-accent">sit amet.</span>
+          </h2>
+        </div>
+        <div class="col-xxl-5">
+          <p class="type-section-lead vision-editorial-copy mb-0">{storyDescription}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vision-method section-spacing" aria-labelledby="vision-method-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-xxl-7">
+          <p class="type-eyebrow type-eyebrow--section vision-eyebrow">Il nostro metodo</p>
+          <h2 id="vision-method-title" class="type-section-title mb-0">
+            Dall’ascolto <span class="type-section-title-accent d-xxl-block">all’amministrazione.</span>
+          </h2>
+        </div>
+        <div class="col-xxl-5">
+          <p class="vision-editorial-copy vision-method-introduction mb-0">{methodIntroduction}</p>
+        </div>
+      </div>
+      <ol class="row g-0 vision-method-steps list-unstyled mb-0">
+        {methodSteps.map((step, index) => (
+          <li class="col-12 col-lg-4 vision-method-step">
+            <p class="vision-method-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+            <h3>{step.title}</h3>
+            <p class="vision-method-copy mb-0">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CallToAction
+    eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale"
+    href="/servizi/"
+    label="Conosci i servizi di AG Trustees"
+  >
+    <Fragment slot="title">La responsabilità di oggi <span class="d-xxl-block">costruisce la continuità di domani.</span></Fragment>
+    Ogni mese una selezione ragionata di novità normative, sentenze di rilievo e approfondimenti tematici su trust, patrimonio e fiscalità. Pensata per chi vuole capire, non solo sapere.
+  </CallToAction>
+</Layout>

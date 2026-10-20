@@ -5,12 +5,15 @@ interface Props {
   breadcrumb: string;
   eyebrow: string;
   mobileTitleLeading?: 'tight' | 'regular' | 'relaxed';
+  wideTitle?: boolean;
 }
 
-const { breadcrumb, eyebrow, mobileTitleLeading = 'regular' } = Astro.props;
+const { breadcrumb, eyebrow, mobileTitleLeading = 'regular', wideTitle = false } = Astro.props;
+const headingColumnClass = wideTitle ? 'col-lg-6 col-xxl' : 'col-lg-6';
+const copyColumnClass = wideTitle ? 'col-lg-6 col-xxl-auto' : 'col-lg-6';
 ---
 
-<section class="page-intro" aria-labelledby="page-title">
+<section class:list={['page-intro', { 'page-intro--wide-title': wideTitle }]} aria-labelledby="page-title">
   <div class="container">
     <nav aria-label="Percorso di navigazione">
       <ol class="breadcrumb">
@@ -20,7 +23,7 @@ const { breadcrumb, eyebrow, mobileTitleLeading = 'regular' } = Astro.props;
     </nav>
 
     <div class="row align-items-end">
-      <div class="col-lg-6 page-intro-heading">
+      <div class:list={[headingColumnClass, 'page-intro-heading']}>
         <p class="type-eyebrow page-intro-eyebrow">{eyebrow}</p>
         <h1 id="page-title" class:list={['type-page-title mb-0', {
           'type-page-title--tight': mobileTitleLeading === 'tight',
@@ -29,7 +32,7 @@ const { breadcrumb, eyebrow, mobileTitleLeading = 'regular' } = Astro.props;
           <slot name="title" />
         </h1>
       </div>
-      <div class="col-lg-6 page-intro-copy-column">
+      <div class:list={[copyColumnClass, 'page-intro-copy-column']}>
         <p class="type-page-lead page-intro-copy mb-0"><slot /></p>
       </div>
     </div>

@@ -39,7 +39,7 @@
   border-left: 1px solid rgba(theme.$text-on-blue, 0.2);
 }
 
-.about-identity-card {
+.about-identity-cards .about-identity-card {
   min-height: 309px;
   border-right: 1px solid rgba(theme.$text-on-blue, 0.2);
   border-bottom: 1px solid rgba(theme.$text-on-blue, 0.2);
@@ -107,7 +107,7 @@
     border-left: 0;
   }
 
-  .about-identity-card {
+  .about-identity-cards .about-identity-card {
     min-height: 0;
     border-color: rgba(theme.$border-on-blue-mobile, 0.35);
     border-right: 0;
@@ -145,6 +145,8 @@
 }
 
 .about-video-space {
+  max-width: theme.$wide-layout-max-width - 2 * theme.$space-64;
+  margin-inline: auto;
   aspect-ratio: 1792 / 952;
 }
 
@@ -188,10 +190,7 @@
 }
 
 .about-origin-copy {
-  color: rgba(theme.$about-origin-text, 0.75);
-  font-size: theme.$font-size-section-lead;
-  font-weight: theme.$font-weight-regular;
-  line-height: theme.$line-height-section-copy;
+  color: rgba(theme.$editorial-text, 0.75);
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
@@ -220,8 +219,6 @@
 
   .about-origin-copy {
     color: theme.$footer-text;
-    font-size: theme.$font-size-body;
-    line-height: theme.$line-height-section-lead-mobile;
   }
 }
 
@@ -251,8 +248,6 @@
 
 .about-competencies-copy {
   color: rgba(theme.$ink-deep, 0.75);
-  font-size: theme.$font-size-section-lead;
-  line-height: theme.$line-height-section-copy;
 }
 
 .about-competencies-list {
@@ -267,7 +262,7 @@
   }
 }
 
-.about-competency-index {
+.about-competencies-list .about-competency-index {
   width: 104px;
   color: theme.$brand-red;
   font-size: theme.$font-size-body;
@@ -280,21 +275,21 @@
   line-height: theme.$line-height-competency-title;
 }
 
-.about-competency-description {
-  color: rgba(theme.$about-origin-text, 0.6);
+.about-competencies-list .about-competency-description {
+  color: rgba(theme.$editorial-text, 0.6);
   font-size: theme.$font-size-body;
   font-weight: theme.$font-weight-light;
   line-height: theme.$line-height-body;
 }
 
-.about-competency-arrow {
+.about-competencies-list .about-competency-arrow {
   width: 48px;
   color: theme.$brand-red;
   text-align: center;
 }
 
 @include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
-  .about-competency-description {
+  .about-competencies-list .about-competency-description {
     padding-left: theme.$space-24;
   }
 }
@@ -321,8 +316,6 @@
 
   .about-competencies-copy {
     color: theme.$footer-text;
-    font-size: theme.$font-size-body;
-    line-height: theme.$line-height-section-lead-mobile;
   }
 
   .about-competencies-list {
@@ -336,7 +329,7 @@
     }
   }
 
-  .about-competency-index {
+  .about-competencies-list .about-competency-index {
     width: 32px;
     color: theme.$red-mobile;
     font-size: theme.$font-size-card-index-mobile;
@@ -349,15 +342,15 @@
     line-height: theme.$line-height-competency-title-mobile;
   }
 
-  .about-competency-description {
+  .about-competencies-list .about-competency-description {
     margin-top: theme.$space-12;
     padding-left: theme.$space-32;
     color: theme.$footer-text;
     font-size: theme.$font-size-card-copy-mobile;
-    line-height: theme.$line-height-method-copy-mobile;
+    line-height: theme.$line-height-compact-copy;
   }
 
-  .about-competency-arrow {
+  .about-competencies-list .about-competency-arrow {
     display: none;
   }
 }
@@ -366,7 +359,7 @@
   padding-block: 144px;
   color: theme.$text-on-blue;
   background-color: theme.$brand-blue;
-  background-image: linear-gradient(133.17deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$method-overlay-middle, 0.9) 56%, rgba(theme.$method-overlay-red, 0.91375) 100%), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
+  background-image: linear-gradient(133.17deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375) 100%), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
   background-position: center;
   background-size: cover, 100% 103.8%;
 
@@ -390,7 +383,7 @@
   border-left: 1px solid rgba(theme.$text-on-blue, 0.4);
 }
 
-.about-method-card {
+.about-method-cards .about-method-card {
   min-height: 294px;
   border-right: 1px solid rgba(theme.$text-on-blue, 0.2);
   border-bottom: 1px solid rgba(theme.$text-on-blue, 0.2);
@@ -455,7 +448,7 @@
     border-color: rgba(theme.$border-on-blue-mobile, 0.35);
   }
 
-  .about-method-card {
+  .about-method-cards .about-method-card {
     min-height: 0;
     border-color: rgba(theme.$border-on-blue-mobile, 0.35);
     padding: theme.$space-16 14px theme.$space-28;
@@ -483,7 +476,7 @@
     color: theme.$muted-on-blue-mobile;
     font-size: theme.$font-size-card-copy-mobile;
     font-weight: theme.$font-weight-regular;
-    line-height: theme.$line-height-method-copy-mobile;
+    line-height: theme.$line-height-compact-copy;
   }
 }
 
@@ -525,12 +518,30 @@
 
 .about-team-copy {
   margin-bottom: theme.$space-28;
-  font-size: theme.$font-size-section-lead;
-  line-height: theme.$line-height-section-copy;
 }
 
 .about-team-link {
   min-width: 200px;
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .about-identity .about-identity-cards {
+    margin-top: theme.$space-48;
+  }
+
+  .about-origin-title-line {
+    display: inline;
+  }
+
+  .about-method-heading {
+    margin-bottom: theme.$space-48;
+  }
+
+  .about-team-title {
+    font-size: theme.$font-size-section-title-tablet;
+    line-height: theme.$line-height-section-title-tablet;
+    letter-spacing: normal;
+  }
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
@@ -550,8 +561,6 @@
 
   .about-team-copy {
     color: theme.$footer-text;
-    font-size: theme.$font-size-body;
-    line-height: theme.$line-height-section-lead-mobile;
   }
 
   .about-team-mark {

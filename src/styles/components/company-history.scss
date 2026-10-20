@@ -6,7 +6,7 @@
   background: theme.$surface-mist;
 }
 
-.history-frame {
+.company-history .history-frame {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,7 @@
   padding-inline: 0;
 }
 
-.history-heading {
+.company-history .history-heading {
   --bs-gutter-x: 0;
   --bs-gutter-y: 0;
   min-height: 162px;
@@ -33,7 +33,7 @@
   border-left: 1px solid rgba(theme.$ink, 0.25);
 }
 
-.history-card {
+.history-cards .history-card {
   position: relative;
   min-height: 403px;
   border-right: 1px solid rgba(theme.$ink, 0.25);
@@ -71,7 +71,22 @@
   line-height: theme.$line-height-body;
 }
 
-.history-card--highlighted {
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .company-history .history-frame,
+  .company-history .history-heading {
+    min-height: 0;
+  }
+
+  .history-cards .history-card {
+    min-height: 0;
+
+    h3 {
+      margin-top: theme.$space-48;
+    }
+  }
+}
+
+.history-cards .history-card--highlighted {
   background: theme.$ink;
 
   h3 {
@@ -88,11 +103,11 @@
 }
 
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
-  .history-heading-label {
+  .history-heading .history-heading-label {
     width: 640px;
   }
 
-  .history-heading-copy {
+  .history-heading .history-heading-copy {
     flex: 1;
   }
 }
@@ -102,13 +117,13 @@
     padding: theme.$space-64 theme.$page-gutter-mobile;
   }
 
-  .history-frame {
+  .company-history .history-frame {
     gap: theme.$space-28;
     min-height: 0;
     max-width: none;
   }
 
-  .history-heading {
+  .company-history .history-heading {
     min-height: 0;
   }
 

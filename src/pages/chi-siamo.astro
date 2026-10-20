@@ -92,7 +92,7 @@ const methodSteps = [
     AG Trustees è una trust company dedicata all’amministrazione professionale di trust. Mettiamo competenze ed esperienza al servizio di persone, famiglie e imprese, accompagnando nel tempo patrimoni, progetti e persone. Le nostre sedi sono a Milano, Bologna e Forlì.
   </PageIntro>
 
-  <section class="about-identity" aria-labelledby="identity-title">
+  <section class="about-identity section-spacing" aria-labelledby="identity-title">
     <div class="container">
       <div class="row">
         <div class="col-lg-5">
@@ -107,7 +107,7 @@ const methodSteps = [
       </div>
       <div class="row about-identity-cards">
         {identityCards.map((card, index) => (
-          <article class="col-6 col-lg-3 about-identity-card">
+          <article class="col-6 col-xxl-3 about-identity-card">
             <p class="about-identity-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
             <h3>{card.title}</h3>
             <p class="about-identity-card-copy mb-0">{card.description}</p>
@@ -121,7 +121,7 @@ const methodSteps = [
     <div class="about-video-space"></div>
   </div>
 
-  <section class="about-origin" aria-labelledby="origin-title">
+  <section class="about-origin section-spacing" aria-labelledby="origin-title">
     <div class="container">
       <div class="row align-items-end">
         <div class="col-lg-7">
@@ -133,7 +133,7 @@ const methodSteps = [
           </h2>
         </div>
         <div class="col-lg-5">
-          <p class="about-origin-copy mb-0">AG Trustees nasce dall’unione delle competenze di Argos Trustees e Galvani Fiduciaria, due realtà con una lunga esperienza nell’attività di trustee e nella gestione patrimoniale. Ogni attività è guidata da ascolto, chiarezza, competenza e responsabilità.</p>
+          <p class="type-section-lead about-origin-copy mb-0">AG Trustees nasce dall’unione delle competenze di Argos Trustees e Galvani Fiduciaria, due realtà con una lunga esperienza nell’attività di trustee e nella gestione patrimoniale. Ogni attività è guidata da ascolto, chiarezza, competenza e responsabilità.</p>
         </div>
       </div>
     </div>
@@ -141,7 +141,7 @@ const methodSteps = [
 
   <CompanyHistory steps={historySteps} />
 
-  <section class="about-competencies" aria-labelledby="competencies-title">
+  <section class="about-competencies section-spacing" aria-labelledby="competencies-title">
     <div class="container">
       <div class="row align-items-end about-competencies-heading">
         <div class="col-lg-7">
@@ -151,7 +151,7 @@ const methodSteps = [
           </h2>
         </div>
         <div class="col-lg-5 col-xxl-4">
-          <p class="about-competencies-copy mb-0">La gestione di un trust richiede capacità di leggere aspetti giuridici, fiscali, patrimoniali e relazionali nel loro insieme.</p>
+          <p class="type-section-lead about-competencies-copy mb-0">La gestione di un trust richiede capacità di leggere aspetti giuridici, fiscali, patrimoniali e relazionali nel loro insieme.</p>
         </div>
       </div>
       <ol class="about-competencies-list list-unstyled mb-0">
@@ -167,7 +167,7 @@ const methodSteps = [
     </div>
   </section>
 
-  <section class="about-method" aria-labelledby="method-title">
+  <section class="about-method section-spacing" aria-labelledby="method-title">
     <div class="container">
       <div class="about-method-heading text-center mx-auto">
         <p class="type-eyebrow type-eyebrow--section">Il nostro approccio</p>
@@ -175,7 +175,7 @@ const methodSteps = [
       </div>
       <ol class="row g-0 about-method-cards list-unstyled mb-0">
         {methodSteps.map((step, index) => (
-          <li class="col-6 col-lg-3 about-method-card">
+          <li class="col-6 col-xxl-3 about-method-card">
             <div class="d-flex align-items-center justify-content-between">
               <img class="about-method-icon" src={step.icon} alt="" width="24" height="24" loading="lazy" />
               <span class="about-method-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
@@ -188,14 +188,14 @@ const methodSteps = [
     </div>
   </section>
 
-  <section class="about-team" aria-labelledby="team-title">
+  <section class="about-team section-spacing" aria-labelledby="team-title">
     <img class="about-team-mark" src="/assets/brand/ag-logo-verticale-nero.png" alt="" width="1200" height="1145" loading="lazy" />
     <div class="container position-relative">
       <div class="row">
         <div class="col-lg-9 col-xxl-7">
           <p class="type-eyebrow type-eyebrow--section about-team-eyebrow">Team</p>
           <h2 id="team-title" class="about-team-title">La fiducia comincia <span class="d-block">dalle persone.</span></h2>
-          <p class="about-team-copy">Accompagniamo ogni progetto con ascolto, competenza e continuità.</p>
+          <p class="type-section-lead about-team-copy">Accompagniamo ogni progetto con ascolto, competenza e continuità.</p>
           <a class="btn site-button about-team-link" href="/team/">Conosci il team <span aria-hidden="true">→</span></a>
         </div>
       </div>

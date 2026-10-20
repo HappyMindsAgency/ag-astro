@@ -1,7 +1,16 @@
 @use '../variables' as theme;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
-.certifications-heading {
+.certifications {
+  background: linear-gradient(90deg, theme.$surface-mist 50%, theme.$brand-blue 50%);
+
+  > .row {
+    max-width: theme.$wide-layout-max-width;
+    margin-inline: auto;
+  }
+}
+
+.certifications .certifications-heading {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,7 +21,7 @@
   background: theme.$brand-blue;
 }
 
-.certifications-logos {
+.certifications .certifications-logos {
   display: flex;
   align-items: center;
   padding-inline: theme.$space-80;
@@ -42,11 +51,14 @@
 }
 
 @include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
-  .certifications-heading {
+  .certifications .certifications-heading {
+    justify-content: center;
+    gap: theme.$space-28;
+    min-height: 400px;
     padding: theme.$space-40;
   }
 
-  .certifications-logos {
+  .certifications .certifications-logos {
     padding-inline: theme.$space-24;
 
     ul {
@@ -60,7 +72,7 @@
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
-  .certifications-heading {
+  .certifications .certifications-heading {
     align-items: flex-start;
     justify-content: flex-start;
     gap: 0;
@@ -78,7 +90,7 @@
     }
   }
 
-  .certifications-logos {
+  .certifications .certifications-logos {
     display: block;
     padding: theme.$space-30 28px;
     background: theme.$surface-mobile;

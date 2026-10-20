@@ -1,0 +1,81 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+$cta-padding-inline: 168px;
+
+.call-to-action {
+  --cta-gradient-angle: 104deg;
+  padding: 72px $cta-padding-inline;
+  color: white;
+  background: linear-gradient(var(--cta-gradient-angle), rgba(theme.$brand-blue, 0.94), rgba(theme.$cta-overlay-middle, 0.88) 58%, rgba(theme.$accent-red, 0.91)), url('/assets/immagini/sfondo-cta.jpg') center 46% / cover;
+
+  > .row {
+    max-width: theme.$wide-layout-max-width - 2 * $cta-padding-inline;
+    margin-inline: auto;
+  }
+}
+
+.call-to-action-content {
+  max-width: 900px;
+}
+
+.call-to-action-eyebrow,
+.site-button.call-to-action-link {
+  font-size: theme.$font-size-cta-label;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-cta-label;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.call-to-action-eyebrow {
+  margin-bottom: theme.$space-12;
+  color: rgba(white, 0.55);
+}
+
+.call-to-action-title {
+  margin-bottom: theme.$space-16;
+  font-size: theme.$font-size-cta-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-cta-title;
+  letter-spacing: theme.$letter-spacing-cta-title;
+}
+
+.call-to-action-copy {
+  color: rgba(white, 0.55);
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-cta-copy;
+}
+
+.site-button.call-to-action-link {
+  gap: theme.$space-4;
+  padding: 14px theme.$space-30;
+}
+
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .call-to-action {
+    padding-inline: theme.$space-48;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .call-to-action {
+    --cta-gradient-angle: 92deg;
+    background-position: center;
+  }
+
+  .call-to-action-title {
+    font-size: theme.$font-size-section-title-mobile;
+  }
+
+  .call-to-action-copy {
+    line-height: theme.$line-height-section-lead-mobile;
+  }
+
+  .site-button.call-to-action-link {
+    justify-content: center;
+    width: 100%;
+    margin-top: theme.$space-16;
+    padding-inline: theme.$space-20;
+  }
+}

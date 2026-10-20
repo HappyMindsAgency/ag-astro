@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use './fonts';
 @use './variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
 @use 'bootstrap/scss/bootstrap' with (
   $primary: theme.$brand-blue,
   $secondary: theme.$brand-red,
@@ -25,6 +26,16 @@ body {
 main {
   flex: 1;
   scroll-margin-top: 160px;
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  main .section-spacing {
+    padding-block: theme.$space-80;
+  }
+
+  .section-spacing .type-eyebrow {
+    margin-bottom: theme.$space-28;
+  }
 }
 
 .skip-link {

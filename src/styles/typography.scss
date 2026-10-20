@@ -11,6 +11,7 @@
   font-size: theme.$font-size-page-eyebrow;
   font-weight: theme.$font-weight-regular;
   line-height: theme.$line-height-page-eyebrow;
+  letter-spacing: normal;
 }
 
 .type-page-lead {
@@ -31,6 +32,12 @@
   line-height: theme.$line-height-section-copy;
 }
 
+.type-section-lead {
+  font-size: theme.$font-size-section-lead;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-section-copy;
+}
+
 .type-section-title--compact {
   font-size: theme.$font-size-section-title-compact;
   line-height: theme.$line-height-section-title-compact;
@@ -39,6 +46,25 @@
 
 .type-section-title-accent {
   color: theme.$brand-red;
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .type-page-title {
+    font-size: theme.$font-size-page-title-tablet;
+    line-height: theme.$line-height-page-title-tablet;
+  }
+
+  .type-page-lead {
+    font-size: theme.$font-size-page-lead-tablet;
+    line-height: theme.$line-height-page-lead-tablet;
+  }
+
+  .type-section-title,
+  .type-section-title--compact {
+    font-size: theme.$font-size-section-title-tablet;
+    line-height: theme.$line-height-section-title-tablet;
+    letter-spacing: normal;
+  }
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
@@ -74,6 +100,11 @@
     font-size: theme.$font-size-body;
     font-weight: theme.$font-weight-light;
     line-height: theme.$line-height-section-copy-mobile;
+  }
+
+  .type-section-lead {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-section-lead-mobile;
   }
 
   .type-section-title--compact {
