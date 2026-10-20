@@ -1,0 +1,68 @@
+@use './variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.type-page-title {
+  font-size: theme.$font-size-page-title;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-page-title;
+}
+
+.type-eyebrow {
+  font-size: theme.$font-size-page-eyebrow;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-page-eyebrow;
+}
+
+.type-page-lead {
+  font-size: theme.$font-size-page-lead;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-page-lead;
+}
+
+.type-section-title {
+  font-size: theme.$font-size-section-title;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-section-title;
+}
+
+.type-section-copy {
+  font-size: theme.$font-size-section-copy;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-section-copy;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .type-page-title {
+    font-size: theme.$font-size-page-title-mobile;
+    line-height: theme.$line-height-page-title-mobile;
+  }
+
+  .type-page-title--tight {
+    line-height: theme.$line-height-page-title-mobile-tight;
+  }
+
+  .type-page-title--relaxed {
+    line-height: theme.$line-height-page-title-mobile-relaxed;
+  }
+
+  .type-eyebrow {
+    font-size: theme.$font-size-eyebrow-mobile;
+    line-height: theme.$line-height-eyebrow-mobile;
+  }
+
+  .type-page-lead {
+    font-size: theme.$font-size-page-lead-mobile;
+    line-height: theme.$line-height-page-lead-mobile;
+  }
+
+  .type-section-title {
+    font-size: theme.$font-size-section-title-mobile;
+    line-height: theme.$line-height-section-title-mobile;
+  }
+
+  .type-section-copy {
+    font-size: theme.$font-size-body;
+    font-weight: theme.$font-weight-light;
+    line-height: theme.$line-height-section-copy-mobile;
+  }
+}

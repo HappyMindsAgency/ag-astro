@@ -1,0 +1,70 @@
+---
+import Layout from '../components/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import '../styles/pages/chi-siamo.scss';
+
+const identityCards = [
+  {
+    title: 'Identità',
+    description: 'Una trust company italiana che unisce competenza specialistica, responsabilità fiduciaria e visione di lungo periodo.',
+  },
+  {
+    title: 'Ambiti',
+    description: 'Progetti di trust dedicati alla continuità patrimoniale e d’impresa, al passaggio generazionale, alla tutela delle persone e alla gestione di patrimoni complessi.',
+  },
+  {
+    title: 'Interlocutori',
+    description: 'Persone, famiglie e imprenditori, insieme ai professionisti che li affiancano nelle decisioni patrimoniali più delicate.',
+  },
+  {
+    title: 'Ruolo',
+    description: 'Su incarico, AG Trustees opera come trustee, co-trustee o guardiano, amministrando i beni e dando continuità alle finalità definite nel trust.',
+  },
+];
+---
+
+<Layout
+    title="Chi siamo | AG Trustees"
+    description="AG Trustees è una trust company dedicata all’amministrazione professionale di trust, al servizio di persone, famiglie e imprese."
+>
+  <PageIntro
+    breadcrumb="Chi siamo"
+    eyebrow="Amministriamo il presente con una visione condivisa del futuro"
+    mobileTitleLeading="tight"
+  >
+    <Fragment slot="title">
+      <span class="d-block">Chi</span>
+      <span class="d-block text-secondary">siamo.</span>
+    </Fragment>
+    AG Trustees è una trust company dedicata all’amministrazione professionale di trust. Mettiamo competenze ed esperienza al servizio di persone, famiglie e imprese, accompagnando nel tempo patrimoni, progetti e persone. Le nostre sedi sono a Milano, Bologna e Forlì.
+  </PageIntro>
+
+  <section class="about-identity" aria-labelledby="identity-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <p class="type-eyebrow about-identity-eyebrow mb-lg-0">Chi è AG Trustees</p>
+        </div>
+        <div class="col-lg-7">
+          <h2 id="identity-title" class="type-section-title about-identity-title">
+            Una trust company <span class="d-block">italiana</span>
+          </h2>
+          <p class="type-section-copy about-identity-copy mb-0">Affianchiamo famiglie, imprenditori e professionisti nell’istituzione e nell’amministrazione di trust, con competenza giuridica, equilibrio e visione di lungo periodo.<br />Perché dietro ogni patrimonio ci sono legami, imprese, responsabilità e progetti che cambiano ed evolvono nel tempo.<br />AG Trustees amministra i beni conferiti in trust, cura gli adempimenti connessi e lavora insieme ai professionisti coinvolti.</p>
+        </div>
+      </div>
+      <div class="row about-identity-cards">
+        {identityCards.map((card, index) => (
+          <article class="col-6 col-lg-3 about-identity-card">
+            <p class="about-identity-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+            <h3>{card.title}</h3>
+            <p class="about-identity-card-copy mb-0">{card.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="about-video" aria-hidden="true">
+    <div class="about-video-space"></div>
+  </div>
+</Layout>

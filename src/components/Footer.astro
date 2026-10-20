@@ -1,0 +1,89 @@
+---
+interface Props {
+  linkedinUrl?: string;
+  privacyPolicyUrl?: string;
+  cookiePolicyUrl?: string;
+  creditsUrl?: string;
+}
+
+const { linkedinUrl, privacyPolicyUrl, cookiePolicyUrl, creditsUrl } = Astro.props;
+const menu = [
+  { label: 'Chi siamo', href: '/chi-siamo/' },
+  { label: 'Servizi', href: '/servizi/' },
+  { label: 'Trust', href: '/trust/' },
+  { label: 'Patrimonio', href: '/patrimonio/' },
+  { label: 'AG Informa', href: '/ag-informa/' },
+  { label: 'Knowledge library', href: '/knowledge-library/' },
+  { label: 'FAQ', href: '/faq/' },
+];
+const offices = [
+  { city: 'Milano', address: 'Corso Giacomo Matteotti, 1 - 20121' },
+  { city: 'Bologna', address: 'Via Barberia, 13 - 40123' },
+  { city: 'Forlì', address: 'Via Nino Bixio, 3 - 47121' },
+];
+const legalLinks = [
+  { label: 'Privacy Policy', href: privacyPolicyUrl },
+  { label: 'Cookie Policy', href: cookiePolicyUrl },
+  { label: 'Credits', href: creditsUrl },
+];
+---
+
+<footer class="site-footer" id="contatti">
+  <div class="container-fluid p-0">
+    <div class="footer-columns row gy-5 gx-0 justify-content-between">
+      <div class="col-12 col-md-6 col-xxl-auto footer-brand">
+        <a href="/" aria-label="AG Trustees — Homepage">
+          <img class="footer-logo" src="/assets/brand/ag-logo-footer.png" alt="Across Galvani Trustees" width="1200" height="408" loading="lazy" />
+        </a>
+        <div class="footer-company-details">
+          <p class="footer-company">AG TRUSTEES S.R.L.</p>
+          <p>P.IVA 14402230966</p>
+          <p>Capitale sociale € 10.000,00 i.v.</p>
+          {linkedinUrl ? (
+            <a href={linkedinUrl} aria-label="AG Trustees su LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
+          ) : (
+            <span role="img" aria-label="LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></span>
+          )}
+        </div>
+      </div>
+
+      <nav class="col-12 col-md-6 col-xxl-auto footer-menu" aria-label="Navigazione nel footer">
+        <h2 class="footer-heading">Menu</h2>
+        <ul class="footer-nav list-unstyled mb-0">
+          {menu.map(({ label, href }) => <li><a href={href}>{label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="col-12 col-md-6 col-xxl-auto footer-utility">
+        <h2 class="footer-heading">Utility</h2>
+        <ul class="footer-nav list-unstyled mb-0">
+          <li><span>Cerca nel sito</span></li>
+          <li><span>Certificazioni</span></li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-6 col-xxl-auto footer-contacts">
+        <h2 class="footer-heading">Sedi &amp; contatti</h2>
+        <address class="mb-0">
+          {offices.map(({ city, address }) => (
+            <div class="footer-office">
+              <h3>{city}</h3>
+              <p class="mb-0">{address}</p>
+            </div>
+          ))}
+        </address>
+        <div class="footer-contact-links">
+          <p class="mb-0">Email: <a href="mailto:segreteria@agtrustees.it">segreteria@agtrustees.it</a></p>
+          <p class="mb-0">Tel: <a href="tel:+390245076096">+39 02 45076096</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between">
+      <p class="mb-0">© {new Date().getFullYear()} AG TRUSTEES S.R.L. - Tutti i diritti riservati</p>
+      <ul class="footer-legal d-flex flex-wrap list-unstyled mb-0">
+        {legalLinks.map(({ label, href }) => <li>{href ? <a href={href}>{label}</a> : <span>{label}</span>}</li>)}
+      </ul>
+    </div>
+  </div>
+</footer>

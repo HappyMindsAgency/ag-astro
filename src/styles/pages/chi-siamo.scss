@@ -1,0 +1,165 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.about-identity {
+  padding-block: theme.$space-110;
+  color: white;
+  background: theme.$brand-blue;
+
+  .container {
+    padding-inline: 0;
+  }
+
+  .row {
+    --bs-gutter-x: #{theme.$space-24};
+    --bs-gutter-y: 0;
+  }
+}
+
+.about-identity-eyebrow {
+  color: rgba(theme.$text-on-blue, 0.6);
+}
+
+.about-identity-title {
+  margin-bottom: theme.$space-48;
+
+  span {
+    color: rgba(white, 0.5);
+  }
+}
+
+.about-identity-copy {
+  max-width: 716px;
+}
+
+.about-identity .about-identity-cards {
+  --bs-gutter-x: 0;
+  margin-top: theme.$space-80;
+  border-top: 1px solid rgba(theme.$text-on-blue, 0.2);
+  border-left: 1px solid rgba(theme.$text-on-blue, 0.2);
+}
+
+.about-identity-card {
+  min-height: 309px;
+  border-right: 1px solid rgba(theme.$text-on-blue, 0.2);
+  border-bottom: 1px solid rgba(theme.$text-on-blue, 0.2);
+  padding: theme.$space-40 theme.$space-32 theme.$space-64;
+
+  h3 {
+    margin: 50px 0 theme.$space-20;
+    color: theme.$text-on-blue;
+    font-size: theme.$font-size-card-title;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-card-title;
+  }
+}
+
+.about-identity-index {
+  font-size: theme.$font-size-small;
+  line-height: theme.$line-height-small;
+}
+
+.about-identity-card-copy {
+  color: rgba(theme.$text-on-blue, 0.55);
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-body;
+}
+
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .about-identity-card:first-child .about-identity-card-copy {
+    color: rgba(white, 0.5);
+  }
+}
+
+.about-video {
+  padding: theme.$space-64;
+  background: theme.$brand-blue;
+}
+
+.about-video-space {
+  aspect-ratio: 1792 / 952;
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .about-identity .container {
+    max-width: theme.$page-container-max-width;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .about-identity {
+    padding-block: 42px theme.$space-32;
+    background: theme.$ink-mobile;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .about-identity-eyebrow {
+    margin-bottom: theme.$space-20;
+    color: theme.$muted-on-blue-mobile;
+  }
+
+  .about-identity-title {
+    margin-bottom: theme.$space-24;
+    color: theme.$text-on-blue-mobile;
+
+    span {
+      color: theme.$muted-on-blue-mobile;
+    }
+  }
+
+  .about-identity-copy {
+    color: theme.$muted-on-blue-mobile;
+  }
+
+  .about-identity .about-identity-cards {
+    margin-top: theme.$space-30;
+    border-color: rgba(theme.$border-on-blue-mobile, 0.35);
+    border-left: 0;
+  }
+
+  .about-identity-card {
+    min-height: 0;
+    border-color: rgba(theme.$border-on-blue-mobile, 0.35);
+    border-right: 0;
+    padding: 29px theme.$space-12 theme.$space-40 0;
+
+    &:nth-child(even) {
+      border-left: 1px solid rgba(theme.$border-on-blue-mobile, 0.35);
+      padding-left: theme.$space-20;
+    }
+
+    h3 {
+      margin: theme.$space-28 0 10px;
+      color: theme.$text-on-blue-mobile;
+      font-size: theme.$font-size-card-title-mobile;
+      line-height: theme.$line-height-card-title-mobile;
+    }
+
+    .about-identity-card-copy {
+      color: theme.$muted-on-blue-mobile;
+      font-size: theme.$font-size-card-copy-mobile;
+      line-height: theme.$line-height-card-copy-mobile;
+    }
+  }
+
+  .about-identity-index {
+    color: theme.$muted-on-blue-mobile;
+    font-size: theme.$font-size-card-index-mobile;
+    line-height: theme.$line-height-card-index-mobile;
+  }
+
+  .about-video {
+    padding: 0 14px 14px;
+    background: theme.$ink-mobile;
+  }
+
+  .about-video-space {
+    aspect-ratio: auto;
+    height: 350px;
+  }
+}

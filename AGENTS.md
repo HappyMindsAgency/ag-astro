@@ -1,22 +1,28 @@
-## Development
+## Regole di lavoro
 
-When starting the dev server, use background mode:
+- Scrivi messaggi dei commit, descrizioni delle richieste di revisione e commenti in italiano. Aggiungi commenti solo quando utili.
+- Mantieni la wiki breve e pratica: regole operative, senza tutorial, cronistorie o ripetizioni. Usa una voce diretta o impersonale, senza riferirti all'autore in terza persona.
+- Prima di modificare il frontend, leggi le [regole del progetto](wiki/frontend.md) e i [dubbi aperti](wiki/dubbi-e-domande.md).
 
-```
+## Sviluppo
+
+Avvia il server in background:
+
+```sh
 astro dev --background
 ```
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+Gestiscilo con `astro dev stop`, `astro dev status` e `astro dev logs`.
 
-## Documentation
+## Documentazione Astro
 
-Full documentation: https://docs.astro.build
+Consulta le guide pertinenti prima di lavorare sul relativo argomento:
 
-Consult these guides before working on related tasks:
+- [Pagine, rotte dinamiche e middleware](https://docs.astro.build/en/guides/routing/)
+- [Componenti Astro](https://docs.astro.build/en/basics/astro-components/)
+- [Componenti React, Vue, Svelte e altri framework](https://docs.astro.build/en/guides/framework-components/)
+- [Gestione dei contenuti](https://docs.astro.build/en/guides/content-collections/)
+- [Stili](https://docs.astro.build/en/guides/styling/)
+- [Lingue](https://docs.astro.build/en/guides/internationalization/)
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+[Documentazione completa](https://docs.astro.build).

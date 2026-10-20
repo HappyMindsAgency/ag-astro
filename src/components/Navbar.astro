@@ -1,46 +1,59 @@
 ---
+interface Props {
+  linkedinUrl?: string;
+}
+
+const { linkedinUrl } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const navigation = [
+  { label: 'Chi siamo', href: '/chi-siamo/' },
+  { label: 'Servizi', href: '/servizi/' },
+  { label: 'Trust', href: '/trust/' },
+  { label: 'Patrimonio', href: '/patrimonio/' },
+  { label: 'AG Informa', href: '/ag-informa/' },
+  { label: 'Eventi', href: '/eventi/' },
+  { label: 'Knowledge library', href: '/knowledge-library/' },
+];
 ---
-<nav class="navbar md:navbar-expand bg-1">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarDrawer" aria-controls="navbarDrawer" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" aria-hidden="true"></span>
-    </button>
-    <dialog class="drawer drawer-end" tabindex="-1" id="navbarDrawer" aria-labelledby="navbarDrawerLabel">
-      <div class="drawer-header">
-        <h5 class="drawer-title" id="navbarDrawerLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+
+<header class="site-header">
+  <nav class="navbar site-navbar" aria-label="Navigazione principale">
+    <div class="container-fluid p-0">
+      <a class="navbar-brand m-0" href="/" aria-label="AG Trustees — Homepage">
+        <img src="/assets/brand/ag-logo-orizzontale.png" alt="Across Galvani Trustees" width="1200" height="143" fetchpriority="high" />
+      </a>
+
+      <div class="header-mobile d-flex align-items-center gap-3 ms-auto">
+        <a class="header-contact-mobile" href="/contatti/">Contatti <span aria-hidden="true">→</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label="Apri o chiudi il menu">
+          <span class="navbar-toggler-icon" aria-hidden="true"></span>
+        </button>
       </div>
-      <div class="drawer-body mb-2 md:mb-0">
-        <ul class="nav navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
-              Menu
-            </button>
-            <div class="menu">
-              <a class="menu-item" href="#">Action</a>
-              <a class="menu-item" href="#">Another action</a>
-              <hr class="menu-divider">
-              <a class="menu-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
+
+      <div class="collapse navbar-collapse" id="site-navigation">
+        <ul class="navbar-nav">
+          {navigation.map(({ label, href }) => {
+            const isCurrent = currentPath === href.replace(/\/$/, '');
+            return (
+              <li class="nav-item">
+                <a class:list={['nav-link', { active: isCurrent }]} href={href} aria-current={isCurrent ? 'page' : undefined}>{label}</a>
+              </li>
+            );
+          })}
+          <li class="nav-item header-contact-menu"><a class="nav-link" href="/contatti/">Contatti</a></li>
         </ul>
-        <form class="hstack gap-2" role="search">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn-solid btn-icon theme-secondary" type="submit">
-            <svg class="bi" width="16" height="16"><use href="#search" /></svg>
-          </button>
-        </form>
+
+        <div class="header-tools d-flex align-items-center">
+          <a class="header-contact header-contact-desktop" href="/contatti/">Contatti</a>
+          <button class="header-icon" type="button" disabled aria-label="Cerca nel sito"><img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+          {linkedinUrl ? (
+            <a class="header-icon" href={linkedinUrl} aria-label="AG Trustees su LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
+          ) : (
+            <span class="header-icon" role="img" aria-label="LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></span>
+          )}
+          <span class="header-language" lang="it" aria-label="Lingua attuale: italiano">ITA</span>
+        </div>
       </div>
-    </dialog>
-  </div>
-</nav>
+    </div>
+  </nav>
+</header>

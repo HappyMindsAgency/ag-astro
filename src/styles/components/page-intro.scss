@@ -1,0 +1,115 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.page-intro {
+  min-height: 541px;
+  border-bottom: 0.8px solid theme.$border;
+
+  .container {
+    padding-inline: theme.$space-40;
+  }
+
+  .breadcrumb {
+    --bs-breadcrumb-divider: '/';
+    --bs-breadcrumb-divider-color: #{theme.$muted};
+    --bs-breadcrumb-item-active-color: #{theme.$ink};
+    margin: 0;
+    padding-block: theme.$space-20;
+    font-size: theme.$font-size-breadcrumb;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-breadcrumb;
+    letter-spacing: theme.$letter-spacing-breadcrumb;
+    text-transform: uppercase;
+
+    a {
+      color: theme.$muted;
+      text-decoration: none;
+    }
+  }
+
+  .row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    padding-block: theme.$space-40;
+  }
+}
+
+.page-intro-eyebrow {
+  margin-bottom: theme.$space-40;
+  color: theme.$brand-red;
+}
+
+.page-intro-copy {
+  margin: 0;
+  padding-left: theme.$space-36;
+}
+
+.page-intro-copy-column {
+  border-left: 1px solid theme.$brand-red;
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .page-intro {
+    .container {
+      max-width: theme.$page-container-max-width;
+    }
+
+    .page-intro-heading {
+      width: calc(100% - 600px);
+    }
+
+    .page-intro-copy-column {
+      width: 600px;
+      min-height: 221px;
+    }
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .page-intro {
+    min-height: 398px;
+    padding-bottom: 35px;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+
+    .breadcrumb {
+      --bs-breadcrumb-divider: '›';
+      --bs-breadcrumb-divider-color: #{theme.$muted-mobile};
+      --bs-breadcrumb-item-active-color: #{theme.$ink-mobile};
+      --bs-breadcrumb-item-padding-x: 9px;
+      margin-bottom: 22px;
+      padding: 0;
+      font-size: theme.$font-size-small;
+      line-height: theme.$line-height-breadcrumb-mobile;
+      letter-spacing: 0;
+
+      a {
+        color: theme.$muted-mobile;
+      }
+    }
+
+    .row {
+      row-gap: theme.$space-28;
+      padding: 0;
+    }
+
+  }
+
+  .page-intro-eyebrow {
+    margin-bottom: 22px;
+    color: theme.$red-mobile;
+  }
+
+  .page-intro-copy {
+    max-width: 410px;
+    padding-left: 0;
+    color: theme.$ink-mobile;
+  }
+
+  .page-intro-copy-column {
+    border: 0;
+  }
+}

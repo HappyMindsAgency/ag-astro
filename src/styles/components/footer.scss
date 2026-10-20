@@ -1,0 +1,169 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.site-footer {
+  padding: theme.$space-80 theme.$space-100 theme.$space-40;
+  color: theme.$footer-text;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-body;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.footer-logo {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+}
+
+.footer-company-details {
+  display: flex;
+  flex-direction: column;
+  gap: theme.$space-8;
+  margin-top: theme.$space-24;
+
+  p {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+  }
+}
+
+.footer-company {
+  color: theme.$brand-blue;
+  font-size: theme.$font-size-footer-company;
+  font-weight: theme.$font-weight-bold;
+  line-height: theme.$line-height-footer-company;
+}
+
+.footer-heading {
+  margin-bottom: theme.$space-20;
+  font-size: theme.$font-size-small;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-small;
+  letter-spacing: theme.$letter-spacing-footer-heading;
+  text-transform: uppercase;
+}
+
+.footer-nav {
+  display: grid;
+  gap: theme.$space-12;
+  color: theme.$brand-blue;
+  font-size: theme.$font-size-footer-navigation;
+  line-height: theme.$line-height-footer-navigation;
+  text-transform: uppercase;
+}
+
+.footer-office {
+  margin-bottom: theme.$space-16;
+
+  h3 {
+    margin-bottom: theme.$space-4;
+    color: theme.$brand-blue;
+    font-size: theme.$font-size-footer-office;
+    font-weight: theme.$font-weight-bold;
+    line-height: theme.$line-height-footer-office;
+    text-transform: uppercase;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.footer-contact-links {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: theme.$space-6;
+  margin-top: theme.$space-16;
+  padding-top: theme.$space-16;
+
+  &::before {
+    position: absolute;
+    inset: 0 0 auto;
+    border-top: 1px solid rgba(theme.$border, 0.3);
+    content: '';
+  }
+
+  a {
+    color: theme.$brand-blue;
+    font-weight: theme.$font-weight-bold;
+  }
+}
+
+.footer-bottom {
+  position: relative;
+  margin-top: theme.$space-30;
+  padding-top: theme.$space-30;
+
+  &::before {
+    position: absolute;
+    inset: 0 0 auto;
+    border-top: 0.8px solid theme.$footer-border;
+    content: '';
+  }
+
+  > p {
+    color: theme.$border;
+  }
+}
+
+.footer-legal {
+  gap: 0;
+
+  li + li::before {
+    margin-inline: theme.$space-12;
+    content: '·';
+  }
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .footer-brand {
+    width: 320px;
+  }
+
+  .footer-menu,
+  .footer-utility {
+    width: 200px;
+  }
+
+  .footer-contacts {
+    width: 360px;
+  }
+}
+
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .site-footer {
+    padding-inline: theme.$space-24;
+  }
+}
+
+@include bs.media-breakpoint-down(md, theme.$grid-breakpoints) {
+  .site-footer {
+    padding: theme.$space-48 0 theme.$space-32;
+  }
+
+  .footer-columns {
+    --bs-gutter-y: #{theme.$space-36};
+    padding-inline: theme.$space-24;
+  }
+
+  .footer-logo {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    gap: theme.$space-20;
+    margin-top: theme.$space-36;
+    padding: theme.$space-20 theme.$space-24 0;
+    font-size: theme.$font-size-small;
+    line-height: theme.$line-height-small;
+  }
+}

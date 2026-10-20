@@ -1,15 +1,17 @@
 ---
-import { SEO } from 'astro-seo';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
+interface Props {
+    title?: string;
+    description?: string;
+}
 
-const { title = 'AG Trustees' } = Astro.props;
+const { title = 'AG Trustees', description } = Astro.props;
 ---
 <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
 </head>
