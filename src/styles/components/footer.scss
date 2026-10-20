@@ -37,9 +37,9 @@
 
 .footer-company {
   color: theme.$brand-blue;
-  font-size: theme.$font-size-footer-company;
+  font-size: theme.$font-size-footer-primary;
   font-weight: theme.$font-weight-bold;
-  line-height: theme.$line-height-footer-company;
+  line-height: theme.$line-height-footer-primary;
 }
 
 .footer-heading {
@@ -55,8 +55,8 @@
   display: grid;
   gap: theme.$space-12;
   color: theme.$brand-blue;
-  font-size: theme.$font-size-footer-navigation;
-  line-height: theme.$line-height-footer-navigation;
+  font-size: theme.$font-size-footer-primary;
+  line-height: theme.$line-height-footer-primary;
   text-transform: uppercase;
 }
 
@@ -94,7 +94,7 @@
 
   a {
     color: theme.$brand-blue;
-    font-weight: theme.$font-weight-bold;
+    font-weight: theme.$font-weight-semibold;
   }
 }
 

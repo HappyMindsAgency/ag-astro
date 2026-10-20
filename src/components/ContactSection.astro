@@ -1,0 +1,46 @@
+---
+import '../styles/components/contact-section.scss';
+---
+
+<section id="richiesta-contatto" class="contact-section" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="row gx-0 contact-section-layout">
+      <div class="col-lg-5">
+        <p class="type-eyebrow type-eyebrow--section contact-section-eyebrow">Contatti</p>
+        <h2 id="contact-title" class="contact-section-title">Parla con un <span>professionista.</span></h2>
+        <p class="contact-section-copy mb-0">
+          <span class="d-xxl-block">AG Trustees mette a disposizione competenza,</span>{' '}
+          <span class="d-xxl-block">continuità e una relazione professionale fondata sulla</span>{' '}
+          fiducia.
+        </p>
+      </div>
+      <div class="col-lg-6 offset-lg-1">
+        <form class="contact-form" method="post" aria-label="Richiesta di contatto">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <label class="form-label" for="contact-name">Nome e cognome</label>
+              <input class="form-control" id="contact-name" name="name" type="text" autocomplete="name" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-email">Email</label>
+              <input class="form-control" id="contact-email" name="email" type="email" autocomplete="email" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-phone">Telefono</label>
+              <input class="form-control" id="contact-phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-profile">Profilo</label>
+              <input class="form-control" id="contact-profile" name="profile" type="text" placeholder="Privato, professionista, impresa" />
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="contact-message">Messaggio</label>
+              <textarea class="form-control" id="contact-message" name="message" rows="3"></textarea>
+            </div>
+          </div>
+          <button class="btn site-button contact-form-submit" type="submit" disabled>Invia la richiesta <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

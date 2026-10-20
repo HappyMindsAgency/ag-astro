@@ -1,0 +1,77 @@
+---
+import '../styles/components/company-history.scss';
+
+interface Props {
+  steps: { title: string; description: string }[];
+}
+
+const { steps } = Astro.props;
+const highlightedIndex = 2;
+---
+
+<section class="company-history" aria-labelledby="history-title">
+  <div class="container history-frame">
+    <div class="row history-heading">
+      <div class="col-lg-6 history-heading-label">
+        <p class="type-eyebrow type-eyebrow--section history-eyebrow mb-lg-0">La nostra storia</p>
+      </div>
+      <div class="col-lg-6 history-heading-copy">
+        <h2 id="history-title" class="type-section-title type-section-title--compact mb-0">
+          Una storia di <span class="type-section-title-accent d-block">fiducia e longevità</span>
+        </h2>
+      </div>
+    </div>
+
+    <ol class="row gx-0 history-cards list-unstyled d-none d-lg-flex mb-0">
+      {steps.map((step, index) => (
+        <li class:list={['col-lg-3 history-card', { 'history-card--highlighted': index === highlightedIndex }]}>
+          <p class="history-card-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+          <span class="history-marker" aria-hidden="true"></span>
+          <h3>{step.title}</h3>
+          <p class="history-card-copy mb-0">{step.description}</p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="history-mobile d-lg-none">
+      <div class="nav row gx-0 flex-nowrap history-tabs" role="tablist" aria-label="Tappe della storia">
+        {steps.map((step, index) => (
+          <button
+            class:list={['nav-link col-3 history-tab', { active: index === highlightedIndex }]}
+            id={`history-tab-${index + 1}`}
+            data-bs-toggle="tab"
+            data-bs-target={`#history-panel-${index + 1}`}
+            type="button"
+            role="tab"
+            aria-controls={`history-panel-${index + 1}`}
+            aria-selected={index === highlightedIndex}
+            tabindex={index === highlightedIndex ? 0 : -1}
+          >
+            <span class="history-tab-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <span class="history-marker" aria-hidden="true"></span>
+            <span class="history-tab-label">{step.title}</span>
+          </button>
+        ))}
+      </div>
+      <div class="tab-content history-panels">
+        {steps.map((step, index) => (
+          <div
+            class:list={['tab-pane history-panel', { 'show active': index === highlightedIndex }]}
+            id={`history-panel-${index + 1}`}
+            role="tabpanel"
+            aria-labelledby={`history-tab-${index + 1}`}
+            tabindex="0"
+          >
+            <p class="history-panel-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+            <h3>{step.title}</h3>
+            <p class="history-panel-copy mb-0">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import 'bootstrap/js/dist/tab';
+</script>

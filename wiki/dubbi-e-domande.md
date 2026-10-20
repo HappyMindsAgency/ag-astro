@@ -37,3 +37,7 @@ Servono URL LinkedIn, destinazioni delle voci legali e indicazioni sulla ricerca
 ## 7. Contrasto dei testi
 
 Il copyright nel footer (circa 1,9:1) e la descrizione della prima card desktop (circa 4,2:1) sono sotto il minimo di 4,5:1 per i testi normali previsto dalle [WCAG AA](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html). Mantengo i colori di Figma; da concordare con il designer una variante più leggibile.
+
+## 8. Competenze e metodo di Chi siamo
+
+Le tre descrizioni delle competenze desktop sono ancora segnaposto. Il mobile presenta sei competenze diverse e otto voci del metodo, contro tre e quattro del desktop. Mantengo per ora struttura e contenuti desktop anche sul mobile; servono testi definitivi e conferma delle voci. Le frecce delle competenze restano decorative finché non sono indicate le destinazioni.

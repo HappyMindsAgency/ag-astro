@@ -2,7 +2,7 @@
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .about-identity {
-  padding-block: theme.$space-110;
+  padding-block: theme.$space-100 theme.$space-64;
   color: white;
   background: theme.$brand-blue;
 
@@ -72,21 +72,6 @@
   }
 }
 
-.about-video {
-  padding: theme.$space-64;
-  background: theme.$brand-blue;
-}
-
-.about-video-space {
-  aspect-ratio: 1792 / 952;
-}
-
-@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
-  .about-identity .container {
-    max-width: theme.$page-container-max-width;
-  }
-}
-
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .about-identity {
     padding-block: 42px theme.$space-32;
@@ -152,7 +137,18 @@
     font-size: theme.$font-size-card-index-mobile;
     line-height: theme.$line-height-card-index-mobile;
   }
+}
 
+.about-video {
+  padding: theme.$space-64;
+  background: theme.$brand-blue;
+}
+
+.about-video-space {
+  aspect-ratio: 1792 / 952;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .about-video {
     padding: 0 14px 14px;
     background: theme.$ink-mobile;
@@ -161,5 +157,415 @@
   .about-video-space {
     aspect-ratio: auto;
     height: 350px;
+  }
+}
+
+.about-origin {
+  padding-block: 144px;
+  background: theme.$surface-warm;
+
+  .container {
+    padding-inline: 0;
+  }
+
+  .row {
+    --bs-gutter-x: #{theme.$space-24};
+    --bs-gutter-y: 0;
+  }
+}
+
+.about-origin-eyebrow {
+  margin-bottom: theme.$space-28;
+  color: theme.$brand-red;
+}
+
+.about-origin-title {
+  max-width: 676px;
+}
+
+.about-origin-title-line {
+  display: block;
+}
+
+.about-origin-copy {
+  color: rgba(theme.$about-origin-text, 0.75);
+  font-size: theme.$font-size-section-lead;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-section-copy;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .about-origin {
+    padding-block: theme.$space-64;
+    background: white;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+
+    .row {
+      row-gap: theme.$space-28;
+    }
+  }
+
+  .about-origin-eyebrow {
+    border-top: 1px solid theme.$footer-border;
+    padding-top: 14px;
+  }
+
+  .about-origin-title-line {
+    display: inline;
+  }
+
+  .about-origin-copy {
+    color: theme.$footer-text;
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-section-lead-mobile;
+  }
+}
+
+.about-competencies {
+  padding-block: 144px 168px;
+  background: theme.$surface-sand;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.about-competencies-heading {
+  --bs-gutter-x: #{theme.$space-24};
+  --bs-gutter-y: 0;
+  justify-content: space-between;
+
+  h2 {
+    max-width: 676px;
+  }
+}
+
+.about-competencies-eyebrow {
+  margin-bottom: theme.$space-40;
+  color: theme.$brand-red;
+}
+
+.about-competencies-copy {
+  color: rgba(theme.$ink-deep, 0.75);
+  font-size: theme.$font-size-section-lead;
+  line-height: theme.$line-height-section-copy;
+}
+
+.about-competencies-list {
+  margin-top: theme.$space-80;
+  border-top: 1px solid rgba(theme.$ink, 0.3);
+
+  .row {
+    --bs-gutter-x: 0;
+    min-height: 100px;
+    margin: 0;
+    border-bottom: 1px solid rgba(theme.$ink, 0.2);
+  }
+}
+
+.about-competency-index {
+  width: 104px;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-body;
+}
+
+.about-competency-title {
+  font-size: theme.$font-size-competency-title;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-competency-title;
+}
+
+.about-competency-description {
+  color: rgba(theme.$about-origin-text, 0.6);
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-body;
+}
+
+.about-competency-arrow {
+  width: 48px;
+  color: theme.$brand-red;
+  text-align: center;
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .about-competency-description {
+    padding-left: theme.$space-24;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .about-competencies {
+    padding-block: theme.$space-64;
+    background: white;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .about-competencies-heading {
+    row-gap: theme.$space-28;
+  }
+
+  .about-competencies-eyebrow {
+    margin-bottom: theme.$space-28;
+    padding-top: 14px;
+  }
+
+  .about-competencies-copy {
+    color: theme.$footer-text;
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-section-lead-mobile;
+  }
+
+  .about-competencies-list {
+    margin-top: theme.$space-28;
+    border-color: theme.$border-soft;
+
+    .row {
+      min-height: 71px;
+      border-color: theme.$border-soft;
+      padding-block: theme.$space-20;
+    }
+  }
+
+  .about-competency-index {
+    width: 32px;
+    color: theme.$red-mobile;
+    font-size: theme.$font-size-card-index-mobile;
+    line-height: theme.$line-height-card-index-mobile;
+  }
+
+  .about-competency-title {
+    color: theme.$ink-mobile;
+    font-size: theme.$font-size-competency-title-mobile;
+    line-height: theme.$line-height-competency-title-mobile;
+  }
+
+  .about-competency-description {
+    margin-top: theme.$space-12;
+    padding-left: theme.$space-32;
+    color: theme.$footer-text;
+    font-size: theme.$font-size-card-copy-mobile;
+    line-height: theme.$line-height-method-copy-mobile;
+  }
+
+  .about-competency-arrow {
+    display: none;
+  }
+}
+
+.about-method {
+  padding-block: 144px;
+  color: theme.$text-on-blue;
+  background-color: theme.$brand-blue;
+  background-image: linear-gradient(133.17deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$method-overlay-middle, 0.9) 56%, rgba(theme.$method-overlay-red, 0.91375) 100%), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
+  background-position: center;
+  background-size: cover, 100% 103.8%;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.about-method-heading {
+  max-width: 768px;
+  margin-bottom: theme.$space-80;
+
+  p {
+    margin-bottom: theme.$space-40;
+    color: rgba(theme.$text-on-blue, 0.6);
+  }
+}
+
+.about-method-cards {
+  border-top: 1px solid rgba(theme.$text-on-blue, 0.4);
+  border-left: 1px solid rgba(theme.$text-on-blue, 0.4);
+}
+
+.about-method-card {
+  min-height: 294px;
+  border-right: 1px solid rgba(theme.$text-on-blue, 0.2);
+  border-bottom: 1px solid rgba(theme.$text-on-blue, 0.2);
+  padding: theme.$space-28;
+
+  h3 {
+    margin: theme.$space-48 0 theme.$space-20;
+    color: theme.$text-on-blue;
+    font-size: theme.$font-size-card-title;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-card-title;
+  }
+}
+
+.about-method-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.about-method-index {
+  color: rgba(theme.$text-on-blue, 0.3);
+  font-size: theme.$font-size-method-index;
+  line-height: theme.$line-height-method-index;
+}
+
+.about-method-copy {
+  color: rgba(white, 0.5);
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-body;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .about-method {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .about-method {
+    background-image: linear-gradient(123.14deg, rgba(theme.$method-overlay-blue-mobile, 0.94), rgba(theme.$method-overlay-middle-mobile, 0.88) 55%, rgba(theme.$method-overlay-red-mobile, 0.85)), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
+    background-size: cover;
+  }
+
+  .about-method-heading {
+    margin-bottom: theme.$space-28;
+
+    p {
+      margin-bottom: theme.$space-28;
+      color: white;
+    }
+
+    h2 {
+      color: white;
+    }
+  }
+
+  .about-method-cards {
+    border-color: rgba(theme.$border-on-blue-mobile, 0.35);
+  }
+
+  .about-method-card {
+    min-height: 0;
+    border-color: rgba(theme.$border-on-blue-mobile, 0.35);
+    padding: theme.$space-16 14px theme.$space-28;
+
+    h3 {
+      margin: theme.$space-28 0 theme.$space-20;
+      color: theme.$text-on-blue-mobile;
+      font-size: theme.$font-size-small;
+      font-weight: theme.$font-weight-bold;
+      line-height: theme.$line-height-small;
+    }
+  }
+
+  .about-method-icon {
+    visibility: hidden;
+  }
+
+  .about-method-index {
+    color: theme.$muted-on-blue-mobile;
+    font-size: theme.$font-size-card-index-mobile;
+    line-height: theme.$line-height-card-index-mobile;
+  }
+
+  .about-method-copy {
+    color: theme.$muted-on-blue-mobile;
+    font-size: theme.$font-size-card-copy-mobile;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-method-copy-mobile;
+  }
+}
+
+.about-team {
+  position: relative;
+  overflow: hidden;
+  padding-block: 186px 228px;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.about-team-mark {
+  position: absolute;
+  top: 57px;
+  left: 50%;
+  width: 1009px;
+  height: 657px;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.about-team-eyebrow {
+  margin-bottom: theme.$space-40;
+  color: theme.$brand-red;
+}
+
+.about-team-title {
+  margin-bottom: theme.$space-28;
+  color: theme.$ink;
+  font-size: theme.$font-size-team-title;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-team-title;
+  letter-spacing: theme.$letter-spacing-team-title;
+}
+
+.about-team-copy {
+  margin-bottom: theme.$space-28;
+  font-size: theme.$font-size-section-lead;
+  line-height: theme.$line-height-section-copy;
+}
+
+.about-team-link {
+  min-width: 200px;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .about-team {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .about-team-eyebrow {
+    margin-bottom: theme.$space-28;
+    padding-top: 14px;
+  }
+
+  .about-team-copy {
+    color: theme.$footer-text;
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-section-lead-mobile;
+  }
+
+  .about-team-mark {
+    top: -44px;
+    left: 120px;
+    width: 300px;
+    height: 204px;
+  }
+
+  .about-team-title {
+    margin-bottom: theme.$space-28;
+    font-size: theme.$font-size-section-title-mobile;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-section-title-compact-mobile;
+    letter-spacing: normal;
   }
 }

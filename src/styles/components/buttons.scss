@@ -1,0 +1,44 @@
+@use '../variables' as theme;
+
+.site-button {
+  --bs-btn-color: white;
+  --bs-btn-bg: #{theme.$accent-red};
+  --bs-btn-border-color: #{theme.$accent-red};
+  --bs-btn-hover-color: white;
+  --bs-btn-hover-bg: #{theme.$accent-red};
+  --bs-btn-hover-border-color: #{theme.$accent-red};
+  --bs-btn-active-color: white;
+  --bs-btn-active-bg: #{theme.$accent-red};
+  --bs-btn-active-border-color: #{theme.$accent-red};
+  --bs-btn-disabled-color: white;
+  --bs-btn-disabled-bg: #{theme.$accent-red};
+  --bs-btn-disabled-border-color: #{theme.$accent-red};
+  --bs-btn-disabled-opacity: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: theme.$space-40;
+  min-height: 46px;
+  border-radius: 0;
+  padding: theme.$space-12 theme.$space-20;
+  font-size: theme.$font-size-button;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-button;
+
+  &:focus-visible {
+    outline: 2px solid theme.$ink;
+    outline-offset: 4px;
+  }
+}
+
+.site-button--light {
+  --bs-btn-color: #{theme.$brand-blue};
+  --bs-btn-bg: white;
+  --bs-btn-border-color: #{theme.$button-border-light};
+  --bs-btn-hover-color: #{theme.$brand-blue};
+  --bs-btn-hover-bg: white;
+  --bs-btn-hover-border-color: #{theme.$button-border-light};
+  --bs-btn-active-color: #{theme.$brand-blue};
+  --bs-btn-active-bg: white;
+  --bs-btn-active-border-color: #{theme.$button-border-light};
+}

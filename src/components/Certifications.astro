@@ -1,0 +1,31 @@
+---
+import '../styles/components/certifications.scss';
+
+const logos = [
+  { src: '/assets/associazioni/il-trust-in-italia.png', alt: 'Il Trust in Italia ETS', width: 2560, height: 1005, className: 'certifications-logo--wide' },
+  { src: '/assets/associazioni/step.jpg', alt: 'STEP', width: 2362, height: 816, className: 'certifications-logo--wide' },
+  { src: '/assets/associazioni/tpe.png', alt: 'Trustee Protector Expert', width: 1444, height: 1531, className: 'certifications-logo--badge' },
+  { src: '/assets/associazioni/cte.png', alt: 'Chartered Trust Expert', width: 1504, height: 1495, className: 'certifications-logo--badge' },
+];
+---
+
+<section class="certifications" aria-labelledby="certifications-title">
+  <div class="row g-0">
+    <div class="col-lg-6 col-xxl-5 order-lg-2 certifications-heading">
+      <p class="type-eyebrow type-eyebrow--section mb-0">Trasparenza e aggiornamento professionale</p>
+      <h2 id="certifications-title" class="type-section-title mb-0">Certificazioni e associazioni.</h2>
+      <a class="btn site-button site-button--light d-lg-none" href="#certifications-logos">
+        Scopri di più <span aria-hidden="true">↓</span>
+      </a>
+    </div>
+    <div id="certifications-logos" class="col-lg-6 col-xxl-7 order-lg-1 certifications-logos">
+      <ul class="row g-4 g-lg-0 align-items-center justify-content-between flex-grow-1 flex-xxl-nowrap list-unstyled mb-0" aria-label="Associazioni e certificazioni">
+        {logos.map((logo) => (
+          <li class="col-6 col-xxl-auto flex-shrink-1 certifications-logo">
+            <img class={logo.className} src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} loading="lazy" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

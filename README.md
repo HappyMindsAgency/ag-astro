@@ -27,4 +27,4 @@ La build usa l'adapter Node standalone; in ambiente Vercel la configurazione sel
 - [Regole frontend, stile e componenti](wiki/frontend.md)
 - [Dubbi e domande per designer e team](wiki/dubbi-e-domande.md)
 
-Implementati header, footer e le prime due sezioni di Chi siamo. Il video ha solo uno spazio riservato; home, altre pagine e integrazione Strapi sono ancora da sviluppare.
+Realizzati header, footer e tutte le sezioni di Chi siamo. Il video ha solo uno spazio riservato; restano da confermare i contenuti provvisori indicati nella wiki. Home, altre pagine e integrazione Strapi sono ancora da sviluppare.

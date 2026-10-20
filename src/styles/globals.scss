@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use './fonts';
 @use './variables' as theme;
 @use 'bootstrap/scss/bootstrap' with (
@@ -5,11 +6,13 @@
   $secondary: theme.$brand-red,
   $body-color: theme.$ink,
   $font-family-sans-serif: theme.$font-family,
-  $border-color: theme.$border
+  $border-color: theme.$border,
+  $container-max-widths: map.set(theme.$container-max-widths, xxl, theme.$page-container-max-width)
 );
 @use './typography';
 @use './components/navbar';
 @use './components/footer';
+@use './components/buttons';
 
 body {
   display: flex;

@@ -1,0 +1,196 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.company-history {
+  padding-block: 128px;
+  background: theme.$surface-mist;
+}
+
+.history-frame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: theme.$space-24;
+  min-height: 661px;
+  padding-inline: 0;
+}
+
+.history-heading {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+  min-height: 162px;
+}
+
+.history-eyebrow {
+  color: theme.$brand-red;
+}
+
+.history-heading-copy h2 {
+  max-width: 676px;
+}
+
+.history-cards {
+  border-left: 1px solid rgba(theme.$ink, 0.25);
+}
+
+.history-card {
+  position: relative;
+  min-height: 403px;
+  border-right: 1px solid rgba(theme.$ink, 0.25);
+  border-bottom: 1px solid rgba(theme.$ink, 0.25);
+  padding: 38px theme.$space-32 60px;
+  background: theme.$surface-sand;
+
+  h3 {
+    margin: 96px 0 theme.$space-20;
+    font-size: theme.$font-size-card-title;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-card-title;
+  }
+}
+
+.history-card-index {
+  color: theme.$brand-red;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-body;
+}
+
+.history-marker {
+  position: absolute;
+  top: theme.$space-64;
+  left: theme.$space-28;
+  width: theme.$space-12;
+  height: theme.$space-12;
+  border: 1px solid theme.$brand-red;
+}
+
+.history-card-copy {
+  color: rgba(theme.$ink-deep, 0.75);
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-body;
+}
+
+.history-card--highlighted {
+  background: theme.$ink;
+
+  h3 {
+    color: theme.$text-on-blue;
+  }
+
+  .history-card-copy {
+    color: rgba(theme.$text-on-blue, 0.6);
+  }
+
+  .history-marker {
+    background: theme.$brand-red;
+  }
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .history-heading-label {
+    width: 640px;
+  }
+
+  .history-heading-copy {
+    flex: 1;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .company-history {
+    padding: theme.$space-64 theme.$page-gutter-mobile;
+  }
+
+  .history-frame {
+    gap: theme.$space-28;
+    min-height: 0;
+    max-width: none;
+  }
+
+  .history-heading {
+    min-height: 0;
+  }
+
+  .history-eyebrow {
+    margin-bottom: theme.$space-28;
+    border-top: 1px solid theme.$footer-border;
+    padding-top: 14px;
+  }
+
+  .history-tabs {
+    border-bottom: 1px solid theme.$border-soft;
+  }
+
+  .history-tabs .history-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: theme.$space-8;
+    min-width: 0;
+    min-height: 114px;
+    border: 0;
+    border-radius: 0;
+    padding: 14px theme.$space-8;
+    color: theme.$ink-mobile;
+    text-align: left;
+
+    &.active {
+      color: theme.$text-on-blue-mobile;
+      background: theme.$ink-mobile;
+
+      .history-marker {
+        background: theme.$red-mobile;
+      }
+    }
+
+    .history-marker {
+      position: static;
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      border-color: theme.$red-mobile;
+    }
+  }
+
+  .history-tab-index,
+  .history-panel-index {
+    font-size: theme.$font-size-card-index-mobile;
+    line-height: theme.$line-height-card-index-mobile;
+  }
+
+  .history-tab-index {
+    color: theme.$red-mobile;
+  }
+
+  .history-tab-label {
+    font-size: theme.$font-size-history-tab-label-mobile;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-history-tab-label-mobile;
+  }
+
+  .history-panels {
+    margin-top: theme.$space-28;
+  }
+
+  .history-panel {
+    min-height: 218px;
+    padding: 37px theme.$space-28 theme.$space-28;
+    color: theme.$muted-on-blue-mobile;
+    background: theme.$ink-mobile;
+
+    h3 {
+      margin: theme.$space-20 0 theme.$space-12;
+      color: theme.$text-on-blue-mobile;
+      font-size: theme.$font-size-card-title-mobile;
+      font-weight: theme.$font-weight-regular;
+      line-height: theme.$line-height-history-panel-title-mobile;
+    }
+  }
+
+  .history-panel-copy {
+    font-size: theme.$font-size-small;
+    font-weight: theme.$font-weight-light;
+    line-height: theme.$line-height-history-panel-copy-mobile;
+  }
+}

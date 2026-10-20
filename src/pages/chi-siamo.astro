@@ -1,6 +1,9 @@
 ---
 import Layout from '../components/Layout.astro';
 import PageIntro from '../components/PageIntro.astro';
+import CompanyHistory from '../components/CompanyHistory.astro';
+import Certifications from '../components/Certifications.astro';
+import ContactSection from '../components/ContactSection.astro';
 import '../styles/pages/chi-siamo.scss';
 
 const identityCards = [
@@ -19,6 +22,56 @@ const identityCards = [
   {
     title: 'Ruolo',
     description: 'Su incarico, AG Trustees opera come trustee, co-trustee o guardiano, amministrando i beni e dando continuità alle finalità definite nel trust.',
+  },
+];
+
+const historySteps = [
+  {
+    title: 'Le origini',
+    description: 'Argos Trustees e Galvani Fiduciaria. Le due realtà condividono lo stesso modo di intendere la responsabilità fiduciaria: dietro ogni patrimonio ci sono persone, legami e progetti che devono essere accompagnati nel tempo.',
+  },
+  {
+    title: 'L’incontro',
+    description: 'Dall’incontro tra esperienze complementari prende forma una visione comune, fondata su competenza, ascolto e continuità.',
+  },
+  {
+    title: 'Nasce AG Trustees',
+    description: 'Nasce una nuova società dedicata all’attività di trustee, con un’identità autonoma e un patrimonio di esperienze già consolidato.',
+  },
+  {
+    title: 'Il futuro',
+    description: 'AG Trustees guarda alla crescita della cultura della responsabilità patrimoniale, costruendo relazioni capaci di garantire stabilità e continuità tra generazioni.',
+  },
+];
+
+const competencies = [
+  'Progettazione e governance del trust',
+  'Patrimonio e continuità',
+  'Amministrazione e adempimenti',
+];
+
+const competencyDescription = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies.';
+
+const methodSteps = [
+  {
+    title: 'Ascoltare',
+    description: 'Partiamo dalle persone, dalle loro esigenze e dal contesto in cui nasce il progetto.',
+    icon: '/assets/icone/metodo-ascoltare.svg',
+  },
+  {
+    title: 'Comprendere',
+    description: 'Analizziamo gli obiettivi, la composizione del patrimonio, le relazioni e le finalità da perseguire.',
+    icon: '/assets/icone/metodo-comprendere.svg',
+  },
+  {
+    title: 'Definire',
+    description: 'Costruiamo insieme ai professionisti coinvolti una struttura chiara, coerente e sostenibile nel tempo.',
+    icon: '/assets/icone/metodo-definire.svg',
+  },
+  {
+    title: 'Amministrare e accompagnare',
+    description: 'Gestiamo il progetto con precisione, documentiamo le decisioni e manteniamo una relazione continuativa con tutti i soggetti coinvolti.',
+    icon: '/assets/icone/metodo-amministrare.svg',
   },
 ];
 ---
@@ -67,4 +120,88 @@ const identityCards = [
   <div class="about-video" aria-hidden="true">
     <div class="about-video-space"></div>
   </div>
+
+  <section class="about-origin" aria-labelledby="origin-title">
+    <div class="container">
+      <div class="row align-items-end">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section about-origin-eyebrow">Come nasce AG Trustees</p>
+          <h2 id="origin-title" class="type-section-title type-section-title--compact about-origin-title mb-0">
+            <span class="about-origin-title-line">Due storie professionali,</span>{' '}
+            <span class="about-origin-title-line">una nuova idea di</span>{' '}
+            <span class="type-section-title-accent">responsabilità fiduciaria</span>.
+          </h2>
+        </div>
+        <div class="col-lg-5">
+          <p class="about-origin-copy mb-0">AG Trustees nasce dall’unione delle competenze di Argos Trustees e Galvani Fiduciaria, due realtà con una lunga esperienza nell’attività di trustee e nella gestione patrimoniale. Ogni attività è guidata da ascolto, chiarezza, competenza e responsabilità.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CompanyHistory steps={historySteps} />
+
+  <section class="about-competencies" aria-labelledby="competencies-title">
+    <div class="container">
+      <div class="row align-items-end about-competencies-heading">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section about-competencies-eyebrow">Le nostre competenze</p>
+          <h2 id="competencies-title" class="type-section-title type-section-title--compact mb-0">
+            Conoscenze diverse per <span class="type-section-title-accent">amministrare</span> progetti complessi.
+          </h2>
+        </div>
+        <div class="col-lg-5 col-xxl-4">
+          <p class="about-competencies-copy mb-0">La gestione di un trust richiede capacità di leggere aspetti giuridici, fiscali, patrimoniali e relazionali nel loro insieme.</p>
+        </div>
+      </div>
+      <ol class="about-competencies-list list-unstyled mb-0">
+        {competencies.map((title, index) => (
+          <li class="row align-items-center">
+            <span class="col-auto about-competency-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="col about-competency-title mb-0">{title}</h3>
+            <p class="col-lg-5 col-xxl-6 about-competency-description mb-0">{competencyDescription}</p>
+            <span class="col-auto about-competency-arrow" aria-hidden="true">→</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="about-method" aria-labelledby="method-title">
+    <div class="container">
+      <div class="about-method-heading text-center mx-auto">
+        <p class="type-eyebrow type-eyebrow--section">Il nostro approccio</p>
+        <h2 id="method-title" class="type-section-title mb-0">Il metodo è parte <span class="d-block">della <span class="text-secondary">responsabilità.</span></span></h2>
+      </div>
+      <ol class="row g-0 about-method-cards list-unstyled mb-0">
+        {methodSteps.map((step, index) => (
+          <li class="col-6 col-lg-3 about-method-card">
+            <div class="d-flex align-items-center justify-content-between">
+              <img class="about-method-icon" src={step.icon} alt="" width="24" height="24" loading="lazy" />
+              <span class="about-method-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            </div>
+            <h3>{step.title}</h3>
+            <p class="about-method-copy mb-0">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="about-team" aria-labelledby="team-title">
+    <img class="about-team-mark" src="/assets/brand/ag-logo-verticale-nero.png" alt="" width="1200" height="1145" loading="lazy" />
+    <div class="container position-relative">
+      <div class="row">
+        <div class="col-lg-9 col-xxl-7">
+          <p class="type-eyebrow type-eyebrow--section about-team-eyebrow">Team</p>
+          <h2 id="team-title" class="about-team-title">La fiducia comincia <span class="d-block">dalle persone.</span></h2>
+          <p class="about-team-copy">Accompagniamo ogni progetto con ascolto, competenza e continuità.</p>
+          <a class="btn site-button about-team-link" href="/team/">Conosci il team <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Certifications />
+  <ContactSection />
 </Layout>

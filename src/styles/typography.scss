@@ -31,6 +31,16 @@
   line-height: theme.$line-height-section-copy;
 }
 
+.type-section-title--compact {
+  font-size: theme.$font-size-section-title-compact;
+  line-height: theme.$line-height-section-title-compact;
+  letter-spacing: theme.$letter-spacing-section-title-compact;
+}
+
+.type-section-title-accent {
+  color: theme.$brand-red;
+}
+
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .type-page-title {
     font-size: theme.$font-size-page-title-mobile;
@@ -64,5 +74,22 @@
     font-size: theme.$font-size-body;
     font-weight: theme.$font-weight-light;
     line-height: theme.$line-height-section-copy-mobile;
+  }
+
+  .type-section-title--compact {
+    font-size: theme.$font-size-section-title-mobile;
+    line-height: theme.$line-height-section-title-compact-mobile;
+    letter-spacing: normal;
+  }
+
+  .type-section-title-accent {
+    color: theme.$accent-red;
+  }
+
+  .type-eyebrow--section {
+    font-size: theme.$font-size-small;
+    font-weight: theme.$font-weight-medium;
+    line-height: theme.$line-height-section-label-mobile;
+    text-transform: uppercase;
   }
 }

@@ -1,0 +1,97 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.certifications-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: theme.$space-40;
+  min-height: 546px;
+  padding: theme.$space-64;
+  color: white;
+  background: theme.$brand-blue;
+}
+
+.certifications-logos {
+  display: flex;
+  align-items: center;
+  padding-inline: theme.$space-80;
+  background: theme.$surface-mist;
+  scroll-margin-top: 160px;
+}
+
+.certifications-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.certifications-logo--wide {
+  width: 250px;
+}
+
+.certifications-logo--badge {
+  width: 150px;
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .certifications-heading {
+    padding: theme.$space-40;
+  }
+
+  .certifications-logos {
+    padding-inline: theme.$space-24;
+
+    ul {
+      row-gap: theme.$space-40;
+    }
+  }
+
+  .certifications-logo img {
+    max-width: 85%;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .certifications-heading {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+    min-height: 330px;
+    padding: theme.$space-64 theme.$page-gutter-mobile;
+    background: theme.$ink;
+
+    h2 {
+      max-width: 342px;
+      margin-top: theme.$space-28;
+    }
+
+    .site-button {
+      margin-top: theme.$space-28;
+    }
+  }
+
+  .certifications-logos {
+    display: block;
+    padding: theme.$space-30 28px;
+    background: theme.$surface-mobile;
+  }
+
+  .certifications-logo {
+    min-height: 68px;
+
+    img {
+      max-width: 100%;
+      max-height: 68px;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+}
