@@ -35,31 +35,31 @@ const legalLinks = [
 
 <footer class="site-footer" id="contatti">
   <div class="container-fluid p-0">
-    <div class="footer-columns row gy-5 gx-0 gx-lg-4 gx-xxl-0 justify-content-between">
-      <div class="col-12 col-md-6 col-lg-3 col-xxl-auto footer-brand">
+    <div class="footer-columns row gx-0 gy-4 gy-md-5 justify-content-between">
+      <div class="col-12 col-lg-auto">
         <a href="/" aria-label="AG Trustees — Homepage">
-          <img class="footer-logo" src="/assets/brand/ag-logo-footer.png" alt="Across Galvani Trustees" width="1200" height="408" loading="lazy" />
+          <img class="footer-logo d-block h-auto" src="/assets/brand/ag-logo-footer.png" alt="Across Galvani Trustees" width="1118" height="380" loading="lazy" />
         </a>
-        <div class="footer-company-details">
-          <p class="footer-company">AG TRUSTEES S.R.L.</p>
-          <p>P.IVA 14402230966</p>
-          <p>Capitale sociale <span class="text-nowrap">€ 10.000,00 i.v.</span></p>
+        <div class="d-flex flex-column gap-2 mt-4">
+          <p class="footer-company mb-0">AG TRUSTEES S.R.L.</p>
+          <p class="mb-0">P.IVA 14402230966</p>
+          <p class="mb-0">Capitale sociale <span class="text-nowrap">€ 10.000,00 i.v.</span></p>
           {linkedinUrl ? (
-            <a href={linkedinUrl} aria-label="AG Trustees su LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
+            <a href={linkedinUrl} aria-label="AG Trustees su LinkedIn"><img class="d-block" src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
           ) : (
-            <span role="img" aria-label="LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></span>
+            <span role="img" aria-label="LinkedIn"><img class="d-block" src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></span>
           )}
         </div>
       </div>
 
-      <nav class="col-12 col-md-6 col-lg-3 col-xxl-auto footer-menu" aria-label="Navigazione nel footer">
+      <nav class="col-7 col-md-auto" aria-label="Navigazione nel footer">
         <h2 class="footer-heading">Menu</h2>
         <ul class="footer-nav list-unstyled mb-0">
           {menu.map(({ label, href }) => <li>{href ? <a href={href}>{label}</a> : <span>{label}</span>}</li>)}
         </ul>
       </nav>
 
-      <div class="col-12 col-md-6 col-lg-2 col-xxl-auto footer-utility">
+      <div class="col-5 col-md-auto">
         <h2 class="footer-heading">Utility</h2>
         <ul class="footer-nav list-unstyled mb-0">
           <li><span>Cerca nel sito</span></li>
@@ -67,12 +67,12 @@ const legalLinks = [
         </ul>
       </div>
 
-      <div class="col-12 col-md-6 col-lg-4 col-xxl-auto footer-contacts">
+      <div class="col-12 col-md-auto">
         <h2 class="footer-heading">Sedi &amp; contatti</h2>
-        <address class="mb-0">
+        <address class="d-grid gap-3 mb-0">
           {offices.map(({ city, address }) => (
-            <div class="footer-office">
-              <h3>{city}</h3>
+            <div>
+              <h3 class="footer-office">{city}</h3>
               <p class="mb-0">{address}</p>
             </div>
           ))}

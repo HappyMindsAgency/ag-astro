@@ -55,7 +55,7 @@ Usa `container`, `row`, `col-*`, `offset-*` e le utilità Bootstrap. Preferisci 
 
 Il contenitore desktop è largo 1376 px (`$page-container-max-width`), configurato in `globals.scss` nella mappa Bootstrap `$container-max-widths` per `xxl`. L'introduzione ha 40 px di padding, ridotti a 24 px sotto `lg` (992 px). Il layout diventa verticale sotto `md` (768 px); la tipografia resta compatta fino a 991 px.
 
-La navbar usa `navbar-expand-xl` e si espande da 1200 px, soglia condivisa con lo script dei sottomenu. È centrata, larga al massimo 1717 px, con margini minimi di 24 px. Fra 1200 e 1920 px logo, spazi e corpo crescono in modo fluido con `fluid()` di `navbar.scss`. Hover e voce attiva usano il semibold con larghezza riservata, così le voci non si spostano, e una linea rossa disegnata da sinistra; Contatti parte da una linea sottile. Contatti, icone e lingua poggiano sulla linea di base dei testi e sono separati da divisori `.vr`.
+La navbar usa `navbar-expand-xl` e si espande da 1200 px, soglia condivisa con lo script dei sottomenu. È centrata, larga al massimo 1717 px (`$frame-max-width`), con margini minimi di 24 px. Fra 1200 e 1920 px logo, spazi e corpo crescono in modo fluido con `fluid()` di `navbar.scss`. Hover e voce attiva usano il semibold con larghezza riservata, così le voci non si spostano, e una linea rossa disegnata da sinistra; Contatti parte da una linea sottile. Contatti, icone e lingua poggiano sulla linea di base dei testi e sono separati da divisori `.vr`.
 
 Il menu compatto si apre sopra la pagina, oscurata e bloccata, e si chiude con la croce, con Escape o toccando lo sfondo. Le voci crescono da 22 a 28 px fra 360 e 430 px e la pagina corrente è sottolineata in rosso, come sul desktop. Contatti compare nella barra da 390 px, con freccia e a 12 px fino a `sm` per non superare la scritta del logo; a menu aperto resta il pulsante in fondo al pannello, accanto alle voci da `md`.
 
@@ -63,7 +63,7 @@ Fra `lg` e `xxl` (992–1399 px), usa i valori tipografici `$*-tablet` e `.secti
 
 Da `md` a `xxl` (768–1399 px), tutte le introduzioni `PageIntro` usano colonne 6+6 con divisore rosso e 80 px di spazio sotto il contenuto; il sopratitolo ha larghezza massima di 320 px e va a capo naturalmente.
 
-Il footer usa colonne Bootstrap 3+3+2+4 da `lg`, con spaziatura orizzontale `gx-lg-4`, ripristinata a zero da `xxl`. Il contenitore interno non supera 1720 px; sotto `md` il logo mantiene le proporzioni dell'asset e non supera 342 px di larghezza.
+Il footer ha gli stessi bordi della barra dell'header: margini di 24 px e larghezza massima `$frame-max-width`. Da `md` le colonne sono automatiche e distribuite con `justify-content-between`, così gli spazi restano uguali; sotto `md` Menu e Utility sono affiancate. La linea sopra il footer sta dietro le sezioni: si vede solo se l'ultima sezione della pagina non ha uno sfondo.
 
 Le composizioni ampie di foto e testo, certificazioni, video e invito finale mantengono i limiti ricavati dal desktop da 1920 px (`$wide-layout-max-width`), con gli spazi laterali del relativo componente. Gli sfondi continuano a tutta larghezza.
 

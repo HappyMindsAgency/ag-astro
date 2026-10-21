@@ -65,7 +65,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
   --bs-navbar-brand-padding-y: 0;
   --bs-navbar-nav-link-padding-x: 0;
   --bs-navbar-toggler-focus-width: 0;
-  max-width: 1717px;
+  max-width: theme.$frame-max-width;
   min-height: var(--header-bar-height);
   margin-inline: auto;
   background: rgba(theme.$ink, 0.05);
