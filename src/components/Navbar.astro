@@ -117,9 +117,11 @@ const navigation: NavigationItem[] = [
 <script>
   import Collapse from 'bootstrap/js/dist/collapse';
   import Dropdown from 'bootstrap/js/dist/dropdown';
+  import FocusTrap from 'bootstrap/js/dist/util/focustrap';
 
   document.querySelectorAll<HTMLElement>('.site-navbar').forEach((navbar) => {
     const breakpoint = getComputedStyle(navbar).getPropertyValue('--header-expand-breakpoint').trim();
+    const desktop = matchMedia(`(min-width: ${breakpoint})`);
     const desktopHover = matchMedia(`(min-width: ${breakpoint}) and (hover: hover) and (pointer: fine)`);
     const header = navbar.closest<HTMLElement>('.site-header');
     const panel = navbar.querySelector<HTMLElement>('.navbar-collapse');
@@ -127,6 +129,24 @@ const navigation: NavigationItem[] = [
 
     if (header && panel && toggler) {
       const menu = Collapse.getOrCreateInstance(panel, { toggle: false });
+      const focusTrap = new FocusTrap({ trapElement: navbar, autofocus: false });
+
+      panel.addEventListener('shown.bs.collapse', (event) => {
+        if (event.target !== panel) return;
+        if (desktop.matches) menu.hide();
+        else focusTrap.activate();
+      });
+
+      panel.addEventListener('hide.bs.collapse', (event) => {
+        if (event.target !== panel) return;
+        focusTrap.deactivate();
+        if (!desktop.matches && panel.contains(document.activeElement)) toggler.focus();
+      });
+
+      desktop.addEventListener('change', () => {
+        focusTrap.deactivate();
+        menu.hide();
+      });
 
       // Lo sfondo oscurato è un pseudo-elemento dell'header.
       header.addEventListener('click', (event) => {
@@ -134,7 +154,7 @@ const navigation: NavigationItem[] = [
       });
 
       navbar.addEventListener('keydown', (event) => {
-        if (event.key !== 'Escape' || !panel.classList.contains('show')) return;
+        if (event.key !== 'Escape' || desktop.matches || !panel.classList.contains('show')) return;
         menu.hide();
         toggler.focus();
       });

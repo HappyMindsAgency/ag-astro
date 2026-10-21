@@ -28,6 +28,22 @@ $cta-padding-inline: 160px;
   text-transform: uppercase;
 }
 
+.call-to-action--large-text {
+  .call-to-action-eyebrow {
+    font-size: theme.$font-size-page-eyebrow;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-page-eyebrow;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+
+  .call-to-action-copy {
+    color: white;
+    font-size: theme.$font-size-section-lead;
+    line-height: theme.$line-height-section-copy;
+  }
+}
+
 .call-to-action-eyebrow {
   margin-bottom: theme.$space-12;
   color: rgba(white, 0.55);
@@ -52,6 +68,12 @@ $cta-padding-inline: 160px;
   padding: 14px theme.$space-30;
 }
 
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .call-to-action--large-text .call-to-action-copy {
+    max-width: 778px;
+  }
+}
+
 @include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
   .call-to-action {
     padding-inline: theme.$space-48;
@@ -69,6 +91,11 @@ $cta-padding-inline: 160px;
   }
 
   .call-to-action-copy {
+    line-height: theme.$line-height-section-lead-mobile;
+  }
+
+  .call-to-action--large-text .call-to-action-copy {
+    font-size: theme.$font-size-body;
     line-height: theme.$line-height-section-lead-mobile;
   }
 

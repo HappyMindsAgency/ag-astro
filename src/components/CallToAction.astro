@@ -5,12 +5,13 @@ interface Props {
   eyebrow: string;
   href: string;
   label: string;
+  largeText?: boolean;
 }
 
-const { eyebrow, href, label } = Astro.props;
+const { eyebrow, href, label, largeText = false } = Astro.props;
 ---
 
-<section class="call-to-action" aria-labelledby="cta-title">
+<section class:list={['call-to-action', { 'call-to-action--large-text': largeText }]} aria-labelledby="cta-title">
   <div class="row align-items-center justify-content-between g-0 gap-5 gap-lg-4">
     <div class="col-lg">
       <div class="call-to-action-content">

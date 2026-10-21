@@ -4,13 +4,14 @@ import '../styles/components/faq-section.scss';
 interface Props {
   id: string;
   items: { question: string; answer: string }[];
+  largeTitle?: boolean;
 }
 
-const { id, items } = Astro.props;
+const { id, items, largeTitle = false } = Astro.props;
 const listId = `${id}-list`;
 ---
 
-<section id={id} class="faq-section section-spacing" aria-labelledby={`${id}-title`}>
+<section id={id} class:list={['faq-section section-spacing', { 'faq-section--large-title': largeTitle }]} aria-labelledby={`${id}-title`}>
   <div class="container">
     <div class="row gx-4 gy-4">
       <div class="col-lg-6">

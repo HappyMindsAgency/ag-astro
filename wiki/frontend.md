@@ -41,9 +41,11 @@ Le pagine solo predisposte riutilizzano `PagePlaceholder`: layout comune e titol
 
 Per i paragrafi editoriali usa `.type-section-lead`: 20 px con interlinea 32,2 px sul desktop, 16 px con interlinea 20 px sul mobile. La variante `.type-section-lead--relaxed` mantiene 25 px sul mobile, per la panoramica di Visione e l’introduzione dei servizi. Colori e spazi restano nel relativo contesto. Le descrizioni delle card del metodo usano interlinea 23 px sul desktop e 20 px sul mobile.
 
-Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e riduce il corpo sui telefoni più stretti del frame Figma da 390 px. `CallToAction` gestisce l'invito finale, con testi e collegamento passati dalla pagina.
+Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e riduce il corpo sui telefoni più stretti del frame Figma da 390 px. `CallToAction` gestisce l'invito finale, con testi e collegamento passati dalla pagina; `largeText` conserva il sopratitolo da 16 px e la descrizione da 20 px bianco pieno previsti per Trust.
 
-`FaqSection` riceve un `id` univoco e le coppie `question`/`answer` dalla pagina; usa Bootstrap Accordion con una risposta aperta alla volta. Il titolo mobile condiviso è da 34 px, come nei frame FAQ di Servizi, Trust e Patrimonio.
+`FaqSection` riceve un `id` univoco e le coppie `question`/`answer` dalla pagina; usa Bootstrap Accordion con una risposta aperta alla volta. `largeTitle` conserva il titolo desktop da 68 px di Trust. Il titolo mobile condiviso è da 34 px.
+
+`EditorialImage` condivide foto, sovrapposizione e resa mobile fra Visione e Trust; proporzioni specifiche restano nella sezione. `RelatedContent` riceve gli articoli e i documenti da mostrare, senza chiamate API: gruppi vuoti e relativo spazio non vengono renderizzati. Il collegamento a Strapi sarà aggiunto quando saranno disponibili i contenuti.
 
 Gli stati interattivi sono condivisi nei fogli dei componenti. La navbar usa Bootstrap Dropdown: il testo apre la pagina e la freccia separata controlla il sottomenu. L’hover apre solo con il mouse sul menu esteso; clic, tastiera ed Escape funzionano anche nel menu mobile. Galvani/Argos e Newsletter restano etichette non attivabili finché non sono confermate le destinazioni.
 
@@ -57,11 +59,13 @@ Il contenitore desktop è largo 1376 px (`$page-container-max-width`), configura
 
 La navbar usa `navbar-expand-xl` e si espande da 1200 px, soglia condivisa con lo script dei sottomenu. È centrata, larga al massimo 1717 px (`$frame-max-width`), con margini minimi di 24 px. Fra 1200 e 1920 px logo, spazi e corpo crescono in modo fluido con `fluid()` di `navbar.scss`. Hover e voce attiva usano il semibold con larghezza riservata, così le voci non si spostano, e una linea rossa disegnata da sinistra; Contatti parte da una linea sottile. Contatti, icone e lingua poggiano sulla linea di base dei testi e sono separati da divisori `.vr`.
 
-Il menu compatto si apre sopra la pagina, oscurata e bloccata, e si chiude con la croce, con Escape o toccando lo sfondo. Le voci crescono da 22 a 28 px fra 360 e 430 px e la pagina corrente è sottolineata in rosso, come sul desktop. Contatti compare nella barra da 390 px, con freccia e a 12 px fino a `sm` per non superare la scritta del logo; a menu aperto resta il pulsante in fondo al pannello, accanto alle voci da `md`.
+Il menu compatto si apre sopra la pagina, oscurata e bloccata, e si chiude con la croce, con Escape o toccando lo sfondo. A menu aperto, `FocusTrap` di Bootstrap mantiene la navigazione da tastiera nella navbar. Le voci crescono da 22 a 28 px fra 360 e 430 px e la pagina corrente è sottolineata in rosso, come sul desktop. Contatti compare nella barra da 390 px, con freccia e a 12 px fino a `sm` per non superare la scritta del logo; a menu aperto resta il pulsante in fondo al pannello, accanto alle voci da `md`.
 
 Fra `lg` e `xxl` (992–1399 px), usa i valori tipografici `$*-tablet` e `.section-spacing` per 80 px di padding verticale. Le griglie a quattro card usano `col-6 col-xxl-3`: due colonne nella fascia intermedia, quattro da 1400 px. Questi adattamenti conservano le varianti Figma sotto 992 px e da 1400 px.
 
-Da `md` a `xxl` (768–1399 px), tutte le introduzioni `PageIntro` usano colonne 6+6 con divisore rosso e 80 px di spazio sotto il contenuto; il sopratitolo ha larghezza massima di 320 px e va a capo naturalmente.
+Da `md` a `xxl` (768–1399 px), tutte le introduzioni `PageIntro` usano colonne 6+6 con divisore rosso e 80 px di spazio sotto il contenuto. Il sopratitolo usa la larghezza della colonna e va a capo naturalmente.
+
+Sotto `lg`, `PageIntro` aggiunge 8 px sopra la breadcrumb; lo spazio successivo è 24 px sotto `md` e 40 px da `md`.
 
 Il footer ha gli stessi bordi della barra dell'header: margini di 24 px e larghezza massima `$frame-max-width`. Da `md` le colonne sono automatiche e distribuite con `justify-content-between`, così gli spazi restano uguali; sotto `md` Menu e Utility sono affiancate. La linea sopra il footer sta dietro le sezioni: si vede solo se l'ultima sezione della pagina non ha uno sfondo.
 
@@ -74,5 +78,7 @@ Compila Bootstrap **solo in `globals.scss`**. Negli altri file usa variabili e m
 Le personalizzazioni dei figli di `.row` e delle varianti `.site-button` devono prevalere sui reset Bootstrap con selettori di componente, senza dipendere dall'ordine dei fogli CSS.
 
 ## Prima di condividere
+
+Per gli a capo dei titoli previsti dal design, usa il primo breakpoint Bootstrap in cui le righe entrano interamente. Controlla la composizione anche subito prima e dopo la soglia.
 
 Esegui `npm run build` e `git diff --check`; se cambia l'aspetto, controlla desktop, mobile, larghezze intermedie e apertura del menu nel browser. Confronta anche il prototipo Figma in **Present**, inclusi hover, sottomenu e interazioni disponibili. Verifica anche la build di produzione quando cambiano import o stili condivisi.

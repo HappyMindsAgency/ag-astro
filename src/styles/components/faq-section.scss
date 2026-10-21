@@ -71,6 +71,14 @@
   line-height: theme.$line-height-body;
 }
 
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .faq-section--large-title .faq-title {
+    font-size: theme.$font-size-faq-title-large;
+    line-height: theme.$line-height-faq-title-large;
+    letter-spacing: theme.$letter-spacing-faq-title-large;
+  }
+}
+
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .faq-section {
     padding-block: theme.$space-64;

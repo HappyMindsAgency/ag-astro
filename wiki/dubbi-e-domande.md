@@ -60,3 +60,9 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Filtri tematici, Newsletter e accesso ai dati (P14, P20, P24):** presenza al lancio da decidere; pagine non predisposte.
 - **Informazioni societarie (P26):** riga incompleta, senza percorso o indicazione sul lancio.
 - **FAQ nel footer:** manca una pagina dedicata nel file. Servono conferma della destinazione e del rapporto con le FAQ della Library; per ora l’etichetta non ha collegamento.
+
+## 11. Trust: confronto con la 4° Release
+
+- **Mobile:** il breadcrumb indica Patrimonio, il sopratitolo riprende Visione e metodologia e alcune sezioni usano testi relativi al patrimonio. Mantengo i testi desktop e Jost; da confrontare con la prossima release.
+- **FAQ:** due domande sono segnaposto e il prototipo non mostra risposte. Uso Lorem ipsum per verificare l’accordion; servono i testi definitivi.
+- **Articoli e documenti correlati:** arriveranno da Strapi. Servono contenuti, relazioni e URL dei file; non uso i dati dimostrativi di Figma.

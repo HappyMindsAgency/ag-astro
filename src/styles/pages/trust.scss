@@ -1,0 +1,301 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.trust-eyebrow {
+  margin-bottom: theme.$space-28;
+  color: theme.$brand-red;
+}
+
+.trust-editorial-title {
+  margin-bottom: theme.$space-28;
+}
+
+.trust-copy {
+  color: rgba(theme.$ink-deep, 0.75);
+
+  > * {
+    margin-bottom: theme.$space-32;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style-type: '·  ';
+    padding-left: theme.$space-30;
+  }
+}
+
+.site-button.trust-action {
+  gap: theme.$space-4;
+  margin-top: theme.$space-28;
+  padding: 14px theme.$space-30;
+  font-size: theme.$font-size-cta-label;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-cta-label;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.trust-overview {
+  display: flex;
+  align-items: center;
+  min-height: 453px;
+  padding-block: theme.$space-48;
+  color: white;
+  background: linear-gradient(rgba(theme.$ink-mobile, 0.75), rgba(theme.$ink-mobile, 0.75)), url('/assets/immagini/ufficio-panorama.jpg') center / cover;
+
+  .container {
+    padding-inline: 0;
+  }
+
+  .trust-eyebrow {
+    color: white;
+  }
+}
+
+.trust-overview-accent {
+  color: rgba(white, 0.5);
+}
+
+.trust-overview-copy p {
+  margin-bottom: 0;
+}
+
+.trust-editorial {
+  padding-block: 120px;
+
+  .editorial-image {
+    box-shadow: none;
+  }
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .trust-editorial .container {
+    max-width: theme.$wide-layout-max-width - 2 * theme.$space-100;
+  }
+}
+
+.trust-editorial--italy {
+  padding-bottom: theme.$space-64;
+
+  .editorial-image {
+    max-width: 704px;
+    aspect-ratio: 704 / 856;
+
+    img {
+      object-position: 75% center;
+    }
+  }
+}
+
+.trust-editorial--process {
+  padding-block: 144px;
+  scroll-margin-top: 160px;
+
+  .trust-process-content {
+    padding-inline: theme.$space-48;
+  }
+
+  .editorial-image {
+    max-width: 750px;
+    margin-left: auto;
+    aspect-ratio: 750 / 694;
+  }
+}
+
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .trust-editorial--process .editorial-image img {
+    object-position: 88% center;
+  }
+}
+
+.trust-participants {
+  padding-block: 144px;
+  color: white;
+  background: linear-gradient(135deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/ufficio-panorama.jpg') center;
+  background-size: cover, 100% 104%;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.trust-participants-list {
+  margin-top: theme.$space-64;
+  border-top: 1px solid rgba(white, 0.15);
+}
+
+.trust-participant {
+  min-height: 79px;
+  border-bottom: 1px solid rgba(white, 0.15);
+}
+
+.trust-participant-title {
+  font-size: theme.$font-size-list-title;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-list-title;
+}
+
+.trust-participant .trust-participant-copy {
+  padding-block: theme.$space-16;
+  color: white;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-body;
+}
+
+.trust-segregation,
+.trust-assets {
+  padding-block: 144px;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.trust-assets {
+  padding-top: theme.$space-48;
+}
+
+.trust-benefits {
+  padding-bottom: 60px;
+
+  > .row {
+    max-width: theme.$wide-layout-max-width;
+    margin-inline: auto;
+  }
+}
+
+.trust-benefits .trust-benefits-content {
+  padding: theme.$space-32 theme.$space-80 theme.$space-32 theme.$space-12;
+}
+
+.trust-benefits-title {
+  margin-bottom: theme.$space-64;
+}
+
+.trust-copy .trust-benefits-list {
+  list-style: '- ';
+  padding-left: theme.$space-12;
+}
+
+.trust-professional {
+  display: flex;
+  align-items: center;
+  min-height: 666px;
+  padding-block: 128px;
+  color: white;
+  background: theme.$ink;
+
+  .container {
+    padding-inline: 0;
+  }
+
+  .trust-eyebrow {
+    color: white;
+  }
+
+  .type-section-title {
+    max-width: 780px;
+  }
+}
+
+.trust-responsibilities li {
+  border-bottom: 1px solid rgba(white, 0.4);
+  padding-block: theme.$space-20;
+}
+
+.trust-responsibility-index {
+  flex-shrink: 0;
+  color: theme.$brand-red;
+  font-weight: theme.$font-weight-semibold;
+}
+
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .trust-professional {
+    min-height: 0;
+  }
+
+  .trust-benefits .trust-benefits-content {
+    padding-inline: theme.$space-24;
+  }
+
+  .trust-benefits-title {
+    margin-bottom: theme.$space-28;
+  }
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .trust-editorial--process .trust-process-content {
+    padding-inline: theme.$space-12;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .trust-overview,
+  .trust-editorial,
+  .trust-participants,
+  .trust-segregation,
+  .trust-assets,
+  .trust-professional {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .trust-editorial .editorial-image {
+    max-width: none;
+    aspect-ratio: 390 / 350;
+  }
+
+  .trust-editorial--process .trust-process-content {
+    padding-inline: theme.$space-12;
+  }
+
+  .trust-participants-list {
+    margin-top: theme.$space-28;
+  }
+
+  .trust-participants {
+    background-size: cover;
+  }
+
+  .trust-participant-title {
+    font-size: theme.$font-size-card-title-mobile;
+    line-height: theme.$line-height-card-title-mobile;
+  }
+
+  .trust-participant-index {
+    font-size: theme.$font-size-small;
+  }
+
+  .trust-participant .trust-participant-copy {
+    color: rgba(white, 0.7);
+    font-size: theme.$font-size-card-copy-mobile;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-compact-copy;
+  }
+
+  .trust-benefits {
+    padding-bottom: theme.$space-64;
+  }
+
+  .trust-benefits .trust-benefits-content {
+    padding: theme.$space-32 theme.$page-gutter-mobile 0;
+  }
+}
+
+@include bs.media-breakpoint-down(md, theme.$grid-breakpoints) {
+  .trust-participant {
+    padding-block: theme.$space-24;
+  }
+
+  .trust-participant .trust-participant-copy {
+    padding-bottom: 0;
+  }
+}

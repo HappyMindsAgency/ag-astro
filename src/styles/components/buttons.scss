@@ -43,6 +43,30 @@
   --bs-btn-active-border-color: #{theme.$button-border-light};
 }
 
+.site-button.site-button--blue {
+  --bs-btn-color: white;
+  --bs-btn-bg: #{theme.$brand-blue};
+  --bs-btn-border-color: #{theme.$brand-blue};
+  --bs-btn-hover-color: white;
+  --bs-btn-hover-bg: #{theme.$brand-blue};
+  --bs-btn-hover-border-color: #{theme.$brand-blue};
+  --bs-btn-active-color: white;
+  --bs-btn-active-bg: #{theme.$brand-blue};
+  --bs-btn-active-border-color: #{theme.$brand-blue};
+}
+
+.site-button.site-button--outline-blue {
+  --bs-btn-color: #{theme.$brand-blue};
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: #{theme.$editorial-border};
+  --bs-btn-hover-color: #{theme.$brand-blue};
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: #{theme.$editorial-border};
+  --bs-btn-active-color: #{theme.$brand-blue};
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: #{theme.$editorial-border};
+}
+
 .site-button.site-button--outline-light {
   --bs-btn-color: white;
   --bs-btn-bg: transparent;

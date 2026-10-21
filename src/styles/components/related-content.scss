@@ -1,0 +1,158 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.related-content {
+  padding-block: theme.$space-80;
+
+  .container {
+    --bs-gutter-x: #{theme.$space-48};
+  }
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .related-content .container {
+    max-width: theme.$wide-layout-max-width - 2 * theme.$space-100;
+  }
+}
+
+.related-eyebrow {
+  margin-bottom: theme.$space-8;
+  color: theme.$brand-red;
+}
+
+.related-title {
+  margin-bottom: theme.$space-48;
+  font-size: theme.$font-size-related-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-related-title;
+  letter-spacing: -0.2px;
+}
+
+.related-article-link {
+  color: theme.$ink;
+  text-decoration: none;
+}
+
+.related-article-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.related-article-meta,
+.related-document-meta {
+  color: theme.$editorial-border;
+  font-size: theme.$font-size-content-meta;
+  line-height: theme.$line-height-content-meta;
+
+  > span:first-child {
+    color: theme.$brand-blue;
+    text-transform: uppercase;
+  }
+}
+
+.related-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: theme.$space-8;
+  margin-block: theme.$space-16 theme.$space-12;
+}
+
+.related-article-title {
+  margin-bottom: theme.$space-12;
+  font-size: theme.$font-size-article-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-article-title;
+}
+
+.related-article-excerpt {
+  color: theme.$ink;
+  font-size: theme.$font-size-article-excerpt;
+  line-height: theme.$line-height-article-excerpt;
+}
+
+.related-documents {
+  margin-top: theme.$space-100;
+}
+
+.related-document {
+  height: 100%;
+  border-top: 1px solid theme.$border-soft;
+  padding-block: theme.$space-20;
+}
+
+.related-document-badge {
+  display: grid;
+  flex: 0 0 theme.$space-40;
+  place-items: center;
+  height: theme.$space-40;
+  color: white;
+  background: theme.$brand-blue;
+  font-size: theme.$font-size-small;
+  font-weight: theme.$font-weight-medium;
+}
+
+.related-document-title {
+  margin-bottom: theme.$space-8;
+  color: theme.$brand-blue;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-body;
+}
+
+.site-button.related-document-download {
+  flex-shrink: 0;
+  gap: theme.$space-8;
+  padding: theme.$space-12 theme.$space-16;
+  font-size: theme.$font-size-cta-label;
+  line-height: theme.$line-height-cta-label;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.related-action {
+  margin-top: theme.$space-80;
+
+  .site-button {
+    gap: theme.$space-4;
+    padding: 14px theme.$space-30;
+    font-size: theme.$font-size-cta-label;
+    line-height: theme.$line-height-cta-label;
+    letter-spacing: theme.$letter-spacing-cta-label;
+    text-transform: uppercase;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .related-content {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .related-title {
+    font-size: theme.$font-size-section-title-mobile;
+    line-height: theme.$line-height-section-title-mobile;
+  }
+
+  .related-documents,
+  .related-action {
+    margin-top: theme.$space-48;
+  }
+}
+
+@include bs.media-breakpoint-down(sm, theme.$grid-breakpoints) {
+  .related-document {
+    flex-wrap: wrap;
+
+    > .flex-grow-1 {
+      flex-basis: calc(100% - #{theme.$space-40 + theme.$space-16});
+    }
+  }
+}

@@ -58,7 +58,6 @@
   }
 
   .page-intro-eyebrow {
-    max-width: 320px;
     margin-bottom: theme.$space-28;
   }
 }
@@ -83,6 +82,8 @@
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .page-intro {
+    padding-top: theme.$space-8;
+
     .container {
       max-width: none;
       padding-inline: theme.$page-gutter-mobile;
@@ -93,7 +94,6 @@
       --bs-breadcrumb-divider-color: #{theme.$muted-mobile};
       --bs-breadcrumb-item-active-color: #{theme.$ink-mobile};
       --bs-breadcrumb-item-padding-x: 9px;
-      margin-bottom: 22px;
       padding: 0;
       font-size: theme.$font-size-small;
       line-height: theme.$line-height-breadcrumb-mobile;
@@ -126,7 +126,7 @@
 
     .row {
       row-gap: theme.$space-28;
-      padding: 0;
+      padding: theme.$space-24 0 0;
     }
   }
 

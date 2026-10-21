@@ -1,5 +1,246 @@
 ---
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import Layout from '../../components/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import EditorialImage from '../../components/EditorialImage.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
+import '../../styles/pages/trust.scss';
+
+const trustPrinciples = [
+  'i beni conferiti in trust formano un patrimonio distinto e non fanno parte del patrimonio personale del trustee;',
+  'i beni sono intestati al trustee, o a un altro soggetto per suo conto;',
+  'il trustee ha il potere e il dovere di amministrare, gestire o disporre dei beni secondo le disposizioni dell’atto istitutivo e della legge applicabile;',
+  'il trustee deve documentare le decisioni assunte e rendere conto della propria attività.',
+];
+
+const trustDeed = [
+  'la finalità e la durata del trust;',
+  'il trustee e i suoi compiti;',
+  'i beneficiari;',
+  'l’eventuale guardiano;',
+  'la legge regolatrice;',
+  'le regole per amministrare e attribuire i beni.',
+];
+
+const trustParticipants = [
+  { title: 'Disponente', description: 'Istituisce il trust, individua i beni da conferire e li trasferisce' },
+  { title: 'Trustee', description: 'Assume la titolarità dei beni e la responsabilità di amministrarli secondo l’atto, nell’interesse dei beneficiari o per uno scopo specifico' },
+  { title: 'Beneficiari', description: 'Sono le persone o gli enti nel cui interesse il patrimonio viene amministrato e ai quali possono essere effettuate le attribuzioni previste.' },
+  { title: 'Guardiano', description: 'Vigila sull’attività del trustee ed esercita i poteri di controllo, intervento o autorizzazione attribuiti dall’atto.' },
+  { title: 'Co-trustee', description: 'Condivide con uno o più trustee l’incarico e le relative responsabilità, secondo le regole decisionali definite.' },
+];
+
+const segregationPrinciples = [
+  'sono amministrati secondo le finalità e le regole stabilite nell’atto istitutivo;',
+  'non si confondono con i beni personali del trustee;',
+  'non entrano nel patrimonio personale dei beneficiari fino alle attribuzioni previste;',
+  'devono essere individuati, amministrati e rendicontati separatamente;',
+  'il trustee ha il potere e l’obbligo di amministrarli nell’interesse dei beneficiari o per lo scopo stabilito.',
+];
+
+const assetTypes = [
+  'partecipazioni societarie;',
+  'beni mobili e immobili;',
+  'disponibilità e strumenti finanziari;',
+  'crediti e altri diritti;',
+  'opere d’arte e collezioni.',
+];
+
+const trustBenefits = [
+  'accompagnare il passaggio generazionale;',
+  'assicurare continuità all’impresa;',
+  'amministrare patrimoni finanziari, immobiliari e societari;',
+  'tutelare persone fragili;',
+  'preservare e gestire collezioni d’arte;',
+  'sostenere progetti e finalità benefiche;',
+  'regolare specifiche operazioni di garanzia;',
+  'rispondere a particolari esigenze nell’ambito di procedure concorsuali.',
+];
+
+const trusteeResponsibilities = [
+  'Il trustee dà concreta attuazione al progetto definito nell’atto istitutivo.',
+  'Amministra i beni, assume le decisioni di propria competenza, mantiene distinte le risorse del trust e agisce nell’interesse dei beneficiari o dello scopo indicato.',
+  'Ogni attività deve essere documentata e rendicontata. Per questo il ruolo richiede competenza giuridica, capacità amministrativa, indipendenza e continuità nel tempo.',
+];
+
+const faqAnswer = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus.';
+const faqs = [
+  { question: 'Che cos’è un trust?', answer: faqAnswer },
+  { question: 'Lorem ipsum dolor sit amet?', answer: faqAnswer },
+  { question: 'Lorem ipsum dolor sit amet?', answer: faqAnswer },
+];
 ---
 
-<PagePlaceholder title="Trust" />
+<Layout>
+  <PageIntro breadcrumb="Trust" eyebrow="Uno strumento flessibile. Regole chiare, responsabilità definite." mobileTitleLeading="relaxed">
+    <Fragment slot="title">
+      <span class="d-block">Il trust</span>
+      <span class="d-block text-secondary">siamo noi.</span>
+    </Fragment>
+    Il trust è un rapporto giuridico attraverso il quale determinati beni vengono affidati a un trustee, che li amministra nell’interesse di uno o più beneficiari o per il perseguimento di una finalità specifica.
+  </PageIntro>
+
+  <section class="trust-overview" aria-labelledby="trust-overview-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-6">
+          <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Che cos’è il trust?</p>
+          <h2 id="trust-overview-title" class="type-section-title type-section-title--compact mb-0">
+            Separare, amministrare, <span class="trust-overview-accent">realizzare un obiettivo.</span>
+          </h2>
+          <a class="btn site-button site-button--light trust-action" href="#come-funziona">Come funziona <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="col-lg-6 type-section-lead type-section-lead--relaxed trust-overview-copy">
+          <p>Con il trust, una persona - il disponente - destina determinati beni a un progetto e ne affida l’amministrazione a un trustee.</p>
+          <p>Il trustee acquisisce la titolarità dei beni, ma non può disporne liberamente per finalità personali. Deve amministrarli secondo le regole stabilite nell’atto istitutivo, nell’interesse dei beneficiari o per realizzare lo scopo indicato.</p>
+          <p>I beni costituiscono così un patrimonio distinto, sottoposto a regole, responsabilità e modalità di gestione definite.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-editorial trust-editorial--italy section-spacing" aria-labelledby="trust-italy-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-start align-items-xxl-center">
+        <div class="col-lg-6">
+          <EditorialImage src="/assets/immagini/visione-persone.png" width={1170} height={780} />
+        </div>
+        <div class="col-lg-6">
+          <h2 id="trust-italy-title" class="type-section-title type-section-title--compact trust-editorial-title">Il trust in Italia</h2>
+          <div class="type-section-lead type-section-lead--relaxed trust-copy">
+            <p>Il trust è un istituto giuridico di antica origine anglosassone, nasce negli ordinamenti di common law ed è riconosciuto in Italia attraverso la Convenzione dell’Aja del 1° luglio 1985, ratificata con la Legge 16 ottobre 1989, n. 364. Entrata in vigore il 1 gennaio 1992.</p>
+            <p>La Convenzione non introduce una disciplina italiana autonoma del trust, ma stabilisce i criteri per individuare la legge applicabile e riconoscere gli effetti dell’istituto nel nostro ordinamento.<br />Il trust è un rapporto giuridico istituito da una persona, il disponente, con un atto tra vivi o mortis causa. Attraverso questo atto, determinati beni o diritti vengono posti sotto il controllo di un trustee, affinché li amministri nell’interesse di uno o più beneficiari oppure per il perseguimento di una finalità specifica.</p>
+            <div>
+              <p class="mb-0">Il rapporto così costituito si fonda su alcuni elementi essenziali:</p>
+              <ul class="mb-0">{trustPrinciples.map((principle) => <li>{principle}</li>)}</ul>
+            </div>
+            <p>La titolarità dei beni comporta quindi una responsabilità precisa: il trustee non li amministra nel proprio interesse, ma esclusivamente per dare attuazione alle finalità definite nel trust.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="come-funziona" class="trust-editorial trust-editorial--process section-spacing" aria-labelledby="trust-process-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-start align-items-xxl-center">
+        <div class="col-lg-6 trust-process-content">
+          <h2 id="trust-process-title" class="type-section-title type-section-title--compact trust-editorial-title">Come funziona il trust</h2>
+          <div class="type-section-lead type-section-lead--relaxed trust-copy">
+            <p>Dall’intenzione alla sua realizzazione<br />Il trust nasce da un progetto preciso. Il disponente individua le finalità da perseguire, le persone coinvolte e i beni da destinare.</p>
+            <div>
+              <p class="mb-0">Questi elementi vengono definiti nell’atto istitutivo, che stabilisce:</p>
+              <ul class="mb-0">{trustDeed.map((item) => <li>{item}</li>)}</ul>
+            </div>
+            <p>Con il conferimento, i beni e i diritti entrano nel fondo in trust e vengono affidati al trustee, che li amministra nell’interesse dei beneficiari o per lo scopo stabilito.</p>
+            <p>I beni costituiscono così un patrimonio distinto da quello personale del trustee e restano destinati alle finalità definite nell’atto istitutivo. È il principio della segregazione patrimoniale, che separa il fondo dalle vicende personali dei soggetti coinvolti, nei limiti e alle condizioni previsti dalla legge.</p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <EditorialImage src="/assets/immagini/visione-persone.png" width={1170} height={780} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-participants section-spacing" aria-labelledby="trust-participants-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-6">
+          <h2 id="trust-participants-title" class="type-section-title mb-0">I soggetti del trust.</h2>
+        </div>
+      </div>
+      <ol class="trust-participants-list list-unstyled mb-0">
+        {trustParticipants.map(({ title, description }, index) => (
+          <li class="row g-0 align-items-center trust-participant">
+            <span class="col-1 trust-participant-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="col-11 col-md-5 trust-participant-title mb-0">{title}</h3>
+            <p class="col-11 offset-1 col-md-6 offset-md-0 trust-participant-copy mb-0">{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="trust-segregation section-spacing" aria-labelledby="trust-segregation-title">
+    <div class="container">
+      <p class="type-eyebrow type-eyebrow--section trust-eyebrow">La segregazione patrimoniale</p>
+      <h2 id="trust-segregation-title" class="type-section-title type-section-title--compact trust-editorial-title">Un patrimonio distinto e destinato a <span class="type-section-title-accent">uno scopo.</span></h2>
+      <div class="type-section-lead type-section-lead--relaxed trust-copy">
+        <div>
+          <p class="mb-0">I beni conferiti in trust costituiscono un patrimonio distinto da quello personale del trustee.<br />Questo significa che:</p>
+          <ul class="mb-0">{segregationPrinciples.map((principle) => <li>{principle}</li>)}</ul>
+          <p class="mb-0">La segregazione patrimoniale non costituisce una forma di protezione automatica. La validità e gli effetti del trust dipendono dalla sua corretta istituzione, dagli atti di conferimento, dalle finalità perseguite e dalla normativa applicabile.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-assets section-spacing" aria-labelledby="trust-assets-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-6">
+          <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Tipologie di beni</p>
+          <h2 id="trust-assets-title" class="type-section-title type-section-title--compact mb-0">Quali beni <span class="d-xl-block">possono essere <span class="type-section-title-accent">conferiti.</span></span></h2>
+        </div>
+        <div class="col-lg-6 type-section-lead type-section-lead--relaxed trust-copy">
+          <p class="mb-0">Nel trust possono essere conferiti beni e diritti di natura diversa, tra cui:</p>
+          <ul class="mb-0">{assetTypes.map((type) => <li>{type}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-benefits" aria-labelledby="trust-benefits-title">
+    <div class="row g-0 align-items-start align-items-xxl-center">
+      <div class="col-lg-6 pe-xxl-5">
+        <EditorialImage src="/assets/immagini/visione-persone.png" width={1170} height={780} />
+      </div>
+      <div class="col-lg-6 trust-benefits-content">
+        <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Vantaggi</p>
+        <h2 id="trust-benefits-title" class="type-section-title trust-benefits-title">La versatilità del trust.</h2>
+        <div class="type-section-lead type-section-lead--relaxed trust-copy">
+          <div>
+            <p class="mb-0">Il trust consente di costruire soluzioni coerenti con esigenze personali, familiari e imprenditoriali diverse. Può essere utilizzato per:</p>
+            <ul class="trust-benefits-list mb-0">{trustBenefits.map((benefit) => <li>{benefit}</li>)}</ul>
+            <p class="mb-0">La sua flessibilità permette di definire finalità, regole e tempi in relazione al contesto, mantenendo al centro le persone e gli obiettivi da perseguire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-professional section-spacing" aria-labelledby="trust-professional-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Il trustee professionale</p>
+          <h2 id="trust-professional-title" class="type-section-title mb-0"><span class="d-lg-block">Amministrare significa</span>{' '}<span class="d-lg-block">assumersi una</span>{' '}responsabilità.</h2>
+          <a class="btn site-button site-button--light trust-action" href="/servizi/">Scopri i servizi di AG Trustees <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="col-lg-5">
+          <ol class="trust-responsibilities list-unstyled mb-0">
+            {trusteeResponsibilities.map((responsibility, index) => (
+              <li class="d-flex align-items-baseline gap-4">
+                <span class="trust-responsibility-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <p class="mb-0">{responsibility}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FaqSection id="trust-faq" items={faqs} largeTitle>
+    <Fragment slot="title">Domande frequenti <span class="type-section-title-accent text-nowrap d-xxl-block">sul trust</span></Fragment>
+  </FaqSection>
+
+  <RelatedContent />
+
+  <CallToAction eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale" href="/contatti/" label="Parliamone" largeText>
+    <Fragment slot="title">Valutiamo insieme il servizio <span class="d-lg-block">più adatto alle tue esigenze</span></Fragment>
+    Ogni situazione richiede una valutazione attenta delle persone, del patrimonio, delle finalità e delle responsabilità coinvolte.
+  </CallToAction>
+</Layout>

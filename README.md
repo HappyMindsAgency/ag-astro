@@ -32,6 +32,8 @@ La build usa l'adapter Node standalone; in ambiente Vercel la configurazione sel
 
 Realizzati header, footer, [Chi siamo](http://localhost:4321/chi-siamo/), [Visione e metodologia](http://localhost:4321/chi-siamo/visione-metodologia/) e [Servizi](http://localhost:4321/servizi/), con sottomenu e stati interattivi condivisi verificati in Figma Present. Restano il video e i contenuti provvisori indicati nella wiki.
 
-Predisposte con layout e solo titolo: Home, Team, Trust, Patrimonio, AG Informa, Eventi e formazione, Knowledge Library, Contatti, ricerca, Privacy policy, Cookie policy, Credits e 404. Predisposti anche i modelli per profili del team, articoli, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
+Realizzate le sezioni statiche desktop di [Trust](http://localhost:4321/trust/), con FAQ provvisorie; la versione mobile resta da verificare e rifinire sul design definitivo. Articoli e documenti correlati sono predisposti nel componente `RelatedContent` e verranno mostrati quando arriveranno i dati da Strapi.
+
+Predisposte con layout e solo titolo: Home, Team, Patrimonio, AG Informa, Eventi e formazione, Knowledge Library, Contatti, ricerca, Privacy policy, Cookie policy, Credits e 404. Predisposti anche i modelli per profili del team, articoli, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
 
 Le voci sospese o ancora da decidere sono elencate in [Dubbi e domande](wiki/dubbi-e-domande.md).
