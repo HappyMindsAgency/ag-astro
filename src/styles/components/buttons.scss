@@ -115,10 +115,32 @@
   }
 }
 
+.contact-action-link {
+  &:hover,
+  &:focus-visible {
+    color: theme.$text-on-blue;
+    border-color: rgba(theme.$text-on-blue, 0.65);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .site-button {
     transition: color theme.$interaction-duration theme.$interaction-easing,
       background-color theme.$interaction-duration theme.$interaction-easing,
       border-color theme.$interaction-duration theme.$interaction-easing;
+  }
+
+  .contact-action-link {
+    transition: color theme.$interaction-duration theme.$interaction-easing,
+      border-color theme.$interaction-duration theme.$interaction-easing;
+
+    &:hover .contact-action-arrow,
+    &:focus-visible .contact-action-arrow {
+      transform: translateX(theme.$space-4);
+    }
+  }
+
+  .contact-action-arrow {
+    transition: transform theme.$interaction-duration theme.$interaction-easing;
   }
 }

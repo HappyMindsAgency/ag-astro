@@ -1,0 +1,294 @@
+@use '../variables' as theme;
+@use '../mixins' as shared;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.contact-offices {
+  padding-block: 110px;
+  color: theme.$text-on-blue;
+  background: theme.$brand-blue;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.contact-offices-eyebrow {
+  margin-bottom: theme.$space-40;
+}
+
+.contact-offices-title span {
+  color: rgba(theme.$text-on-blue, 0.5);
+}
+
+.contact-offices-links a {
+  display: flex;
+  align-items: center;
+  gap: theme.$space-12;
+  min-height: 68px;
+  border-bottom: 1px solid rgba(theme.$text-on-blue, 0.2);
+  color: rgba(theme.$text-on-blue, 0.65);
+  font-size: theme.$font-size-contact-link;
+  line-height: theme.$line-height-contact-link;
+  text-decoration: none;
+
+  img {
+    flex-shrink: 0;
+  }
+
+  > :last-child {
+    color: theme.$text-on-blue;
+    font-size: theme.$font-size-body;
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$text-on-blue;
+    outline-offset: 4px;
+  }
+}
+
+.contact-office-list {
+  margin-top: theme.$space-80;
+  border-top: 1px solid rgba(theme.$text-on-blue, 0.2);
+  border-left: 1px solid rgba(theme.$text-on-blue, 0.2);
+}
+
+.contact-office-list .contact-office {
+  min-height: 264px;
+  padding: theme.$space-40 theme.$space-32 theme.$space-64;
+  border-right: 1px solid rgba(theme.$text-on-blue, 0.2);
+  border-bottom: 1px solid rgba(theme.$text-on-blue, 0.2);
+
+  address {
+    color: rgba(theme.$text-on-blue, 0.55);
+    font-weight: theme.$font-weight-light;
+  }
+}
+
+.contact-office-index {
+  margin-bottom: theme.$space-48;
+  font-size: theme.$font-size-small;
+  line-height: theme.$line-height-section-label-mobile;
+}
+
+.contact-office-title {
+  margin-bottom: theme.$space-20;
+  font-size: theme.$font-size-office-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-card-title;
+}
+
+.office-location {
+  background: theme.$surface-mist;
+}
+
+.office-location-heading {
+  padding-top: 144px;
+  padding-bottom: theme.$space-48;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.office-location-eyebrow {
+  margin-bottom: theme.$space-40;
+  color: theme.$brand-red;
+}
+
+.office-location-options {
+  display: flex;
+  gap: theme.$space-24;
+}
+
+.office-location-option {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: theme.$space-16;
+  min-height: 48px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  padding: theme.$space-8 theme.$space-12;
+  color: theme.$ink;
+  background: transparent;
+  font-size: theme.$font-size-office-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-card-title;
+
+  &.active {
+    color: theme.$brand-red;
+  }
+}
+
+.office-location-pin {
+  flex-shrink: 0;
+  width: 20px;
+  height: 24px;
+  background: currentColor;
+  mask: url('/assets/icone/posizione.svg') center / contain no-repeat;
+}
+
+.office-location-map {
+  max-width: theme.$wide-layout-max-width;
+  margin-inline: auto;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+  }
+}
+
+.contact-newsletter {
+  padding-block: 70px;
+  color: white;
+  @include shared.brand-gradient;
+
+  .container {
+    max-width: 1280px;
+    padding-inline: 0;
+  }
+}
+
+.contact-newsletter-title {
+  margin-bottom: theme.$space-16;
+  font-size: theme.$font-size-newsletter-title;
+  font-weight: theme.$font-weight-newsletter-title;
+  line-height: theme.$line-height-newsletter-title;
+}
+
+.contact-newsletter-copy {
+  color: theme.$newsletter-copy;
+}
+
+.newsletter-email-field {
+  display: flex;
+  border-bottom: 1px solid rgba(white, 0.55);
+
+  .form-control {
+    min-width: 0;
+    min-height: 48px;
+    border: 0;
+    border-radius: 0;
+    padding: theme.$space-12 0;
+    color: white;
+    background: transparent;
+    font-size: theme.$font-size-form-input;
+    line-height: theme.$line-height-form-input;
+
+    &::placeholder {
+      color: theme.$newsletter-copy;
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: 2px solid white;
+      outline-offset: 2px;
+      box-shadow: none;
+    }
+  }
+
+  button {
+    flex-shrink: 0;
+    min-width: 44px;
+    border: 0;
+    padding: theme.$space-8;
+    color: white;
+    background: transparent;
+    font-size: theme.$font-size-contact-link;
+  }
+}
+
+.newsletter-form {
+  .form-check-label {
+    font-size: theme.$font-size-content-meta;
+    line-height: theme.$line-height-content-meta;
+  }
+
+  .form-check-input:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .contact-newsletter .container {
+    max-width: 960px;
+  }
+}
+
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .office-location-options {
+    gap: theme.$space-12;
+  }
+
+  .office-location-option {
+    gap: theme.$space-8;
+    padding-inline: theme.$space-4;
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-body;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .contact-offices,
+  .contact-newsletter {
+    padding-block: theme.$space-64;
+  }
+
+  .contact-offices .container,
+  .office-location-heading .container,
+  .contact-newsletter .container {
+    max-width: none;
+    padding-inline: theme.$page-gutter-mobile;
+  }
+
+  .contact-offices-eyebrow,
+  .office-location-eyebrow {
+    margin-bottom: theme.$space-28;
+  }
+
+  .contact-office-list {
+    margin-top: theme.$space-40;
+  }
+
+  .contact-office-list .contact-office {
+    min-height: 0;
+    padding: theme.$space-28 theme.$space-24;
+  }
+
+  .contact-office-index {
+    margin-bottom: theme.$space-28;
+  }
+
+  .office-location-heading {
+    padding-block: theme.$space-64 theme.$space-32;
+  }
+
+  .office-location-map img {
+    height: 360px;
+  }
+
+  .contact-newsletter {
+    background-position: center;
+  }
+}
+
+@include bs.media-breakpoint-down(sm, theme.$grid-breakpoints) {
+  .contact-offices-links a {
+    gap: theme.$space-8;
+    font-size: clamp(theme.$font-size-body, 5.64vw, theme.$font-size-contact-link); // 22 px nel frame mobile da 390 px.
+  }
+}

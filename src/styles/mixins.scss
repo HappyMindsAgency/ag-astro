@@ -1,0 +1,5 @@
+@use './variables' as theme;
+
+@mixin brand-gradient($angle: 104deg) {
+  background: linear-gradient($angle, rgba(theme.$brand-blue, 0.94), rgba(theme.$cta-overlay-middle, 0.88) 58%, rgba(theme.$accent-red, 0.91)), url('/assets/immagini/sfondo-cta.jpg') center 46% / cover;
+}

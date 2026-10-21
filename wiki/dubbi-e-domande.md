@@ -26,7 +26,7 @@ Mancano video e poster definitivi: ho lasciato lo spazio vuoto, dimensionato sui
 
 ## 5. Link e funzionalità mancanti
 
-Servono URL LinkedIn, contenuti delle pagine legali e indicazioni sulla ricerca. Per ora LinkedIn non ha collegamento e la ricerca è disabilitata; le pagine legali hanno solo layout e titolo. Da completare prima della pubblicazione.
+Servono URL LinkedIn, contenuti delle pagine legali e indicazioni sulla ricerca. Per ora LinkedIn non ha collegamento e la ricerca è disabilitata; Privacy e Cookie hanno testi Lorem ipsum da sostituire, Credits solo layout e titolo. Da completare prima della pubblicazione.
 
 ## 6. Contrasto dei testi
 
@@ -73,3 +73,9 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Descrizioni:** Protezione del patrimonio e Passaggio generazionale ripetono lo stesso secondo paragrafo. Da confermare i testi e le icone ripetute nelle ultime cinque voci.
 - **Ordine mobile:** le FAQ seguono i contenuti correlati, diversamente dal desktop. Mantengo per ora l’ordine desktop; da verificare quando saranno disponibili i correlati.
 - **FAQ e correlati:** mancano le risposte e due domande sono segnaposto; uso Lorem ipsum. Articoli e documenti arriveranno da Strapi, come per Trust.
+
+## 13. Contatti: confronto con la 4° Release
+
+- **Mobile:** dopo il titolo riprende le sezioni di Chi siamo e non mostra sedi, mappa, newsletter e FAQ del desktop. Uso contenuti desktop e regole responsive comuni; da confrontare con il frame definitivo.
+- **Testi:** il titolo della fascia sedi e la descrizione newsletter sono segnaposto. Mancano le risposte delle FAQ; uso Lorem ipsum per verificare l’accordion.
+- **Servizi:** servono configurazione della mappa, mappe delle altre sedi e destinazioni dei moduli. Mappa di Milano statica da Figma, selezione sedi e invii disattivati; integrazioni da completare con Vito.

@@ -1,4 +1,5 @@
 @use '../variables' as theme;
+@use '../mixins' as shared;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 $cta-padding-inline: 160px;
@@ -8,7 +9,7 @@ $cta-mobile-content-width: 294px; // Frame Figma da 390 px, con 48 px per lato.
   --cta-gradient-angle: 104deg;
   padding: 72px $cta-padding-inline;
   color: white;
-  background: linear-gradient(var(--cta-gradient-angle), rgba(theme.$brand-blue, 0.94), rgba(theme.$cta-overlay-middle, 0.88) 58%, rgba(theme.$accent-red, 0.91)), url('/assets/immagini/sfondo-cta.jpg') center 46% / cover;
+  @include shared.brand-gradient(var(--cta-gradient-angle));
 
   > .row {
     max-width: theme.$wide-layout-max-width - 2 * $cta-padding-inline;

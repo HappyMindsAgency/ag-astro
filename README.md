@@ -36,6 +36,10 @@ Realizzate le sezioni statiche desktop di [Trust](http://localhost:4321/trust/),
 
 Realizzata [Patrimonio](http://localhost:4321/patrimonio/), con nove esigenze patrimoniali in accordion sul mobile e FAQ provvisorie. I contenuti correlati sono predisposti per Strapi; le differenze tra i frame desktop e mobile sono annotate nella wiki.
 
-Predisposte con layout e solo titolo: Home, Team, AG Informa, Eventi e formazione, Knowledge Library, Contatti, ricerca, Privacy policy, Cookie policy, Credits e 404. Predisposti anche i modelli per profili del team, articoli, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
+Realizzata [Contatti](http://localhost:4321/contatti/), con sedi, mappa statica di Milano, modulo contatti, newsletter e FAQ provvisorie. Selezione delle sedi e invii saranno integrati con i servizi; il mobile usa i contenuti desktop in attesa del frame definitivo.
+
+Predisposte Privacy policy e Cookie policy con layout e testi Lorem ipsum, da sostituire con quelli definitivi.
+
+Predisposte con layout e solo titolo: Home, Team, AG Informa, Eventi e formazione, Knowledge Library, ricerca, Credits e 404. Predisposti anche i modelli per profili del team, articoli, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
 
 Le voci sospese o ancora da decidere sono elencate in [Dubbi e domande](wiki/dubbi-e-domande.md).

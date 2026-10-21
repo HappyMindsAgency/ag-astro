@@ -5,47 +5,59 @@ interface Props {
   id: string;
   items: { question: string; answer: string }[];
   largeTitle?: boolean;
+  twoColumns?: boolean;
 }
 
-const { id, items, largeTitle = false } = Astro.props;
+const { id, items, largeTitle = false, twoColumns = false } = Astro.props;
+const columns = twoColumns ? [items.slice(0, Math.ceil(items.length / 2)), items.slice(Math.ceil(items.length / 2))] : [items];
 const listId = `${id}-list`;
 ---
 
-<section id={id} class:list={['faq-section section-spacing', { 'faq-section--large-title': largeTitle }]} aria-labelledby={`${id}-title`}>
+<section id={id} class:list={['faq-section section-spacing', { 'faq-section--large-title': largeTitle, 'faq-section--two-columns': twoColumns }]} aria-labelledby={`${id}-title`}>
   <div class="container">
     <div class="row gx-4 gy-4">
-      <div class="col-lg-6">
+      <div class={twoColumns ? 'col-12' : 'col-lg-6'}>
         <p class="type-eyebrow type-eyebrow--section faq-eyebrow">FAQ</p>
         <h2 id={`${id}-title`} class="type-section-title type-section-title--compact faq-title mb-0"><slot name="title" /></h2>
       </div>
-      <div class="col-lg-6">
-        <div id={listId} class="accordion faq-list">
-          {items.map(({ question, answer }, index) => {
-            const questionId = `${id}-question-${index}`;
-            const answerId = `${id}-answer-${index}`;
+      <div class={twoColumns ? 'col-12' : 'col-lg-6'}>
+        <div id={listId} class:list={['accordion faq-list', { 'row g-0': twoColumns }]}>
+          {columns.map((column, columnIndex) => (
+            <div class:list={[twoColumns ? 'col-lg-6' : undefined, {
+              'pe-lg-4': twoColumns && columnIndex === 0,
+              'ps-lg-4': twoColumns && columnIndex === 1,
+            }]}>
+              <div class="faq-list-column">
+                {column.map(({ question, answer }, itemIndex) => {
+                  const index = columnIndex * Math.ceil(items.length / 2) + itemIndex;
+                  const questionId = `${id}-question-${index}`;
+                  const answerId = `${id}-answer-${index}`;
 
-            return (
-              <div class="accordion-item">
-                <h3 class="accordion-header">
-                  <button
-                    id={questionId}
-                    class="accordion-button collapsed faq-question"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#${answerId}`}
-                    aria-expanded="false"
-                    aria-controls={answerId}
-                  >
-                    <span>{question}</span>
-                    <span class="collapse-toggle ms-auto" aria-hidden="true"></span>
-                  </button>
-                </h3>
-                <div id={answerId} class="accordion-collapse collapse" aria-labelledby={questionId} data-bs-parent={`#${listId}`}>
-                  <div class="accordion-body faq-answer"><p class="mb-0">{answer}</p></div>
-                </div>
+                  return (
+                    <div class="accordion-item">
+                      <h3 class="accordion-header">
+                        <button
+                          id={questionId}
+                          class="accordion-button collapsed faq-question"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target={`#${answerId}`}
+                          aria-expanded="false"
+                          aria-controls={answerId}
+                        >
+                          <span>{question}</span>
+                          <span class="collapse-toggle ms-auto" aria-hidden="true"></span>
+                        </button>
+                      </h3>
+                      <div id={answerId} class="accordion-collapse collapse" aria-labelledby={questionId} data-bs-parent={`#${listId}`}>
+                        <div class="accordion-body faq-answer"><p class="mb-0">{answer}</p></div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </div>

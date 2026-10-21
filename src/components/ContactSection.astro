@@ -9,9 +9,11 @@ import '../styles/components/contact-section.scss';
         <p class="type-eyebrow type-eyebrow--section contact-section-eyebrow">Contatti</p>
         <h2 id="contact-title" class="contact-section-title">Parla con un <span>professionista.</span></h2>
         <p class="type-section-lead contact-section-copy mb-0">
-          <span class="d-xxl-block">AG Trustees mette a disposizione competenza,</span>{' '}
-          <span class="d-xxl-block">continuità e una relazione professionale fondata sulla</span>{' '}
-          fiducia.
+          <slot>
+            <span class="d-xxl-block">AG Trustees mette a disposizione competenza,</span>{' '}
+            <span class="d-xxl-block">continuità e una relazione professionale fondata sulla</span>{' '}
+            fiducia.
+          </slot>
         </p>
       </div>
       <div class="col-lg-6 offset-lg-1">

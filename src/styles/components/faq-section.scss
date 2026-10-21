@@ -56,6 +56,20 @@
   line-height: theme.$line-height-body;
 }
 
+.faq-section--two-columns .faq-list {
+  border-top: 0;
+
+  .faq-list-column {
+    border-top: 1px solid theme.$editorial-border;
+  }
+}
+
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .faq-section--two-columns .faq-list {
+    margin-top: theme.$space-48;
+  }
+}
+
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
   .faq-section--large-title .faq-title {
     font-size: theme.$font-size-faq-title-large;
@@ -90,6 +104,14 @@
 
   .faq-section .faq-list {
     border-color: theme.$border-soft;
+  }
+
+  .faq-section--two-columns .faq-list .faq-list-column {
+    border: 0;
+  }
+
+  .faq-section--two-columns .faq-list > :first-child .faq-list-column {
+    border-top: 1px solid theme.$border-soft;
   }
 
   .faq-section .faq-question {

@@ -1,4 +1,6 @@
 ---
+import { contacts, offices } from '../data/contacts';
+
 interface Props {
   linkedinUrl?: string;
   privacyPolicyUrl?: string;
@@ -20,11 +22,6 @@ const menu = [
   { label: 'AG Informa', href: '/ag-informa/' },
   { label: 'Knowledge library', href: '/knowledge-library/' },
   { label: 'FAQ', href: undefined },
-];
-const offices = [
-  { city: 'Milano', address: 'Corso Giacomo Matteotti, 1 - 20121' },
-  { city: 'Bologna', address: 'Via Barberia, 13 - 40123' },
-  { city: 'Forlì', address: 'Via Nino Bixio, 3 - 47121' },
 ];
 const legalLinks = [
   { label: 'Privacy Policy', href: privacyPolicyUrl },
@@ -70,16 +67,16 @@ const legalLinks = [
       <div class="col-12 col-md-auto">
         <h2 class="footer-heading">Sedi &amp; contatti</h2>
         <address class="d-grid gap-3 mb-0">
-          {offices.map(({ city, address }) => (
+          {offices.map(({ city, street, postalCode }) => (
             <div>
               <h3 class="footer-office">{city}</h3>
-              <p class="mb-0">{address}</p>
+              <p class="mb-0">{street} - {postalCode}</p>
             </div>
           ))}
         </address>
         <div class="footer-contact-links">
-          <p class="mb-0">Email: <a href="mailto:segreteria@agtrustees.it">segreteria@agtrustees.it</a></p>
-          <p class="mb-0">Tel: <a href="tel:+390245076096">+39 02 45076096</a></p>
+          <p class="mb-0">Email: <a href={`mailto:${contacts.email}`}>{contacts.email}</a></p>
+          <p class="mb-0">Tel: <a href={`tel:${contacts.phone.replaceAll(' ', '')}`}>{contacts.phone}</a></p>
         </div>
       </div>
     </div>
