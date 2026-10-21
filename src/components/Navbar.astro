@@ -5,6 +5,7 @@ interface Props {
 
 const { linkedinUrl } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const contactIsCurrent = currentPath === '/contatti';
 interface NavigationItem {
   label: string;
   href: string;
@@ -38,21 +39,21 @@ const navigation: NavigationItem[] = [
 ];
 ---
 
-<header class="site-header">
-  <nav class="navbar site-navbar" aria-label="Navigazione principale">
-    <div class="container-fluid p-0">
+<header class="site-header sticky-top bg-white">
+  <nav class="navbar navbar-expand-xl site-navbar" aria-label="Navigazione principale">
+    <div class="container-fluid flex-nowrap p-0">
       <a class="navbar-brand m-0" href="/" aria-label="AG Trustees — Homepage">
-        <img src="/assets/brand/ag-logo-orizzontale.png" alt="Across Galvani Trustees" width="1200" height="143" fetchpriority="high" />
+        <img class="d-block w-100 h-auto" src="/assets/brand/ag-logo-orizzontale.png" alt="Across Galvani Trustees" width="1086" height="126" fetchpriority="high" />
       </a>
 
-      <div class="header-mobile d-flex align-items-center gap-3 gap-md-4">
-        <a class="header-contact-mobile" href="/contatti/">Contatti</a>
+      <div class="d-flex d-xl-none align-items-center gap-2">
+        <a class:list={['header-contact header-contact-mobile', { active: contactIsCurrent }]} href="/contatti/" data-label="Contatti →" aria-current={contactIsCurrent ? 'page' : undefined}><span>Contatti <span aria-hidden="true">→</span></span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label="Apri o chiudi il menu">
           <span class="navbar-toggler-icon" aria-hidden="true"></span>
         </button>
       </div>
 
-      <div class="collapse navbar-collapse" id="site-navigation">
+      <div class="collapse navbar-collapse align-items-xl-baseline" id="site-navigation">
         <ul class="navbar-nav">
           {navigation.map(({ label, href, children }) => {
             const isCurrent = currentPath === href.replace(/\/$/, '');
@@ -60,8 +61,8 @@ const navigation: NavigationItem[] = [
             const submenuId = `submenu-${href.split('/')[1]}`;
             return (
               <li class:list={['nav-item', { dropdown: children }]}>
-                <div class="header-nav-row">
-                  <a class:list={['nav-link', { active: isActive }]} href={href} aria-current={isCurrent ? 'page' : undefined}>{label}</a>
+                <div class="header-nav-row d-flex flex-wrap flex-xl-nowrap align-items-center">
+                  <a class:list={['nav-link', { active: isActive }]} href={href} data-label={label} aria-current={isCurrent ? 'page' : undefined}>{label}</a>
                   {children && (
                     <button
                       class="header-submenu-toggle dropdown-toggle dropdown-toggle-split"
@@ -79,9 +80,9 @@ const navigation: NavigationItem[] = [
                         const childIsCurrent = childHref && currentPath === childHref.replace(/\/$/, '');
                         return (
                           <li>{childHref ? (
-                            <a class:list={['dropdown-item', { active: childIsCurrent }]} href={childHref} aria-current={childIsCurrent ? 'page' : undefined}>{childLabel}</a>
+                            <a class:list={['dropdown-item text-wrap', { active: childIsCurrent }]} href={childHref} aria-current={childIsCurrent ? 'page' : undefined}>{childLabel}</a>
                           ) : (
-                            <span class="dropdown-item disabled" aria-disabled="true">{childLabel}</span>
+                            <span class="dropdown-item text-wrap disabled" aria-disabled="true">{childLabel}</span>
                           )}</li>
                         );
                       })}
@@ -91,18 +92,22 @@ const navigation: NavigationItem[] = [
               </li>
             );
           })}
-          <li class="nav-item header-contact-menu"><a class="nav-link" href="/contatti/">Contatti</a></li>
         </ul>
 
-        <div class="header-tools d-flex align-items-center">
-          <a class="header-contact header-contact-desktop" href="/contatti/">Contatti</a>
+        <a class="btn site-button header-menu-cta w-100 d-xl-none" href="/contatti/">Contatti <span aria-hidden="true">→</span></a>
+
+        <div class="header-tools d-flex align-items-baseline">
+          <a class:list={['header-contact d-none d-xl-inline-flex', { active: contactIsCurrent }]} href="/contatti/" data-label="Contatti" aria-current={contactIsCurrent ? 'page' : undefined}>Contatti</a>
+          <span class="vr d-none d-xl-inline-block"></span>
           <button class="header-icon" type="button" disabled aria-label="Cerca nel sito"><img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+          <span class="vr d-none d-xl-inline-block"></span>
           {linkedinUrl ? (
             <a class="header-icon" href={linkedinUrl} aria-label="AG Trustees su LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
           ) : (
             <span class="header-icon" role="img" aria-label="LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></span>
           )}
-          <span class="header-language" lang="it" aria-label="Lingua attuale: italiano">ITA</span>
+          <span class="vr d-none d-xl-inline-block"></span>
+          <span class="header-language ms-auto" lang="it" aria-label="Lingua attuale: italiano">ITA</span>
         </div>
       </div>
     </div>
@@ -110,11 +115,30 @@ const navigation: NavigationItem[] = [
 </header>
 
 <script>
+  import Collapse from 'bootstrap/js/dist/collapse';
   import Dropdown from 'bootstrap/js/dist/dropdown';
 
   document.querySelectorAll<HTMLElement>('.site-navbar').forEach((navbar) => {
     const breakpoint = getComputedStyle(navbar).getPropertyValue('--header-expand-breakpoint').trim();
     const desktopHover = matchMedia(`(min-width: ${breakpoint}) and (hover: hover) and (pointer: fine)`);
+    const header = navbar.closest<HTMLElement>('.site-header');
+    const panel = navbar.querySelector<HTMLElement>('.navbar-collapse');
+    const toggler = navbar.querySelector<HTMLButtonElement>('.navbar-toggler');
+
+    if (header && panel && toggler) {
+      const menu = Collapse.getOrCreateInstance(panel, { toggle: false });
+
+      // Lo sfondo oscurato è un pseudo-elemento dell'header.
+      header.addEventListener('click', (event) => {
+        if (event.target === header) menu.hide();
+      });
+
+      navbar.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || !panel.classList.contains('show')) return;
+        menu.hide();
+        toggler.focus();
+      });
+    }
 
     navbar.querySelectorAll<HTMLElement>('.dropdown').forEach((item) => {
       const toggle = item.querySelector<HTMLButtonElement>('.header-submenu-toggle');
