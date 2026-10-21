@@ -1,5 +1,174 @@
 ---
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import Layout from '../../components/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import OverviewBanner from '../../components/OverviewBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import '../../styles/pages/patrimonio.scss';
+
+const needs = [
+  {
+    title: 'Protezione del patrimonio',
+    icon: 'patrimonio-protezione.svg',
+    description: [
+      'Individuare i rischi e organizzare determinati beni all’interno di un progetto definito, attraverso regole chiare e responsabilità precise.',
+      'Pianificare per tempo permette di chiarire ruoli, tempi e modalità, riducendo le incertezze che possono emergere nel passaggio tra generazioni.',
+    ],
+  },
+  {
+    title: 'Passaggio generazionale',
+    icon: 'patrimonio-generazioni.svg',
+    description: [
+      'Organizzare la trasmissione del patrimonio nel rispetto delle volontà familiari e degli equilibri tra le persone coinvolte.',
+      'Pianificare per tempo permette di chiarire ruoli, tempi e modalità, riducendo le incertezze che possono emergere nel passaggio tra generazioni.',
+    ],
+  },
+  {
+    title: 'Continuità dell’impresa familiare',
+    icon: 'patrimonio-impresa.svg',
+    description: [
+      'Definire modalità di gestione delle partecipazioni, ruoli e criteri decisionali per accompagnare l’impresa nel futuro.',
+      'L’obiettivo è mantenere coerenza tra proprietà, governo dell’azienda e responsabilità delle nuove generazioni.',
+    ],
+  },
+  {
+    title: 'Persone fragili e “Dopo di noi”',
+    icon: 'patrimonio-persone.svg',
+    description: [
+      'Destinare beni e risorse alla cura, all’assistenza e al progetto di vita di una persona fragile.',
+      'Il progetto deve considerare bisogni presenti e futuri, persone di riferimento, modalità di utilizzo delle risorse e continuità dell’assistenza.',
+    ],
+  },
+  {
+    title: 'Patrimoni immobiliari',
+    icon: 'patrimonio-beni.svg',
+    description: ['Coordinare la gestione di immobili con caratteristiche e destinazioni diverse, definendo criteri di amministrazione, conservazione e trasmissione.'],
+  },
+  {
+    title: 'Investimenti e beni esteri',
+    icon: 'patrimonio-beni.svg',
+    description: ['Ricondurre investimenti, attività finanziarie e beni situati in Paesi diversi a una visione complessiva, considerando gli adempimenti e le normative applicabili.'],
+  },
+  {
+    title: 'Arte e collezioni',
+    icon: 'patrimonio-beni.svg',
+    description: ['Preservare l’unità e il valore culturale di opere e collezioni, regolando conservazione, amministrazione, valorizzazione e trasmissione.'],
+  },
+  {
+    title: 'Filantropia e Terzo settore',
+    icon: 'patrimonio-beni.svg',
+    description: ['Destinare risorse a finalità sociali, culturali o di pubblica utilità, definendo obiettivi, responsabilità e modalità di amministrazione.'],
+  },
+  {
+    title: 'Gestione di patrimoni complessi',
+    icon: 'patrimonio-beni.svg',
+    description: ['Ricondurre beni, interessi e responsabilità differenti all’interno di una struttura unitaria e coerente con gli obiettivi individuati.'],
+  },
+];
+
+const faqAnswer = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus.';
+const faqs = [
+  { question: 'Che cosa significa pianificare il patrimonio?', answer: faqAnswer },
+  { question: 'Lorem ipsum dolor sit amet?', answer: faqAnswer },
+  { question: 'Lorem ipsum dolor sit amet?', answer: faqAnswer },
+];
 ---
 
-<PagePlaceholder title="Patrimonio" />
+<Layout>
+  <PageIntro breadcrumb="Patrimonio" eyebrow="Ogni patrimonio racchiude equilibri, decisioni e persone" mobileTitleLeading="relaxed" fitMobileTitle>
+    <Fragment slot="title">
+      <span class="d-block">Gestire il</span>
+      <span class="d-block text-secondary">patrimonio.</span>
+    </Fragment>
+    Un patrimonio non è soltanto un insieme di beni. Comprende persone, relazioni, imprese, responsabilità e progetti destinati a evolvere nel tempo.<br />Dargli una struttura significa chiarire gli obiettivi, individuare le responsabilità e costruire regole capaci di accompagnarne l’amministrazione e la trasmissione.
+  </PageIntro>
+
+  <OverviewBanner id="patrimonio-overview" eyebrow="Una visione del patrimonio" class="patrimonio-overview">
+    <Fragment slot="title">Valore, relazioni, <span class="overview-banner-accent d-lg-block">futuro.</span></Fragment>
+    <p>Ogni patrimonio ha una composizione e una storia diverse. Può comprendere partecipazioni societarie, immobili, disponibilità finanziarie, opere d’arte, diritti e altri beni.</p>
+    <p>Accanto al valore economico esistono esigenze familiari, responsabilità verso altre persone, progetti imprenditoriali e obiettivi di lungo periodo.</p>
+    <p>Per questo la valutazione non parte dallo strumento, ma da ciò che il patrimonio rappresenta e dalla finalità che si vuole perseguire.</p>
+  </OverviewBanner>
+
+  <section class="patrimonio-needs section-spacing" aria-labelledby="patrimonio-needs-title">
+    <div class="container">
+      <div class="row gx-4 gy-4">
+        <div class="col-lg-6">
+          <p class="type-eyebrow type-eyebrow--section patrimonio-eyebrow mb-0">Le esigenze patrimoniali</p>
+        </div>
+        <div class="col-lg-6">
+          <h2 id="patrimonio-needs-title" class="type-section-title type-section-title--compact mb-0">Quando serve dare <span class="type-section-title-accent d-lg-block">forma alla continuità.</span></h2>
+        </div>
+      </div>
+
+      <ol id="patrimonio-needs-list" class="patrimonio-needs-list list-unstyled mb-0">
+        {needs.map(({ title, icon, description }, index) => {
+          const headingId = `patrimonio-need-heading-${index}`;
+          const contentId = `patrimonio-need-content-${index}`;
+          const number = String(index + 1).padStart(2, '0');
+
+          return (
+            <li class="row g-0 align-items-center patrimonio-need">
+              <h3 id={headingId} class="col-lg-6 patrimonio-need-heading mb-0">
+                <span class="d-none d-lg-flex align-items-center patrimonio-need-label">
+                  <span class="patrimonio-need-index" aria-hidden="true">{number}</span>
+                  <img src={`/assets/icone/${icon}`} alt="" width="26" height="26" loading="lazy" />
+                  <span>{title}</span>
+                </span>
+                <button
+                  class="d-flex d-lg-none align-items-center w-100 text-start patrimonio-need-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#${contentId}`}
+                  aria-expanded="false"
+                  aria-controls={contentId}
+                >
+                  <span class="patrimonio-need-index" aria-hidden="true">{number}</span>
+                  <img src={`/assets/icone/${icon}`} alt="" width="26" height="26" loading="lazy" />
+                  <span class="flex-grow-1">{title}</span>
+                  <span class="collapse-toggle" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div id={contentId} class="col-lg-6 ps-lg-3 collapse d-lg-block patrimonio-need-content" aria-labelledby={headingId} data-bs-parent="#patrimonio-needs-list">
+                {description.map((paragraph) => <p class="mb-0">{paragraph}</p>)}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </section>
+
+  <section class="patrimonio-method section-spacing" aria-labelledby="patrimonio-method-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section patrimonio-eyebrow">Il trust per il patrimonio</p>
+          <h2 id="patrimonio-method-title" class="type-section-title mb-0">
+            <span class="d-lg-block">Uno strumento per</span>{' '}
+            <span class="d-lg-block">tradurre le intenzioni</span>{' '}
+            in <span class="patrimonio-method-accent">regole.</span>
+          </h2>
+          <a class="btn site-button site-button--light site-button--small patrimonio-method-action d-none d-lg-inline-flex" href="/trust/#come-funziona">Scopri come funziona il trust <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="col-lg-5 type-section-lead patrimonio-method-copy">
+          <p>Il trust consente di destinare determinati beni a uno scopo e di affidarne l’amministrazione a un trustee. Finalità, durata, responsabilità, beneficiari e criteri di gestione vengono definiti nell’atto istitutivo. Le intenzioni assumono così la forma di un progetto regolato e amministrabile nel tempo.</p>
+          <p class="mb-0">Il trust non rappresenta una risposta adatta a ogni situazione. La sua utilità dipende dalla coerenza tra esigenze, patrimonio, struttura e modalità di amministrazione.</p>
+          <a class="btn site-button site-button--light site-button--small patrimonio-method-action d-lg-none" href="/trust/#come-funziona">Scopri come funziona il trust <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FaqSection id="patrimonio-faq" items={faqs}>
+    <Fragment slot="title">Domande frequenti <span class="type-section-title-accent d-xxl-block">sul patrimonio</span></Fragment>
+  </FaqSection>
+
+  <RelatedContent />
+
+  <CallToAction eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale" href="/contatti/" label="Parliamone">
+    <Fragment slot="title">Dare continuità al valore <span class="d-lg-block">richiede una visione chiara</span></Fragment>
+    Ogni progetto patrimoniale nasce da una storia diversa. Comprenderla è il primo passo per costruire regole coerenti con le persone, gli obiettivi e il futuro.
+  </CallToAction>
+</Layout>

@@ -41,11 +41,15 @@ Le pagine solo predisposte riutilizzano `PagePlaceholder`: layout comune e titol
 
 Per i paragrafi editoriali usa `.type-section-lead`: 20 px con interlinea 32,2 px sul desktop, 16 px con interlinea 20 px sul mobile. La variante `.type-section-lead--relaxed` mantiene 25 px sul mobile, per la panoramica di Visione e l’introduzione dei servizi. Colori e spazi restano nel relativo contesto. Le descrizioni delle card del metodo usano interlinea 23 px sul desktop e 20 px sul mobile.
 
-Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e riduce il corpo sui telefoni più stretti del frame Figma da 390 px. `CallToAction` gestisce l'invito finale, con testi e collegamento passati dalla pagina; `largeText` conserva il sopratitolo da 16 px e la descrizione da 20 px bianco pieno previsti per Trust.
+Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `fitMobileTitle`, che riduce il corpo sui telefoni più stretti del frame Figma da 390 px. Usa solo `fitMobileTitle` quando serve la riduzione mobile conservando le colonne desktop.
+
+`CallToAction` usa lo stesso stile su tutte le pagine: sopratitolo da 16 px senza maiuscolo forzato e bianco attenuato, descrizione da 16 px bianco pieno con interlinea 26 px sul desktop e 20 px sul mobile. Il titolo mantiene 40 px sul desktop e 32 px sul mobile, con `text-wrap: balance` per bilanciare le righe libere. Sotto 390 px i margini laterali si riducono fino a 24 px. Testi e collegamento arrivano dalla pagina, senza varianti tipografiche locali.
 
 `FaqSection` riceve un `id` univoco e le coppie `question`/`answer` dalla pagina; usa Bootstrap Accordion con una risposta aperta alla volta. `largeTitle` conserva il titolo desktop da 68 px di Trust. Il titolo mobile condiviso è da 34 px.
 
 `EditorialImage` condivide foto, sovrapposizione e resa mobile fra Visione e Trust; proporzioni specifiche restano nella sezione. `RelatedContent` riceve gli articoli e i documenti da mostrare, senza chiamate API: gruppi vuoti e relativo spazio non vengono renderizzati. Il collegamento a Strapi sarà aggiunto quando saranno disponibili i contenuti.
+
+`OverviewBanner` condivide la fascia introduttiva con foto di Trust e Patrimonio: testi negli slot, titolo ridotto con `compactTitle` e varianti di sezione nei rispettivi fogli pagina. `.site-button--small` gestisce i pulsanti con etichetta da 11 px; `.collapse-toggle` condivide il segno più/meno di FAQ e accordion.
 
 Gli stati interattivi sono condivisi nei fogli dei componenti. La navbar usa Bootstrap Dropdown: il testo apre la pagina e la freccia separata controlla il sottomenu. L’hover apre solo con il mouse sul menu esteso; clic, tastiera ed Escape funzionano anche nel menu mobile. Galvani/Argos e Newsletter restano etichette non attivabili finché non sono confermate le destinazioni.
 

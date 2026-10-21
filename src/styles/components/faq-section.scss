@@ -48,21 +48,6 @@
     outline: 2px solid theme.$brand-blue;
     outline-offset: 2px;
   }
-
-  &:not(.collapsed) .faq-toggle::before {
-    content: '−';
-  }
-}
-
-.faq-toggle {
-  flex-shrink: 0;
-  color: theme.$brand-red;
-  font-size: 22px;
-  line-height: 1;
-
-  &::before {
-    content: '+';
-  }
 }
 
 .faq-section .faq-answer {
@@ -94,8 +79,7 @@
     }
   }
 
-  .faq-eyebrow,
-  .faq-toggle {
+  .faq-eyebrow {
     color: theme.$red-mobile;
   }
 

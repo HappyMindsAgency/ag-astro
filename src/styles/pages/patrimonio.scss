@@ -1,0 +1,169 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.overview-banner.patrimonio-overview {
+  background-position: center 63%;
+}
+
+.patrimonio-eyebrow {
+  margin-bottom: theme.$space-28;
+  color: theme.$brand-red;
+}
+
+.patrimonio-needs {
+  padding-block: 144px 90px;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.patrimonio-needs-list {
+  margin-top: theme.$space-80;
+  border-top: 1px solid rgba(theme.$ink, 0.3);
+}
+
+.patrimonio-need {
+  min-height: 150px;
+  border-bottom: 1px solid rgba(theme.$ink, 0.2);
+  padding-block: 21px;
+}
+
+.patrimonio-need-heading {
+  font-size: theme.$font-size-list-title;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-list-title;
+}
+
+.patrimonio-need-label {
+  gap: theme.$space-48;
+  padding-right: theme.$space-24;
+}
+
+.patrimonio-need-index {
+  flex: 0 0 theme.$space-24;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-method-index;
+  line-height: theme.$line-height-method-index;
+}
+
+.patrimonio-need img {
+  flex-shrink: 0;
+}
+
+.patrimonio-need-content {
+  color: rgba(theme.$ink-deep, 0.75);
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-body;
+}
+
+.patrimonio-method {
+  padding-block: 128px;
+  color: white;
+  background: theme.$ink;
+
+  .container {
+    padding-inline: 0;
+  }
+
+  .patrimonio-eyebrow {
+    color: white;
+  }
+}
+
+.patrimonio-method-accent {
+  color: rgba(white, 0.5);
+}
+
+.site-button.patrimonio-method-action {
+  margin-top: theme.$space-40;
+}
+
+.patrimonio-method-copy > p {
+  margin-bottom: theme.$space-32;
+}
+
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .patrimonio-need-content {
+    height: auto !important;
+    overflow: visible;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .overview-banner.patrimonio-overview {
+    color: theme.$footer-text;
+    background: theme.$surface-mist;
+
+    .overview-banner-eyebrow,
+    .overview-banner-accent {
+      color: theme.$brand-red;
+    }
+
+    h2 {
+      color: theme.$ink-mobile;
+    }
+
+    .overview-banner-copy {
+      line-height: theme.$line-height-body;
+    }
+  }
+
+  .patrimonio-needs,
+  .patrimonio-method {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .patrimonio-needs-list {
+    margin-top: theme.$space-32;
+    border-color: theme.$border-soft;
+  }
+
+  .patrimonio-need {
+    min-height: 0;
+    border-color: theme.$border-soft;
+    padding: 0;
+  }
+
+  .patrimonio-need-button {
+    gap: theme.$space-12;
+    border: 0;
+    padding: theme.$space-24 0;
+    color: theme.$ink-mobile;
+    background: transparent;
+    font-size: theme.$font-size-body;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-body;
+
+    &:focus-visible {
+      outline: 2px solid theme.$brand-blue;
+      outline-offset: 2px;
+    }
+
+    .patrimonio-need-index {
+      flex-basis: theme.$space-12;
+      margin-right: theme.$space-12;
+      font-size: theme.$font-size-card-index-mobile;
+      line-height: theme.$line-height-card-index-mobile;
+    }
+  }
+
+  .patrimonio-need-content p:last-child {
+    padding-bottom: theme.$space-24;
+  }
+
+  .patrimonio-method-copy {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-section-lead-mobile;
+  }
+
+  .patrimonio-method-accent {
+    color: white;
+  }
+}

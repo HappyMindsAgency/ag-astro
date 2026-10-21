@@ -1,0 +1,27 @@
+---
+import '../styles/components/overview-banner.scss';
+
+interface Props {
+  id: string;
+  eyebrow: string;
+  compactTitle?: boolean;
+  class?: string;
+}
+
+const { id, eyebrow, compactTitle = false, class: className } = Astro.props;
+---
+
+<section id={id} class:list={['overview-banner', className]} aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <div class="row gx-4 gy-4 align-items-center">
+      <div class="col-lg-6">
+        <p class="type-eyebrow type-eyebrow--section overview-banner-eyebrow">{eyebrow}</p>
+        <h2 id={`${id}-title`} class:list={['type-section-title mb-0', { 'type-section-title--compact': compactTitle }]}><slot name="title" /></h2>
+        <slot name="action" />
+      </div>
+      <div class="col-lg-6 type-section-lead type-section-lead--relaxed overview-banner-copy">
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

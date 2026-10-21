@@ -66,3 +66,10 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Mobile:** il breadcrumb indica Patrimonio, il sopratitolo riprende Visione e metodologia e alcune sezioni usano testi relativi al patrimonio. Mantengo i testi desktop e Jost; da confrontare con la prossima release.
 - **FAQ:** due domande sono segnaposto e il prototipo non mostra risposte. Uso Lorem ipsum per verificare l’accordion; servono i testi definitivi.
 - **Articoli e documenti correlati:** arriveranno da Strapi. Servono contenuti, relazioni e URL dei file; non uso i dati dimostrativi di Figma.
+
+## 12. Patrimonio: confronto con la 4° Release
+
+- **Mobile:** mostra cinque esigenze contro nove sul desktop, con numerazione incoerente; sopratitoli, introduzione, FAQ e CTA hanno testi diversi o provvisori. Mantengo i nove contenuti desktop anche sul mobile, in accordion, e Jost.
+- **Descrizioni:** Protezione del patrimonio e Passaggio generazionale ripetono lo stesso secondo paragrafo. Da confermare i testi e le icone ripetute nelle ultime cinque voci.
+- **Ordine mobile:** le FAQ seguono i contenuti correlati, diversamente dal desktop. Mantengo per ora l’ordine desktop; da verificare quando saranno disponibili i correlati.
+- **FAQ e correlati:** mancano le risposte e due domande sono segnaposto; uso Lorem ipsum. Articoli e documenti arriveranno da Strapi, come per Trust.

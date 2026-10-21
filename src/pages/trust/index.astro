@@ -5,6 +5,7 @@ import EditorialImage from '../../components/EditorialImage.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import CallToAction from '../../components/CallToAction.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
+import OverviewBanner from '../../components/OverviewBanner.astro';
 import '../../styles/pages/trust.scss';
 
 const trustPrinciples = [
@@ -81,24 +82,13 @@ const faqs = [
     Il trust è un rapporto giuridico attraverso il quale determinati beni vengono affidati a un trustee, che li amministra nell’interesse di uno o più beneficiari o per il perseguimento di una finalità specifica.
   </PageIntro>
 
-  <section class="trust-overview" aria-labelledby="trust-overview-title">
-    <div class="container">
-      <div class="row gx-4 gy-4 align-items-center">
-        <div class="col-lg-6">
-          <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Che cos’è il trust?</p>
-          <h2 id="trust-overview-title" class="type-section-title type-section-title--compact mb-0">
-            Separare, amministrare, <span class="trust-overview-accent">realizzare un obiettivo.</span>
-          </h2>
-          <a class="btn site-button site-button--light trust-action" href="#come-funziona">Come funziona <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="col-lg-6 type-section-lead type-section-lead--relaxed trust-overview-copy">
-          <p>Con il trust, una persona - il disponente - destina determinati beni a un progetto e ne affida l’amministrazione a un trustee.</p>
-          <p>Il trustee acquisisce la titolarità dei beni, ma non può disporne liberamente per finalità personali. Deve amministrarli secondo le regole stabilite nell’atto istitutivo, nell’interesse dei beneficiari o per realizzare lo scopo indicato.</p>
-          <p>I beni costituiscono così un patrimonio distinto, sottoposto a regole, responsabilità e modalità di gestione definite.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <OverviewBanner id="trust-overview" eyebrow="Che cos’è il trust?" compactTitle class="trust-overview">
+    <Fragment slot="title">Separare, amministrare, <span class="overview-banner-accent">realizzare un obiettivo.</span></Fragment>
+    <a slot="action" class="btn site-button site-button--light site-button--small trust-action" href="#come-funziona">Come funziona <span aria-hidden="true">→</span></a>
+    <p>Con il trust, una persona - il disponente - destina determinati beni a un progetto e ne affida l’amministrazione a un trustee.</p>
+    <p>Il trustee acquisisce la titolarità dei beni, ma non può disporne liberamente per finalità personali. Deve amministrarli secondo le regole stabilite nell’atto istitutivo, nell’interesse dei beneficiari o per realizzare lo scopo indicato.</p>
+    <p>I beni costituiscono così un patrimonio distinto, sottoposto a regole, responsabilità e modalità di gestione definite.</p>
+  </OverviewBanner>
 
   <section class="trust-editorial trust-editorial--italy section-spacing" aria-labelledby="trust-italy-title">
     <div class="container">
@@ -217,7 +207,7 @@ const faqs = [
         <div class="col-lg-7">
           <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Il trustee professionale</p>
           <h2 id="trust-professional-title" class="type-section-title mb-0"><span class="d-lg-block">Amministrare significa</span>{' '}<span class="d-lg-block">assumersi una</span>{' '}responsabilità.</h2>
-          <a class="btn site-button site-button--light trust-action" href="/servizi/">Scopri i servizi di AG Trustees <span aria-hidden="true">→</span></a>
+          <a class="btn site-button site-button--light site-button--small trust-action" href="/servizi/">Scopri i servizi di AG Trustees <span aria-hidden="true">→</span></a>
         </div>
         <div class="col-lg-5">
           <ol class="trust-responsibilities list-unstyled mb-0">
@@ -239,7 +229,7 @@ const faqs = [
 
   <RelatedContent />
 
-  <CallToAction eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale" href="/contatti/" label="Parliamone" largeText>
+  <CallToAction eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale" href="/contatti/" label="Parliamone">
     <Fragment slot="title">Valutiamo insieme il servizio <span class="d-lg-block">più adatto alle tue esigenze</span></Fragment>
     Ogni situazione richiede una valutazione attenta delle persone, del patrimonio, delle finalità e delle responsabilità coinvolte.
   </CallToAction>

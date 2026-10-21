@@ -1,4 +1,5 @@
 @use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .site-button {
   --bs-btn-color: white;
@@ -41,6 +42,37 @@
   --bs-btn-active-color: #{theme.$brand-blue};
   --bs-btn-active-bg: white;
   --bs-btn-active-border-color: #{theme.$button-border-light};
+}
+
+.site-button.site-button--small {
+  gap: theme.$space-4;
+  padding: 14px theme.$space-30;
+  font-size: theme.$font-size-cta-label;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-cta-label;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.collapse-toggle {
+  flex-shrink: 0;
+  color: theme.$brand-red;
+  font-size: 22px;
+  line-height: 1;
+
+  &::before {
+    content: '+';
+  }
+}
+
+[aria-expanded='true'] .collapse-toggle::before {
+  content: '−';
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .collapse-toggle {
+    color: theme.$red-mobile;
+  }
 }
 
 .site-button.site-button--blue {

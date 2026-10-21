@@ -137,7 +137,7 @@
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
-  .page-intro--wide-title .type-page-title {
+  .page-intro--fit-mobile-title .type-page-title {
     font-size: min(theme.$font-size-page-title-mobile, 15.4vw);
   }
 }

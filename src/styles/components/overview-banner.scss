@@ -1,0 +1,39 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.overview-banner {
+  display: flex;
+  align-items: center;
+  min-height: 432px;
+  padding-block: theme.$space-48;
+  color: white;
+  background: linear-gradient(rgba(theme.$ink-mobile, 0.75), rgba(theme.$ink-mobile, 0.75)), url('/assets/immagini/ufficio-panorama.jpg') center / cover;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.overview-banner-eyebrow {
+  margin-bottom: theme.$space-28;
+  color: white;
+}
+
+.overview-banner-accent {
+  color: rgba(white, 0.5);
+}
+
+.overview-banner-copy p {
+  margin-bottom: 0;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .overview-banner {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+}

@@ -28,39 +28,11 @@
 }
 
 .site-button.trust-action {
-  gap: theme.$space-4;
   margin-top: theme.$space-28;
-  padding: 14px theme.$space-30;
-  font-size: theme.$font-size-cta-label;
-  font-weight: theme.$font-weight-medium;
-  line-height: theme.$line-height-cta-label;
-  letter-spacing: theme.$letter-spacing-cta-label;
-  text-transform: uppercase;
 }
 
-.trust-overview {
-  display: flex;
-  align-items: center;
+.overview-banner.trust-overview {
   min-height: 453px;
-  padding-block: theme.$space-48;
-  color: white;
-  background: linear-gradient(rgba(theme.$ink-mobile, 0.75), rgba(theme.$ink-mobile, 0.75)), url('/assets/immagini/ufficio-panorama.jpg') center / cover;
-
-  .container {
-    padding-inline: 0;
-  }
-
-  .trust-eyebrow {
-    color: white;
-  }
-}
-
-.trust-overview-accent {
-  color: rgba(white, 0.5);
-}
-
-.trust-overview-copy p {
-  margin-bottom: 0;
 }
 
 .trust-editorial {
@@ -234,7 +206,6 @@
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
-  .trust-overview,
   .trust-editorial,
   .trust-participants,
   .trust-segregation,

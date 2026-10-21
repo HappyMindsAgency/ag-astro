@@ -7,14 +7,15 @@ interface Props {
   eyebrow: string;
   mobileTitleLeading?: 'tight' | 'regular' | 'relaxed';
   wideTitle?: boolean;
+  fitMobileTitle?: boolean;
 }
 
-const { breadcrumb, parents = [], eyebrow, mobileTitleLeading = 'regular', wideTitle = false } = Astro.props;
+const { breadcrumb, parents = [], eyebrow, mobileTitleLeading = 'regular', wideTitle = false, fitMobileTitle = wideTitle } = Astro.props;
 const headingColumnClass = wideTitle ? 'col-md-6 col-xxl' : 'col-md-6';
 const copyColumnClass = wideTitle ? 'col-md-6 col-xxl-auto' : 'col-md-6';
 ---
 
-<section class:list={['page-intro', { 'page-intro--wide-title': wideTitle }]} aria-labelledby="page-title">
+<section class:list={['page-intro', { 'page-intro--wide-title': wideTitle, 'page-intro--fit-mobile-title': fitMobileTitle }]} aria-labelledby="page-title">
   <div class="container">
     <nav aria-label="Percorso di navigazione">
       <ol class="breadcrumb">
