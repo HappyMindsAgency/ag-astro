@@ -1,0 +1,182 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.service-catalogue {
+  padding-block: 110px;
+  color: white;
+  background: linear-gradient(116deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/sfondo-servizi.jpg') center;
+  background-size: cover, 110% 100%;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.service-catalogue-eyebrow,
+.service-catalogue-title {
+  margin-bottom: theme.$space-16;
+}
+
+.service-catalogue-title span {
+  color: rgba(white, 0.5);
+}
+
+.service-catalogue-list {
+  margin-top: 60px;
+}
+
+.service-catalogue-list .service-catalogue-item {
+  position: relative;
+  padding-block: theme.$space-36;
+  border-bottom: 1px solid rgba(white, 0.3);
+}
+
+.service-catalogue-index {
+  color: theme.$brand-red;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-body;
+}
+
+.service-catalogue-item .service-catalogue-item-title {
+  padding-right: theme.$space-24;
+  font-size: theme.$font-size-list-title;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-list-title;
+}
+
+.service-catalogue-item .service-catalogue-details {
+  padding-right: theme.$space-40;
+}
+
+.service-catalogue-copy {
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-body;
+}
+
+.site-button.service-catalogue-link {
+  gap: theme.$space-4;
+  margin-top: theme.$space-16;
+  padding: 14px theme.$space-30;
+  font-size: theme.$font-size-cta-label;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-cta-label;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.service-catalogue-item .service-catalogue-arrow {
+  position: absolute;
+  top: theme.$space-36;
+  right: 0;
+  width: auto;
+
+  &::before {
+    content: '→';
+  }
+}
+
+.services-responsibility {
+  padding-block: 144px;
+  background: theme.$surface-warm;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.services-responsibility-eyebrow,
+.services-responsibility-title {
+  margin-bottom: theme.$space-24;
+}
+
+.services-responsibility-eyebrow {
+  color: theme.$brand-red;
+}
+
+.services-responsibility-copy {
+  color: rgba(theme.$editorial-text, 0.75);
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .service-catalogue,
+  .services-responsibility {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .service-catalogue {
+    background-image: linear-gradient(96deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/sfondo-servizi.jpg');
+  }
+
+  .service-catalogue-introduction {
+    color: theme.$muted-on-gradient;
+  }
+
+  .service-catalogue-eyebrow,
+  .service-catalogue-title {
+    margin-bottom: theme.$space-28;
+  }
+
+  .service-catalogue-eyebrow {
+    color: rgba(white, 0.7);
+  }
+
+  .service-catalogue-title span {
+    color: white;
+  }
+
+  .service-catalogue-list {
+    margin-top: theme.$space-28;
+    border-top: 1px solid rgba(white, 0.25);
+  }
+
+  .service-catalogue-index {
+    color: theme.$service-index;
+    font-size: theme.$font-size-small;
+    line-height: theme.$line-height-small;
+  }
+
+  .service-catalogue-item .service-catalogue-item-title {
+    font-size: theme.$font-size-body;
+    font-weight: theme.$font-weight-medium;
+    line-height: theme.$line-height-body;
+  }
+
+  .service-catalogue-item .service-catalogue-details {
+    margin-top: theme.$space-12;
+    padding-right: theme.$space-20;
+  }
+
+  .service-catalogue-copy {
+    color: theme.$muted-on-gradient;
+    font-size: theme.$font-size-service-copy-mobile;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-service-item-mobile;
+  }
+
+  .service-catalogue-arrow {
+    font-size: 22px;
+  }
+
+  .service-catalogue-item .service-catalogue-arrow::before {
+    content: '+';
+  }
+
+  .services-responsibility {
+    background: white;
+  }
+
+  .services-responsibility-eyebrow,
+  .services-responsibility-title {
+    margin-bottom: theme.$space-28;
+  }
+
+  .services-responsibility-copy {
+    color: theme.$footer-text;
+  }
+}

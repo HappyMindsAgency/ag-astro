@@ -42,3 +42,27 @@
   --bs-btn-active-bg: white;
   --bs-btn-active-border-color: #{theme.$button-border-light};
 }
+
+.site-button.site-button--outline-light {
+  --bs-btn-color: white;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: #{theme.$button-border-on-dark};
+  --bs-btn-hover-color: #{theme.$brand-blue};
+  --bs-btn-hover-bg: white;
+  --bs-btn-hover-border-color: white;
+  --bs-btn-active-color: #{theme.$brand-blue};
+  --bs-btn-active-bg: white;
+  --bs-btn-active-border-color: white;
+
+  &:focus-visible {
+    outline-color: white;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-button {
+    transition: color theme.$interaction-duration theme.$interaction-easing,
+      background-color theme.$interaction-duration theme.$interaction-easing,
+      border-color theme.$interaction-duration theme.$interaction-easing;
+  }
+}

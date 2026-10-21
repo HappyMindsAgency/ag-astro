@@ -1,11 +1,5 @@
 ---
-import Layout from '../../components/Layout.astro';
-
-const slugArt = Astro.params.slugArt;
+import PagePlaceholder from '../../components/PagePlaceholder.astro';
 ---
 
-<Layout title={`AG Informa - ${slugArt}`} description={`Detailed information about ${slugArt} in the agricultural sector.`}>
-  <h1>{slugArt}</h1>
-  <p>Here you will find detailed information and resources related to {slugArt}. Explore the latest news, research, and insights in this area of agriculture.</p>
-  <a href="/ag-informa">Back to AG Informa</a>
-</Layout>
+<PagePlaceholder title="Articolo" />

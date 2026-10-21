@@ -1,7 +1,7 @@
 @use '../variables' as theme;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
-$cta-padding-inline: 168px;
+$cta-padding-inline: 160px;
 
 .call-to-action {
   --cta-gradient-angle: 104deg;

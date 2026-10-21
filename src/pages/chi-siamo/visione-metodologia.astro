@@ -1,8 +1,8 @@
 ---
-import Layout from '../components/Layout.astro';
-import PageIntro from '../components/PageIntro.astro';
-import CallToAction from '../components/CallToAction.astro';
-import '../styles/pages/visione-e-metodologia.scss';
+import Layout from '../../components/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import '../../styles/pages/visione-e-metodologia.scss';
 
 const services = [
   'Amministrazione',
@@ -32,11 +32,8 @@ const methodSteps = [
 ];
 ---
 
-<Layout
-  title="Visione e metodologia | AG Trustees"
-  description="La visione e il metodo di AG Trustees: comprendere le persone, amministrare con responsabilità e accompagnare ogni progetto nel tempo."
->
-  <PageIntro breadcrumb="Visione e metodologia" eyebrow="Due esperienze. Una visione condivisa." mobileTitleLeading="relaxed" wideTitle>
+<Layout>
+  <PageIntro breadcrumb="Visione e metodologia" parents={[{ label: 'Chi siamo', href: '/chi-siamo/' }]} eyebrow="Due esperienze. Una visione condivisa." mobileTitleLeading="relaxed" wideTitle>
     <Fragment slot="title">
       <span class="d-block">Visione e</span>
       <span class="d-block text-secondary">metodologia</span>
@@ -54,7 +51,7 @@ const methodSteps = [
       <div class="col-lg-6 vision-overview-content">
         <p class="type-eyebrow type-eyebrow--section vision-eyebrow">La nostra visione</p>
         <h2 id="vision-title" class="type-section-title mb-0">Titolo <span class="type-section-title-accent d-block">della sezione</span></h2>
-        <p class="vision-overview-copy mb-0">Una storia fatta di persone, legami, lavoro, responsabilità e visione. AG Trustees esiste per custodirla e accompagnarla nel tempo, contribuendo a garantirne stabilità e continuità tra generazioni.</p>
+        <p class="type-section-lead type-section-lead--relaxed vision-overview-copy mb-0">Una storia fatta di persone, legami, lavoro, responsabilità e visione. AG Trustees esiste per custodirla e accompagnarla nel tempo, contribuendo a garantirne stabilità e continuità tra generazioni.</p>
       </div>
     </div>
   </section>
@@ -68,7 +65,7 @@ const methodSteps = [
       </div>
       <ol class="vision-services-list list-unstyled mx-auto mb-0">
         {services.map((title, index) => (
-          <li class="row g-0 align-items-center vision-service">
+          <li class="row g-0 align-items-center vision-service service-list-row">
             <span class="col-1 vision-service-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <h3 class="col-5 vision-service-title mb-0">{title}</h3>
             <p class="col-5 vision-service-copy mb-0">{serviceDescription}</p>
@@ -77,7 +74,7 @@ const methodSteps = [
         ))}
       </ol>
       <div class="vision-services-action text-end">
-        <a class="btn site-button vision-services-link" href="/servizi/">Tutti i servizi <span aria-hidden="true">→</span></a>
+        <a class="btn site-button site-button--outline-light" href="/servizi/">Tutti i servizi <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>

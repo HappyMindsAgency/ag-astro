@@ -48,7 +48,7 @@
   padding-left: theme.$space-36;
 }
 
-@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+@include bs.media-breakpoint-between(md, xxl, theme.$grid-breakpoints) {
   .page-intro {
     min-height: 0;
 
@@ -63,7 +63,7 @@
   }
 }
 
-@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+@include bs.media-breakpoint-up(md, theme.$grid-breakpoints) {
   .page-intro-copy-column {
     border-left: 1px solid theme.$brand-red;
   }
@@ -83,9 +83,6 @@
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .page-intro {
-    min-height: 398px;
-    padding-bottom: 35px;
-
     .container {
       max-width: none;
       padding-inline: theme.$page-gutter-mobile;
@@ -110,12 +107,6 @@
         font-weight: theme.$font-weight-regular;
       }
     }
-
-    .row {
-      row-gap: theme.$space-28;
-      padding: 0;
-    }
-
   }
 
   .page-intro-eyebrow {
@@ -124,11 +115,25 @@
   }
 
   .page-intro-copy {
-    max-width: 410px;
-    padding-left: 0;
     color: theme.$ink-mobile;
   }
+}
 
+@include bs.media-breakpoint-down(md, theme.$grid-breakpoints) {
+  .page-intro {
+    min-height: 398px;
+    padding-bottom: 35px;
+
+    .row {
+      row-gap: theme.$space-28;
+      padding: 0;
+    }
+  }
+
+  .page-intro-copy {
+    max-width: 410px;
+    padding-left: 0;
+  }
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {

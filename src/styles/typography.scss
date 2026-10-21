@@ -107,6 +107,10 @@
     line-height: theme.$line-height-section-lead-mobile;
   }
 
+  .type-section-lead--relaxed {
+    line-height: theme.$line-height-editorial-copy-mobile;
+  }
+
   .type-section-title--compact {
     font-size: theme.$font-size-section-title-mobile;
     line-height: theme.$line-height-section-title-compact-mobile;

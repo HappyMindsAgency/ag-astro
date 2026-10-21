@@ -1,0 +1,113 @@
+---
+import Layout from '../../components/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import '../../styles/pages/servizi.scss';
+
+const services = [
+  {
+    title: 'Assistenza nell’istituzione del trust',
+    description: 'AG Trustees affianca il disponente e i professionisti coinvolti nella costruzione di un progetto coerente con le finalità individuate.',
+  },
+  {
+    title: 'Protezione patrimoniale',
+    description: 'Quando un patrimonio comprende beni, partecipazioni, immobili o interessi familiari diversi, può essere necessario costruire una struttura capace di mantenerne ordine e continuità. Il trust può contribuire a definire regole di amministrazione chiare e coerenti con gli obiettivi del disponente. Ogni progetto deve essere valutato considerando la situazione personale, familiare, imprenditoriale e patrimoniale nel suo insieme.',
+    link: { href: '/patrimonio/', label: 'Vai a patrimonio' },
+  },
+  {
+    title: 'Consulenza personalizzata',
+    description: 'L’attività riguarda, in particolare, la distribuzione dei ruoli, i processi decisionali, i rapporti tra trustee, guardiano e beneficiari e le modalità con cui il progetto può adattarsi ai cambiamenti nel tempo.',
+  },
+  {
+    title: 'Trustee professionale',
+    description: 'Il trustee è il soggetto incaricato di amministrare i beni conferiti in trust secondo quanto stabilito dall’atto istitutivo. Quando assume questo ruolo, AG Trustees acquisisce la titolarità dei beni e li amministra con autonomia, prudenza e responsabilità, nel rispetto delle finalità definite e degli interessi dei beneficiari.',
+  },
+  {
+    title: 'Co-Trustee',
+    description: 'AG Trustees può assumere l’incarico insieme a uno o più trustee, condividendo responsabilità e decisioni secondo quanto previsto dall’atto istitutivo.',
+  },
+  {
+    title: 'Guardiano del trust',
+    description: 'Il guardiano è la figura incaricata di vigilare sull’operato del trustee nei limiti e secondo i poteri stabiliti dall’atto istitutivo.',
+  },
+  {
+    title: 'Amministrazione del trust',
+    description: 'L’amministrazione di un trust richiede continuità nella gestione documentale, contabile e fiscale. AG Trustees cura le attività necessarie a dare concreta attuazione al progetto nel corso del tempo.',
+  },
+  {
+    title: 'Contabilità, fiscalità e adempimenti',
+    description: 'AG Trustees cura gli adempimenti connessi all’incarico e si coordina, quando necessario, con i consulenti fiscali e legali coinvolti.',
+  },
+];
+
+const responsibilityParagraphs = [
+  'Essere trustee significa assumere una responsabilità concreta verso le persone, il patrimonio e le finalità affidate.',
+  'AG Trustees interpreta ogni incarico con competenza, indipendenza ed equilibrio. Questo significa agire secondo l’atto istitutivo, amministrare con prudenza, documentare le decisioni e rendere conto dell’attività svolta.',
+  'La responsabilità fiduciaria richiede inoltre continuità: il progetto viene seguito nel tempo, mantenendo un confronto chiaro con beneficiari, guardiani e professionisti.',
+];
+
+const provisionalAnswer = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus.';
+const faqs = [
+  { question: 'Qual è la differenza tra trustee e guardiano?', answer: provisionalAnswer },
+  { question: 'Lorem ipsum dolor sit amet?', answer: provisionalAnswer },
+  { question: 'Lorem ipsum dolor sit amet?', answer: provisionalAnswer },
+];
+---
+
+<Layout>
+  <PageIntro breadcrumb="Servizi" eyebrow="Esperienze. Competenze. Professionalità" mobileTitleLeading="relaxed">
+    <Fragment slot="title">
+      <span class="d-block">I nostri</span>
+      <span class="d-block text-secondary">servizi.</span>
+    </Fragment>
+    AG Trustees assiste nella progettazione del trust e assume incarichi di trustee, co-trustee e guardiano. Amministra il trust nel rispetto dell’atto istitutivo, delle finalità definite e degli interessi dei beneficiari.
+  </PageIntro>
+
+  <section class="service-catalogue section-spacing" aria-labelledby="services-title">
+    <div class="container">
+      <p class="type-eyebrow type-eyebrow--section service-catalogue-eyebrow">Cosa facciamo per te</p>
+      <h2 id="services-title" class="type-section-title type-section-title--compact service-catalogue-title">
+        Il supporto professionale <span class="d-xxl-block">in ogni fase del trust.</span>
+      </h2>
+      <p class="type-section-lead type-section-lead--relaxed service-catalogue-introduction mb-0">Ogni trust nasce da esigenze, relazioni e obiettivi specifici. Per questo l’attività di AG Trustees parte dalla comprensione del contesto e prosegue con la definizione di regole chiare, l’assunzione degli incarichi e l’amministrazione nel tempo.</p>
+      <ol class="service-catalogue-list list-unstyled mb-0">
+        {services.map(({ title, description, link }, index) => (
+          <li class="service-catalogue-item service-list-row row g-0">
+            <span class="col-1 service-catalogue-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="col-11 col-lg-5 service-catalogue-item-title mb-0">{title}</h3>
+            <div class="col-11 offset-1 col-lg-6 offset-lg-0 service-catalogue-details">
+              <p class="service-catalogue-copy mb-0">{description}</p>
+              {link && <a class="btn site-button site-button--light service-catalogue-link" href={link.href}>{link.label} <span aria-hidden="true">→</span></a>}
+            </div>
+            <span class="service-catalogue-arrow" aria-hidden="true"></span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="services-responsibility section-spacing" aria-labelledby="responsibility-title">
+    <div class="container">
+      <p class="type-eyebrow type-eyebrow--section services-responsibility-eyebrow">L’incarico professionale</p>
+      <h2 id="responsibility-title" class="type-section-title type-section-title--compact services-responsibility-title">
+        Il valore dello strumento dipende anche <span class="type-section-title-accent d-xxl-block">da chi lo amministra.</span>
+      </h2>
+      <div class="type-section-lead services-responsibility-copy">
+        {responsibilityParagraphs.map((paragraph) => <p class="mb-0">{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <FaqSection id="servizi-faq" items={faqs}>
+    <Fragment slot="title">Domande frequenti <span class="type-section-title-accent d-lg-block">sui servizi</span></Fragment>
+  </FaqSection>
+
+  <CallToAction eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale" href="/trust/" label="Scopri come funziona il trust">
+    <Fragment slot="title">Vuoi conoscere meglio il trust?</Fragment>
+    Finalità, patrimonio, relazioni e responsabilità devono essere valutati insieme. <span class="d-xl-block">Un primo confronto permette di comprendere il progetto e verificare le condizioni per l’assunzione dell’incarico.</span>
+  </CallToAction>
+
+  <ContactSection />
+</Layout>

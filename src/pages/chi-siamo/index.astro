@@ -1,10 +1,10 @@
 ---
-import Layout from '../components/Layout.astro';
-import PageIntro from '../components/PageIntro.astro';
-import CompanyHistory from '../components/CompanyHistory.astro';
-import Certifications from '../components/Certifications.astro';
-import ContactSection from '../components/ContactSection.astro';
-import '../styles/pages/chi-siamo.scss';
+import Layout from '../../components/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import CompanyHistory from '../../components/CompanyHistory.astro';
+import Certifications from '../../components/Certifications.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import '../../styles/pages/chi-siamo.scss';
 
 const identityCards = [
   {
@@ -76,10 +76,7 @@ const methodSteps = [
 ];
 ---
 
-<Layout
-    title="Chi siamo | AG Trustees"
-    description="AG Trustees è una trust company dedicata all’amministrazione professionale di trust, al servizio di persone, famiglie e imprese."
->
+<Layout>
   <PageIntro
     breadcrumb="Chi siamo"
     eyebrow="Amministriamo il presente con una visione condivisa del futuro"
@@ -196,7 +193,7 @@ const methodSteps = [
           <p class="type-eyebrow type-eyebrow--section about-team-eyebrow">Team</p>
           <h2 id="team-title" class="about-team-title">La fiducia comincia <span class="d-block">dalle persone.</span></h2>
           <p class="type-section-lead about-team-copy">Accompagniamo ogni progetto con ascolto, competenza e continuità.</p>
-          <a class="btn site-button about-team-link" href="/team/">Conosci il team <span aria-hidden="true">→</span></a>
+          <a class="btn site-button about-team-link" href="/chi-siamo/team/">Conosci il team <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>

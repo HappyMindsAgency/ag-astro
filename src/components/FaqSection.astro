@@ -1,0 +1,52 @@
+---
+import '../styles/components/faq-section.scss';
+
+interface Props {
+  id: string;
+  items: { question: string; answer: string }[];
+}
+
+const { id, items } = Astro.props;
+const listId = `${id}-list`;
+---
+
+<section id={id} class="faq-section section-spacing" aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <div class="row gx-4 gy-4">
+      <div class="col-lg-6">
+        <p class="type-eyebrow type-eyebrow--section faq-eyebrow">FAQ</p>
+        <h2 id={`${id}-title`} class="type-section-title type-section-title--compact faq-title mb-0"><slot name="title" /></h2>
+      </div>
+      <div class="col-lg-6">
+        <div id={listId} class="accordion faq-list">
+          {items.map(({ question, answer }, index) => {
+            const questionId = `${id}-question-${index}`;
+            const answerId = `${id}-answer-${index}`;
+
+            return (
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button
+                    id={questionId}
+                    class="accordion-button collapsed faq-question"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target={`#${answerId}`}
+                    aria-expanded="false"
+                    aria-controls={answerId}
+                  >
+                    <span>{question}</span>
+                    <span class="faq-toggle ms-auto" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div id={answerId} class="accordion-collapse collapse" aria-labelledby={questionId} data-bs-parent={`#${listId}`}>
+                  <div class="accordion-body faq-answer"><p class="mb-0">{answer}</p></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

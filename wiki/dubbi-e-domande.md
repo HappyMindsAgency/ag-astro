@@ -1,6 +1,6 @@
 # Dubbi e domande
 
-Punti da chiarire con designer e team sulla **3° Release** Figma. Le scelte indicate sotto sono provvisorie.
+Punti da chiarire con designer e team sulla **3° Release** Figma e sull’architettura delle pagine. Le scelte indicate sotto sono provvisorie.
 
 ## 1. Titoli FAQ: 56 o 68 px?
 
@@ -26,7 +26,7 @@ Mancano video e poster definitivi: ho lasciato lo spazio vuoto, dimensionato sui
 
 ## 5. Link e funzionalità mancanti
 
-Servono URL LinkedIn, destinazioni delle voci legali e indicazioni sulla ricerca. Per ora uso etichette senza collegamento e ricerca disabilitata; i percorsi del menu anticipano pagine ancora da realizzare. Da completare prima della pubblicazione.
+Servono URL LinkedIn, contenuti delle pagine legali e indicazioni sulla ricerca. Per ora LinkedIn non ha collegamento e la ricerca è disabilitata; le pagine legali hanno solo layout e titolo. Da completare prima della pubblicazione.
 
 ## 6. Contrasto dei testi
 
@@ -41,4 +41,22 @@ Le tre descrizioni delle competenze desktop sono ancora segnaposto. Il mobile pr
 - **Testi provvisori:** “Titolo della sezione”, terzo e quarto servizio, descrizioni dei servizi e paragrafi Lorem ipsum/Cras et lorem. Mantengo i testi attuali di Figma.
 - **Invito finale:** il testo “Ogni mese…” parla di newsletter, mentre il pulsante porta ai servizi. Da confermare testo e destinazione.
 - **Mobile:** introduzione e testo del metodo differiscono dal desktop; uso per ora le versioni desktop e Jost.
-- **Navigazione:** il breadcrumb desktop indica ancora “Chi siamo”; nella pagina uso “Visione e metodologia”. Servono conferma della posizione nel menu e destinazioni dei singoli servizi; le loro frecce restano decorative.
+- **Servizi:** servono le destinazioni delle singole voci; le loro frecce restano decorative.
+
+## 9. Servizi: confronto con la 4° Release
+
+- **Mobile:** titolo e introduzione riprendono Visione e metodologia; il catalogo mostra sette servizi identici e le FAQ citano Trust e Patrimonio. Mantengo gli otto servizi e i testi desktop, compresi invito finale e contatti.
+- **FAQ:** due domande sono segnaposto e mancano tutte le risposte. Uso risposte Lorem ipsum provvisorie per verificare l’accordion; servono i contenuti definitivi.
+- **Frecce dei servizi:** mancano le destinazioni delle singole voci. Restano decorative; i collegamenti espliciti portano alle future pagine Patrimonio e Trust.
+
+## 10. Architettura e slug
+
+Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
+
+- **Galvani e Argos (P03):** pagina dedicata o sezione di Chi siamo? La pagina separata non è predisposta.
+- **Family office (P08):** una nota nel file chiede di tenerla in standby perché potrebbe andare su Fidire. Non è predisposta.
+- **Eventi (P13):** pagina autonoma o tab di AG Informa? Per ora è predisposta a `/eventi-in-agenda/`, come indicato per il lancio.
+- **Library (P15–P16):** confermare nome e gerarchia. Uso `/knowledge-library/[tipologia]/`, dalla colonna Percorso IT; la colonna Pagina padre cita invece `/knowledge-library/tipologia/`.
+- **Filtri tematici, Newsletter e accesso ai dati (P14, P20, P24):** presenza al lancio da decidere; pagine non predisposte.
+- **Informazioni societarie (P26):** riga incompleta, senza percorso o indicazione sul lancio.
+- **FAQ nel footer:** manca una pagina dedicata nel file. Servono conferma della destinazione e del rapporto con le FAQ della Library; per ora l’etichetta non ha collegamento.

@@ -6,7 +6,12 @@ interface Props {
   creditsUrl?: string;
 }
 
-const { linkedinUrl, privacyPolicyUrl, cookiePolicyUrl, creditsUrl } = Astro.props;
+const {
+  linkedinUrl,
+  privacyPolicyUrl = '/privacy-policy/',
+  cookiePolicyUrl = '/cookie-policy/',
+  creditsUrl = '/credits/',
+} = Astro.props;
 const menu = [
   { label: 'Chi siamo', href: '/chi-siamo/' },
   { label: 'Servizi', href: '/servizi/' },
@@ -14,7 +19,7 @@ const menu = [
   { label: 'Patrimonio', href: '/patrimonio/' },
   { label: 'AG Informa', href: '/ag-informa/' },
   { label: 'Knowledge library', href: '/knowledge-library/' },
-  { label: 'FAQ', href: '/faq/' },
+  { label: 'FAQ', href: undefined },
 ];
 const offices = [
   { city: 'Milano', address: 'Corso Giacomo Matteotti, 1 - 20121' },
@@ -50,7 +55,7 @@ const legalLinks = [
       <nav class="col-12 col-md-6 col-lg-3 col-xxl-auto footer-menu" aria-label="Navigazione nel footer">
         <h2 class="footer-heading">Menu</h2>
         <ul class="footer-nav list-unstyled mb-0">
-          {menu.map(({ label, href }) => <li><a href={href}>{label}</a></li>)}
+          {menu.map(({ label, href }) => <li>{href ? <a href={href}>{label}</a> : <span>{label}</span>}</li>)}
         </ul>
       </nav>
 

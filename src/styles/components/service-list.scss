@@ -1,0 +1,17 @@
+@use '../variables' as theme;
+
+.service-list-row:focus-within {
+  background-color: theme.$surface-service-hover;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-list-row:hover {
+    background-color: theme.$surface-service-hover;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .service-list-row {
+    transition: background-color theme.$interaction-duration theme.$interaction-easing;
+  }
+}

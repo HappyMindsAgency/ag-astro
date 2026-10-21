@@ -5,13 +5,35 @@ interface Props {
 
 const { linkedinUrl } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
-const navigation = [
-  { label: 'Chi siamo', href: '/chi-siamo/' },
+interface NavigationItem {
+  label: string;
+  href: string;
+  children?: { label: string; href?: string }[];
+}
+
+const navigation: NavigationItem[] = [
+  {
+    label: 'Chi siamo',
+    href: '/chi-siamo/',
+    children: [
+      { label: 'Galvani Fiduciaria e Argos Trustees' },
+      { label: 'Visione e metodologia', href: '/chi-siamo/visione-metodologia/' },
+      { label: 'Il team', href: '/chi-siamo/team/' },
+    ],
+  },
   { label: 'Servizi', href: '/servizi/' },
   { label: 'Trust', href: '/trust/' },
   { label: 'Patrimonio', href: '/patrimonio/' },
-  { label: 'AG Informa', href: '/ag-informa/' },
-  { label: 'Eventi', href: '/eventi/' },
+  {
+    label: 'AG Informa',
+    href: '/ag-informa/',
+    children: [
+      { label: 'Notizie', href: '/ag-informa/' },
+      { label: 'Eventi', href: '/eventi-in-agenda/' },
+      { label: 'Newsletter' },
+    ],
+  },
+  { label: 'Eventi', href: '/eventi-in-agenda/' },
   { label: 'Knowledge library', href: '/knowledge-library/' },
 ];
 ---
@@ -23,8 +45,8 @@ const navigation = [
         <img src="/assets/brand/ag-logo-orizzontale.png" alt="Across Galvani Trustees" width="1200" height="143" fetchpriority="high" />
       </a>
 
-      <div class="header-mobile d-flex align-items-center gap-3 ms-auto">
-        <a class="header-contact-mobile" href="/contatti/">Contatti <span aria-hidden="true">→</span></a>
+      <div class="header-mobile d-flex align-items-center gap-3 gap-md-4">
+        <a class="header-contact-mobile" href="/contatti/">Contatti</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label="Apri o chiudi il menu">
           <span class="navbar-toggler-icon" aria-hidden="true"></span>
         </button>
@@ -32,11 +54,40 @@ const navigation = [
 
       <div class="collapse navbar-collapse" id="site-navigation">
         <ul class="navbar-nav">
-          {navigation.map(({ label, href }) => {
+          {navigation.map(({ label, href, children }) => {
             const isCurrent = currentPath === href.replace(/\/$/, '');
+            const isActive = isCurrent || currentPath.startsWith(href);
+            const submenuId = `submenu-${href.split('/')[1]}`;
             return (
-              <li class="nav-item">
-                <a class:list={['nav-link', { active: isCurrent }]} href={href} aria-current={isCurrent ? 'page' : undefined}>{label}</a>
+              <li class:list={['nav-item', { dropdown: children }]}>
+                <div class="header-nav-row">
+                  <a class:list={['nav-link', { active: isActive }]} href={href} aria-current={isCurrent ? 'page' : undefined}>{label}</a>
+                  {children && (
+                    <button
+                      class="header-submenu-toggle dropdown-toggle dropdown-toggle-split"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      data-bs-display="static"
+                      aria-controls={submenuId}
+                      aria-expanded="false"
+                      aria-label={`Apri o chiudi il sottomenu ${label}`}
+                    ></button>
+                  )}
+                  {children && (
+                    <ul class="dropdown-menu header-submenu" id={submenuId} aria-label={`Sottomenu ${label}`}>
+                      {children.map(({ label: childLabel, href: childHref }) => {
+                        const childIsCurrent = childHref && currentPath === childHref.replace(/\/$/, '');
+                        return (
+                          <li>{childHref ? (
+                            <a class:list={['dropdown-item', { active: childIsCurrent }]} href={childHref} aria-current={childIsCurrent ? 'page' : undefined}>{childLabel}</a>
+                          ) : (
+                            <span class="dropdown-item disabled" aria-disabled="true">{childLabel}</span>
+                          )}</li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
               </li>
             );
           })}
@@ -57,3 +108,45 @@ const navigation = [
     </div>
   </nav>
 </header>
+
+<script>
+  import Dropdown from 'bootstrap/js/dist/dropdown';
+
+  document.querySelectorAll<HTMLElement>('.site-navbar').forEach((navbar) => {
+    const breakpoint = getComputedStyle(navbar).getPropertyValue('--header-expand-breakpoint').trim();
+    const desktopHover = matchMedia(`(min-width: ${breakpoint}) and (hover: hover) and (pointer: fine)`);
+
+    navbar.querySelectorAll<HTMLElement>('.dropdown').forEach((item) => {
+      const toggle = item.querySelector<HTMLButtonElement>('.header-submenu-toggle');
+      if (!toggle) return;
+
+      const dropdown = Dropdown.getOrCreateInstance(toggle);
+
+      item.addEventListener('pointerenter', (event) => {
+        if (event.pointerType !== 'mouse' || !desktopHover.matches) return;
+
+        // Su hover ripristino il focus che Bootstrap sposta sulla freccia.
+        const focused = document.activeElement;
+        dropdown.show();
+
+        if (focused instanceof HTMLElement && focused !== document.body) {
+          focused.focus({ preventScroll: true });
+        } else {
+          toggle.blur();
+        }
+      });
+
+      item.addEventListener('pointerleave', (event) => {
+        if (event.pointerType === 'mouse' && desktopHover.matches && !item.contains(document.activeElement)) dropdown.hide();
+      });
+
+      item.addEventListener('focusout', () => {
+        requestAnimationFrame(() => {
+          if (!item.contains(document.activeElement) && (!desktopHover.matches || !item.matches(':hover'))) dropdown.hide();
+        });
+      });
+
+      desktopHover.addEventListener('change', () => dropdown.hide());
+    });
+  });
+</script>

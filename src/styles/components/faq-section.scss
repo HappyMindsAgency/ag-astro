@@ -1,0 +1,109 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.faq-section {
+  padding-block: 144px;
+  background: theme.$surface-mist;
+
+  .container {
+    padding-inline: 0;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid theme.$editorial-border;
+  }
+}
+
+.faq-eyebrow {
+  margin-bottom: theme.$space-24;
+  color: theme.$brand-red;
+}
+
+.faq-section .faq-list {
+  --bs-accordion-color: #{theme.$ink};
+  --bs-accordion-bg: transparent;
+  --bs-accordion-border-width: 0;
+  --bs-accordion-border-radius: 0;
+  --bs-accordion-btn-color: #{theme.$ink};
+  --bs-accordion-active-color: #{theme.$ink};
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-btn-focus-box-shadow: none;
+  border-top: 1px solid theme.$editorial-border;
+}
+
+.faq-section .faq-question {
+  gap: theme.$space-24;
+  padding: theme.$space-28 0;
+  background: transparent;
+  font-size: theme.$font-size-section-lead;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-section-copy;
+  box-shadow: none;
+
+  &::after {
+    content: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$brand-blue;
+    outline-offset: 2px;
+  }
+
+  &:not(.collapsed) .faq-toggle::before {
+    content: '−';
+  }
+}
+
+.faq-toggle {
+  flex-shrink: 0;
+  color: theme.$brand-red;
+  font-size: 22px;
+  line-height: 1;
+
+  &::before {
+    content: '+';
+  }
+}
+
+.faq-section .faq-answer {
+  padding: 0 0 theme.$space-28;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-body;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .faq-section {
+    padding-block: theme.$space-64;
+    background: theme.$surface-faq-mobile;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+
+    .accordion-item {
+      border-color: theme.$border-soft;
+    }
+  }
+
+  .faq-eyebrow,
+  .faq-toggle {
+    color: theme.$red-mobile;
+  }
+
+  .faq-section .faq-title {
+    font-size: theme.$font-size-faq-title-mobile;
+    line-height: theme.$line-height-section-title-mobile;
+  }
+
+  .faq-section .faq-list {
+    border-color: theme.$border-soft;
+  }
+
+  .faq-section .faq-question {
+    padding-block: theme.$space-24;
+    color: theme.$ink-mobile;
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-body;
+  }
+}
