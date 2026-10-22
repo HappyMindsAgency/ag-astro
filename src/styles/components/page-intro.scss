@@ -11,7 +11,6 @@
 
   .row {
     --bs-gutter-x: 0;
-    --bs-gutter-y: 0;
     padding-block: theme.$space-40;
   }
 }
@@ -22,7 +21,6 @@
 }
 
 .page-intro-copy {
-  margin: 0;
   padding-left: theme.$space-36;
 }
 

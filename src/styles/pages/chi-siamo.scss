@@ -12,7 +12,6 @@
 
   .row {
     --bs-gutter-x: #{theme.$space-24};
-    --bs-gutter-y: 0;
   }
 }
 
@@ -172,7 +171,6 @@
 
   .row {
     --bs-gutter-x: #{theme.$space-24};
-    --bs-gutter-y: 0;
   }
 }
 
@@ -233,7 +231,6 @@
 
 .about-competencies-heading {
   --bs-gutter-x: #{theme.$space-24};
-  --bs-gutter-y: 0;
   justify-content: space-between;
 
   h2 {
@@ -257,7 +254,6 @@
   .row {
     --bs-gutter-x: 0;
     min-height: 100px;
-    margin: 0;
     border-bottom: 1px solid rgba(theme.$ink, 0.2);
   }
 }
@@ -419,16 +415,13 @@
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .about-method {
     padding-block: theme.$space-64;
+    background-image: linear-gradient(123.14deg, rgba(theme.$method-overlay-blue-mobile, 0.94), rgba(theme.$method-overlay-middle-mobile, 0.88) 55%, rgba(theme.$method-overlay-red-mobile, 0.85)), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
+    background-size: cover;
 
     .container {
       max-width: none;
       padding-inline: theme.$page-gutter-mobile;
     }
-  }
-
-  .about-method {
-    background-image: linear-gradient(123.14deg, rgba(theme.$method-overlay-blue-mobile, 0.94), rgba(theme.$method-overlay-middle-mobile, 0.88) 55%, rgba(theme.$method-overlay-red-mobile, 0.85)), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
-    background-size: cover;
   }
 
   .about-method-heading {
@@ -571,7 +564,6 @@
   }
 
   .about-team-title {
-    margin-bottom: theme.$space-28;
     font-size: theme.$font-size-section-title-mobile;
     font-weight: theme.$font-weight-regular;
     line-height: theme.$line-height-section-title-compact-mobile;

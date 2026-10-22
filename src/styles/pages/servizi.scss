@@ -1,11 +1,12 @@
 @use '../variables' as theme;
+@use '../mixins' as shared;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .service-catalogue {
+  --section-gradient-angle: 116deg;
   padding-block: 110px;
   color: white;
-  background: linear-gradient(116deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/sfondo-servizi.jpg') center;
-  background-size: cover, 110% 100%;
+  @include shared.architectural-gradient(var(--section-gradient-angle));
 
   .container {
     padding-inline: 0;
@@ -110,7 +111,7 @@
   }
 
   .service-catalogue {
-    background-image: linear-gradient(96deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/sfondo-servizi.jpg');
+    --section-gradient-angle: 96deg;
   }
 
   .service-catalogue-introduction {

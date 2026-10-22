@@ -34,7 +34,7 @@
   font-size: theme.$font-size-related-title;
   font-weight: theme.$font-weight-semibold;
   line-height: theme.$line-height-related-title;
-  letter-spacing: -0.2px;
+  letter-spacing: theme.$letter-spacing-cta-title;
 }
 
 .related-article-link {
@@ -51,6 +51,10 @@
 }
 
 .related-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: theme.$space-8;
+  margin-block: theme.$space-16 theme.$space-12;
   color: theme.$editorial-border;
   font-size: theme.$font-size-content-meta;
   line-height: theme.$line-height-content-meta;
@@ -59,13 +63,6 @@
     color: theme.$brand-blue;
     text-transform: uppercase;
   }
-}
-
-.related-article-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: theme.$space-8;
-  margin-block: theme.$space-16 theme.$space-12;
 }
 
 .related-article-title {

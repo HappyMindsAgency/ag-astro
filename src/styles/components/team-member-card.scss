@@ -4,14 +4,12 @@
 
 .team-member-card {
   min-height: 543px;
-  margin: 0;
   border: 1px solid theme.$button-border-light;
   color: theme.$ink;
 }
 
 .team-member-card > .team-member-photo {
   position: relative;
-  padding: 0;
 
   > img {
     position: absolute;

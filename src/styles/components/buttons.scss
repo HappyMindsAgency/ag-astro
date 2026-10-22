@@ -95,13 +95,10 @@
 }
 
 .site-button.site-button--blue {
-  --bs-btn-color: white;
   --bs-btn-bg: #{theme.$brand-blue};
   --bs-btn-border-color: #{theme.$brand-blue};
-  --bs-btn-hover-color: white;
   --bs-btn-hover-bg: #{theme.$brand-blue};
   --bs-btn-hover-border-color: #{theme.$brand-blue};
-  --bs-btn-active-color: white;
   --bs-btn-active-bg: #{theme.$brand-blue};
   --bs-btn-active-border-color: #{theme.$brand-blue};
 }

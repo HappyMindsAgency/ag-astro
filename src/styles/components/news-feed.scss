@@ -8,7 +8,6 @@
 
   .container {
     --bs-gutter-x: #{theme.$space-48};
-    width: 100%;
     max-width: 1496px;
   }
 }
@@ -123,10 +122,6 @@
 
   .news-feed-header {
     padding-bottom: theme.$space-24;
-  }
-
-  .news-feed-eyebrow {
-    margin-bottom: theme.$space-24;
   }
 
   .news-feed-filters {

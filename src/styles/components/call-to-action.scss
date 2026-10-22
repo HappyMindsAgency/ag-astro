@@ -36,10 +36,7 @@ $cta-mobile-content-width: 294px; // Frame Figma da 390 px, con 48 px per lato.
   margin-bottom: theme.$space-12;
   color: rgba(white, 0.55);
   font-size: theme.$font-size-page-eyebrow;
-  font-weight: theme.$font-weight-regular;
   line-height: theme.$line-height-page-eyebrow;
-  letter-spacing: normal;
-  text-transform: none;
 }
 
 .call-to-action-title {
@@ -52,7 +49,6 @@ $cta-mobile-content-width: 294px; // Frame Figma da 390 px, con 48 px per lato.
 }
 
 .call-to-action-copy {
-  color: white;
   font-size: theme.$font-size-body;
   line-height: theme.$line-height-cta-copy;
 }

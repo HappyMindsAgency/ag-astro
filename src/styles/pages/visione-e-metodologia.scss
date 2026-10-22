@@ -8,8 +8,6 @@
 
 .vision-story,
 .vision-method {
-  padding-block: 144px;
-
   .container {
     padding-inline: 0;
   }
@@ -19,6 +17,7 @@
   display: flex;
   align-items: center;
   min-height: 554px;
+  padding-block: 144px;
   background: theme.$surface-mist;
 }
 
@@ -69,7 +68,7 @@
   line-height: theme.$line-height-body;
 }
 
-@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
   .vision-story {
     min-height: 0;
   }
@@ -88,10 +87,6 @@
       max-width: none;
       padding-inline: theme.$page-gutter-mobile;
     }
-  }
-
-  .vision-story {
-    min-height: 0;
   }
 
   .vision-editorial-copy {

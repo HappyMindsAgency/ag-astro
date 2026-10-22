@@ -6,7 +6,6 @@
 
   .container {
     --bs-gutter-x: #{theme.$space-48};
-    width: 100%;
     max-width: 1544px;
   }
 }
@@ -215,7 +214,6 @@
   }
 
   .featured-event-location {
-    font-size: theme.$font-size-button;
     line-height: theme.$line-height-body;
   }
 

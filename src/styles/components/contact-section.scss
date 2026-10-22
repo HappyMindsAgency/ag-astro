@@ -5,7 +5,7 @@
   padding-block: 160px;
 
   .container {
-    max-width: 1280px;
+    max-width: theme.$content-container-max-width;
     padding-inline: 0;
   }
 }
@@ -35,7 +35,6 @@
 .contact-form {
   .form-label {
     display: block;
-    margin-bottom: theme.$space-8;
     color: theme.$brand-blue;
     font-size: theme.$font-size-form-label;
     line-height: theme.$line-height-form-label;
@@ -126,7 +125,6 @@
 
   .contact-form {
     .form-label {
-      margin-bottom: theme.$space-8;
       color: theme.$ink-mobile;
       font-size: theme.$font-size-form-label-mobile;
       line-height: theme.$line-height-form-label-mobile;
