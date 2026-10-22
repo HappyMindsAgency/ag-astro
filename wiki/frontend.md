@@ -22,6 +22,8 @@ Organizza le sezioni in cartelle dentro `src/pages/`, con `index.astro` per la p
 
 Le pagine solo predisposte riutilizzano `PagePlaceholder`: layout comune, titolo visibile e contenuto opzionale nello slot (Privacy e Cookie hanno Lorem ipsum). Quando realizzi una pagina dal design, sostituiscilo con `Layout` e i relativi contenuti. I metadati SEO saranno gestiti dinamicamente da Strapi: non definirli nei file delle pagine.
 
+Per il dettaglio evento usa `/eventi-in-agenda/[slugEvento]/`, seguendo la stessa convenzione degli articoli in `/ag-informa/[slugArt]/`.
+
 ## Stile e componenti
 
 - Usa Jost locale e misure in **px**; le citazioni degli articoli usano Playfair Display corsivo, come in Figma. Bootstrap mantiene le sue unità interne.
@@ -49,6 +51,8 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `contained` mantiene l’invito entro il frame desktop; `secondaryAction` aggiunge un secondo collegamento. Senza `href`, il pulsante principale rimane disattivato.
 
+`NewsletterCallToAction` condivide l’invito alla newsletter di AG Informa ed Eventi. `latestNewsletterUrl` attiva il collegamento all’ultima newsletter quando disponibile.
+
 `FaqSection` riceve un `id` univoco e le coppie `question`/`answer` dalla pagina; usa Bootstrap Accordion con una risposta aperta alla volta. `largeTitle` conserva il titolo desktop da 68 px di Trust e Contatti; `twoColumns` dispone le domande in due colonne sotto il titolo da `lg`. Il titolo mobile condiviso è da 34 px. `embedded` usa la variante compatta del dettaglio articolo.
 
 `ContactSection` accetta una descrizione nello slot, mantenendo il testo predefinito se non viene passato. Recapiti e sedi condivisi con il footer sono in `src/data/contacts.ts`. Il mixin `brand-gradient` in `src/styles/mixins.scss` condivide lo sfondo di CTA e newsletter.
@@ -59,11 +63,13 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `NewsArticleCard` condivide le schede della Home e di AG Informa: `standard` per la Home, `compact` per l’archivio, `hero` per l’articolo principale. `NewsFeed` con `archive` mostra otto articoli da `lg` e quattro sotto questa soglia; filtri e “Carica altri articoli” lavorano sull’elenco ricevuto. `categories` ne definisce l’ordine, se specificato.
 
+`EventCard` e `FeaturedEvent` usano `EventPreview`. `EventList` riceve un elenco di qualsiasi lunghezza; `compact` omette foto e descrizioni, un elenco vuoto non viene renderizzato. Senza `href` o `calendarHref`, i rispettivi collegamenti restano inattivi. I titoli degli elenchi Notizie ed Eventi condividono `.type-editorial-list-title`, con la variante `type-editorial-list-title--compact` per il titolo desktop più piccolo.
+
 `TeamMemberCard` riceve un membro di tipo `TeamMember` e la variante `leadership`, `operational` o `counsel`. I dati sono nella pagina Team; i campi facoltativi vengono omessi, conservando lo spazio della foto, e i gruppi senza membri non vengono renderizzati.
 
 `DocumentList` condivide i documenti di `RelatedContent` e del dettaglio articolo, con variante `compact`. Senza `downloadUrl`, il pulsante resta inattivo. Il corpo editoriale degli articoli usa `.article-prose`; `ArticleAuthor` condivide l’autore compatto della hero e la scheda finale. L’indice usa Bootstrap Collapse e Scrollspy.
 
-Home, Trust, Patrimonio, Team, AG Informa e dettaglio articolo contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. Non anticipare il formato del corpo editoriale o le chiamate API prima dell’accordo con il backend.
+Home, Trust, Patrimonio, Team, AG Informa, dettaglio articolo ed Eventi contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. Non anticipare il formato del corpo editoriale o le chiamate API prima dell’accordo con il backend.
 
 `OverviewBanner` condivide la fascia introduttiva con foto di Trust e Patrimonio: testi negli slot, titolo ridotto con `compactTitle` e varianti di sezione nei rispettivi fogli pagina. `.site-button--small` gestisce i pulsanti con etichetta da 11 px; `.collapse-toggle` condivide il segno più/meno di FAQ e accordion.
 

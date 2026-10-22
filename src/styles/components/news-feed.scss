@@ -121,13 +121,6 @@
   }
 }
 
-.news-feed-archive-title {
-  font-size: theme.$font-size-news-heading;
-  font-weight: theme.$font-weight-semibold;
-  line-height: theme.$line-height-news-heading;
-  letter-spacing: theme.$letter-spacing-cta-title;
-}
-
 .news-feed-reset {
   border-top: 0;
   border-right: 0;
@@ -179,12 +172,6 @@
 
   .news-other-content {
     padding-left: theme.$space-12;
-  }
-
-  .news-feed-archive-title {
-    font-size: theme.$font-size-news-heading-mobile;
-    font-weight: theme.$font-weight-medium;
-    line-height: theme.$line-height-news-heading-mobile;
   }
 
   .news-feed--archive {

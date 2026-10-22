@@ -46,8 +46,10 @@ Realizzata [AG Informa](http://localhost:4321/ag-informa/), con articolo in evid
 
 Realizzato il [dettaglio articolo](http://localhost:4321/ag-informa/articolo-provvisorio/), con indice richiudibile sul mobile, condivisione, autore, FAQ e correlati. Contenuti da Figma e risposte Lorem ipsum; PDF e integrazione Strapi ancora mancanti. Il mobile adatta il desktop in attesa del frame definitivo.
 
+Realizzata [Eventi e formazione](http://localhost:4321/eventi-in-agenda/), con sei eventi provvisori da Figma in griglia e in elenco compatto, usando `EventCard` e `EventList`. La CTA newsletter è condivisa con AG Informa. Calendario in attesa della destinazione; dettaglio evento ancora da realizzare. Dati e selezione degli eventi saranno collegati a Strapi.
+
 Predisposte Privacy policy e Cookie policy con layout e testi Lorem ipsum, da sostituire con quelli definitivi.
 
-Predisposte con layout e solo titolo: Eventi e formazione, Knowledge Library, ricerca, Credits e 404. Predisposti anche i modelli per profili del team, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
+Predisposte con layout e solo titolo: Knowledge Library, ricerca, Credits e 404. Predisposti anche i modelli per profili del team, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
 
 Le voci sospese o ancora da decidere sono elencate in [Dubbi e domande](wiki/dubbi-e-domande.md).

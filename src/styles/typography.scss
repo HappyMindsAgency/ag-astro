@@ -48,6 +48,17 @@
   color: theme.$brand-red;
 }
 
+.type-editorial-list-title {
+  font-size: theme.$font-size-editorial-list-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-editorial-list-title;
+  letter-spacing: theme.$letter-spacing-cta-title;
+
+  &.type-editorial-list-title--compact {
+    font-size: theme.$font-size-editorial-list-title-compact;
+  }
+}
+
 @include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
   .type-page-title {
     font-size: theme.$font-size-page-title-tablet;
@@ -68,6 +79,13 @@
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .type-editorial-list-title,
+  .type-editorial-list-title.type-editorial-list-title--compact {
+    font-size: theme.$font-size-editorial-list-title-mobile;
+    font-weight: theme.$font-weight-medium;
+    line-height: theme.$line-height-editorial-list-title-mobile;
+  }
+
   .type-page-title {
     font-size: theme.$font-size-page-title-mobile;
     line-height: theme.$line-height-page-title-mobile;

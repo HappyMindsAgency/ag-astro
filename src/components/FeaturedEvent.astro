@@ -1,15 +1,9 @@
 ---
+import type { EventPreview } from '../types/content';
 import '../styles/components/featured-event.scss';
 
 interface Props {
-  event?: {
-    title: string;
-    href: string;
-    image: { src: string; alt: string; width: number; height: number };
-    organizer: string;
-    location: string;
-    date: { days: string; month: string; year: string };
-  };
+  event?: EventPreview;
 }
 
 const { event } = Astro.props;
@@ -22,7 +16,7 @@ const { event } = Astro.props;
         <a class="site-text-link" href="/eventi-in-agenda/">Scopri tutti gli eventi <span aria-hidden="true">→</span></a>
       </div>
       <div class="featured-event-card">
-        <img class="featured-event-image" src={event.image.src} alt={event.image.alt} width={event.image.width} height={event.image.height} loading="lazy" />
+        {event.image && <img class="featured-event-image" src={event.image.src} alt={event.image.alt} width={event.image.width} height={event.image.height} loading="lazy" />}
         <div class="row gx-0 featured-event-layout">
           <div class="col-auto">
             <div class="featured-event-date">
@@ -33,11 +27,11 @@ const { event } = Astro.props;
           </div>
           <div class="col featured-event-content">
             <div class="d-flex flex-wrap featured-event-meta">
-              <p class="featured-event-organizer mb-0"><span class="featured-event-organizer-icon" aria-hidden="true"></span>{event.organizer}</p>
+              {event.organizer && <p class="featured-event-organizer mb-0"><span class="featured-event-organizer-icon" aria-hidden="true"></span>{event.organizer}</p>}
               <p class="featured-event-location mb-0"><span class="featured-event-pin" aria-hidden="true"></span>{event.location}</p>
             </div>
             <h2 id="featured-event-title" class="featured-event-title">{event.title}</h2>
-            <a class="btn site-button site-button--light" href={event.href}>Scopri l’evento <span aria-hidden="true">↓</span></a>
+            <a class="btn site-button site-button--light" href={event.href} aria-disabled={event.href ? undefined : 'true'}>Scopri l’evento <span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </div>

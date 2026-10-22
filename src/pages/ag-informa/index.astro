@@ -4,7 +4,7 @@ import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import NewsArticleCard from '../../components/NewsArticleCard.astro';
 import NewsFeed from '../../components/NewsFeed.astro';
-import CallToAction from '../../components/CallToAction.astro';
+import NewsletterCallToAction from '../../components/NewsletterCallToAction.astro';
 import '../../styles/pages/ag-informa.scss';
 
 // TODO Strapi: sostituire articoli, categorie e collegamenti provvisori con i dati di Strapi ed eliminare questo commento.
@@ -90,8 +90,5 @@ const additionalPlaceholders: ArticlePreview[] = [
 
   <NewsFeed archive articles={[...articlePlaceholders, ...additionalPlaceholders]} categories={['Trust', 'Fisco e normativa', 'Patrimonio', 'Impresa']} />
 
-  <CallToAction contained eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" label="Leggi l’ultima newsletter" secondaryAction={{ label: 'Iscriviti alla newsletter', href: '/contatti/#newsletter' }}>
-    <Fragment slot="title">AG Informa — restare aggiornati.</Fragment>
-    Ogni mese una selezione ragionata di novità normative, sentenze di rilievo e approfondimenti tematici su trust, patrimonio e fiscalità. Pensata per chi vuole capire, non solo sapere.
-  </CallToAction>
+  <NewsletterCallToAction />
 </Layout>

@@ -1,0 +1,44 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.event-list {
+  padding-block: 72px theme.$space-80;
+
+  > .container {
+    --bs-gutter-x: #{theme.$space-48};
+    max-width: theme.$frame-max-width + theme.$space-48;
+  }
+}
+
+.event-list-header {
+  gap: theme.$space-24;
+  margin-bottom: theme.$space-48;
+}
+
+.event-list-eyebrow {
+  margin-bottom: theme.$space-8;
+  color: theme.$brand-red;
+}
+
+.event-list--compact {
+  border-top: 1px solid rgba(theme.$editorial-border, 0.3);
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .event-list {
+    padding-block: theme.$space-64;
+  }
+
+  .event-list-header {
+    gap: theme.$space-32;
+    margin-bottom: theme.$space-24;
+  }
+
+  .event-list .row {
+    --bs-gutter-y: #{theme.$space-24};
+  }
+
+  .event-list--compact .row {
+    --bs-gutter-y: #{theme.$space-40};
+  }
+}

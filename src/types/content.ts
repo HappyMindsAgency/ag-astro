@@ -9,6 +9,17 @@ export interface ArticlePreview {
   featured?: boolean;
 }
 
+export interface EventPreview {
+  title: string;
+  href?: string;
+  image?: { src: string; alt: string; width: number; height: number };
+  organizer?: string;
+  location: string;
+  format?: 'Convegno' | 'Webinar' | 'Seminario';
+  description?: string;
+  date: { days: string; month: string; year: string; dateTime?: string };
+}
+
 export interface DocumentPreview {
   title: string;
   downloadUrl?: string;

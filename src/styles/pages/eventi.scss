@@ -1,0 +1,13 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.events-page {
+  display: flow-root;
+  background: theme.$surface-events;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .events-page {
+    background: white;
+  }
+}

@@ -25,7 +25,7 @@ const otherArticles = archive ? [] : articles.slice(2);
       <div class="d-flex flex-wrap justify-content-between align-items-end news-feed-header">
         <div>
           {!archive && <p class="type-eyebrow type-eyebrow--section news-feed-eyebrow">Conoscenza condivisa</p>}
-          <h2 id="news-feed-title" class:list={['mb-0', archive ? 'news-feed-archive-title' : 'type-section-title']}>{archive ? 'Notizie' : 'AG Informa'}</h2>
+          <h2 id="news-feed-title" class:list={['mb-0', archive ? 'type-editorial-list-title' : 'type-section-title']}>{archive ? 'Notizie' : 'AG Informa'}</h2>
         </div>
         {archive
           ? <button class="site-text-link news-feed-reset" type="button" data-news-reset>Tutti gli articoli <span aria-hidden="true">→</span></button>

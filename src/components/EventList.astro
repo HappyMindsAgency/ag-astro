@@ -1,0 +1,31 @@
+---
+import type { EventPreview } from '../types/content';
+import EventCard from './EventCard.astro';
+import '../styles/components/event-list.scss';
+
+interface Props {
+  id: string;
+  title: string;
+  eyebrow?: string;
+  events?: EventPreview[];
+  compact?: boolean;
+  calendarHref?: string;
+}
+
+const { id, title, eyebrow, events = [], compact = false, calendarHref } = Astro.props;
+---
+
+{events.length > 0 && <section id={id} class:list={['event-list section-spacing', { 'event-list--compact': compact }]} aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <div class="event-list-header d-flex flex-wrap justify-content-between align-items-end">
+      <div>
+        {eyebrow && <p class="type-eyebrow type-eyebrow--section event-list-eyebrow">{eyebrow}</p>}
+        <h2 id={`${id}-title`} class:list={['type-editorial-list-title mb-0', { 'type-editorial-list-title--compact': compact }]}>{title}</h2>
+      </div>
+      <a class="site-text-link" href={calendarHref} aria-disabled={calendarHref ? undefined : 'true'}>Calendario completo <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="row gx-4 gy-5">
+      {events.map(event => <div class="col-md-6 col-xl-4"><EventCard event={event} compact={compact} /></div>)}
+    </div>
+  </div>
+</section>}

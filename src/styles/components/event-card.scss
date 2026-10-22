@@ -1,0 +1,210 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.event-card {
+  height: 100%;
+  border-top: 1px solid white;
+  color: theme.$ink;
+  background: white;
+  box-shadow: 0 4px 24px rgba(black, 0.08);
+}
+
+.event-card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.event-card-body {
+  gap: theme.$space-20;
+  padding: theme.$space-20 theme.$space-20 theme.$space-24;
+}
+
+.event-card-date {
+  display: flex;
+  flex: 0 0 60px;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid rgba(theme.$editorial-border, 0.3);
+}
+
+.event-card-day {
+  font-size: theme.$font-size-event-date-day;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-event-date-day;
+}
+
+.event-card-month {
+  order: -1;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-event-date-label;
+  font-weight: theme.$font-weight-semibold;
+  line-height: 1;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.event-card-year {
+  color: theme.$event-date-year;
+  font-size: theme.$font-size-event-meta;
+  line-height: theme.$line-height-content-meta;
+}
+
+.event-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-card-meta {
+  gap: theme.$space-4 theme.$space-8;
+  margin-bottom: theme.$space-12;
+  font-size: theme.$font-size-event-meta;
+  line-height: theme.$line-height-content-meta;
+}
+
+.event-card-format {
+  border: 1px solid rgba(theme.$ink, 0.3);
+  padding: 2px theme.$space-6;
+  font-size: theme.$font-size-content-meta;
+  line-height: 1;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.event-card-format--webinar {
+  color: theme.$event-webinar;
+  border-color: currentColor;
+}
+
+.event-card-format--seminar {
+  color: theme.$event-seminar;
+  border-color: currentColor;
+}
+
+.event-card-location {
+  gap: theme.$space-4;
+  color: rgba(theme.$ink, 0.75);
+}
+
+.event-card-pin {
+  flex: 0 0 10px;
+  width: 10px;
+  height: 12px;
+  background: currentColor;
+  mask: url('/assets/icone/posizione.svg') center / contain no-repeat;
+}
+
+.event-card-title {
+  margin-bottom: theme.$space-12;
+  font-size: theme.$font-size-event-card-title;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-event-card-title;
+}
+
+.event-card-description {
+  margin-bottom: theme.$space-12;
+  color: rgba(theme.$ink, 0.6);
+  font-size: theme.$font-size-event-card-copy;
+  line-height: theme.$line-height-compact-copy;
+}
+
+.event-card--compact {
+  border-top-color: rgba(theme.$editorial-border, 0.3);
+  background: transparent;
+  box-shadow: none;
+
+  .event-card-body {
+    gap: theme.$space-24;
+    padding: theme.$space-20 0 theme.$space-24;
+  }
+
+  .event-card-date {
+    flex-basis: 72px;
+    min-height: 100px;
+    border-color: rgba(theme.$event-webinar, 0.2);
+    padding-right: theme.$space-24;
+  }
+
+  .event-card-day {
+    font-size: theme.$font-size-event-date-day-compact;
+    line-height: 1;
+  }
+
+  .event-card-month {
+    order: 0;
+  }
+
+  .event-card-title {
+    font-weight: theme.$font-weight-regular;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .event-card {
+    color: theme.$ink-mobile;
+  }
+
+  .event-card-location,
+  .event-card-year {
+    color: theme.$muted-mobile;
+  }
+
+  .event-card-body {
+    gap: theme.$space-12;
+  }
+
+  .event-card-date {
+    flex-basis: theme.$space-40;
+  }
+
+  .event-card-day {
+    font-size: theme.$font-size-event-date-day-mobile;
+    line-height: 1;
+  }
+
+  .event-card-month,
+  .event-card-year,
+  .event-card-meta {
+    font-size: theme.$font-size-content-meta;
+    line-height: theme.$line-height-content-meta;
+  }
+
+  .event-card-month {
+    font-weight: theme.$font-weight-regular;
+    letter-spacing: normal;
+  }
+
+  .event-card-title {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-body;
+  }
+
+  .event-card-description {
+    color: theme.$muted-mobile;
+    font-size: theme.$font-size-small;
+    font-weight: theme.$font-weight-light;
+    line-height: theme.$line-height-event-card-copy-mobile;
+  }
+
+  .event-card--compact {
+    .event-card-date {
+      flex-basis: theme.$space-48;
+      min-height: 0;
+      padding-right: theme.$space-12;
+    }
+
+    .event-card-day {
+      font-size: theme.$font-size-event-date-day-mobile;
+    }
+
+    .event-card-body {
+      gap: theme.$space-12;
+    }
+
+    .event-card-title {
+      font-weight: theme.$font-weight-medium;
+    }
+  }
+}

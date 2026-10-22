@@ -85,7 +85,7 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Foto hero:** uso provvisoriamente l’immagine Figma con watermark Unsplash+, nei ritagli desktop e mobile. Serve l’asset definitivo.
 - **Testi:** presentazione della società, descrizioni dei servizi, introduzione Patrimonio, card del metodo e newsletter contengono segnaposto; servono i testi definitivi.
 - **Destinazioni:** mancano i collegamenti delle singole esigenze patrimoniali e dei servizi; le card restano statiche e le frecce decorative.
-- **Evento e articoli:** per la revisione grafica uso gli esempi e le immagini di Figma, definiti come placeholder in `src/pages/index.astro`; i pulsanti portano provvisoriamente agli elenchi Eventi e AG Informa. Da sostituire con i dati Strapi. Manca nel file degli slug il percorso di dettaglio degli eventi: da confermare per “Scopri l’evento”.
+- **Evento e articoli:** per la revisione grafica uso gli esempi e le immagini di Figma, definiti come placeholder in `src/pages/index.astro`; i pulsanti portano provvisoriamente agli elenchi Eventi e AG Informa. Da sostituire con i dati Strapi.
 
 ## 15. Team: contenuti e profili
 
@@ -107,3 +107,9 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Indice:** Figma elenca “In breve: le risposte chiave”, ma non mostra la sezione corrispondente. Voce omessa in attesa del contenuto.
 - **FAQ e documenti:** mancano risposte e PDF. Uso Lorem ipsum e download inattivi; servono testi, file e metadati definitivi.
 - **Invito finale:** titolo e descrizione sono Lorem ipsum; servono i testi definitivi.
+
+## 18. Eventi e formazione: contenuti e collegamenti
+
+- **Calendario completo:** nel prototipo manca la destinazione. Collegamento inattivo in attesa dell’URL o del comportamento previsto.
+- **Contenuti:** introduzione, date, luoghi e testi sono provvisori. Il desktop presenta differenze tra i due elenchi; uso gli stessi sei eventi della griglia in entrambe le sezioni, come sul mobile. Servono dati e criteri di selezione da Strapi.
+- **Newsletter:** “Leggi l’ultima newsletter” attende la destinazione; “Iscriviti” porta al modulo di Contatti, ancora da integrare con il servizio.
