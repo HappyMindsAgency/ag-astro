@@ -1,118 +1,92 @@
 # Regole frontend
 
-Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/design/3bTHye8XeQOv4hNt3YJ0l8/AG-Trustees?node-id=2285-480). Per gli URL usa il [file degli slug](AG_Trustees_Slug.xlsx); per lo stato delle pagine, il [README](../README.md); per le parti da chiarire, [Dubbi e domande](dubbi-e-domande.md).
+Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/design/3bTHye8XeQOv4hNt3YJ0l8/AG-Trustees?node-id=2285-480). Per gli URL usa il [file degli slug](AG_Trustees_Slug.xlsx); per lo stato delle pagine, il [README](../README.md); per le richieste ancora aperte, [Dubbi e domande](dubbi-e-domande.md).
 
 ## Dove intervenire
 
-| File | Contenuto |
+| Percorso | Contenuto |
 | --- | --- |
-| `src/styles/variables.scss` | Misure tipografiche, colori, pesi e spazi condivisi |
-| `src/styles/fonts.scss` | Font locali e relative dichiarazioni `@font-face` |
+| `src/styles/variables.scss` | Colori, tipografia, pesi e spazi condivisi |
+| `src/styles/fonts.scss` | Font locali e dichiarazioni `@font-face` |
 | `src/styles/typography.scss` | Classi tipografiche per ruolo e varianti mobile |
 | `src/styles/globals.scss` | Configurazione Bootstrap e stile generale |
-| `src/styles/components/` | Stili dei componenti condivisi e dei pulsanti |
-| `src/styles/pages/` | Stili specifici delle singole pagine |
-| `src/components/` | Componenti Astro: introduzione, storia, certificazioni, contatti, FAQ e invito finale |
+| `src/styles/components/` | Stili dei componenti e pulsanti condivisi |
+| `src/styles/pages/` | Stili specifici delle pagine |
+| `src/components/` | Componenti Astro riutilizzabili |
 | `src/pages/` | Testi e composizione delle pagine |
+| `src/types/content.ts`, `src/data/` | Tipi dei contenuti, recapiti e dati provvisori condivisi |
 | `public/assets/` | Loghi, immagini, icone, associazioni e font |
 
-## Pagine e percorsi
+## Regole comuni
 
-Organizza le sezioni in cartelle dentro `src/pages/`, con `index.astro` per la pagina principale e file o sottocartelle per le sottopagine. Segui la colonna **Percorso IT** del file degli slug. I dettagli dinamici usano un unico modello con parametro fra parentesi quadre, come `[slugArt].astro`; dati, filtri e gestione dei contenuti mancanti saranno collegati a Strapi.
+- Usa Jost locale e misure in **px**; le citazioni degli articoli usano Playfair Display corsivo. Bootstrap mantiene le sue unità interne.
+- Riutilizza variabili tipografiche e spazi `$space-*`. I nomi descrivono il ruolo; ruoli distinti possono avere lo stesso valore. Bordi e misure locali non richiedono una variabile dedicata.
+- Mantieni lo stesso stile per lo stesso ruolo sulle diverse pagine. Confronta le occorrenze Figma prima di introdurre varianti; evita correzioni locali di elementi condivisi nei fogli pagina.
+- Preferisci griglia, breakpoint e utilità Bootstrap quando lo scostamento da Figma è trascurabile. Normalizza differenze minime se migliora la coerenza o riduce il codice, verificando la resa nel browser.
+- Rispetta colori e proporzioni degli asset. Verifica le proprietà dei livelli Figma, comprese unità e bordi sui singoli lati; non importare valori anomali senza confrontarli con la grafica.
+- Mantieni le varianti concordate, comprese le interlinee 121, 37.8 e 25.5 px. Per i frame mobile incoerenti già segnalati, usa Jost e contenuti desktop con gli adattamenti approvati.
+- Estrai struttura e stile quando una sezione viene riutilizzata, passando i contenuti tramite proprietà o slot. Evita componenti vuoti o astrazioni preventive.
+- Compila Bootstrap **solo in `globals.scss`**. Le personalizzazioni dei figli di `.row` e delle varianti `.site-button` devono prevalere sui reset Bootstrap senza dipendere dall’ordine dei fogli CSS.
 
-Le pagine solo predisposte riutilizzano `PagePlaceholder`: layout comune, titolo visibile e contenuto opzionale nello slot (Privacy e Cookie hanno Lorem ipsum). Quando realizzi una pagina dal design, sostituiscilo con `Layout` e i relativi contenuti. I metadati SEO saranno gestiti dinamicamente da Strapi: non definirli nei file delle pagine.
+## Tipografia e componenti principali
 
-Per il dettaglio evento usa `/eventi-in-agenda/[slugEvento]/`, seguendo la stessa convenzione degli articoli in `/ag-informa/[slugArt]/`.
+I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura delle lettere `normal` tramite `.type-eyebrow`. Sul mobile, “Chi è AG Trustees” conserva 10 px; `.type-eyebrow--section` usa 12 px e maiuscole.
 
-## Stile e componenti
+`PageIntro` include breadcrumb, titolo e introduzione. `mobileTitleLeading` conserva le interlinee `tight` (50 px), `regular` (60 px) e `relaxed` (69 px). `wideTitle` amplia la colonna da `xxl` e attiva `fitMobileTitle`, che riduce il corpo sotto 390 px; usa solo `fitMobileTitle` se basta l’adattamento mobile.
 
-- Usa Jost locale e misure in **px**; le citazioni degli articoli usano Playfair Display corsivo, come in Figma. Bootstrap mantiene le sue unità interne.
-- I sopratitoli desktop sono uniformati a **16 px**, definiti in `$font-size-page-eyebrow` e confermati dal designer. La spaziatura delle lettere è `normal`, gestita da `.type-eyebrow` anche sul mobile.
-- Sul mobile, “Chi è AG Trustees” conserva la variante da 10 px; gli altri sopratitoli di sezione usano `.type-eyebrow--section` da 12 px e maiuscoli.
-- Prima di definire o modificare uno stile condiviso, confronta le occorrenze nelle pagine Figma, comprese quelle ancora da sviluppare. Mantieni lo stesso stile per lo stesso ruolo; ammetti varianti solo se giustificate dal design. Non introdurre correzioni tipografiche nei fogli pagina per elementi già condivisi.
-- Riutilizza le variabili tipografiche e gli spazi `$space-*`; evita di ripetere le misure nei fogli pagina.
-- Scegli nomi che descrivano il ruolo e, quando serve, il componente: per esempio `$font-size-footer-primary`. Ruoli distinti possono avere lo stesso valore.
-- Mantieni le misure specifiche del layout nel relativo componente: non serve una variabile per ogni bordo o dimensione locale.
-- Normalizza differenze minime quando migliora la coerenza o riduce il codice, verificando la resa nel browser (es. 39.04 → 40 px). Mantieni le varianti tipografiche concordate, comprese le interlinee 121, 37.8 e 25.5 px.
-- Sotto `lg`, i titoli `.type-section-title--compact` mantengono `letter-spacing: normal`.
-- Rispetta colori e proporzioni degli asset. Per parti mancanti o incoerenti segui le scelte provvisorie in [Dubbi e domande](dubbi-e-domande.md).
-- Verifica i valori esportati contro la grafica e le proprietà dei livelli in Figma, compresi i bordi sui singoli lati. Chiarisci unità o misure incoerenti prima di applicarle.
-- Condividi struttura e stile delle sezioni ripetute, passando contenuti diversi. Estrai componenti quando servono, senza prepararne di vuoti.
+`.type-section-lead` usa 20/32.2 px sul desktop e 16/20 px sul mobile; `--relaxed` mantiene 25 px di interlinea mobile. Le descrizioni delle card del metodo hanno interlinea 23 px desktop e 20 px mobile. Sotto `lg`, `.type-section-title--compact` conserva `letter-spacing: normal`.
 
-`PageIntro` gestisce breadcrumb, sopratitolo, titolo e introduzione. `parents` aggiunge le pagine superiori al breadcrumb. Si usa una volta per pagina; la proprietà `mobileTitleLeading` conserva le varianti `tight` (50 px), `regular` (60 px) e `relaxed` (69 px). I titoli di home, articoli e FAQ hanno ruoli propri.
+`CallToAction` condivide sopratitolo da 16 px senza maiuscolo forzato, descrizione da 16 px bianco pieno (interlinea 26 px desktop, 20 px mobile) e titolo da 40 px desktop/32 px mobile, con interlinea 46 px e `text-wrap: balance`. `contained` mantiene il limite del frame desktop; `plainBackground` conserva il gradiente senza foto di Library e dettaglio articolo. `NewsletterCallToAction` mantiene invece la foto sia sul desktop sia sul mobile, come approvato.
 
-`Breadcrumb` condivide il percorso di navigazione; `light` lo adatta agli sfondi scuri. Sotto `lg` (992 px) mostra solo gli ultimi due livelli, da `lg` il percorso completo. È già incluso in `PageIntro`.
+`FaqSection` riceve un `id` univoco e le coppie domanda/risposta. Conserva i titoli desktop da 56 px o, con `largeTitle`, 68 px per Trust e Contatti; sul mobile usa 34 px. `twoColumns` dispone le domande in due colonne da `lg`; `embedded` mantiene la variante compatta dell’articolo. Una sola risposta aperta per gruppo.
 
-Per i paragrafi editoriali usa `.type-section-lead`: 20 px con interlinea 32,2 px sul desktop, 16 px con interlinea 20 px sul mobile. La variante `.type-section-lead--relaxed` mantiene 25 px sul mobile, per la panoramica di Visione e l’introduzione dei servizi. Colori e spazi restano nel relativo contesto. Le descrizioni delle card del metodo usano interlinea 23 px sul desktop e 20 px sul mobile.
+| Componenti o stile | Riutilizzo |
+| --- | --- |
+| `Breadcrumb` | Ultimi due livelli sotto `lg`, percorso completo da 992 px; `light` per gli sfondi scuri. |
+| `ImageOverview`, `EditorialImage` | Foto e testo di Home/Visione; almeno 48 px tra le colonne da `lg`. `EditorialImage` condivide gli effetti; `plain` li omette. |
+| `ServiceOverview`, `OverviewBanner` | Panoramica servizi e fascia introduttiva di Trust/Patrimonio. |
+| `CompanyHistory`, `Certifications` | Storia e certificazioni condivise. |
+| `ContactSection`, `NewsletterSection` | Moduli e stile comune; recapiti e sedi in `src/data/contacts.ts`. |
+| `NewsArticleCard`, `NewsFeed` | Schede Home/archivio/hero; filtri e caricamento progressivo. `archive` mostra otto articoli da `lg`, quattro sotto. |
+| `EventCard`, `EventDate`, `EventList`, `FeaturedEvent` | Eventi e data condivisi; `compact` omette foto e descrizioni nell’elenco. |
+| `TeamMemberCard` | Schede `leadership`, `operational` e `counsel`, con gruppi di qualsiasi lunghezza. |
+| `RelatedContent`, `DocumentList` | Correlati e documenti; `DocumentList` passa a due colonne da `xl`, `compact` ne mantiene una e `tone` gestisce i colori di categoria. |
+| `LibraryArchive`, `.content-filter` | Ricerca, categorie, date ISO inclusive, ordinamento e caricamento progressivo: 12 documenti da `lg`, quattro sotto. Filtri condivisi con AG Informa. |
+| `.editorial-prose`, `ContentShare`, `EditorialContactCard`, `ArticleAuthor` | Stile e blocchi editoriali condivisi; l’indice dell’articolo usa Bootstrap Collapse e Scrollspy. |
+| `.type-editorial-list-title`, `.collapse-toggle`, `.site-button--small` | Titoli Notizie/Eventi, segno più/meno degli accordion e pulsanti con etichetta da 11 px. |
 
-Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `fitMobileTitle`, che riduce il corpo sui telefoni più stretti del frame Figma da 390 px. Usa solo `fitMobileTitle` quando serve la riduzione mobile conservando le colonne desktop.
+## Responsive e contenitori
 
-`CallToAction` usa lo stesso stile su tutte le pagine: sopratitolo da 16 px senza maiuscolo forzato e bianco attenuato, descrizione da 16 px bianco pieno con interlinea 26 px sul desktop e 20 px sul mobile. Il titolo mantiene 40 px sul desktop e 32 px sul mobile, con `text-wrap: balance` per bilanciare le righe libere. Sotto 390 px i margini laterali si riducono fino a 24 px. Testi e collegamento arrivano dalla pagina, senza varianti tipografiche locali.
+- Usa `container`, `row`, `col-*` e `offset-*`, senza duplicare le mappe dei breakpoint Bootstrap. Le sezioni crescono con il contenuto: evita altezze che taglino il testo.
+- Il container `xxl` misura 1376 px (`$page-container-max-width`). Le sezioni contenute della Home e la newsletter usano 1280 px (`$content-container-max-width`); `NewsFeed` affianca le colonne da `xl`.
+- `PageIntro` usa 40 px di padding, 24 px sotto `lg`; colonne 6+6 con divisore rosso da `md`, layout verticale sotto 768 px e tipografia compatta fino a 991 px. Fra `md` e `xxl` mantiene 80 px sotto il contenuto.
+- Sotto `lg`, `PageIntro` aggiunge 8 px sopra la breadcrumb; dopo il percorso lascia 24 px sotto `md` e 40 px da `md`.
+- Fra `lg` e `xxl` (992–1399 px), usa `$*-tablet` e `.section-spacing` per 80 px di padding verticale. Le griglie a quattro card usano `col-6 col-xxl-3`.
+- Navbar e footer sono centrati, con margini minimi di 24 px e larghezza massima `$frame-max-width` (1717 px). La navbar usa `navbar-expand-xl`: soglia di 1200 px condivisa con lo script; logo, spazi e corpo crescono con `fluid()` fino a 1920 px.
+- Nel menu compatto, Contatti compare nella barra da 390 px; le voci crescono da 22 a 28 px fra 360 e 430 px. Nel footer, Menu e Utility sono affiancate sotto `md`; da `md` le colonne automatiche usano `justify-content-between`.
+- Foto e testo, certificazioni, video e CTA ampie mantengono il limite `$wide-layout-max-width` ricavato dal desktop da 1920 px. Gli sfondi continuano a tutta larghezza. Sotto 390 px i margini delle CTA si riducono fino a 24 px.
+- Per gli a capo forzati usa il primo breakpoint Bootstrap in cui le righe entrano interamente, verificando anche subito prima e dopo la soglia. Nel paragrafo introduttivo dei contatti gli a capo valgono solo da `xxl`.
 
-`contained` mantiene l’invito entro il frame desktop; `secondaryAction` aggiunge un secondo collegamento. `plainBackground` conserva il gradiente senza foto previsto per Library e dettaglio articolo. Senza `href`, il pulsante principale rimane disattivato.
+## Interazioni condivise
 
-`NewsletterCallToAction` condivide l’invito alla newsletter di AG Informa ed Eventi. `latestNewsletterUrl` attiva il collegamento all’ultima newsletter quando disponibile.
+La navbar usa Bootstrap Dropdown: il testo apre la pagina, la freccia separata controlla il sottomenu. L’hover apre con il mouse sul menu esteso; clic, tastiera ed Escape funzionano anche nel compatto. Le voci riservano la larghezza del semibold per evitare spostamenti; la linea rossa indica hover e pagina corrente.
 
-`FaqSection` riceve un `id` univoco e le coppie `question`/`answer` dalla pagina; usa Bootstrap Accordion con una risposta aperta alla volta. `largeTitle` conserva il titolo desktop da 68 px di Trust e Contatti; `twoColumns` dispone le domande in due colonne sotto il titolo da `lg`. Il titolo mobile condiviso è da 34 px. `embedded` usa la variante compatta del dettaglio articolo.
+Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo. `FocusTrap` mantiene la tastiera nella navbar. Sulla Home l’header resta fisso e chiaro sopra la hero (`headerHeroId`), poi torna normale; anche il menu aperto usa lo stile normale.
 
-`ContactSection` accetta una descrizione nello slot, mantenendo il testo predefinito se non viene passato. Recapiti e sedi condivisi con il footer sono in `src/data/contacts.ts`. Il mixin `brand-gradient` in `src/styles/mixins.scss` condivide lo sfondo di CTA e newsletter.
+- `.site-button--outline-light` diventa bianco con testo blu; `.service-list-row` evidenzia le righe senza spostare il contenuto.
+- `.contact-action-link` schiarisce testo e bordo; `.contact-action-arrow` avanza di 4 px anche al focus da tastiera.
+- Le transizioni usano `$interaction-duration` (150 ms) e `$interaction-easing`, rispettando il movimento ridotto. Gli effetti assenti dal prototipo si valutano separatamente.
+- Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership.
+- La linea superiore del footer sta dietro le sezioni e compare solo quando l’ultima non ha uno sfondo.
 
-`ImageOverview` condivide la presentazione con foto di Home e Visione: da `lg` mantiene almeno 48 px tra foto e testo; da `xxl` il titolo cresce fino ai 72 px del riferimento da 1920 px. `ServiceOverview` condivide la panoramica dei servizi; `NewsletterSection` il modulo di Home, Contatti e Team. Il mixin `architectural-gradient` condivide lo sfondo di servizi e leadership. Testi e immagini arrivano dalle pagine. `EditorialImage` gestisce sovrapposizione e resa mobile delle foto; `plain` mantiene la foto senza effetti, mentre le proporzioni restano nella sezione.
+## Dati, percorsi e integrazioni
 
-`RelatedContent`, `NewsFeed` e `FeaturedEvent` ricevono i dati tramite proprietà, senza chiamate API: gruppi vuoti e relativo spazio non vengono renderizzati. Gli articoli condividono il tipo `ArticlePreview` in `src/types/content.ts`. `NewsFeed` filtra gli articoli ricevuti per categoria o evidenza; il collegamento a Strapi sarà aggiunto quando saranno disponibili i contenuti.
+Organizza le pagine in cartelle con `index.astro`, seguendo **Percorso IT** nel file degli slug. I dettagli usano un modello dinamico, come `/ag-informa/[slugArt]/` e `/eventi-in-agenda/[slugEvento]/`. `PagePlaceholder` mantiene layout e titolo delle pagine solo predisposte.
 
-`NewsArticleCard` condivide le schede della Home e di AG Informa: `standard` per la Home, `compact` per l’archivio, `hero` per l’articolo principale. `NewsFeed` con `archive` mostra otto articoli da `lg` e quattro sotto questa soglia; filtri e “Carica altri articoli” lavorano sull’elenco ricevuto. `categories` ne definisce l’ordine, se specificato.
+I componenti ricevono dati tramite proprietà, senza API. Usa i tipi in `src/types/content.ts`; gruppi di correlati vuoti e relativo spazio non vengono renderizzati. I commenti `TODO Strapi` indicano gli esempi da sostituire: elimina anche il commento dopo l’integrazione. Non anticipare formato del corpo editoriale o chiamate API prima dell’accordo con Vito.
 
-`EventCard` e `FeaturedEvent` usano `EventPreview`; `EventDate` condivide la data delle schede e della hero del dettaglio. `EventList` riceve un elenco di qualsiasi lunghezza; `compact` omette foto e descrizioni, `compactTitle` controlla il titolo desktop ridotto. Un elenco vuoto non viene renderizzato. Senza `href` o `calendarHref`, i rispettivi collegamenti restano inattivi. I titoli degli elenchi Notizie ed Eventi condividono `.type-editorial-list-title`.
-
-`TeamMemberCard` riceve un membro di tipo `TeamMember` e la variante `leadership`, `operational` o `counsel`. I dati sono nella pagina Team; i campi facoltativi vengono omessi, conservando lo spazio della foto, e i gruppi senza membri non vengono renderizzati.
-
-`DocumentList` condivide i documenti di `RelatedContent`, dei dettagli editoriali e della Library, con colori di categoria tramite `tone`. Passa a due colonne da `xl`; `compact` mantiene una sola colonna. Senza `downloadUrl`, il pulsante resta inattivo. Articoli ed eventi condividono `.editorial-prose`, `ContentShare` ed `EditorialContactCard`. `ArticleAuthor` condivide l’autore compatto della hero e la scheda finale; l’indice dell’articolo usa Bootstrap Collapse e Scrollspy.
-
-`LibraryArchive` riceve documenti e categorie tramite proprietà, senza API. Filtra per categoria, titolo o categoria testuale e date ISO inclusive; ordina dal più recente o dal meno recente. Mostra 12 documenti da `lg` e quattro sotto questa soglia, con caricamento progressivo. `.content-filter` condivide i pulsanti filtro con AG Informa; `--compact` conserva la variante della Library.
-
-Home, Trust, Patrimonio, Team, AG Informa e le pagine editoriali contengono dati provvisori per la revisione grafica. Gli esempi condivisi di eventi e documenti sono in `src/data/event-placeholders.ts` e `src/data/library-placeholders.ts`. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. Non anticipare il formato del corpo editoriale o le chiamate API prima dell’accordo con il backend.
-
-`OverviewBanner` condivide la fascia introduttiva con foto di Trust e Patrimonio: testi negli slot, titolo ridotto con `compactTitle` e varianti di sezione nei rispettivi fogli pagina. `.site-button--small` gestisce i pulsanti con etichetta da 11 px; `.collapse-toggle` condivide il segno più/meno di FAQ e accordion.
-
-Gli stati interattivi sono condivisi nei fogli dei componenti. La navbar usa Bootstrap Dropdown: il testo apre la pagina e la freccia separata controlla il sottomenu. L’hover apre solo con il mouse sul menu esteso; clic, tastiera ed Escape funzionano anche nel menu mobile. Galvani/Argos e Newsletter restano etichette non attivabili finché non sono confermate le destinazioni.
-
-Usa `.site-button--outline-light` per il pulsante trasparente che diventa bianco con testo blu e `.service-list-row` per evidenziare le righe su sfondo scuro, senza spostare i contenuti. Le transizioni condivise usano `$interaction-duration` (150 ms) e `$interaction-easing`, rispettando la preferenza di movimento ridotto. Gli effetti non presenti nel prototipo saranno valutati separatamente.
-
-`.contact-action-link` condivide l’hover dei recapiti su sfondo blu: testo e bordo più chiari; la freccia `.contact-action-arrow` avanza di 4 px, rispettando il movimento ridotto. Lo stesso stato si applica al focus da tastiera.
-
-## Bootstrap e adattamento alle larghezze
-
-Usa `container`, `row`, `col-*`, `offset-*` e le utilità Bootstrap. Preferisci le colonne standard quando gli scostamenti da Figma sono trascurabili; personalizza le larghezze solo per differenze visive rilevanti. I breakpoint standard arrivano da Bootstrap, senza mappe duplicate.
-
-Il contenitore desktop è largo 1376 px (`$page-container-max-width`), configurato in `globals.scss` nella mappa Bootstrap `$container-max-widths` per `xxl`. L'introduzione ha 40 px di padding, ridotti a 24 px sotto `lg` (992 px). Il layout diventa verticale sotto `md` (768 px); la tipografia resta compatta fino a 991 px.
-
-Le sezioni contenute della Home e la newsletter seguono i container standard a `lg` e `xl`, con limite di 1280 px da `xxl` (`$content-container-max-width`). In `NewsFeed`, articoli principali e colonna secondaria si affiancano da `xl`.
-
-La navbar usa `navbar-expand-xl` e si espande da 1200 px, soglia condivisa con lo script dei sottomenu. È centrata, larga al massimo 1717 px (`$frame-max-width`), con margini minimi di 24 px. Fra 1200 e 1920 px logo, spazi e corpo crescono in modo fluido con `fluid()` di `navbar.scss`. Hover e voce attiva usano il semibold con larghezza riservata, così le voci non si spostano, e una linea rossa disegnata da sinistra; Contatti parte da una linea sottile. Contatti, icone e lingua poggiano sulla linea di base dei testi e sono separati da divisori `.vr`.
-
-La Home passa a `Layout` l’ID della hero con `headerHeroId`: l’header resta fisso e chiaro sopra la hero, poi torna allo stile normale. Anche il menu compatto aperto usa lo stile normale.
-
-Il menu compatto si apre sopra la pagina, oscurata e bloccata, e si chiude con la croce, con Escape o toccando lo sfondo. A menu aperto, `FocusTrap` di Bootstrap mantiene la navigazione da tastiera nella navbar. Le voci crescono da 22 a 28 px fra 360 e 430 px e la pagina corrente è sottolineata in rosso, come sul desktop. Contatti compare nella barra da 390 px, con freccia e a 12 px fino a `sm` per non superare la scritta del logo; a menu aperto resta il pulsante in fondo al pannello, accanto alle voci da `md`.
-
-Fra `lg` e `xxl` (992–1399 px), usa i valori tipografici `$*-tablet` e `.section-spacing` per 80 px di padding verticale. Le griglie a quattro card usano `col-6 col-xxl-3`: due colonne nella fascia intermedia, quattro da 1400 px. Questi adattamenti conservano le varianti Figma sotto 992 px e da 1400 px.
-
-Da `md` a `xxl` (768–1399 px), tutte le introduzioni `PageIntro` usano colonne 6+6 con divisore rosso e 80 px di spazio sotto il contenuto. Il sopratitolo usa la larghezza della colonna e va a capo naturalmente.
-
-Sotto `lg`, `PageIntro` aggiunge 8 px sopra la breadcrumb; lo spazio successivo è 24 px sotto `md` e 40 px da `md`.
-
-Il footer ha gli stessi bordi della barra dell'header: margini di 24 px e larghezza massima `$frame-max-width`. Da `md` le colonne sono automatiche e distribuite con `justify-content-between`, così gli spazi restano uguali; sotto `md` Menu e Utility sono affiancate. La linea sopra il footer sta dietro le sezioni: si vede solo se l'ultima sezione della pagina non ha uno sfondo.
-
-Le composizioni ampie di foto e testo, certificazioni, video e invito finale mantengono i limiti ricavati dal desktop da 1920 px (`$wide-layout-max-width`), con gli spazi laterali del relativo componente. Gli sfondi continuano a tutta larghezza.
-
-Nel paragrafo introduttivo dei contatti gli a capo di Figma valgono solo da `xxl` (1400 px), con `d-xxl-block`; sotto questa soglia il testo scorre liberamente. Evita correzioni degli a capo con soglie aggiuntive.
-
-Compila Bootstrap **solo in `globals.scss`**. Negli altri file usa variabili e mixin senza importare nuovamente il CSS completo. Le sezioni devono poter crescere con il contenuto, evitando altezze che taglino il testo.
-
-Le personalizzazioni dei figli di `.row` e delle varianti `.site-button` devono prevalere sui reset Bootstrap con selettori di componente, senza dipendere dall'ordine dei fogli CSS.
+Moduli e mappa hanno per ora struttura e stile. Senza destinazione, pulsanti e download restano inattivi; le frecce decorative non simulano collegamenti. I metadati SEO arriveranno da Strapi: non definirli nelle pagine.
 
 ## Prima di condividere
 
-Per gli a capo dei titoli previsti dal design, usa il primo breakpoint Bootstrap in cui le righe entrano interamente. Controlla la composizione anche subito prima e dopo la soglia.
-
-Esegui `npm run build` e `git diff --check`; se cambia l'aspetto, controlla desktop, mobile, larghezze intermedie e apertura del menu nel browser. Confronta anche il prototipo Figma in **Present**, inclusi hover, sottomenu e interazioni disponibili. Verifica anche la build di produzione quando cambiano import o stili condivisi.
+Esegui `npm run build` e `git diff --check`. Per cambiamenti visivi controlla mobile, desktop, larghezze intermedie e ultrawide; confronta anche Figma **Present**, hover, sottomenu e interazioni. Verifica la build di produzione quando cambiano import o stili condivisi.

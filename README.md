@@ -1,6 +1,6 @@
 # AG Trustees — frontend
 
-Frontend Astro con Bootstrap e SCSS. Il riferimento visivo è la 3° Release Figma; i contenuti dinamici saranno gestiti con Strapi.
+Frontend Astro con Bootstrap e SCSS. Riferimento visivo: **3° Release Figma**. I contenuti dinamici e la SEO saranno gestiti con Strapi.
 
 ## Avvio
 
@@ -11,7 +11,7 @@ npm ci
 npm run dev -- --background
 ```
 
-Anteprima della pagina in sviluppo: [Chi siamo](http://localhost:4321/chi-siamo/).
+Anteprima: [Home](http://localhost:4321/).
 
 ```sh
 npm run astro -- dev status
@@ -20,7 +20,7 @@ npm run astro -- dev stop
 npm run build
 ```
 
-La build usa l'adapter Node standalone; in ambiente Vercel la configurazione seleziona l'adapter Vercel.
+La build usa l’adapter Node standalone; in ambiente Vercel seleziona l’adapter Vercel.
 
 ## Documentazione
 
@@ -30,30 +30,24 @@ La build usa l'adapter Node standalone; in ambiente Vercel la configurazione sel
 
 ## Stato delle pagine
 
-Realizzati header, footer, [Chi siamo](http://localhost:4321/chi-siamo/), [Visione e metodologia](http://localhost:4321/chi-siamo/visione-metodologia/) e [Servizi](http://localhost:4321/servizi/), con sottomenu e stati interattivi condivisi verificati in Figma Present. Restano il video e i contenuti provvisori indicati nella wiki.
+Realizzati header, footer e le 13 pagine del design:
 
-Realizzate le sezioni statiche desktop di [Trust](http://localhost:4321/trust/), con FAQ provvisorie; la versione mobile resta da verificare e rifinire sul design definitivo. Articoli e documenti correlati usano `RelatedContent`, con placeholder da sostituire con Strapi.
+| Pagina | Anteprima locale |
+| --- | --- |
+| Home | [Apri](http://localhost:4321/) |
+| Chi siamo | [Apri](http://localhost:4321/chi-siamo/) |
+| Visione e metodologia | [Apri](http://localhost:4321/chi-siamo/visione-metodologia/) |
+| Servizi | [Apri](http://localhost:4321/servizi/) |
+| Trust | [Apri](http://localhost:4321/trust/) |
+| Patrimonio | [Apri](http://localhost:4321/patrimonio/) |
+| Contatti | [Apri](http://localhost:4321/contatti/) |
+| Team | [Apri](http://localhost:4321/chi-siamo/team/) |
+| AG Informa | [Apri](http://localhost:4321/ag-informa/) |
+| Dettaglio articolo | [Apri](http://localhost:4321/ag-informa/articolo-provvisorio/) |
+| Eventi e formazione | [Apri](http://localhost:4321/eventi-in-agenda/) |
+| Dettaglio evento | [Apri](http://localhost:4321/eventi-in-agenda/evento-provvisorio/) |
+| Knowledge Library | [Apri](http://localhost:4321/knowledge-library/) |
 
-Realizzata [Patrimonio](http://localhost:4321/patrimonio/), con nove esigenze patrimoniali in accordion sul mobile e FAQ provvisorie. I correlati mostrano placeholder da sostituire con Strapi; le differenze tra i frame desktop e mobile sono annotate nella wiki.
+Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completare con Strapi e il team. I frame mobile incompleti o incoerenti, compreso Trust, attendono il confronto con il design definitivo; i punti aperti sono nella wiki.
 
-Realizzata [Contatti](http://localhost:4321/contatti/), con sedi, mappa statica di Milano, modulo contatti, newsletter e FAQ provvisorie. Selezione delle sedi e invii saranno integrati con i servizi; il mobile usa i contenuti desktop in attesa del frame definitivo.
-
-Realizzata [Home](http://localhost:4321/), con hero, presentazione, servizi, patrimonio, trust, metodo e newsletter. Evento in evidenza e articoli usano i componenti `FeaturedEvent` e `NewsFeed`, con contenuti placeholder da Figma per la revisione grafica, da sostituire con i dati Strapi. Foto della hero provvisoria, da sostituire con l’asset definitivo.
-
-Realizzata [Team](http://localhost:4321/chi-siamo/team/), con leadership, team operativo e Of Counsel. Le 14 schede usano `TeamMemberCard` e dati provvisori da Figma, pronti per essere sostituiti con quelli di Strapi. Testi, foto mancanti e dettagli dei profili restano da confermare.
-
-Realizzata [AG Informa](http://localhost:4321/ag-informa/), con articolo in evidenza, filtri, caricamento progressivo e invito alla newsletter. Le schede condividono `NewsArticleCard` con la Home. Contenuti e collegamenti sono provvisori, da sostituire con Strapi.
-
-Realizzato il [dettaglio articolo](http://localhost:4321/ag-informa/articolo-provvisorio/), con indice richiudibile sul mobile, condivisione, autore, FAQ e correlati. Contenuti da Figma e risposte Lorem ipsum; PDF e integrazione Strapi ancora mancanti. Il mobile adatta il desktop in attesa del frame definitivo.
-
-Realizzata [Eventi e formazione](http://localhost:4321/eventi-in-agenda/), con sei eventi provvisori da Figma in griglia e in elenco compatto, usando `EventCard` e `EventList`. La CTA newsletter è condivisa con AG Informa. Calendario in attesa della destinazione; dati e selezione degli eventi saranno collegati a Strapi.
-
-Realizzato il [dettaglio evento](http://localhost:4321/eventi-in-agenda/evento-provvisorio/), con copertina, data, orario, luogo, documenti e correlati. Condivisione, invito ai contatti e stile editoriale sono condivisi con l’articolo. Contenuti provvisori e PDF mancanti; il mobile adatta il desktop in attesa del frame definitivo.
-
-Realizzata [Knowledge Library](http://localhost:4321/knowledge-library/), con ricerca, categorie, intervallo date, ordinamento e caricamento progressivo. I 12 documenti provvisori condividono `DocumentList` con i correlati; PDF e integrazione Strapi mancanti. L’invito Guide e tutorial attende testo e destinazione.
-
-Predisposte Privacy policy e Cookie policy con layout e testi Lorem ipsum, da sostituire con quelli definitivi.
-
-Predisposte con layout e solo titolo: ricerca, Credits e 404. Predisposti anche i modelli per profili del team, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
-
-Le voci sospese o ancora da decidere sono elencate in [Dubbi e domande](wiki/dubbi-e-domande.md).
+Privacy e Cookie hanno layout e Lorem ipsum. Ricerca, Credits, 404, profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.

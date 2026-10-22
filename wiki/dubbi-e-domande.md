@@ -1,127 +1,65 @@
 # Dubbi e domande
 
-Punti da chiarire con designer e team sulla **3° Release** Figma e sull’architettura delle pagine. Le scelte indicate sotto sono provvisorie.
+Punti ancora aperti con designer e team sulla **3° Release**. Le scelte già approvate sono nelle [regole frontend](frontend.md); le differenze mobile sotto restano come promemoria per la prossima release.
 
-## 1. Titoli FAQ: 56 o 68 px?
-
-Servizi e Patrimonio usano 56 px; Trust e Contatti 68 px. Per le future FAQ mantengo queste varianti, finché non viene confermata l'intenzione del design. Le domande potranno essere diverse per pagina, usando lo stesso componente.
-
-## 2. Interlinee dei titoli mobile
-
-Con dimensione del testo di 60 px, il design usa:
-
-- **50 px:** Chi siamo e Contatti.
-- **60 px:** Team, AG Informa, Eventi e Knowledge library.
-- **69 px:** Visione e metodologia, Servizi, Trust e Patrimonio.
-
-Mantengo le tre varianti nelle variabili `$line-height-page-title-mobile*`, selezionate da `mobileTitleLeading` in `PageIntro`. Da confermare se sono intenzionali.
-
-## 3. Testi e menu mobile
-
-Alcuni testi sono segnaposto e i font alternano Lato e Jost. Per ora uso **Jost e testi desktop**, mantenendo colori, griglia e interlinee mobile. Il menu aperto segue Bootstrap Collapse, in attesa del design definitivo. Servono conferme su testi, font e impaginazione alle larghezze intermedie.
-
-## 4. Video di Chi siamo
-
-Mancano video e poster definitivi: ho lasciato lo spazio vuoto, dimensionato sui frame, senza immagini o controlli fittizi. Servono file o URL e indicazioni su resa mobile, controlli e riproduzione.
-
-## 5. Link e funzionalità mancanti
-
-Servono URL LinkedIn, contenuti delle pagine legali e indicazioni sulla ricerca. Per ora LinkedIn non ha collegamento e la ricerca è disabilitata; Privacy e Cookie hanno testi Lorem ipsum da sostituire, Credits solo layout e titolo. Da completare prima della pubblicazione.
-
-## 6. Contrasto dei testi
-
-Il copyright nel footer (circa 1,9:1) e la descrizione della prima card desktop (circa 4,2:1) sono sotto il minimo di 4,5:1 per i testi normali previsto dalle [WCAG AA](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html). Mantengo i colori di Figma; da concordare con il designer una variante più leggibile.
-
-## 7. Competenze e metodo di Chi siamo
-
-Le tre descrizioni delle competenze desktop sono ancora segnaposto. Il mobile presenta sei competenze diverse e otto voci del metodo, contro tre e quattro del desktop. Mantengo per ora struttura e contenuti desktop anche sul mobile; servono testi definitivi e conferma delle voci. Le frecce delle competenze restano decorative finché non sono indicate le destinazioni.
-
-## 8. Visione e metodologia: confronto con la 4° Release
-
-- **Testi provvisori:** “Titolo della sezione”, terzo e quarto servizio, descrizioni dei servizi e paragrafi Lorem ipsum/Cras et lorem. Mantengo i testi attuali di Figma.
-- **Invito finale:** il testo “Ogni mese…” parla di newsletter, mentre il pulsante porta ai servizi. Da confermare testo e destinazione.
-- **Mobile:** introduzione e testo del metodo differiscono dal desktop; uso per ora le versioni desktop e Jost.
-- **Servizi:** servono le destinazioni delle singole voci; le loro frecce restano decorative.
-
-## 9. Servizi: confronto con la 4° Release
-
-- **Mobile:** titolo e introduzione riprendono Visione e metodologia; il catalogo mostra sette servizi identici e le FAQ citano Trust e Patrimonio. Mantengo gli otto servizi e i testi desktop, compresi invito finale e contatti.
-- **FAQ:** due domande sono segnaposto e mancano tutte le risposte. Uso risposte Lorem ipsum provvisorie per verificare l’accordion; servono i contenuti definitivi.
-- **Frecce dei servizi:** mancano le destinazioni delle singole voci. Restano decorative; i collegamenti espliciti portano alle future pagine Patrimonio e Trust.
-
-## 10. Architettura e slug
+## Architettura e destinazioni
 
 Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 
-- **Galvani e Argos (P03):** pagina dedicata o sezione di Chi siamo? La pagina separata non è predisposta.
-- **Family office (P08):** una nota nel file chiede di tenerla in standby perché potrebbe andare su Fidire. Non è predisposta.
-- **Eventi (P13):** pagina autonoma o tab di AG Informa? Per ora è predisposta a `/eventi-in-agenda/`, come indicato per il lancio.
-- **Library (P15–P16):** confermare nome e gerarchia. Uso `/knowledge-library/[tipologia]/`, dalla colonna Percorso IT; la colonna Pagina padre cita invece `/knowledge-library/tipologia/`.
+- **Galvani e Argos (P03):** pagina dedicata o sezione di Chi siamo? Pagina separata non predisposta.
+- **Family office (P08):** in standby perché potrebbe andare su Fidire. Pagina non predisposta.
+- **Library (P15–P16):** confermare la gerarchia: Percorso IT usa `/knowledge-library/[tipologia]/`, Pagina padre cita `/knowledge-library/tipologia/`.
 - **Filtri tematici, Newsletter e accesso ai dati (P14, P20, P24):** presenza al lancio da decidere; pagine non predisposte.
 - **Informazioni societarie (P26):** riga incompleta, senza percorso o indicazione sul lancio.
-- **FAQ nel footer:** manca una pagina dedicata nel file. Servono conferma della destinazione e del rapporto con le FAQ della Library; per ora l’etichetta non ha collegamento.
+- **FAQ nel footer:** manca una pagina dedicata nel file. Confermare destinazione e rapporto con le FAQ della Library.
 
-## 11. Trust: confronto con la 4° Release
+Servono inoltre le destinazioni di LinkedIn, Certificazioni nel footer, “Leggi l’ultima newsletter”, calendario completo e Guide e tutorial. Le singole voci dei servizi, delle competenze di Chi siamo e delle esigenze patrimoniali nella Home attendono i rispettivi collegamenti; le frecce restano decorative.
 
-- **Mobile:** il breadcrumb indica Patrimonio, il sopratitolo riprende Visione e metodologia e alcune sezioni usano testi relativi al patrimonio. Mantengo i testi desktop e Jost; da confrontare con la prossima release.
-- **FAQ:** due domande sono segnaposto e il prototipo non mostra risposte. Uso Lorem ipsum per verificare l’accordion; servono i testi definitivi.
-- **Articoli e documenti correlati:** uso placeholder per la revisione grafica. Servono contenuti, relazioni e URL dei file da Strapi; i download restano inattivi senza PDF.
+## Integrazioni e contenuti comuni
 
-## 12. Patrimonio: confronto con la 4° Release
+- **Strapi:** servono dati definitivi, relazioni, URL dei PDF e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
+- **FAQ:** servono risposte e sostituzione delle domande segnaposto di Servizi, Trust e Patrimonio. Le risposte attuali sono Lorem ipsum.
+- **Servizi esterni:** configurazione di moduli contatti, newsletter, ricerca e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
+- **Pagine legali:** servono testi definitivi per Privacy e Cookie e contenuti di Credits.
 
-- **Mobile:** mostra cinque esigenze contro nove sul desktop, con numerazione incoerente; sopratitoli, introduzione, FAQ e CTA hanno testi diversi o provvisori. Mantengo i nove contenuti desktop anche sul mobile, in accordion, e Jost.
-- **Descrizioni:** Protezione del patrimonio e Passaggio generazionale ripetono lo stesso secondo paragrafo. Da confermare i testi e le icone ripetute nelle ultime cinque voci.
-- **Ordine mobile:** le FAQ seguono i contenuti correlati, diversamente dal desktop. Mantengo per ora l’ordine desktop; da verificare quando saranno disponibili i correlati.
-- **FAQ e correlati:** mancano le risposte e due domande sono segnaposto; uso Lorem ipsum. I correlati mostrano placeholder da sostituire con Strapi; i download restano inattivi senza PDF.
+## Asset mancanti
 
-## 13. Contatti: confronto con la 4° Release
+- **Chi siamo:** video e poster; servono file o URL e indicazioni su controlli, riproduzione e resa mobile. Lo spazio è predisposto e vuoto.
+- **Home:** foto hero definitiva, in sostituzione dell’immagine Figma con watermark Unsplash+.
+- **Team:** foto di Sonia Franchini, Michela e Giuseppina Ranzenigo; manca anche il cognome di Michela.
 
-- **Mobile:** dopo il titolo riprende le sezioni di Chi siamo e non mostra sedi, mappa, newsletter e FAQ del desktop. Uso contenuti desktop e regole responsive comuni; da confrontare con il frame definitivo.
-- **Testi:** il titolo della fascia sedi e la descrizione newsletter sono segnaposto. Mancano le risposte delle FAQ; uso Lorem ipsum per verificare l’accordion.
-- **Servizi:** servono configurazione della mappa, mappe delle altre sedi e destinazioni dei moduli. Mappa di Milano statica da Figma, selezione sedi e invii disattivati; integrazioni da completare con Vito.
+## Contenuti specifici da completare
 
-## 14. Home: confronto con la 4° Release
+| Pagina | Punti da chiarire o sostituire |
+| --- | --- |
+| Chi siamo | Le tre descrizioni delle competenze sono segnaposto; confermare anche le voci rispetto al mobile. |
+| Visione e metodologia | “Titolo della sezione”, terzo e quarto servizio, descrizioni e paragrafi Lorem ipsum/Cras et lorem. La CTA parla di newsletter ma porta ai servizi: confermare testo e destinazione. |
+| Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
+| Contatti | Titolo della fascia sedi e descrizione newsletter provvisori. |
+| Home | Presentazione, descrizioni dei servizi, introduzione Patrimonio, card del metodo e newsletter provvisori. Evento e articoli attendono dati e link ai dettagli da Strapi. |
+| Team | Titoli, ruoli, biografie e articoli collegati provvisori. Per i profili individuali il percorso è predisposto: mancano design, contenuti e conferma dei collegamenti dai nomi. |
+| AG Informa | Introduzione, articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
+| Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
+| Eventi | Introduzione, date, luoghi e testi provvisori; servono criteri di selezione dei due elenchi. |
+| Dettaglio evento | Testo, orario, categoria, documenti, correlati e piccolo invito ai contatti provvisori; il primo correlato ripete l’evento corrente. |
+| Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. Testo di Guide e tutorial provvisorio. |
 
-- **Foto hero:** uso provvisoriamente l’immagine Figma con watermark Unsplash+, nei ritagli desktop e mobile. Serve l’asset definitivo.
-- **Testi:** presentazione della società, descrizioni dei servizi, introduzione Patrimonio, card del metodo e newsletter contengono segnaposto; servono i testi definitivi.
-- **Destinazioni:** mancano i collegamenti delle singole esigenze patrimoniali e dei servizi; le card restano statiche e le frecce decorative.
-- **Evento e articoli:** per la revisione grafica uso gli esempi e le immagini di Figma, definiti come placeholder in `src/pages/index.astro`; i pulsanti portano provvisoriamente agli elenchi Eventi e AG Informa. Da sostituire con i dati Strapi.
+## Mobile: confronto con la prossima release
 
-## 15. Team: contenuti e profili
+Mantengo i contenuti desktop e gli adattamenti già approvati. Da ricontrollare quando saranno disponibili i frame definitivi:
 
-- **Contenuti Strapi:** titoli di sezione, ruoli, biografie e articolo ripetuto sono in parte segnaposto. Uso i dati Figma nella pagina, da sostituire con i contenuti definitivi e le relazioni agli articoli; per ora i collegamenti portano ad AG Informa.
-- **Dati mancanti:** mancano le foto di Sonia Franchini, Michela e Giuseppina Ranzenigo; mantengo i riquadri provvisori di Figma. Serve il cognome di Michela.
-- **Mobile:** testi e biografie differiscono dal desktop; il sopratitolo operativo è “Il nostro metodo”. Uso i contenuti desktop anche sul mobile, lasciando crescere le schede con il testo.
-- **Profili individuali:** il percorso è predisposto, ma non ho trovato il relativo design o un collegamento attivo in Present. Servono conferma della pagina di dettaglio e contenuti; i nomi nell’elenco restano senza link.
+| Pagina | Incongruenza o design mancante |
+| --- | --- |
+| Chi siamo | Sei competenze e otto voci del metodo, contro tre e quattro del desktop. |
+| Visione e metodologia | Introduzione e testo del metodo diversi dal desktop. |
+| Servizi | Titolo e introduzione riprendono Visione; sette servizi identici e FAQ riferite a Trust e Patrimonio. |
+| Trust | Breadcrumb Patrimonio, sopratitolo ripreso da Visione e testi relativi al patrimonio. |
+| Patrimonio | Cinque esigenze contro nove; numerazione e testi incoerenti. FAQ dopo i correlati, diversamente dal desktop. |
+| Contatti | Dopo il titolo riprende Chi siamo e non mostra sedi, mappa, newsletter e FAQ. |
+| Team | Testi e biografie diversi dal desktop; sopratitolo operativo “Il nostro metodo”. |
+| Dettaglio articolo | Manca un frame completo; indice richiudibile prima del testo. |
+| Dettaglio evento | Manca un frame dedicato; copertina nel contenitore, informazioni e condivisione prima del testo. |
 
-## 16. AG Informa: contenuti e collegamenti
+## Contrasto dei testi
 
-- **Articoli:** introduzione, testi, date e categorie sono provvisori. Uso otto esempi della pagina Figma e due della Home per verificare il caricamento progressivo; servono dati, ordine e categorie definitivi da Strapi.
-- **Dettagli:** i link portano al modello `/ag-informa/articolo-provvisorio/`, con contenuti di esempio da Figma; i collegamenti definitivi arriveranno dai dati Strapi.
-- **Newsletter:** manca la destinazione di “Leggi l’ultima newsletter”, che resta disattivato. “Iscriviti” porta al modulo di Contatti; il servizio di iscrizione resta da integrare.
-
-## 17. Dettaglio articolo: contenuti e mobile
-
-- **Strapi:** testo, data, tempo di lettura, autore, nota sull’IA e correlati sono esempi Figma. Servono contenuti definitivi e accordo con Vito sul formato del corpo editoriale e sulle relazioni. Per ora ogni slug mostra lo stesso esempio.
-- **Mobile:** manca un frame completo. Adatto il desktop con indice richiudibile prima del testo; da confrontare con la prossima release.
-- **Indice:** Figma elenca “In breve: le risposte chiave”, ma non mostra la sezione corrispondente. Voce omessa in attesa del contenuto.
-- **FAQ e documenti:** mancano risposte e PDF. Uso Lorem ipsum e download inattivi; servono testi, file e metadati definitivi.
-- **Invito finale:** titolo e descrizione sono Lorem ipsum; servono i testi definitivi.
-
-## 18. Eventi e formazione: contenuti e collegamenti
-
-- **Calendario completo:** nel prototipo manca la destinazione. Collegamento inattivo in attesa dell’URL o del comportamento previsto.
-- **Contenuti:** introduzione, date, luoghi e testi sono provvisori. Il desktop presenta differenze tra i due elenchi; uso gli stessi sei eventi della griglia in entrambe le sezioni, come sul mobile. Servono dati e criteri di selezione da Strapi.
-- **Newsletter:** “Leggi l’ultima newsletter” attende la destinazione; “Iscriviti” porta al modulo di Contatti, ancora da integrare con il servizio.
-
-## 19. Dettaglio evento: contenuti e mobile
-
-- **Strapi:** testo, orario, categoria, documenti e correlati sono esempi Figma; il primo correlato ripete l’evento corrente. Servono dati definitivi, criteri di selezione e formato del corpo editoriale. Per ora ogni slug mostra lo stesso esempio e le schede portano a `/eventi-in-agenda/evento-provvisorio/`.
-- **Mobile:** manca un frame dedicato. Adatto il desktop con copertina nel contenitore, informazioni e condivisione prima del testo; da confrontare con la prossima release.
-- **Documenti e contatti:** mancano i PDF e il testo del piccolo invito ai contatti è Lorem ipsum. Download inattivi e contenuti da sostituire.
-
-## 20. Knowledge Library: contenuti e collegamenti
-
-- **Documenti:** il desktop mostra 12 esempi, il mobile quattro copie e il contatore dice 20. Uso i 12 esempi desktop, quattro iniziali sul mobile e totale calcolato dai dati. Servono PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi documenti in articolo ed evento.
-- **Denominazione:** breadcrumb e sopratitolo alternano “Knowledge hub” e “AG Informa”. Uso “Knowledge Library”, coerente con titolo e slug; da confermare insieme alla gerarchia indicata al punto 10.
-- **Guide e tutorial:** testo Lorem ipsum e destinazione assente in Present. Pulsante inattivo in attesa di testo, URL e indicazioni sulla pagina di destinazione.
+Il copyright nel footer (circa 1,9:1) e la descrizione della card Identità di Chi siamo sul desktop (circa 4,2:1) restano sotto il minimo di 4,5:1 per i testi normali previsto dalle [WCAG AA](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html). Mantengo i colori approvati; serve concordare con il designer una variante più leggibile.
