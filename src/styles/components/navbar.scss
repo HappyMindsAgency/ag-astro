@@ -50,6 +50,38 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
   padding: 25px theme.$space-24 45px;
 }
 
+.site-header.site-header--hero {
+  position: fixed;
+  inset: 0 0 auto;
+  background: white;
+
+  &.is-over-hero:not(:has(.navbar-toggler[aria-expanded='true'], .navbar-collapse.show, .navbar-collapse.collapsing)) {
+    background: transparent;
+
+    .site-navbar {
+      --bs-navbar-color: white;
+      --bs-navbar-hover-color: white;
+      --bs-navbar-active-color: white;
+      color: white;
+      background: rgba(white, 0.1);
+    }
+
+    .navbar-brand img,
+    .header-icon img {
+      filter: brightness(0) invert(1);
+    }
+
+    .header-contact,
+    .header-language {
+      color: white;
+    }
+
+    :is(.navbar-brand, .nav-link, .header-contact, .navbar-toggler, .header-submenu-toggle):focus-visible {
+      outline-color: white;
+    }
+  }
+}
+
 .site-navbar {
   --header-expand-breakpoint: #{theme.$header-expand-breakpoint};
   --header-nav-font-size: #{fluid(theme.$font-size-header-nav, theme.$font-size-body, $to: 1600px)};

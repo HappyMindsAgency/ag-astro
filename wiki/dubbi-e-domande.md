@@ -65,17 +65,24 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 
 - **Mobile:** il breadcrumb indica Patrimonio, il sopratitolo riprende Visione e metodologia e alcune sezioni usano testi relativi al patrimonio. Mantengo i testi desktop e Jost; da confrontare con la prossima release.
 - **FAQ:** due domande sono segnaposto e il prototipo non mostra risposte. Uso Lorem ipsum per verificare l’accordion; servono i testi definitivi.
-- **Articoli e documenti correlati:** arriveranno da Strapi. Servono contenuti, relazioni e URL dei file; non uso i dati dimostrativi di Figma.
+- **Articoli e documenti correlati:** uso placeholder per la revisione grafica. Servono contenuti, relazioni e URL dei file da Strapi; i download restano inattivi senza PDF.
 
 ## 12. Patrimonio: confronto con la 4° Release
 
 - **Mobile:** mostra cinque esigenze contro nove sul desktop, con numerazione incoerente; sopratitoli, introduzione, FAQ e CTA hanno testi diversi o provvisori. Mantengo i nove contenuti desktop anche sul mobile, in accordion, e Jost.
 - **Descrizioni:** Protezione del patrimonio e Passaggio generazionale ripetono lo stesso secondo paragrafo. Da confermare i testi e le icone ripetute nelle ultime cinque voci.
 - **Ordine mobile:** le FAQ seguono i contenuti correlati, diversamente dal desktop. Mantengo per ora l’ordine desktop; da verificare quando saranno disponibili i correlati.
-- **FAQ e correlati:** mancano le risposte e due domande sono segnaposto; uso Lorem ipsum. Articoli e documenti arriveranno da Strapi, come per Trust.
+- **FAQ e correlati:** mancano le risposte e due domande sono segnaposto; uso Lorem ipsum. I correlati mostrano placeholder da sostituire con Strapi; i download restano inattivi senza PDF.
 
 ## 13. Contatti: confronto con la 4° Release
 
 - **Mobile:** dopo il titolo riprende le sezioni di Chi siamo e non mostra sedi, mappa, newsletter e FAQ del desktop. Uso contenuti desktop e regole responsive comuni; da confrontare con il frame definitivo.
 - **Testi:** il titolo della fascia sedi e la descrizione newsletter sono segnaposto. Mancano le risposte delle FAQ; uso Lorem ipsum per verificare l’accordion.
 - **Servizi:** servono configurazione della mappa, mappe delle altre sedi e destinazioni dei moduli. Mappa di Milano statica da Figma, selezione sedi e invii disattivati; integrazioni da completare con Vito.
+
+## 14. Home: confronto con la 4° Release
+
+- **Foto hero:** uso provvisoriamente l’immagine Figma con watermark Unsplash+, nei ritagli desktop e mobile. Serve l’asset definitivo.
+- **Testi:** presentazione della società, descrizioni dei servizi, introduzione Patrimonio, card del metodo e newsletter contengono segnaposto; servono i testi definitivi.
+- **Destinazioni:** mancano i collegamenti delle singole esigenze patrimoniali e dei servizi; le card restano statiche e le frecce decorative.
+- **Evento e articoli:** per la revisione grafica uso gli esempi e le immagini di Figma, definiti come placeholder in `src/pages/index.astro`; i pulsanti portano provvisoriamente agli elenchi Eventi e AG Informa. Da sostituire con i dati Strapi. Manca nel file degli slug il percorso di dettaglio degli eventi: da confermare per “Scopri l’evento”.

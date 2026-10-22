@@ -1,0 +1,227 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.featured-event {
+  padding-block: 160px;
+
+  .container {
+    --bs-gutter-x: #{theme.$space-48};
+    width: 100%;
+    max-width: 1544px;
+  }
+}
+
+.featured-event-all {
+  margin-bottom: theme.$space-24;
+}
+
+.featured-event-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 2px solid theme.$brand-red;
+  padding: theme.$space-80 theme.$space-100;
+  color: white;
+  background: theme.$ink-deep;
+
+  &::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(theme.$event-overlay, 0.980392 * 0.75), rgba(theme.$event-overlay, 0.8 * 0.75) 40%, rgba(theme.$event-overlay, 0));
+    content: '';
+  }
+}
+
+.featured-event-image {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-event-layout {
+  align-items: center;
+  column-gap: theme.$space-64;
+  row-gap: theme.$space-24;
+}
+
+.featured-event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 186px;
+  min-height: 201px;
+  border-radius: theme.$space-16;
+  padding: theme.$space-24;
+  color: theme.$brand-blue;
+  background: white;
+}
+
+.featured-event-days {
+  font-size: theme.$font-size-section-title-compact;
+  font-weight: theme.$font-weight-bold;
+  line-height: theme.$line-height-section-title-compact;
+}
+
+.featured-event-month {
+  margin-top: theme.$space-4;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-body;
+  text-transform: uppercase;
+}
+
+.featured-event-year {
+  color: theme.$editorial-border;
+  font-size: theme.$font-size-section-title-mobile;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-section-title-mobile;
+}
+
+.featured-event-content {
+  min-width: 0;
+}
+
+.featured-event-meta {
+  align-items: center;
+  gap: theme.$space-16;
+  margin-bottom: theme.$space-28;
+}
+
+.featured-event-organizer {
+  display: flex;
+  align-items: center;
+  gap: theme.$space-8;
+  border: 1px solid rgba(white, 0.12);
+  border-radius: theme.$space-24;
+  padding: theme.$space-6 theme.$space-16;
+  background: rgba(white, 0.08);
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-bold;
+  line-height: theme.$line-height-body;
+  text-transform: uppercase;
+}
+
+.featured-event-organizer-icon {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 16px;
+  color: theme.$editorial-border;
+  background: currentColor;
+  mask: url('/assets/icone/evento-organizzatore.svg') center / contain no-repeat;
+}
+
+.featured-event-location {
+  display: flex;
+  align-items: baseline;
+  gap: theme.$space-8;
+  color: theme.$editorial-border;
+  font-size: theme.$font-size-button;
+  line-height: theme.$line-height-button;
+}
+
+.featured-event-pin {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 16px;
+  background: currentColor;
+  mask: url('/assets/icone/posizione.svg') center / contain no-repeat;
+}
+
+.featured-event-title {
+  margin-bottom: theme.$space-30;
+  font-size: theme.$font-size-event-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-service-heading;
+  white-space: pre-line;
+}
+
+.featured-event-card .site-button {
+  gap: theme.$space-24;
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .featured-event-card {
+    padding: theme.$space-64 theme.$space-48;
+  }
+
+  .featured-event-layout {
+    column-gap: theme.$space-40;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .featured-event {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .featured-event-card {
+    border-bottom: 0;
+    padding: theme.$space-24;
+
+    &::after {
+      background: linear-gradient(0deg, rgba(theme.$event-overlay, 0.8), rgba(theme.$event-overlay, 0));
+    }
+  }
+
+  .featured-event-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .featured-event-date {
+    width: 107px;
+    min-height: 121px;
+    border-radius: theme.$space-12;
+    padding: theme.$space-16;
+  }
+
+  .featured-event-days {
+    font-size: theme.$font-size-event-days-mobile;
+    line-height: theme.$line-height-list-title;
+  }
+
+  .featured-event-month {
+    margin-top: 0;
+    font-size: theme.$font-size-content-meta;
+    line-height: theme.$line-height-content-meta;
+  }
+
+  .featured-event-year {
+    font-size: theme.$font-size-office-title;
+    line-height: theme.$line-height-card-title;
+  }
+
+  .featured-event-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: theme.$space-24;
+  }
+
+  .featured-event-organizer {
+    padding: theme.$space-6 theme.$space-12;
+    font-size: theme.$font-size-small;
+    line-height: theme.$line-height-small;
+  }
+
+  .featured-event-location {
+    font-size: theme.$font-size-button;
+    line-height: theme.$line-height-body;
+  }
+
+  .featured-event-title {
+    margin-bottom: theme.$space-24;
+    font-size: theme.$font-size-page-lead;
+    line-height: theme.$line-height-section-copy;
+  }
+}

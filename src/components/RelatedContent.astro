@@ -1,26 +1,17 @@
 ---
 import '../styles/components/related-content.scss';
-
-interface Article {
-  title: string;
-  href: string;
-  image: { src: string; alt: string; width: number; height: number };
-  category: string;
-  date: string;
-  dateTime: string;
-  excerpt: string;
-}
+import type { ArticlePreview } from '../types/content';
 
 interface Document {
   title: string;
-  downloadUrl: string;
+  downloadUrl?: string;
   category: string;
   abbreviation: string;
   metadata: string;
 }
 
 interface Props {
-  articles?: Article[];
+  articles?: ArticlePreview[];
   documents?: Document[];
 }
 
@@ -60,7 +51,7 @@ const { articles = [], documents = [] } = Astro.props;
                     <h3 class="related-document-title">{title}</h3>
                     <p class="related-document-meta mb-0"><span>{category}</span>{' | '}{metadata}</p>
                   </div>
-                  <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download aria-label={`Scarica PDF: ${title}`}>
+                  <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download={downloadUrl ? true : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={`Scarica PDF: ${title}`}>
                     <span aria-hidden="true">↓</span> Scarica PDF
                   </a>
                 </div>

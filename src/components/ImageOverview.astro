@@ -1,0 +1,29 @@
+---
+import EditorialImage from './EditorialImage.astro';
+import '../styles/components/image-overview.scss';
+
+interface Props {
+  id: string;
+  eyebrow: string;
+  image: { src: string; alt?: string; width: number; height: number };
+  plainImage?: boolean;
+  class?: string;
+}
+
+const { id, eyebrow, image, plainImage = false, class: className } = Astro.props;
+---
+
+<section id={id} class:list={['image-overview', className]} aria-labelledby={`${id}-title`}>
+  <slot name="decoration" />
+  <div class="row g-0 align-items-center">
+    <div class="col-lg-6 image-overview-media">
+      <EditorialImage {...image} plain={plainImage} />
+    </div>
+    <div class="col-lg-6 image-overview-content">
+      <p class="type-eyebrow type-eyebrow--section image-overview-eyebrow">{eyebrow}</p>
+      <h2 id={`${id}-title`} class="type-section-title mb-0"><slot name="title" /></h2>
+      <p class="type-section-lead type-section-lead--relaxed image-overview-copy mb-0"><slot /></p>
+      {Astro.slots.has('action') && <div class="image-overview-action"><slot name="action" /></div>}
+    </div>
+  </div>
+</section>

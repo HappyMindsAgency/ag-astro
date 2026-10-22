@@ -6,11 +6,12 @@ interface Props {
   alt?: string;
   width: number;
   height: number;
+  plain?: boolean;
 }
 
-const { src, alt = '', width, height } = Astro.props;
+const { src, alt = '', width, height, plain = false } = Astro.props;
 ---
 
-<div class="editorial-image">
+<div class:list={['editorial-image', { 'editorial-image--plain': plain }]}>
   <img {src} {alt} {width} {height} loading="lazy" />
 </div>

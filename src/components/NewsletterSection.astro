@@ -1,0 +1,33 @@
+---
+import '../styles/components/newsletter-section.scss';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section id="newsletter" class="newsletter-section" aria-labelledby="newsletter-title">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+      <div class="col-lg-6">
+        <h2 id="newsletter-title" class="newsletter-section-title">{title}</h2>
+        <p class="newsletter-section-copy mb-0"><slot /></p>
+      </div>
+      <div class="col-lg-5 offset-lg-1">
+        <form class="newsletter-form" method="post" aria-label="Iscrizione alla newsletter">
+          <div class="newsletter-email-field">
+            <label class="visually-hidden" for="newsletter-email">Indirizzo email</label>
+            <input class="form-control" id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Indirizzo email" />
+            <button type="submit" aria-label="Iscriviti alla newsletter" disabled><span aria-hidden="true">→</span></button>
+          </div>
+          <div class="form-check mt-2">
+            <input class="form-check-input" id="newsletter-privacy" name="privacy" type="checkbox" />
+            <label class="form-check-label" for="newsletter-privacy">Ho letto l’<a href="/privacy-policy/">informativa privacy</a>.</label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

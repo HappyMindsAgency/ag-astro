@@ -33,6 +33,15 @@
   }
 }
 
+.editorial-image--plain {
+  box-shadow: none;
+
+  &::before,
+  &::after {
+    content: none;
+  }
+}
+
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .editorial-image {
     max-width: none;

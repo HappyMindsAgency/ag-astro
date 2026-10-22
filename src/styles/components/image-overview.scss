@@ -1,0 +1,92 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.image-overview-eyebrow {
+  margin-bottom: theme.$space-40;
+  color: theme.$brand-red;
+}
+
+.image-overview {
+  padding-top: 120px;
+
+  > .row {
+    max-width: theme.$wide-layout-max-width;
+    margin-inline: auto;
+  }
+}
+
+.image-overview .image-overview-media {
+  position: relative;
+  padding-right: theme.$space-36;
+}
+
+.image-overview .image-overview-content {
+  padding: theme.$space-64 160px theme.$space-64 theme.$space-12;
+
+  .image-overview-eyebrow {
+    margin-bottom: theme.$space-28;
+  }
+}
+
+.image-overview-copy {
+  margin-top: theme.$space-28;
+  border-top: 1px solid theme.$editorial-border;
+  padding-top: theme.$space-28;
+  color: theme.$editorial-text;
+}
+
+.image-overview-action {
+  margin-top: theme.$space-40;
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .image-overview .type-section-title {
+    font-size: clamp(theme.$font-size-section-title-tablet, 3.75vw, theme.$font-size-section-title);
+    line-height: clamp(theme.$line-height-section-title-tablet, 3.75vw, theme.$line-height-section-title);
+  }
+}
+
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .image-overview .image-overview-content {
+    padding-right: theme.$space-48;
+  }
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .image-overview {
+    padding-top: theme.$space-80;
+  }
+
+  .image-overview .image-overview-media {
+    padding-right: theme.$space-24;
+  }
+
+  .image-overview .image-overview-content {
+    padding: theme.$space-40 theme.$space-32 theme.$space-40 theme.$space-24;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .image-overview-eyebrow {
+    margin-bottom: theme.$space-28;
+  }
+
+  .image-overview {
+    padding-top: 0;
+  }
+
+  .image-overview .image-overview-media {
+    padding-right: 0;
+  }
+
+  .image-overview .image-overview-content {
+    padding: theme.$space-32 theme.$page-gutter-mobile;
+  }
+
+  .image-overview-copy {
+    margin-top: theme.$space-28;
+    border-top-color: theme.$button-border-light;
+    padding-top: theme.$space-24;
+    color: theme.$footer-text;
+  }
+}

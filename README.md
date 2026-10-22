@@ -32,14 +32,16 @@ La build usa l'adapter Node standalone; in ambiente Vercel la configurazione sel
 
 Realizzati header, footer, [Chi siamo](http://localhost:4321/chi-siamo/), [Visione e metodologia](http://localhost:4321/chi-siamo/visione-metodologia/) e [Servizi](http://localhost:4321/servizi/), con sottomenu e stati interattivi condivisi verificati in Figma Present. Restano il video e i contenuti provvisori indicati nella wiki.
 
-Realizzate le sezioni statiche desktop di [Trust](http://localhost:4321/trust/), con FAQ provvisorie; la versione mobile resta da verificare e rifinire sul design definitivo. Articoli e documenti correlati sono predisposti nel componente `RelatedContent` e verranno mostrati quando arriveranno i dati da Strapi.
+Realizzate le sezioni statiche desktop di [Trust](http://localhost:4321/trust/), con FAQ provvisorie; la versione mobile resta da verificare e rifinire sul design definitivo. Articoli e documenti correlati usano `RelatedContent`, con placeholder da sostituire con Strapi.
 
-Realizzata [Patrimonio](http://localhost:4321/patrimonio/), con nove esigenze patrimoniali in accordion sul mobile e FAQ provvisorie. I contenuti correlati sono predisposti per Strapi; le differenze tra i frame desktop e mobile sono annotate nella wiki.
+Realizzata [Patrimonio](http://localhost:4321/patrimonio/), con nove esigenze patrimoniali in accordion sul mobile e FAQ provvisorie. I correlati mostrano placeholder da sostituire con Strapi; le differenze tra i frame desktop e mobile sono annotate nella wiki.
 
 Realizzata [Contatti](http://localhost:4321/contatti/), con sedi, mappa statica di Milano, modulo contatti, newsletter e FAQ provvisorie. Selezione delle sedi e invii saranno integrati con i servizi; il mobile usa i contenuti desktop in attesa del frame definitivo.
 
+Realizzata [Home](http://localhost:4321/), con hero, presentazione, servizi, patrimonio, trust, metodo e newsletter. Evento in evidenza e articoli usano i componenti `FeaturedEvent` e `NewsFeed`, con contenuti placeholder da Figma per la revisione grafica, da sostituire con i dati Strapi. Foto della hero provvisoria, da sostituire con l’asset definitivo.
+
 Predisposte Privacy policy e Cookie policy con layout e testi Lorem ipsum, da sostituire con quelli definitivi.
 
-Predisposte con layout e solo titolo: Home, Team, AG Informa, Eventi e formazione, Knowledge Library, ricerca, Credits e 404. Predisposti anche i modelli per profili del team, articoli, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
+Predisposte con layout e solo titolo: Team, AG Informa, Eventi e formazione, Knowledge Library, ricerca, Credits e 404. Predisposti anche i modelli per profili del team, articoli, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
 
 Le voci sospese o ancora da decidere sono elencate in [Dubbi e domande](wiki/dubbi-e-domande.md).

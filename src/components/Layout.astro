@@ -10,9 +10,10 @@ interface Props {
     title?: string;
     description?: string;
     linkedinUrl?: string;
+    headerHeroId?: string;
 }
 
-const { lang = 'it', title = 'AG Trustees', description, linkedinUrl } = Astro.props;
+const { lang = 'it', title = 'AG Trustees', description, linkedinUrl, headerHeroId } = Astro.props;
 
 ---
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ const { lang = 'it', title = 'AG Trustees', description, linkedinUrl } = Astro.p
     <Head title={title} description={description} />
     <body>
         <a class="skip-link visually-hidden-focusable" href="#contenuto-principale">Vai al contenuto</a>
-        <Navbar linkedinUrl={linkedinUrl} />
+        <Navbar linkedinUrl={linkedinUrl} heroId={headerHeroId} />
         <main id="contenuto-principale" tabindex="-1">
             <slot />
         </main>

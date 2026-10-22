@@ -1,5 +1,4 @@
 @use '../variables' as theme;
-@use '../mixins' as shared;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .contact-offices {
@@ -141,94 +140,6 @@
   }
 }
 
-.contact-newsletter {
-  padding-block: 70px;
-  color: white;
-  @include shared.brand-gradient;
-
-  .container {
-    max-width: 1280px;
-    padding-inline: 0;
-  }
-}
-
-.contact-newsletter-title {
-  margin-bottom: theme.$space-16;
-  font-size: theme.$font-size-newsletter-title;
-  font-weight: theme.$font-weight-newsletter-title;
-  line-height: theme.$line-height-newsletter-title;
-}
-
-.contact-newsletter-copy {
-  color: theme.$newsletter-copy;
-}
-
-.newsletter-email-field {
-  display: flex;
-  border-bottom: 1px solid rgba(white, 0.55);
-
-  .form-control {
-    min-width: 0;
-    min-height: 48px;
-    border: 0;
-    border-radius: 0;
-    padding: theme.$space-12 0;
-    color: white;
-    background: transparent;
-    font-size: theme.$font-size-form-input;
-    line-height: theme.$line-height-form-input;
-
-    &::placeholder {
-      color: theme.$newsletter-copy;
-      opacity: 1;
-    }
-
-    &:focus {
-      outline: 2px solid white;
-      outline-offset: 2px;
-      box-shadow: none;
-    }
-  }
-
-  button {
-    flex-shrink: 0;
-    min-width: 44px;
-    border: 0;
-    padding: theme.$space-8;
-    color: white;
-    background: transparent;
-    font-size: theme.$font-size-contact-link;
-  }
-}
-
-.newsletter-form {
-  .form-check-label {
-    font-size: theme.$font-size-content-meta;
-    line-height: theme.$line-height-content-meta;
-  }
-
-  .form-check-input:focus-visible {
-    outline: 2px solid white;
-    outline-offset: 2px;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    &:focus-visible {
-      outline: 2px solid white;
-      outline-offset: 2px;
-    }
-  }
-}
-
-@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
-  .contact-newsletter .container {
-    max-width: 960px;
-  }
-}
-
 @include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
   .office-location-options {
     gap: theme.$space-12;
@@ -243,14 +154,12 @@
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
-  .contact-offices,
-  .contact-newsletter {
+  .contact-offices {
     padding-block: theme.$space-64;
   }
 
   .contact-offices .container,
-  .office-location-heading .container,
-  .contact-newsletter .container {
+  .office-location-heading .container {
     max-width: none;
     padding-inline: theme.$page-gutter-mobile;
   }
@@ -279,10 +188,6 @@
 
   .office-location-map img {
     height: 360px;
-  }
-
-  .contact-newsletter {
-    background-position: center;
   }
 }
 

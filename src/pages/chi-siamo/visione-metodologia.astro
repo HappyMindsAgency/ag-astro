@@ -1,18 +1,19 @@
 ---
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
-import EditorialImage from '../../components/EditorialImage.astro';
+import ImageOverview from '../../components/ImageOverview.astro';
 import CallToAction from '../../components/CallToAction.astro';
+import ServiceOverview from '../../components/ServiceOverview.astro';
 import '../../styles/pages/visione-e-metodologia.scss';
 
+const serviceDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 const services = [
   'Amministrazione',
   'Family Office',
   'Servizio numero 3',
   'Servizio numero 4',
-];
+].map((title) => ({ title, description: serviceDescription }));
 
-const serviceDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 const servicesIntroduction = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula augue, id ultrices turpis ullamcorper in. In porttitor quam ultricies elementum commodo.';
 const storyDescription = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum dolor. Vivamus ac augue odio. Sed cursus lorem in maximus ornare. Nullam interdum leo vitae sem gravida imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.';
 const methodIntroduction = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum dolor.';
@@ -42,41 +43,16 @@ const methodSteps = [
     AG Trustees nasce dall’incontro tra competenze consolidate e da un’idea comune di responsabilità fiduciaria vicina alle persone.
   </PageIntro>
 
-  <section class="vision-overview" aria-labelledby="vision-title">
-    <div class="row g-0 align-items-center">
-      <div class="col-lg-6">
-        <EditorialImage src="/assets/immagini/visione-persone.png" width={1170} height={780} />
-      </div>
-      <div class="col-lg-6 vision-overview-content">
-        <p class="type-eyebrow type-eyebrow--section vision-eyebrow">La nostra visione</p>
-        <h2 id="vision-title" class="type-section-title mb-0">Titolo <span class="type-section-title-accent d-block">della sezione</span></h2>
-        <p class="type-section-lead type-section-lead--relaxed vision-overview-copy mb-0">Una storia fatta di persone, legami, lavoro, responsabilità e visione. AG Trustees esiste per custodirla e accompagnarla nel tempo, contribuendo a garantirne stabilità e continuità tra generazioni.</p>
-      </div>
-    </div>
-  </section>
+  <ImageOverview
+    id="vision"
+    eyebrow="La nostra visione"
+    image={{ src: '/assets/immagini/visione-persone.png', width: 1170, height: 780 }}
+  >
+    <Fragment slot="title">Titolo <span class="type-section-title-accent d-block">della sezione</span></Fragment>
+    Una storia fatta di persone, legami, lavoro, responsabilità e visione. AG Trustees esiste per custodirla e accompagnarla nel tempo, contribuendo a garantirne stabilità e continuità tra generazioni.
+  </ImageOverview>
 
-  <section class="vision-services section-spacing" aria-labelledby="services-title">
-    <div class="container">
-      <div class="vision-services-heading text-lg-center mx-auto">
-        <p class="type-eyebrow type-eyebrow--section vision-services-eyebrow">Aree di attività</p>
-        <h2 id="services-title" class="vision-services-title">Servizi professionali</h2>
-        <p class="vision-services-copy mb-0">{servicesIntroduction}</p>
-      </div>
-      <ol class="vision-services-list list-unstyled mx-auto mb-0">
-        {services.map((title, index) => (
-          <li class="row g-0 align-items-center vision-service service-list-row">
-            <span class="col-1 vision-service-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-            <h3 class="col-5 vision-service-title mb-0">{title}</h3>
-            <p class="col-5 vision-service-copy mb-0">{serviceDescription}</p>
-            <span class="col-1 text-end" aria-hidden="true">→</span>
-          </li>
-        ))}
-      </ol>
-      <div class="vision-services-action text-end">
-        <a class="btn site-button site-button--outline-light" href="/servizi/">Tutti i servizi <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
+  <ServiceOverview id="services" services={services} introduction={servicesIntroduction} />
 
   <section class="vision-story section-spacing" aria-labelledby="vision-story-title">
     <div class="container">

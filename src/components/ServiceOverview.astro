@@ -1,0 +1,34 @@
+---
+import '../styles/components/service-overview.scss';
+
+interface Props {
+  id: string;
+  services: { title: string; description: string }[];
+  introduction: string;
+}
+
+const { id, services, introduction } = Astro.props;
+---
+
+<section id={id} class="service-overview section-spacing" aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <div class="service-overview-heading text-lg-center mx-auto">
+      <p class="type-eyebrow type-eyebrow--section service-overview-eyebrow">Aree di attività</p>
+      <h2 id={`${id}-title`} class="service-overview-title">Servizi professionali</h2>
+      <p class="service-overview-copy mb-0">{introduction}</p>
+    </div>
+    <ol class="service-overview-list list-unstyled mx-auto mb-0">
+      {services.map(({ title, description }, index) => (
+        <li class="row g-0 align-items-center service-overview-item service-list-row">
+          <span class="col-1 service-overview-item-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <h3 class="col-5 service-overview-item-title mb-0">{title}</h3>
+          <p class="col-5 service-overview-item-copy mb-0">{description}</p>
+          <span class="col-1 text-end" aria-hidden="true">→</span>
+        </li>
+      ))}
+    </ol>
+    <div class="service-overview-action text-end">
+      <a class="btn site-button site-button--outline-light" href="/servizi/">Tutti i servizi <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>

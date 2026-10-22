@@ -1,0 +1,46 @@
+---
+import '../styles/components/featured-event.scss';
+
+interface Props {
+  event?: {
+    title: string;
+    href: string;
+    image: { src: string; alt: string; width: number; height: number };
+    organizer: string;
+    location: string;
+    date: { days: string; month: string; year: string };
+  };
+}
+
+const { event } = Astro.props;
+---
+
+{event && (
+  <section class="featured-event section-spacing" aria-labelledby="featured-event-title">
+    <div class="container">
+      <div class="featured-event-all text-end">
+        <a class="site-text-link" href="/eventi-in-agenda/">Scopri tutti gli eventi <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="featured-event-card">
+        <img class="featured-event-image" src={event.image.src} alt={event.image.alt} width={event.image.width} height={event.image.height} loading="lazy" />
+        <div class="row gx-0 featured-event-layout">
+          <div class="col-auto">
+            <div class="featured-event-date">
+              <span class="featured-event-days">{event.date.days}</span>
+              <span class="featured-event-month">{event.date.month}</span>
+              <span class="featured-event-year">{event.date.year}</span>
+            </div>
+          </div>
+          <div class="col featured-event-content">
+            <div class="d-flex flex-wrap featured-event-meta">
+              <p class="featured-event-organizer mb-0"><span class="featured-event-organizer-icon" aria-hidden="true"></span>{event.organizer}</p>
+              <p class="featured-event-location mb-0"><span class="featured-event-pin" aria-hidden="true"></span>{event.location}</p>
+            </div>
+            <h2 id="featured-event-title" class="featured-event-title">{event.title}</h2>
+            <a class="btn site-button site-button--light" href={event.href}>Scopri l’evento <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}

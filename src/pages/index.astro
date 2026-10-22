@@ -1,6 +1,163 @@
 ---
-import PagePlaceholder from '../components/PagePlaceholder.astro';
+import type { ComponentProps } from 'astro/types';
+import type { ArticlePreview } from '../types/content';
+import Layout from '../components/Layout.astro';
+import ImageOverview from '../components/ImageOverview.astro';
+import EditorialImage from '../components/EditorialImage.astro';
+import ServiceOverview from '../components/ServiceOverview.astro';
+import FeaturedEvent from '../components/FeaturedEvent.astro';
+import NewsFeed from '../components/NewsFeed.astro';
+import NewsletterSection from '../components/NewsletterSection.astro';
+import '../styles/pages/home.scss';
+
+const companyDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula.';
+const servicesIntroduction = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula augue, id ultrices turpis ullamcorper in. In porttitor quam ultricies elementum commodo.';
+const services = ['Amministrazione', 'Family Office', 'Servizio numero 3', 'Servizio numero 4'].map((title) => ({ title, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }));
+const needs = [
+  'Proteggere il patrimonio',
+  'Pianificare il passaggio generazionale',
+  'Organizzare il patrimonio familiare',
+  'Tutelare persone fragili',
+  'Gestire imprese e partecipazioni',
+  'Amministrare immobili, investimenti e beni esteri',
+];
+const trustPoints = [
+  'Il disponente definisce obiettivi e regole.',
+  'Il trustee amministra il patrimonio affidato.',
+  'I beneficiari sono tutelati nel tempo.',
+  'Il trustee professionale assicura competenza e continuità.',
+];
+const values = ['Esperienza specialistica', 'Indipendenza', 'Multidisciplinarità', 'Relazione personale', 'Continuità', 'Aggiornamento costante'];
+const newsletterDescription = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum';
+// TODO Strapi: sostituire evento e articoli provvisori con i dati di Strapi ed eliminare questo commento.
+const featuredEventPlaceholder: ComponentProps<typeof FeaturedEvent>['event'] = {
+  title: 'Il Trust in Italia:\nXI Congresso Nazionale e Domenica Specialistica',
+  href: '/eventi-in-agenda/',
+  image: { src: '/assets/immagini/home-evento-provvisorio.webp', alt: 'Il lungomare di Bari di sera', width: 1496, height: 410 },
+  organizer: 'Il Trust in Italia',
+  location: 'Bari – Auditorium Deloitte, Fiera del Levante',
+  date: { days: '6–8', month: 'Novembre', year: '2026' },
+};
+const articlePlaceholders: ArticlePreview[] = [
+  {
+    title: 'Riforma fiscale 2025: le novità per i trust nella legge delega',
+    category: 'Fisco e normativa',
+    date: '18 settembre 2026',
+    dateTime: '2026-09-18',
+    featured: true,
+    image: { src: '/assets/immagini/home-articolo-fisco-provvisorio.webp', alt: 'Statua della giustizia con bilancia e spada', width: 480, height: 270 },
+    excerpt: 'Il decreto attuativo della delega fiscale introduce importanti chiarimenti sulla tassazione dei trust opachi e trasparenti. Analisi delle principali disposizioni.',
+  },
+  {
+    title: 'Trust e successione: la Cassazione consolida il principio di separazione patrimoniale',
+    category: 'Trust',
+    date: '10 settembre 2026',
+    dateTime: '2026-09-10',
+    image: { src: '/assets/immagini/home-articolo-trust-provvisorio.webp', alt: 'Scaffali di una biblioteca', width: 480, height: 270 },
+    excerpt: 'Con la sentenza n. 18421/2026 la Suprema Corte ribadisce l’efficacia del trust come strumento di protezione patrimoniale nelle procedure concorsuali.',
+  },
+  { title: 'IVAFE 2026: nuove aliquote per i patrimoni detenuti all’estero', category: 'Fisco e normativa', date: '05 settembre 2026', dateTime: '2026-09-05' },
+  { title: 'Patti di famiglia e passaggio generazionale: aggiornamento alla luce della prassi notarile', category: 'Patrimonio', date: '28 agosto 2026', dateTime: '2026-08-28' },
+  { title: 'Holding di famiglia: strutture societarie e pianificazione fiscale integrata', category: 'Impresa', date: '20 agosto 2026', dateTime: '2026-08-20' },
+  { title: 'DAC7: obblighi di comunicazione per le piattaforme digitali — impatti sul patrimonio', category: 'Fisco e normativa', date: '12 agosto 2026', dateTime: '2026-08-12' },
+  { title: 'Trust autodichiarato: profili critici alla luce dell’Agenzia delle Entrate', category: 'Trust', date: '30 luglio 2026', dateTime: '2026-07-30' },
+].map((article) => ({
+  href: '/ag-informa/',
+  image: { src: '/assets/immagini/home-articolo-trust-provvisorio.webp', alt: 'Scaffali di una biblioteca', width: 480, height: 270 },
+  excerpt: '',
+  ...article,
+}));
 ---
 
-<PagePlaceholder title="Home" />
+<Layout headerHeroId="home-hero">
+  <section id="home-hero" class="home-hero" aria-labelledby="page-title">
+    <div class="home-hero-content">
+      <p class="home-hero-eyebrow mb-0">AG Trustees</p>
+      <h1 id="page-title" class="home-hero-title mb-0">
+        <span class="d-block">Dare forma al patrimonio.</span>
+        <span class="d-block type-section-title-accent">Custodirne il futuro.</span>
+      </h1>
+      <p class="home-hero-copy mb-0">Affianchiamo persone, famiglie e imprese nella protezione, nell’amministrazione e nella trasmissione del patrimonio.</p>
+      <div class="home-hero-actions d-flex flex-wrap">
+        <a class="btn site-button" href="/contatti/">Contattaci <span aria-hidden="true">→</span></a>
+        <a class="btn site-button site-button--light" href="#servizi">Scopri i servizi <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <ImageOverview id="home-company" eyebrow="AG Trustees" class="home-overview" plainImage image={{ src: '/assets/immagini/home-palazzo.webp', alt: 'Facciata vetrata di un edificio contemporaneo', width: 878, height: 666 }}>
+    <img slot="decoration" class="home-brand-mark" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" />
+    <Fragment slot="title">Una trust company, fondata su <span class="type-section-title-accent">esperienza</span> e <span class="type-section-title-accent">competenze consolidate</span></Fragment>
+    {companyDescription}
+    <a slot="action" class="btn site-button" href="/chi-siamo/">Conosci AG Trustees <span aria-hidden="true">→</span></a>
+  </ImageOverview>
+
+  <FeaturedEvent event={featuredEventPlaceholder} />
+
+  <ServiceOverview id="servizi" services={services} introduction={servicesIntroduction} />
+
+  <section class="home-wealth home-contained section-spacing" aria-labelledby="home-wealth-title">
+    <div class="container">
+      <div class="row gx-4 gy-4">
+        <div class="col-lg-5"><p class="type-eyebrow type-eyebrow--section home-section-label">Patrimonio</p></div>
+        <div class="col-lg-7">
+          <h2 id="home-wealth-title" class="type-section-title type-section-title--compact"><span class="d-xxl-block">Ogni patrimonio</span>{' '}<span class="d-xxl-block">racchiude equilibri, decisioni e</span>{' '}<span class="type-section-title-accent d-xxl-block">storie da tutelare.</span></h2>
+          <p class="type-section-lead type-section-lead--relaxed home-section-copy mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan magna vitae vestibulum efficitur.</p>
+        </div>
+      </div>
+      <ol class="row g-0 home-wealth-grid list-unstyled mb-0">
+        {needs.map((title, index) => (
+          <li class="col-12 col-md-6 col-xxl-4 home-wealth-card">
+            <span class="home-card-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="home-wealth-card-title mb-0">{title}</h3>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="home-trust home-contained section-spacing" aria-labelledby="home-trust-title">
+    <div class="container">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-6"><EditorialImage src="/assets/immagini/ufficio-panorama.jpg" width={1024} height={1024} alt="Sala riunioni con vista sulla città" plain /></div>
+        <div class="col-lg-5 offset-lg-1">
+          <p class="type-eyebrow type-eyebrow--section home-section-label">Trust</p>
+          <h2 id="home-trust-title" class="type-section-title type-section-title--compact">Che cos’è il trust?</h2>
+          <p class="type-section-lead type-section-lead--relaxed home-section-copy">{companyDescription}</p>
+          <ol class="home-trust-points list-unstyled mb-0">
+            {trustPoints.map((text, index) => (
+              <li class="d-flex gap-3"><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><p class="mb-0">{text}</p></li>
+            ))}
+          </ol>
+          <a class="btn site-button mt-4" href="/trust/">Scopri il trust <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-method home-contained section-spacing" aria-labelledby="home-method-title">
+    <div class="container">
+      <div class="row gx-4 gy-4">
+        <div class="col-lg-5 home-method-heading">
+          <img class="home-brand-mark" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" loading="lazy" />
+          <p class="type-eyebrow type-eyebrow--section home-section-label">Il nostro metodo</p>
+          <h2 id="home-method-title" class="type-section-title type-section-title--compact mb-0">Perché <span class="d-lg-block">AG Trustees.</span></h2>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-0 home-values">
+            {values.map((title) => (
+              <div class="col-md-6 home-value">
+                <h3>{title}</h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <NewsFeed articles={articlePlaceholders} />
+  <NewsletterSection title="Iscrizione alla newsletter">{newsletterDescription}</NewsletterSection>
+</Layout>
 

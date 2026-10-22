@@ -1,0 +1,128 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.service-overview {
+  scroll-margin-top: 160px;
+  --section-gradient-angle: 131deg;
+  padding-block: 110px;
+  color: white;
+  background: linear-gradient(var(--section-gradient-angle), rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/sfondo-servizi.jpg') center;
+  background-size: cover, 110% 100%;
+}
+
+.service-overview-heading {
+  max-width: 1000px;
+}
+
+.service-overview-eyebrow {
+  margin-bottom: 0;
+}
+
+.service-overview-title {
+  margin-bottom: 0;
+  font-size: theme.$font-size-service-heading;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-service-heading;
+  letter-spacing: theme.$letter-spacing-service-heading;
+}
+
+.service-overview-copy {
+  color: theme.$muted-on-gradient;
+  font-size: theme.$font-size-section-copy;
+  line-height: theme.$line-height-service-copy;
+}
+
+.service-overview-list {
+  max-width: 1000px;
+  margin-top: theme.$space-64;
+  border-top: 0.8px solid rgba(white, 0.28);
+  padding-top: theme.$space-24;
+}
+
+.service-overview-item {
+  min-height: 96px;
+  border-bottom: 0.8px solid rgba(white, 0.25);
+}
+
+.service-overview-item-index {
+  color: theme.$service-index;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-body;
+}
+
+.service-overview-item .service-overview-item-title {
+  padding-right: theme.$space-24;
+  font-size: theme.$font-size-card-title;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-card-title;
+}
+
+.service-overview-item-copy {
+  color: theme.$muted-on-gradient;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-body;
+}
+
+.service-overview-action {
+  margin-top: theme.$space-40;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .service-overview {
+    --section-gradient-angle: 99deg;
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .service-overview-eyebrow {
+    margin-bottom: theme.$space-28;
+    color: rgba(white, 0.7);
+  }
+
+  .service-overview-title {
+    margin-bottom: theme.$space-28;
+    font-size: theme.$font-size-section-title-mobile;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-section-title-mobile;
+    letter-spacing: normal;
+  }
+
+  .service-overview-copy {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-editorial-copy-mobile;
+  }
+
+  .service-overview-list {
+    margin-top: theme.$space-28;
+    padding-top: 0;
+  }
+
+  .service-overview-item {
+    min-height: 130px;
+    padding-block: theme.$space-24;
+  }
+
+  .service-overview-item-index {
+    font-size: theme.$font-size-small;
+    line-height: theme.$line-height-small;
+  }
+
+  .service-overview-item .service-overview-item-title {
+    padding-right: theme.$space-4;
+    font-size: clamp(theme.$font-size-service-copy-mobile, 4.1vw, theme.$font-size-body);
+    line-height: theme.$line-height-body;
+  }
+
+  .service-overview-item-copy {
+    font-size: theme.$font-size-service-copy-mobile;
+    line-height: theme.$line-height-service-item-mobile;
+  }
+
+  .service-overview-action {
+    margin-top: theme.$space-28;
+  }
+}

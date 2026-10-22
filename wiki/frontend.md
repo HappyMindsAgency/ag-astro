@@ -49,7 +49,11 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `ContactSection` accetta una descrizione nello slot, mantenendo il testo predefinito se non viene passato. Recapiti e sedi condivisi con il footer sono in `src/data/contacts.ts`. Il mixin `brand-gradient` in `src/styles/mixins.scss` condivide lo sfondo di CTA e newsletter.
 
-`EditorialImage` condivide foto, sovrapposizione e resa mobile fra Visione e Trust; proporzioni specifiche restano nella sezione. `RelatedContent` riceve gli articoli e i documenti da mostrare, senza chiamate API: gruppi vuoti e relativo spazio non vengono renderizzati. Il collegamento a Strapi sarà aggiunto quando saranno disponibili i contenuti.
+`ImageOverview` condivide la presentazione con foto di Home e Visione: da `lg` mantiene almeno 48 px tra foto e testo; da `xxl` il titolo cresce fino ai 72 px del riferimento da 1920 px. `ServiceOverview` condivide la panoramica dei servizi; `NewsletterSection` il modulo di Home e Contatti. Testi e immagini arrivano dalle pagine. `EditorialImage` gestisce sovrapposizione e resa mobile delle foto; `plain` mantiene la foto senza effetti, mentre le proporzioni restano nella sezione.
+
+`RelatedContent`, `NewsFeed` e `FeaturedEvent` ricevono i dati tramite proprietà, senza chiamate API: gruppi vuoti e relativo spazio non vengono renderizzati. Gli articoli condividono il tipo `ArticlePreview` in `src/types/content.ts`. `NewsFeed` filtra gli articoli ricevuti per categoria o evidenza; il collegamento a Strapi sarà aggiunto quando saranno disponibili i contenuti.
+
+Home, Trust e Patrimonio contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. In `RelatedContent`, un documento senza `downloadUrl` mantiene il pulsante inattivo.
 
 `OverviewBanner` condivide la fascia introduttiva con foto di Trust e Patrimonio: testi negli slot, titolo ridotto con `compactTitle` e varianti di sezione nei rispettivi fogli pagina. `.site-button--small` gestisce i pulsanti con etichetta da 11 px; `.collapse-toggle` condivide il segno più/meno di FAQ e accordion.
 
@@ -65,7 +69,11 @@ Usa `container`, `row`, `col-*`, `offset-*` e le utilità Bootstrap. Preferisci 
 
 Il contenitore desktop è largo 1376 px (`$page-container-max-width`), configurato in `globals.scss` nella mappa Bootstrap `$container-max-widths` per `xxl`. L'introduzione ha 40 px di padding, ridotti a 24 px sotto `lg` (992 px). Il layout diventa verticale sotto `md` (768 px); la tipografia resta compatta fino a 991 px.
 
+Le sezioni contenute della Home e la newsletter seguono i container standard a `lg` e `xl`, con limite di 1280 px da `xxl` (`$content-container-max-width`). In `NewsFeed`, articoli principali e colonna secondaria si affiancano da `xl`.
+
 La navbar usa `navbar-expand-xl` e si espande da 1200 px, soglia condivisa con lo script dei sottomenu. È centrata, larga al massimo 1717 px (`$frame-max-width`), con margini minimi di 24 px. Fra 1200 e 1920 px logo, spazi e corpo crescono in modo fluido con `fluid()` di `navbar.scss`. Hover e voce attiva usano il semibold con larghezza riservata, così le voci non si spostano, e una linea rossa disegnata da sinistra; Contatti parte da una linea sottile. Contatti, icone e lingua poggiano sulla linea di base dei testi e sono separati da divisori `.vr`.
+
+La Home passa a `Layout` l’ID della hero con `headerHeroId`: l’header resta fisso e chiaro sopra la hero, poi torna allo stile normale. Anche il menu compatto aperto usa lo stile normale.
 
 Il menu compatto si apre sopra la pagina, oscurata e bloccata, e si chiude con la croce, con Escape o toccando lo sfondo. A menu aperto, `FocusTrap` di Bootstrap mantiene la navigazione da tastiera nella navbar. Le voci crescono da 22 a 28 px fra 360 e 430 px e la pagina corrente è sottolineata in rosso, come sul desktop. Contatti compare nella barra da 390 px, con freccia e a 12 px fino a `sm` per non superare la scritta del logo; a menu aperto resta il pulsante in fondo al pannello, accanto alle voci da `md`.
 

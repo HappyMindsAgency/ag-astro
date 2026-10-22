@@ -1,0 +1,321 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.home-hero {
+  display: flex;
+  align-items: center;
+  min-height: 850px;
+  padding: theme.$space-32 theme.$space-80 theme.$space-48;
+  color: white;
+  background: linear-gradient(132.15deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.38)) top / 100% 900px no-repeat, url('/assets/immagini/home-hero-provvisoria.webp') center / cover, theme.$home-hero-background;
+}
+
+.home-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: theme.$space-24;
+  width: 100%;
+  max-width: 1566px;
+  margin-inline: auto;
+  padding-top: 60px;
+}
+
+.home-hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: theme.$space-8;
+  color: rgba(white, 0.65);
+  font-size: theme.$font-size-small;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-small;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+
+  &::before {
+    width: theme.$space-8;
+    height: theme.$space-8;
+    background: theme.$brand-red;
+    content: '';
+  }
+}
+
+.home-hero-title {
+  font-size: theme.$font-size-home-title;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-home-title;
+  letter-spacing: theme.$letter-spacing-home-title;
+}
+
+.home-hero-copy {
+  font-size: theme.$font-size-section-copy;
+  line-height: theme.$line-height-section-copy;
+}
+
+.home-hero-actions {
+  gap: theme.$space-24;
+  margin-top: theme.$space-48;
+
+  .site-button {
+    gap: theme.$space-24;
+    min-width: 164px;
+  }
+}
+
+.home-overview {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.home-brand-mark {
+  position: absolute;
+  z-index: -1;
+  top: -200px;
+  right: 0;
+  width: 650px;
+  max-width: 50%;
+  height: auto;
+  aspect-ratio: 1009 / 657;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.home-contained {
+  padding-block: 110px;
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+.home-section-label {
+  width: fit-content;
+  min-width: 245px;
+  margin-bottom: theme.$space-40;
+  border-top: 1px solid theme.$footer-border;
+  padding-top: theme.$space-16;
+  color: theme.$brand-red;
+}
+
+.home-section-copy {
+  margin-top: theme.$space-24;
+  color: theme.$footer-text;
+}
+
+.home-wealth-grid {
+  margin-top: theme.$space-24;
+  border-top: 1px solid theme.$footer-border;
+  border-left: 1px solid theme.$footer-border;
+}
+
+.home-wealth-grid .home-wealth-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: theme.$space-40;
+  min-height: 215px;
+  border-right: 1px solid theme.$footer-border;
+  border-bottom: 1px solid theme.$footer-border;
+  padding: theme.$space-30;
+}
+
+.home-card-index {
+  color: theme.$brand-red;
+  font-size: theme.$font-size-small;
+  line-height: theme.$line-height-small;
+}
+
+.home-wealth-card-title {
+  max-width: 260px;
+  font-size: theme.$font-size-need-title;
+  font-weight: theme.$font-weight-medium-450;
+  line-height: theme.$line-height-need-title;
+}
+
+.home-trust {
+  background: theme.$surface-mist;
+
+  .editorial-image {
+    aspect-ratio: 570 / 510;
+  }
+}
+
+.home-trust-points {
+  margin-top: theme.$space-32;
+  border-top: 1px solid theme.$editorial-border;
+
+  li {
+    border-bottom: 1px solid theme.$editorial-border;
+    padding-block: theme.$space-16;
+  }
+
+  span {
+    color: theme.$brand-red;
+    font-weight: theme.$font-weight-bold;
+  }
+}
+
+.home-method {
+  overflow: hidden;
+  padding-block: 110px theme.$space-64;
+}
+
+.home-method-heading {
+  position: relative;
+  isolation: isolate;
+
+  .home-brand-mark {
+    top: auto;
+    bottom: -#{theme.$space-64};
+    right: auto;
+    left: 0;
+    width: 450px;
+    max-width: 100%;
+  }
+}
+
+.home-value {
+  border-top: 1px solid theme.$footer-border;
+  padding: theme.$space-28 theme.$space-24;
+
+  h3 {
+    margin-bottom: theme.$space-12;
+    font-size: theme.$font-size-value-title;
+    font-weight: theme.$font-weight-bold;
+    line-height: theme.$line-height-value-title;
+  }
+
+  p {
+    color: theme.$footer-text;
+  }
+}
+
+@include bs.media-breakpoint-up(md, theme.$grid-breakpoints) {
+  .home-value:nth-child(even) {
+    border-left: 1px solid theme.$footer-border;
+  }
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .home-contained .container {
+    max-width: theme.$content-container-max-width;
+  }
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .home-hero-title {
+    font-size: theme.$font-size-page-title-tablet;
+    line-height: theme.$line-height-page-title-tablet;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .home-overview {
+    padding-top: 56px;
+
+    .home-brand-mark {
+      top: -80px;
+      right: -48px;
+      width: 300px;
+      max-width: none;
+    }
+  }
+
+  .home-hero {
+    min-height: 680px;
+    padding: 128px theme.$page-gutter-mobile 108px;
+    background: linear-gradient(103.68deg, rgba(theme.$brand-blue, 0.96 * 0.7) 8%, rgba(theme.$section-overlay-middle, 0.9 * 0.7) 56%, rgba(theme.$section-overlay-red, 0.380392 * 0.7)), url('/assets/immagini/home-hero-mobile-provvisoria.webp') center / cover, linear-gradient(103.68deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.380392)), theme.$home-hero-background;
+  }
+
+  .home-hero-content {
+    gap: theme.$space-28;
+    padding-top: 0;
+  }
+
+  .home-hero-title {
+    font-size: min(theme.$font-size-home-title-mobile, 11.28vw);
+    line-height: theme.$line-height-home-title-mobile;
+    letter-spacing: -0.9px;
+  }
+
+  .home-hero-actions {
+    gap: theme.$space-12;
+    max-width: 342px;
+    margin-top: 0;
+
+    .site-button {
+      flex: 1;
+      gap: theme.$space-12;
+      min-width: 150px;
+      padding-inline: theme.$space-16;
+    }
+  }
+
+  .home-contained {
+    padding-block: theme.$space-64;
+
+    .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .home-section-label {
+    display: block;
+    width: auto;
+    min-width: 0;
+    margin-bottom: theme.$space-28;
+  }
+
+  .home-section-copy {
+    margin-top: theme.$space-28;
+  }
+
+  .home-wealth-grid {
+    margin-top: theme.$space-32;
+  }
+
+  .home-wealth-grid .home-wealth-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 172px;
+    padding: theme.$space-24;
+
+    &::after {
+      position: absolute;
+      right: -44px;
+      bottom: -44px;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(125deg, theme.$brand-blue 3%, theme.$need-overlay-middle 48%, theme.$accent-red);
+      content: '';
+    }
+  }
+
+  .home-wealth-card-title {
+    max-width: 216px;
+  }
+
+  .home-trust .editorial-image {
+    max-width: none;
+    max-height: 510px;
+    aspect-ratio: 342 / 362;
+  }
+
+  .home-method-heading .home-brand-mark {
+    top: -#{theme.$space-64};
+    right: -#{theme.$space-24};
+    bottom: auto;
+    left: auto;
+    width: 230px;
+  }
+}
+
+@include bs.media-breakpoint-down(md, theme.$grid-breakpoints) {
+  .home-value {
+    padding-inline: 0;
+  }
+}

@@ -2,6 +2,7 @@
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import ContactSection from '../../components/ContactSection.astro';
+import NewsletterSection from '../../components/NewsletterSection.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import { contacts, offices } from '../../data/contacts';
 import '../../styles/pages/contatti.scss';
@@ -84,29 +85,9 @@ const faqs = [
     Siamo a disposizione per un primo colloquio conoscitivo, senza impegno. Raccontaci la tua situazione e valuteremo insieme il percorso più adatto.
   </ContactSection>
 
-  <section id="newsletter" class="contact-newsletter" aria-labelledby="newsletter-title">
-    <div class="container">
-      <div class="row align-items-center gy-4">
-        <div class="col-lg-6">
-          <h2 id="newsletter-title" class="contact-newsletter-title">Ag Informa - Iscrizione alla newsletter</h2>
-          <p class="contact-newsletter-copy mb-0">Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum</p>
-        </div>
-        <div class="col-lg-5 offset-lg-1">
-          <form class="newsletter-form" method="post" aria-label="Iscrizione alla newsletter">
-            <div class="newsletter-email-field">
-              <label class="visually-hidden" for="newsletter-email">Indirizzo email</label>
-              <input class="form-control" id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Indirizzo email" />
-              <button type="submit" aria-label="Iscriviti alla newsletter" disabled><span aria-hidden="true">→</span></button>
-            </div>
-            <div class="form-check mt-2">
-              <input class="form-check-input" id="newsletter-privacy" name="privacy" type="checkbox" />
-              <label class="form-check-label" for="newsletter-privacy">Ho letto l’<a href="/privacy-policy/">informativa privacy</a>.</label>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+  <NewsletterSection title="Ag Informa - Iscrizione alla newsletter">
+    Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum
+  </NewsletterSection>
 
   <FaqSection id="faq-contatti" items={faqs} largeTitle twoColumns>
     <Fragment slot="title">Domande<br /><span class="type-section-title-accent">frequenti</span></Fragment>

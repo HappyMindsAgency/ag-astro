@@ -1,9 +1,10 @@
 ---
 interface Props {
   linkedinUrl?: string;
+  heroId?: string;
 }
 
-const { linkedinUrl } = Astro.props;
+const { linkedinUrl, heroId } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const contactIsCurrent = currentPath === '/contatti';
 interface NavigationItem {
@@ -39,7 +40,7 @@ const navigation: NavigationItem[] = [
 ];
 ---
 
-<header class="site-header sticky-top bg-white">
+<header class:list={['site-header sticky-top', { 'bg-white': !heroId, 'site-header--hero is-over-hero': heroId }]} data-header-hero={heroId}>
   <nav class="navbar navbar-expand-xl site-navbar" aria-label="Navigazione principale">
     <div class="container-fluid flex-nowrap p-0">
       <a class="navbar-brand m-0" href="/" aria-label="AG Trustees — Homepage">
@@ -126,6 +127,19 @@ const navigation: NavigationItem[] = [
     const header = navbar.closest<HTMLElement>('.site-header');
     const panel = navbar.querySelector<HTMLElement>('.navbar-collapse');
     const toggler = navbar.querySelector<HTMLButtonElement>('.navbar-toggler');
+
+    const hero = header?.dataset.headerHero ? document.getElementById(header.dataset.headerHero) : null;
+    if (header && hero) {
+      let observer: IntersectionObserver | undefined;
+      const observeHero = () => {
+        observer?.disconnect();
+        observer = new IntersectionObserver(([entry]) => {
+          header.classList.toggle('is-over-hero', entry.isIntersecting);
+        }, { rootMargin: `-${header.offsetHeight}px 0px 0px` });
+        observer.observe(hero);
+      };
+      new ResizeObserver(observeHero).observe(header);
+    }
 
     if (header && panel && toggler) {
       const menu = Collapse.getOrCreateInstance(panel, { toggle: false });
