@@ -42,6 +42,9 @@
   --bs-btn-active-color: #{theme.$brand-blue};
   --bs-btn-active-bg: white;
   --bs-btn-active-border-color: #{theme.$button-border-light};
+  --bs-btn-disabled-color: #{theme.$brand-blue};
+  --bs-btn-disabled-bg: white;
+  --bs-btn-disabled-border-color: #{theme.$button-border-light};
 }
 
 .site-button.site-button--small {

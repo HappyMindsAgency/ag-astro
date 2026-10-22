@@ -45,6 +45,8 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `CallToAction` usa lo stesso stile su tutte le pagine: sopratitolo da 16 px senza maiuscolo forzato e bianco attenuato, descrizione da 16 px bianco pieno con interlinea 26 px sul desktop e 20 px sul mobile. Il titolo mantiene 40 px sul desktop e 32 px sul mobile, con `text-wrap: balance` per bilanciare le righe libere. Sotto 390 px i margini laterali si riducono fino a 24 px. Testi e collegamento arrivano dalla pagina, senza varianti tipografiche locali.
 
+`contained` mantiene l’invito entro il frame desktop; `secondaryAction` aggiunge un secondo collegamento. Senza `href`, il pulsante principale rimane disattivato.
+
 `FaqSection` riceve un `id` univoco e le coppie `question`/`answer` dalla pagina; usa Bootstrap Accordion con una risposta aperta alla volta. `largeTitle` conserva il titolo desktop da 68 px di Trust e Contatti; `twoColumns` dispone le domande in due colonne sotto il titolo da `lg`. Il titolo mobile condiviso è da 34 px.
 
 `ContactSection` accetta una descrizione nello slot, mantenendo il testo predefinito se non viene passato. Recapiti e sedi condivisi con il footer sono in `src/data/contacts.ts`. Il mixin `brand-gradient` in `src/styles/mixins.scss` condivide lo sfondo di CTA e newsletter.
@@ -53,9 +55,11 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `RelatedContent`, `NewsFeed` e `FeaturedEvent` ricevono i dati tramite proprietà, senza chiamate API: gruppi vuoti e relativo spazio non vengono renderizzati. Gli articoli condividono il tipo `ArticlePreview` in `src/types/content.ts`. `NewsFeed` filtra gli articoli ricevuti per categoria o evidenza; il collegamento a Strapi sarà aggiunto quando saranno disponibili i contenuti.
 
+`NewsArticleCard` condivide le schede della Home e di AG Informa: `standard` per la Home, `compact` per l’archivio, `hero` per l’articolo principale. `NewsFeed` con `archive` mostra otto articoli da `lg` e quattro sotto questa soglia; filtri e “Carica altri articoli” lavorano sull’elenco ricevuto. `categories` ne definisce l’ordine, se specificato.
+
 `TeamMemberCard` riceve un membro di tipo `TeamMember` e la variante `leadership`, `operational` o `counsel`. I dati sono nella pagina Team; i campi facoltativi vengono omessi, conservando lo spazio della foto, e i gruppi senza membri non vengono renderizzati.
 
-Home, Trust, Patrimonio e Team contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. In `RelatedContent`, un documento senza `downloadUrl` mantiene il pulsante inattivo.
+Home, Trust, Patrimonio, Team e AG Informa contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. In `RelatedContent`, un documento senza `downloadUrl` mantiene il pulsante inattivo.
 
 `OverviewBanner` condivide la fascia introduttiva con foto di Trust e Patrimonio: testi negli slot, titolo ridotto con `compactTitle` e varianti di sezione nei rispettivi fogli pagina. `.site-button--small` gestisce i pulsanti con etichetta da 11 px; `.collapse-toggle` condivide il segno più/meno di FAQ e accordion.
 

@@ -93,3 +93,9 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Dati mancanti:** mancano le foto di Sonia Franchini, Michela e Giuseppina Ranzenigo; mantengo i riquadri provvisori di Figma. Serve il cognome di Michela.
 - **Mobile:** testi e biografie differiscono dal desktop; il sopratitolo operativo è “Il nostro metodo”. Uso i contenuti desktop anche sul mobile, lasciando crescere le schede con il testo.
 - **Profili individuali:** il percorso è predisposto, ma non ho trovato il relativo design o un collegamento attivo in Present. Servono conferma della pagina di dettaglio e contenuti; i nomi nell’elenco restano senza link.
+
+## 16. AG Informa: contenuti e collegamenti
+
+- **Articoli:** introduzione, testi, date e categorie sono provvisori. Uso otto esempi della pagina Figma e due della Home per verificare il caricamento progressivo; servono dati, ordine e categorie definitivi da Strapi.
+- **Dettagli:** i link portano al modello esistente `/ag-informa/articolo-provvisorio/`, ancora con il solo titolo. Il dettaglio è da realizzare sul design Figma; i collegamenti definitivi arriveranno dai dati Strapi.
+- **Newsletter:** manca la destinazione di “Leggi l’ultima newsletter”, che resta disattivato. “Iscriviti” porta al modulo di Contatti; il servizio di iscrizione resta da integrare.

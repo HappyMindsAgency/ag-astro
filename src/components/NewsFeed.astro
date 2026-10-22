@@ -1,31 +1,35 @@
 ---
 import type { ArticlePreview } from '../types/content';
+import NewsArticleCard from './NewsArticleCard.astro';
 import '../styles/components/news-feed.scss';
 
 interface Props {
   articles?: ArticlePreview[];
+  archive?: boolean;
+  categories?: string[];
 }
 
-const { articles = [] } = Astro.props;
-const categories = [...new Set(articles.map(({ category }) => category))];
+const { articles = [], archive = false, categories = [...new Set(articles.map(({ category }) => category))] } = Astro.props;
 const filters = [
   { value: 'all', label: 'Tutte' },
   ...(articles.some(({ featured }) => featured) ? [{ value: 'featured', label: 'In evidenza' }] : []),
   ...categories.map((category) => ({ value: `category:${category}`, label: category })),
 ];
-const mainArticles = articles.slice(0, 2);
-const otherArticles = articles.slice(2);
+const mainArticles = archive ? articles : articles.slice(0, 2);
+const otherArticles = archive ? [] : articles.slice(2);
 ---
 
 {articles.length > 0 && (
-  <section class="news-feed section-spacing" aria-labelledby="news-feed-title" data-news-feed>
+  <section id={archive ? 'notizie' : undefined} class:list={['news-feed section-spacing', { 'news-feed--archive': archive }]} aria-labelledby="news-feed-title" data-news-feed data-news-paginated={archive ? '' : undefined}>
     <div class="container">
       <div class="d-flex flex-wrap justify-content-between align-items-end news-feed-header">
         <div>
-          <p class="type-eyebrow type-eyebrow--section news-feed-eyebrow">Conoscenza condivisa</p>
-          <h2 id="news-feed-title" class="type-section-title mb-0">AG Informa</h2>
+          {!archive && <p class="type-eyebrow type-eyebrow--section news-feed-eyebrow">Conoscenza condivisa</p>}
+          <h2 id="news-feed-title" class:list={['mb-0', archive ? 'news-feed-archive-title' : 'type-section-title']}>{archive ? 'Notizie' : 'AG Informa'}</h2>
         </div>
-        <a class="site-text-link" href="/ag-informa/">Vai ad AG Informa <span aria-hidden="true">→</span></a>
+        {archive
+          ? <button class="site-text-link news-feed-reset" type="button" data-news-reset>Tutti gli articoli <span aria-hidden="true">→</span></button>
+          : <a class="site-text-link" href="/ag-informa/">Vai ad AG Informa <span aria-hidden="true">→</span></a>}
       </div>
       <div class="d-flex flex-wrap news-feed-filters" role="group" aria-label="Filtra gli articoli">
         {filters.map(({ value, label }, index) => (
@@ -34,21 +38,11 @@ const otherArticles = articles.slice(2);
       </div>
       <div class="row news-feed-layout">
         <div class={otherArticles.length > 0 ? 'col-xl-7' : 'col-12'} data-news-group>
-          {mainArticles.map(({ title, href, image, category, date, dateTime, excerpt, featured }) => (
-            <article class:list={['news-main-article', { 'news-main-article--featured': featured }]} data-news-article data-news-category={category} data-news-featured={featured ? 'true' : 'false'}>
-              <div class="row gx-4 gy-4">
-                <div class="col-md-4">
-                  <a href={href} tabindex="-1" aria-hidden="true"><img class="news-main-image" src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" /></a>
-                </div>
-                <div class="col-md-8">
-                  <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{featured ? 'In evidenza' : category}</span><time datetime={dateTime}>{date}</time></p>
-                  <h3 class="news-main-title"><a href={href}>{title}</a></h3>
-                  <p class="news-main-excerpt">{excerpt}</p>
-                  <a class="news-read-more" href={href} aria-label={`Leggi: ${title}`}>Leggi <span aria-hidden="true">→</span></a>
-                </div>
-              </div>
-            </article>
-          ))}
+          {archive ? (
+            <div class="row gx-4 gy-4">
+              {mainArticles.map((article) => <div class="col-md-6" data-news-item><NewsArticleCard article={article} variant="compact" /></div>)}
+            </div>
+          ) : mainArticles.map((article) => <NewsArticleCard article={article} />)}
         </div>
         {otherArticles.length > 0 && (
           <div class="col-xl-5" data-news-group>
@@ -66,6 +60,7 @@ const otherArticles = articles.slice(2);
           </div>
         )}
       </div>
+      {archive && <div class="news-feed-more text-center"><button class="btn site-button" type="button" data-news-more>Carica altri articoli <span aria-hidden="true">↓</span></button></div>}
     </div>
   </section>
 )}
@@ -76,24 +71,45 @@ const otherArticles = articles.slice(2);
     const articles = feed.querySelectorAll<HTMLElement>('[data-news-article]');
     const groups = feed.querySelectorAll<HTMLElement>('[data-news-group]');
     const layout = feed.querySelector<HTMLElement>('.news-feed-layout');
+    const more = feed.querySelector<HTMLButtonElement>('[data-news-more]');
+    const reset = feed.querySelector<HTMLButtonElement>('[data-news-reset]');
+    const paginated = feed.hasAttribute('data-news-paginated');
+    const desktop = window.matchMedia('(min-width: 992px)');
+    const pageSize = () => desktop.matches ? 8 : 4;
+    let activeFilter = 'all';
+    let visibleLimit = pageSize();
+
+    const render = () => {
+      let matches = 0;
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.newsFilter === activeFilter)));
+      articles.forEach((article) => {
+        const matched = activeFilter === 'all'
+          || (activeFilter === 'featured' && article.dataset.newsFeatured === 'true')
+          || activeFilter === `category:${article.dataset.newsCategory}`;
+        const visible = matched && (!paginated || ++matches <= visibleLimit);
+        article.classList.toggle('d-none', !visible);
+        article.closest<HTMLElement>('[data-news-item]')?.classList.toggle('d-none', !visible);
+      });
+      groups.forEach((group) => group.classList.toggle('d-none', group.querySelector('[data-news-article]:not(.d-none)') === null));
+      layout?.classList.toggle('news-feed-layout--single', [...groups].filter((group) => !group.classList.contains('d-none')).length === 1);
+      more?.classList.toggle('d-none', matches <= visibleLimit);
+    };
 
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
-        const filter = button.dataset.newsFilter;
-
-        buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-        articles.forEach((article) => {
-          const visible = filter === 'all'
-            || (filter === 'featured' && article.dataset.newsFeatured === 'true')
-            || filter === `category:${article.dataset.newsCategory}`;
-          article.classList.toggle('d-none', !visible);
-        });
-        groups.forEach((group) => {
-          const visible = group.querySelector('[data-news-article]:not(.d-none)') !== null;
-          group.classList.toggle('d-none', !visible);
-        });
-        layout?.classList.toggle('news-feed-layout--single', [...groups].filter((group) => !group.classList.contains('d-none')).length === 1);
+        activeFilter = button.dataset.newsFilter ?? 'all';
+        visibleLimit = pageSize();
+        render();
       });
     });
+    more?.addEventListener('click', () => {
+      const previouslyVisible = new Set([...articles].filter((article) => !article.classList.contains('d-none')));
+      visibleLimit += pageSize();
+      render();
+      [...articles].find((article) => !article.classList.contains('d-none') && !previouslyVisible.has(article))?.querySelector<HTMLAnchorElement>('.news-main-title a')?.focus();
+    });
+    reset?.addEventListener('click', () => { activeFilter = 'all'; visibleLimit = pageSize(); render(); });
+    if (paginated) desktop.addEventListener('change', () => { visibleLimit = pageSize(); render(); });
+    render();
   });
 </script>

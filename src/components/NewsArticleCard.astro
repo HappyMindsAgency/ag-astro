@@ -1,0 +1,41 @@
+---
+import type { ArticlePreview } from '../types/content';
+import '../styles/components/news-article-card.scss';
+
+interface Props {
+  article: ArticlePreview;
+  variant?: 'standard' | 'compact' | 'hero';
+}
+
+const { article, variant = 'standard' } = Astro.props;
+const { title, href, image, category, date, dateTime, excerpt, featured } = article;
+const Heading = variant === 'hero' ? 'h2' : 'h3';
+const imageColumn = variant === 'hero' ? 'col-12 col-lg-auto' : variant === 'compact' ? 'col-5 col-md-4' : 'col-md-4';
+const textColumn = variant === 'hero' ? 'col-12 col-lg' : variant === 'compact' ? 'col-7 col-md-8' : 'col-md-8';
+---
+
+<article
+  class:list={[
+    'news-main-article',
+    {
+      'news-main-article--featured': featured,
+      'news-main-article--compact': variant === 'compact',
+      'news-main-article--hero': variant === 'hero',
+    },
+  ]}
+  data-news-article
+  data-news-category={category}
+  data-news-featured={featured ? 'true' : 'false'}
+>
+  <div class={variant === 'hero' ? 'row gx-5 gy-4' : 'row gx-4 gy-4'}>
+    <div class:list={['news-article-image-column', imageColumn]}>
+      <a href={href} tabindex="-1" aria-hidden="true"><img class="news-main-image" src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" /></a>
+    </div>
+    <div class={textColumn}>
+      <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{featured ? 'In evidenza' : category}</span><time datetime={dateTime}>{date}</time></p>
+      <Heading class="news-main-title"><a href={href}>{title}</a></Heading>
+      <p class="news-main-excerpt">{excerpt}</p>
+      <a class="news-read-more" href={href} aria-label={`Leggi: ${title}`}>Leggi <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</article>

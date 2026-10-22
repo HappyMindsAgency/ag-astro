@@ -42,8 +42,10 @@ Realizzata [Home](http://localhost:4321/), con hero, presentazione, servizi, pat
 
 Realizzata [Team](http://localhost:4321/chi-siamo/team/), con leadership, team operativo e Of Counsel. Le 14 schede usano `TeamMemberCard` e dati provvisori da Figma, pronti per essere sostituiti con quelli di Strapi. Testi, foto mancanti e dettagli dei profili restano da confermare.
 
+Realizzata [AG Informa](http://localhost:4321/ag-informa/), con articolo in evidenza, filtri, caricamento progressivo e invito alla newsletter. Le schede condividono `NewsArticleCard` con la Home. Contenuti e collegamenti sono provvisori; Strapi e il dettaglio degli articoli restano da integrare.
+
 Predisposte Privacy policy e Cookie policy con layout e testi Lorem ipsum, da sostituire con quelli definitivi.
 
-Predisposte con layout e solo titolo: AG Informa, Eventi e formazione, Knowledge Library, ricerca, Credits e 404. Predisposti anche i modelli per profili del team, articoli, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
+Predisposte con layout e solo titolo: Eventi e formazione, Knowledge Library, ricerca, Credits e 404. Predisposti anche i modelli per profili del team, articoli, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
 
 Le voci sospese o ancora da decidere sono elencate in [Dubbi e domande](wiki/dubbi-e-domande.md).

@@ -3,14 +3,16 @@ import '../styles/components/call-to-action.scss';
 
 interface Props {
   eyebrow: string;
-  href: string;
+  href?: string;
   label: string;
+  contained?: boolean;
+  secondaryAction?: { label: string; href: string };
 }
 
-const { eyebrow, href, label } = Astro.props;
+const { eyebrow, href, label, contained = false, secondaryAction } = Astro.props;
 ---
 
-<section class="call-to-action" aria-labelledby="cta-title">
+<section class:list={['call-to-action', { 'call-to-action--contained': contained }]} aria-labelledby="cta-title">
   <div class="row align-items-center justify-content-between g-0 gap-5 gap-lg-4">
     <div class="col-lg">
       <div class="call-to-action-content">
@@ -20,9 +22,14 @@ const { eyebrow, href, label } = Astro.props;
       </div>
     </div>
     <div class="col-lg-auto">
-      <a class="btn site-button site-button--light call-to-action-link" href={href}>
-        {label} <span aria-hidden="true">→</span>
-      </a>
+      <div class="call-to-action-actions d-flex flex-column gap-3">
+        {href ? (
+          <a class="btn site-button site-button--light call-to-action-link" href={href}>{label} <span aria-hidden="true">→</span></a>
+        ) : (
+          <button class="btn site-button site-button--light call-to-action-link" type="button" disabled>{label} <span aria-hidden="true">→</span></button>
+        )}
+        {secondaryAction && <a class="btn site-button site-button--outline-light call-to-action-link" href={secondaryAction.href}>{secondaryAction.label} <span aria-hidden="true">→</span></a>}
+      </div>
     </div>
   </div>
 </section>

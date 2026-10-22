@@ -21,6 +21,13 @@ $cta-mobile-content-width: 294px; // Frame Figma da 390 px, con 48 px per lato.
   max-width: 900px;
 }
 
+.call-to-action--contained {
+  width: calc(100% - #{theme.$space-48});
+  max-width: theme.$frame-max-width;
+  margin: 0 auto theme.$space-80;
+  padding-inline: 72px;
+}
+
 .call-to-action-eyebrow {
   margin-bottom: theme.$space-12;
   color: rgba(white, 0.55);
@@ -69,6 +76,11 @@ $cta-mobile-content-width: 294px; // Frame Figma da 390 px, con 48 px per lato.
     background-position: center;
   }
 
+  .call-to-action--contained {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
   .call-to-action-title {
     font-size: theme.$font-size-section-title-mobile;
   }
@@ -82,5 +94,9 @@ $cta-mobile-content-width: 294px; // Frame Figma da 390 px, con 48 px per lato.
     width: 100%;
     margin-top: theme.$space-16;
     padding-inline: theme.$space-12;
+  }
+
+  .call-to-action-actions > .call-to-action-link + .call-to-action-link {
+    margin-top: 0;
   }
 }
