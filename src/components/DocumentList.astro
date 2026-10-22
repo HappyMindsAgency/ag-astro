@@ -13,9 +13,9 @@ const { documents = [], compact = false } = Astro.props;
 
 {documents.length > 0 && (
   <ul class:list={['document-list row gx-5 gy-0 list-unstyled mb-0', { 'document-list--compact': compact }]}>
-    {documents.map(({ title, downloadUrl, category, abbreviation, metadata }) => (
-      <li class={compact ? 'col-12' : 'col-lg-6'}>
-        <div class="related-document d-flex align-items-center gap-3">
+    {documents.map(({ title, downloadUrl, category, abbreviation, metadata, dateTime, tone }) => (
+      <li class={compact ? 'col-12' : 'col-xl-6'} data-document data-document-category={category} data-document-date={dateTime}>
+        <div class:list={['related-document d-flex align-items-center gap-3', tone && `related-document--${tone}`]}>
           <span class="related-document-badge" aria-hidden="true">{abbreviation}</span>
           <div class="flex-grow-1">
             <h3 class="related-document-title">{title}</h3>

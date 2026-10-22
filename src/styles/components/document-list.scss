@@ -70,12 +70,28 @@
   }
 }
 
+@each $tone, $color in ('jurisprudence': theme.$brand-red, 'international': theme.$document-international, 'study': theme.$document-study) {
+  .related-document--#{$tone} {
+    .related-document-badge {
+      background: $color;
+    }
+
+    .related-document-meta > span:first-child {
+      color: $color;
+    }
+  }
+}
+
 @include bs.media-breakpoint-down(sm, theme.$grid-breakpoints) {
   .related-document {
     flex-wrap: wrap;
 
     > .flex-grow-1 {
       flex-basis: calc(100% - #{theme.$space-40 + theme.$space-16});
+    }
+
+    > .related-document-download {
+      margin-left: theme.$space-40 + theme.$space-16;
     }
   }
 }

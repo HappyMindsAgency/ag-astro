@@ -50,8 +50,10 @@ Realizzata [Eventi e formazione](http://localhost:4321/eventi-in-agenda/), con s
 
 Realizzato il [dettaglio evento](http://localhost:4321/eventi-in-agenda/evento-provvisorio/), con copertina, data, orario, luogo, documenti e correlati. Condivisione, invito ai contatti e stile editoriale sono condivisi con l’articolo. Contenuti provvisori e PDF mancanti; il mobile adatta il desktop in attesa del frame definitivo.
 
+Realizzata [Knowledge Library](http://localhost:4321/knowledge-library/), con ricerca, categorie, intervallo date, ordinamento e caricamento progressivo. I 12 documenti provvisori condividono `DocumentList` con i correlati; PDF e integrazione Strapi mancanti. L’invito Guide e tutorial attende testo e destinazione.
+
 Predisposte Privacy policy e Cookie policy con layout e testi Lorem ipsum, da sostituire con quelli definitivi.
 
-Predisposte con layout e solo titolo: Knowledge Library, ricerca, Credits e 404. Predisposti anche i modelli per profili del team, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
+Predisposte con layout e solo titolo: ricerca, Credits e 404. Predisposti anche i modelli per profili del team, tipologie e singole risorse della Library. Contenuti, grafica e integrazione Strapi sono da sviluppare; queste pagine usano `PagePlaceholder`.
 
 Le voci sospese o ancora da decidere sono elencate in [Dubbi e domande](wiki/dubbi-e-domande.md).

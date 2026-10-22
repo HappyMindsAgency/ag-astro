@@ -1,6 +1,7 @@
 ---
 import type { ArticlePreview } from '../types/content';
 import NewsArticleCard from './NewsArticleCard.astro';
+import '../styles/components/content-filter.scss';
 import '../styles/components/news-feed.scss';
 
 interface Props {
@@ -33,7 +34,7 @@ const otherArticles = archive ? [] : articles.slice(2);
       </div>
       <div class="d-flex flex-wrap news-feed-filters" role="group" aria-label="Filtra gli articoli">
         {filters.map(({ value, label }, index) => (
-          <button class="news-feed-filter" type="button" data-news-filter={value} aria-pressed={index === 0 ? 'true' : 'false'}>{label}</button>
+          <button class="content-filter" type="button" data-news-filter={value} aria-pressed={index === 0 ? 'true' : 'false'}>{label}</button>
         ))}
       </div>
       <div class="row news-feed-layout">

@@ -1,0 +1,139 @@
+---
+import type { DocumentPreview } from '../types/content';
+import DocumentList from './DocumentList.astro';
+import '../styles/components/content-filter.scss';
+import '../styles/components/library-archive.scss';
+
+interface Props {
+  id?: string;
+  documents?: DocumentPreview[];
+  categories?: { label: string; value: string }[];
+}
+
+const { id = 'library-archive', documents = [], categories = [...new Set(documents.map(({ category }) => category))].map(category => ({ label: category, value: category })) } = Astro.props;
+---
+
+<section id={id} class="library-archive section-spacing" aria-labelledby={`${id}-title`} data-library-archive>
+  <div class="container">
+    <h2 id={`${id}-title`} class="visually-hidden">Documenti della Knowledge Library</h2>
+    <form role="search" aria-label="Cerca nella Knowledge Library" data-library-form>
+      <fieldset class="library-categories">
+        <legend class="visually-hidden">Filtra per categoria</legend>
+        <div class="library-category-heading d-flex justify-content-between align-items-center gap-3">
+          <p class="library-filter-title mb-0" aria-hidden="true">Filtra per categoria</p>
+          <button class="library-reset d-xl-none" type="reset"><span aria-hidden="true">×</span> Cancella filtri</button>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          {categories.map(({ label, value }) => <button class="content-filter content-filter--compact" type="button" data-library-category={value} aria-pressed="false">{label}</button>)}
+        </div>
+      </fieldset>
+
+      <div class="row g-3 align-items-end library-search">
+        <div class="col-12 col-xl-3">
+          <label class="form-label" for={`${id}-query`}>Cerca per titolo o per parola chiave</label>
+          <div class="library-query">
+            <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" />
+            <input id={`${id}-query`} class="form-control" name="query" type="search" placeholder="Cerca per titolo o categoria…" />
+          </div>
+        </div>
+        <div class="col-6 col-md-3 col-xl-auto">
+          <label class="form-label" for={`${id}-from`}>Dal</label>
+          <input id={`${id}-from`} class="form-control" name="from" type="date" />
+        </div>
+        <div class="col-6 col-md-3 col-xl-auto">
+          <label class="form-label" for={`${id}-to`}>Al</label>
+          <input id={`${id}-to`} class="form-control" name="to" type="date" />
+        </div>
+        <div class="col-12 col-md-3 col-xl-auto">
+          <label class="form-label" for={`${id}-order`}>Ordina per</label>
+          <select id={`${id}-order`} class="form-select" name="order"><option value="recent">Più recenti</option><option value="oldest">Meno recenti</option></select>
+        </div>
+        <div class="col-12 col-md-3 col-xl-auto">
+          <button class="btn site-button site-button--blue site-button--small library-submit justify-content-center" type="submit">Cerca <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+        </div>
+        <div class="col-auto d-none d-xl-block"><button class="library-reset" type="reset"><span aria-hidden="true">×</span> Cancella filtri</button></div>
+      </div>
+    </form>
+
+    <p class="library-count" role="status" data-library-count>{documents.length} {documents.length === 1 ? 'documento' : 'documenti'}</p>
+    <DocumentList documents={documents} />
+    <p class="library-empty d-none" data-library-empty>Nessun documento corrisponde ai filtri selezionati.</p>
+    <div class="library-more text-center d-none" data-library-more-wrapper><button class="btn site-button" type="button" data-library-more>Carica altri documenti <span aria-hidden="true">↓</span></button></div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-library-archive]').forEach((archive) => {
+    const form = archive.querySelector<HTMLFormElement>('[data-library-form]');
+    const list = archive.querySelector<HTMLElement>('.document-list');
+    const count = archive.querySelector<HTMLElement>('[data-library-count]');
+    const empty = archive.querySelector<HTMLElement>('[data-library-empty]');
+    const moreWrapper = archive.querySelector<HTMLElement>('[data-library-more-wrapper]');
+    const more = archive.querySelector<HTMLButtonElement>('[data-library-more]');
+    if (!form) return;
+    const query = form.querySelector<HTMLInputElement>('[name="query"]')!;
+    const from = form.querySelector<HTMLInputElement>('[name="from"]')!;
+    const to = form.querySelector<HTMLInputElement>('[name="to"]')!;
+    const order = form.querySelector<HTMLSelectElement>('[name="order"]')!;
+    const categoryButtons = form.querySelectorAll<HTMLButtonElement>('[data-library-category]');
+    const items = [...archive.querySelectorAll<HTMLElement>('[data-document]')];
+    const desktop = window.matchMedia('(min-width: 992px)');
+    const pageSize = () => desktop.matches ? 12 : 4;
+    let limit = pageSize();
+    let category = '';
+    let criteria = { query: '', from: '', to: '', order: 'recent' };
+
+    const render = () => {
+      const matching = items.filter((item) => {
+        const itemCategory = item.dataset.documentCategory ?? '';
+        const date = item.dataset.documentDate ?? '';
+        const title = item.querySelector('.related-document-title')?.textContent ?? '';
+        return (!category || itemCategory === category)
+          && `${title} ${itemCategory}`.toLocaleLowerCase('it').includes(criteria.query)
+          && (!criteria.from || date >= criteria.from)
+          && (!criteria.to || (date !== '' && date <= criteria.to));
+      }).sort((a, b) => {
+        const comparison = (a.dataset.documentDate ?? '').localeCompare(b.dataset.documentDate ?? '');
+        return criteria.order === 'oldest' ? comparison : -comparison;
+      });
+      items.forEach(item => item.classList.add('d-none'));
+      matching.forEach((item, index) => { list?.append(item); item.classList.toggle('d-none', index >= limit); });
+      categoryButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.libraryCategory === category)));
+      if (count) count.textContent = `${matching.length} ${matching.length === 1 ? 'documento' : 'documenti'}`;
+      empty?.classList.toggle('d-none', matching.length > 0);
+      moreWrapper?.classList.toggle('d-none', matching.length <= limit);
+    };
+
+    const apply = (nextCategory = category) => {
+      to.setCustomValidity(from.value && to.value && from.value > to.value ? 'La data finale deve essere uguale o successiva a quella iniziale.' : '');
+      if (!form.reportValidity()) return;
+      category = nextCategory;
+      criteria = { query: query.value.trim().toLocaleLowerCase('it'), from: from.value, to: to.value, order: order.value };
+      limit = pageSize();
+      render();
+    };
+    form.addEventListener('submit', (event) => { event.preventDefault(); apply(); });
+    categoryButtons.forEach(button => button.addEventListener('click', () => {
+      apply(category === button.dataset.libraryCategory ? '' : button.dataset.libraryCategory ?? '');
+    }));
+    order.addEventListener('change', () => apply());
+    [from, to].forEach(input => input.addEventListener('input', () => to.setCustomValidity('')));
+    form.addEventListener('reset', () => {
+      category = '';
+      criteria = { query: '', from: '', to: '', order: 'recent' };
+      limit = pageSize();
+      to.setCustomValidity('');
+      render();
+    });
+    more?.addEventListener('click', () => {
+      const visible = new Set(items.filter(item => !item.classList.contains('d-none')));
+      limit += pageSize();
+      render();
+      const next = [...archive.querySelectorAll<HTMLElement>('[data-document]:not(.d-none)')].find(item => !visible.has(item))?.querySelector<HTMLElement>('.related-document-title');
+      next?.setAttribute('tabindex', '-1');
+      next?.focus();
+    });
+    desktop.addEventListener('change', () => { limit = pageSize(); render(); });
+    render();
+  });
+</script>

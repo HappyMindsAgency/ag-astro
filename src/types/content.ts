@@ -26,6 +26,8 @@ export interface DocumentPreview {
   category: string;
   abbreviation: string;
   metadata: string;
+  dateTime?: string;
+  tone?: 'jurisprudence' | 'international' | 'study';
 }
 
 export interface EventDetail extends EventPreview {

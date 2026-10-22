@@ -1,0 +1,45 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.content-filter {
+  border: 1px solid theme.$border-soft;
+  border-radius: 0;
+  padding: theme.$space-6 theme.$space-20;
+  color: theme.$ink;
+  background: transparent;
+  font-size: theme.$font-size-button;
+  font-weight: theme.$font-weight-medium;
+  line-height: theme.$line-height-button;
+  text-transform: uppercase;
+
+  &[aria-pressed='true'] {
+    border-color: theme.$brand-blue;
+    color: white;
+    background: theme.$brand-blue;
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$ink;
+    outline-offset: theme.$space-4;
+  }
+}
+
+.content-filter.content-filter--compact {
+  padding: theme.$space-12 theme.$space-20;
+  font-size: theme.$font-size-cta-label;
+  line-height: theme.$line-height-cta-label;
+  letter-spacing: theme.$letter-spacing-cta-label;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .content-filter {
+    padding: theme.$space-8 theme.$space-12;
+    font-size: theme.$font-size-small;
+  }
+
+  .content-filter.content-filter--compact {
+    padding: theme.$space-8 theme.$space-12;
+    font-size: theme.$font-size-content-meta;
+    letter-spacing: normal;
+  }
+}

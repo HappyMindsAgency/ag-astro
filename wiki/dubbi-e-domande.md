@@ -119,3 +119,9 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Strapi:** testo, orario, categoria, documenti e correlati sono esempi Figma; il primo correlato ripete l’evento corrente. Servono dati definitivi, criteri di selezione e formato del corpo editoriale. Per ora ogni slug mostra lo stesso esempio e le schede portano a `/eventi-in-agenda/evento-provvisorio/`.
 - **Mobile:** manca un frame dedicato. Adatto il desktop con copertina nel contenitore, informazioni e condivisione prima del testo; da confrontare con la prossima release.
 - **Documenti e contatti:** mancano i PDF e il testo del piccolo invito ai contatti è Lorem ipsum. Download inattivi e contenuti da sostituire.
+
+## 20. Knowledge Library: contenuti e collegamenti
+
+- **Documenti:** il desktop mostra 12 esempi, il mobile quattro copie e il contatore dice 20. Uso i 12 esempi desktop, quattro iniziali sul mobile e totale calcolato dai dati. Servono PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi documenti in articolo ed evento.
+- **Denominazione:** breadcrumb e sopratitolo alternano “Knowledge hub” e “AG Informa”. Uso “Knowledge Library”, coerente con titolo e slug; da confermare insieme alla gerarchia indicata al punto 10.
+- **Guide e tutorial:** testo Lorem ipsum e destinazione assente in Present. Pulsante inattivo in attesa di testo, URL e indicazioni sulla pagina di destinazione.
