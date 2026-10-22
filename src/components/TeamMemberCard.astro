@@ -1,0 +1,37 @@
+---
+import type { TeamMember } from '../types/content';
+import '../styles/components/team-member-card.scss';
+
+interface Props {
+  member: TeamMember;
+  variant?: 'leadership' | 'operational' | 'counsel';
+}
+
+const { member, variant = 'operational' } = Astro.props;
+const { firstName, lastName, role, biography, expertise, email, image, relatedArticle } = member;
+---
+
+<article class:list={['team-member-card row g-0 h-100', `team-member-card--${variant}`]}>
+  <div class:list={['team-member-photo', { 'col-auto': variant === 'leadership', 'col-5': variant === 'operational', 'col-12': variant === 'counsel' }]}>
+    {image && <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" />}
+  </div>
+  <div class:list={['team-member-content', variant === 'counsel' ? 'col-12' : 'col']}>
+    <h3 class="team-member-name"><span>{firstName}</span>{lastName && <Fragment>{' '}<span>{lastName}</span></Fragment>}</h3>
+    {role && <p class="team-member-role">{role}</p>}
+    {biography && <p class="team-member-biography">{biography}</p>}
+    {expertise && <p class="team-member-expertise">{expertise}</p>}
+    {email && <a class="team-member-email" href={`mailto:${email}`}>{email}</a>}
+    {relatedArticle && (
+      <div class="team-member-article">
+        <a class="team-member-article-link" href={relatedArticle.href}>
+          <img class="team-member-article-icon" src="/assets/icone/documento.svg" alt="" width="16" height="16" loading="lazy" />
+          <span>
+            <span class="team-member-article-label">Articolo</span>
+            <span class="team-member-article-title">{relatedArticle.title}</span>
+          </span>
+          <span class="team-member-article-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    )}
+  </div>
+</article>

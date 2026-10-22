@@ -49,11 +49,13 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `ContactSection` accetta una descrizione nello slot, mantenendo il testo predefinito se non viene passato. Recapiti e sedi condivisi con il footer sono in `src/data/contacts.ts`. Il mixin `brand-gradient` in `src/styles/mixins.scss` condivide lo sfondo di CTA e newsletter.
 
-`ImageOverview` condivide la presentazione con foto di Home e Visione: da `lg` mantiene almeno 48 px tra foto e testo; da `xxl` il titolo cresce fino ai 72 px del riferimento da 1920 px. `ServiceOverview` condivide la panoramica dei servizi; `NewsletterSection` il modulo di Home e Contatti. Testi e immagini arrivano dalle pagine. `EditorialImage` gestisce sovrapposizione e resa mobile delle foto; `plain` mantiene la foto senza effetti, mentre le proporzioni restano nella sezione.
+`ImageOverview` condivide la presentazione con foto di Home e Visione: da `lg` mantiene almeno 48 px tra foto e testo; da `xxl` il titolo cresce fino ai 72 px del riferimento da 1920 px. `ServiceOverview` condivide la panoramica dei servizi; `NewsletterSection` il modulo di Home, Contatti e Team. Il mixin `architectural-gradient` condivide lo sfondo di servizi e leadership. Testi e immagini arrivano dalle pagine. `EditorialImage` gestisce sovrapposizione e resa mobile delle foto; `plain` mantiene la foto senza effetti, mentre le proporzioni restano nella sezione.
 
 `RelatedContent`, `NewsFeed` e `FeaturedEvent` ricevono i dati tramite proprietà, senza chiamate API: gruppi vuoti e relativo spazio non vengono renderizzati. Gli articoli condividono il tipo `ArticlePreview` in `src/types/content.ts`. `NewsFeed` filtra gli articoli ricevuti per categoria o evidenza; il collegamento a Strapi sarà aggiunto quando saranno disponibili i contenuti.
 
-Home, Trust e Patrimonio contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. In `RelatedContent`, un documento senza `downloadUrl` mantiene il pulsante inattivo.
+`TeamMemberCard` riceve un membro di tipo `TeamMember` e la variante `leadership`, `operational` o `counsel`. I dati sono nella pagina Team; i campi facoltativi vengono omessi, conservando lo spazio della foto, e i gruppi senza membri non vengono renderizzati.
+
+Home, Trust, Patrimonio e Team contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. In `RelatedContent`, un documento senza `downloadUrl` mantiene il pulsante inattivo.
 
 `OverviewBanner` condivide la fascia introduttiva con foto di Trust e Patrimonio: testi negli slot, titolo ridotto con `compactTitle` e varianti di sezione nei rispettivi fogli pagina. `.site-button--small` gestisce i pulsanti con etichetta da 11 px; `.collapse-toggle` condivide il segno più/meno di FAQ e accordion.
 

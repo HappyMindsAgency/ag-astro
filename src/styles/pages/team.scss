@@ -1,0 +1,135 @@
+@use '../variables' as theme;
+@use '../mixins' as shared;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.team-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: 144px;
+}
+
+.team-section-header {
+  margin-bottom: theme.$space-64;
+}
+
+.team-section-eyebrow {
+  margin-bottom: theme.$space-36;
+  color: theme.$brand-red;
+}
+
+.team-section-summary {
+  color: theme.$footer-text;
+  font-size: theme.$font-size-section-summary;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-section-summary;
+}
+
+.team-members > .col {
+  min-width: 0;
+}
+
+.team-section--leadership {
+  --section-gradient-angle: 131deg;
+  padding-inline: theme.$space-24;
+  color: theme.$text-on-blue;
+  @include shared.architectural-gradient(var(--section-gradient-angle));
+
+  > .container {
+    max-width: theme.$frame-max-width - theme.$space-24;
+    padding-inline: 0;
+  }
+
+  .team-section-header {
+    border-bottom: 1px solid rgba(theme.$text-on-blue, 0.25);
+    padding-block: theme.$space-64 theme.$space-40;
+  }
+
+  .team-section-eyebrow,
+  .team-section-title-accent,
+  .team-section-summary {
+    color: theme.$muted-on-gradient;
+  }
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .team-section--leadership {
+    padding-inline: theme.$space-48;
+  }
+}
+
+.team-section--operational,
+.team-section--counsel {
+  background: theme.$surface-sand;
+}
+
+.team-section--operational {
+  padding-bottom: theme.$space-64;
+}
+
+.team-section-mark {
+  position: absolute;
+  z-index: -1;
+  top: -200px;
+  right: 0;
+  width: 700px;
+  max-width: 50%;
+  height: auto;
+  aspect-ratio: 1009 / 657;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .team-section {
+    padding-block: theme.$space-64;
+
+    > .container {
+      max-width: none;
+      padding-inline: theme.$page-gutter-mobile;
+    }
+  }
+
+  .team-section-header {
+    margin-bottom: theme.$space-32;
+  }
+
+  .team-section-eyebrow {
+    margin-bottom: theme.$space-28;
+  }
+
+  .team-section-summary {
+    font-size: theme.$font-size-body;
+    font-weight: theme.$font-weight-regular;
+    line-height: theme.$line-height-editorial-copy-mobile;
+  }
+
+  .team-section--leadership {
+    --section-gradient-angle: 99deg;
+
+    > .container {
+      padding-inline: 0;
+    }
+
+    .team-section-header {
+      border: 0;
+      padding: 0;
+    }
+
+    .team-section-title-accent {
+      color: inherit;
+    }
+  }
+
+  .team-section--operational,
+  .team-section--counsel {
+    background: white;
+  }
+
+  .team-section--leadership .team-members,
+  .team-section--operational .team-members {
+    --bs-gutter-y: #{theme.$space-28};
+  }
+}

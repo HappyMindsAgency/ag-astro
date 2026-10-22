@@ -1,4 +1,5 @@
 @use '../variables' as theme;
+@use '../mixins' as shared;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .service-overview {
@@ -6,8 +7,7 @@
   --section-gradient-angle: 131deg;
   padding-block: 110px;
   color: white;
-  background: linear-gradient(var(--section-gradient-angle), rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/sfondo-servizi.jpg') center;
-  background-size: cover, 110% 100%;
+  @include shared.architectural-gradient(var(--section-gradient-angle));
 }
 
 .service-overview-heading {

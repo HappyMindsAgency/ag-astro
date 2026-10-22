@@ -86,3 +86,10 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Testi:** presentazione della società, descrizioni dei servizi, introduzione Patrimonio, card del metodo e newsletter contengono segnaposto; servono i testi definitivi.
 - **Destinazioni:** mancano i collegamenti delle singole esigenze patrimoniali e dei servizi; le card restano statiche e le frecce decorative.
 - **Evento e articoli:** per la revisione grafica uso gli esempi e le immagini di Figma, definiti come placeholder in `src/pages/index.astro`; i pulsanti portano provvisoriamente agli elenchi Eventi e AG Informa. Da sostituire con i dati Strapi. Manca nel file degli slug il percorso di dettaglio degli eventi: da confermare per “Scopri l’evento”.
+
+## 15. Team: contenuti e profili
+
+- **Contenuti Strapi:** titoli di sezione, ruoli, biografie e articolo ripetuto sono in parte segnaposto. Uso i dati Figma nella pagina, da sostituire con i contenuti definitivi e le relazioni agli articoli; per ora i collegamenti portano ad AG Informa.
+- **Dati mancanti:** mancano le foto di Sonia Franchini, Michela e Giuseppina Ranzenigo; mantengo i riquadri provvisori di Figma. Serve il cognome di Michela.
+- **Mobile:** testi e biografie differiscono dal desktop; il sopratitolo operativo è “Il nostro metodo”. Uso i contenuti desktop anche sul mobile, lasciando crescere le schede con il testo.
+- **Profili individuali:** il percorso è predisposto, ma non ho trovato il relativo design o un collegamento attivo in Present. Servono conferma della pagina di dettaglio e contenuti; i nomi nell’elenco restano senza link.

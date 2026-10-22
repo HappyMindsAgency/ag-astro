@@ -1,5 +1,98 @@
 ---
-import PagePlaceholder from '../../../components/PagePlaceholder.astro';
+import type { TeamMember } from '../../../types/content';
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import TeamMemberCard from '../../../components/TeamMemberCard.astro';
+import NewsletterSection from '../../../components/NewsletterSection.astro';
+import '../../../styles/pages/team.scss';
+
+interface TeamSection {
+  id: 'leadership' | 'operational' | 'counsel';
+  eyebrow: string;
+  title: string;
+  accent: string;
+  summary: string;
+  members: TeamMember[];
+}
+
+// TODO Strapi: sostituire questi membri e testi provvisori con i dati di Strapi ed eliminare questo commento.
+const leadershipBiography = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan magna vitae vestibulum efficitur. Sed ligula enim, tincidunt ut blandit in, porta consectetur orci. Donec in dignissim sem.';
+const operationalBiography = `${leadershipBiography} Duis quis tortor congue, aliquet ante sit amet, vestibulum quam. Proin quis porttitor mauris.`;
+const leadershipPlaceholder: TeamMember[] = [
+  { firstName: 'Rossano', lastName: 'Ruggeri', role: 'Presidente', portrait: 'rossano-ruggeri' },
+  { firstName: 'Sabrina', lastName: 'Numa', role: 'Amministratore Delegato', portrait: 'sabrina-numa' },
+  { firstName: 'Marco', lastName: 'Montefameglio', role: 'Amministratore Delegato', portrait: 'marco-montefameglio' },
+].map(({ portrait, ...member }) => ({
+  ...member,
+  biography: leadershipBiography,
+  expertise: 'Amministrazione fiduciaria · Operazioni straordinarie · Fiscalità internazionale · Trust · Antiriciclaggio',
+  image: { src: `/assets/immagini/team/${portrait}.webp`, alt: `${member.firstName} ${member.lastName}`, width: 526, height: 1248 },
+  relatedArticle: { title: 'Governance patrimoniale e responsabilità nel tempo', href: '/ag-informa/' },
+}));
+const operationalPlaceholder: TeamMember[] = [
+  { firstName: 'Beatrice', lastName: 'Montefameglio', portrait: 'beatrice-montefameglio', expertise: 'Trust · Trustee · Pianificazione', email: 'b.montefameglio@agtrustees.it' },
+  { firstName: 'Francesco', lastName: 'Di Corcia', portrait: 'francesco-di-corcia', expertise: 'Front office · Pratiche telematiche · Supporto clienti', email: 'f.dicorcia@agtrustees.it' },
+  { firstName: 'Sonia', lastName: 'Franchini', portrait: 'sonia-franchini', expertise: 'Front office · Pratiche telematiche · Supporto clienti', email: 's.franchini@agtrustees.it' },
+  { firstName: 'Ilaria', lastName: 'Monetti', portrait: 'ilaria-monetti', expertise: 'Mandati fiduciari · Amministrazione · Rapporti bancari · Back office', email: 'i.monetti@agtrustees.it' },
+  { firstName: 'Silvia', lastName: 'Vaccari', portrait: 'silvia-vaccari', expertise: 'Trust · Trustee · Pianificazione', email: 's.vaccari@agtrustees.it' },
+  { firstName: 'Michela', lastName: '', portrait: 'michela', expertise: 'Trust · Trustee · Pianificazione', email: 'michela@agtrustees.it' },
+].map(({ portrait, ...member }) => ({
+  ...member,
+  role: 'Ruolo',
+  biography: operationalBiography,
+  image: { src: `/assets/immagini/team/${portrait}.webp`, alt: ['Sonia', 'Michela'].includes(member.firstName) ? '' : `${member.firstName} ${member.lastName}`, width: 584, height: 1086 },
+}));
+const counselPlaceholder: TeamMember[] = [
+  { firstName: 'Antonella', lastName: 'Vannacci', portrait: 'antonella-vannacci' },
+  { firstName: 'Giuseppina', lastName: 'Ranzenigo', portrait: 'giuseppina-ranzenigo' },
+  { firstName: 'Maria Grazia', lastName: 'Monegati', portrait: 'maria-grazia-monegati' },
+  { firstName: 'Igor', lastName: 'Valas', portrait: 'igor-valas' },
+  { firstName: 'Fabrizio', lastName: 'Vedana', portrait: 'fabrizio-vedana' },
+].map(({ portrait, ...member }) => ({
+  ...member,
+  role: 'Ruolo',
+  image: { src: `/assets/immagini/team/${portrait}.webp`, alt: member.firstName === 'Giuseppina' ? '' : `${member.firstName} ${member.lastName}`, width: 322, height: 513 },
+}));
+const sectionSummary = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan magna vitae vestibulum efficitur. Sed ligula enim, tincidunt ut blandit in, porta consectetur orci.';
+const sections: TeamSection[] = [
+  { id: 'leadership', eyebrow: 'Leadership', title: 'Lorem ipsum dolor sit.', accent: 'Cras et lorem tempor, vehicula.', summary: 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies.', members: leadershipPlaceholder },
+  { id: 'operational', eyebrow: 'Il team operativo', title: 'Ut accumsan magna vitae.', accent: 'Sed ligula enim.', summary: sectionSummary, members: operationalPlaceholder },
+  { id: 'counsel', eyebrow: 'Of Counsel', title: 'Ut accumsan magna vitae.', accent: 'Sed ligula enim.', summary: sectionSummary, members: counselPlaceholder },
+];
 ---
 
-<PagePlaceholder title="Team" />
+<Layout>
+  <PageIntro breadcrumb="Team" parents={[{ label: 'Chi siamo', href: '/chi-siamo/' }]} eyebrow="La fiducia comincia dalle persone.">
+    <Fragment slot="title"><span class="d-block">Il nostro</span>{' '}<span class="d-block text-secondary">team.</span></Fragment>
+    Competenze diverse, una responsabilità condivisa: accompagnare ogni progetto con ascolto, competenza e continuità.
+  </PageIntro>
+
+  {sections.filter(({ members }) => members.length > 0).map(({ id, eyebrow, title, accent, summary, members }) => (
+    <section class:list={['team-section section-spacing', `team-section--${id}`]} aria-labelledby={`team-${id}-title`}>
+      {id === 'operational' && <img class="team-section-mark d-none d-lg-block" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" loading="lazy" />}
+      <div class="container">
+        <div class="row gx-4 gy-4 align-items-end team-section-header">
+          <div class="col-lg-9">
+            <p class="type-eyebrow type-eyebrow--section team-section-eyebrow">{eyebrow}</p>
+            <h2 id={`team-${id}-title`} class="type-section-title mb-0">{title}{' '}<span class="type-section-title-accent team-section-title-accent d-lg-block">{accent}</span></h2>
+          </div>
+          <div class="col-lg-3"><p class="team-section-summary mb-0">{summary}</p></div>
+        </div>
+        <div class:list={[
+          'row team-members',
+          {
+            'g-0 row-cols-1 row-cols-md-2 row-cols-xxl-3 justify-content-center': id === 'leadership',
+            'gx-0 gy-4 row-cols-1 row-cols-xl-2': id === 'operational',
+            'g-3 g-lg-4 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xxl-5': id === 'counsel',
+          },
+        ]}>
+          {members.map((member) => <div class="col"><TeamMemberCard member={member} variant={id} /></div>)}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <NewsletterSection title="Ag Informa - Iscrizione alla newsletter">
+    Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum
+  </NewsletterSection>
+</Layout>

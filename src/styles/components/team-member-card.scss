@@ -1,0 +1,300 @@
+@use 'sass:math';
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.team-member-card {
+  min-height: 543px;
+  margin: 0;
+  border: 1px solid theme.$button-border-light;
+  color: theme.$ink;
+}
+
+.team-member-card > .team-member-photo {
+  position: relative;
+  padding: 0;
+
+  > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+}
+
+.team-member-card > .team-member-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: theme.$space-32;
+}
+
+.team-member-name {
+  margin-block: theme.$space-40 0;
+  font-size: theme.$font-size-member-name;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-member-name;
+  overflow-wrap: anywhere;
+
+  > span {
+    display: block;
+  }
+}
+
+.team-member-role {
+  margin-block: theme.$space-32 0;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-compact-copy;
+}
+
+.team-member-biography {
+  margin-block: theme.$space-48 0;
+  color: theme.$muted;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-compact-copy;
+  white-space: pre-line;
+}
+
+.team-member-expertise,
+.team-member-email {
+  margin-block: theme.$space-48 0;
+  color: theme.$muted;
+  font-size: theme.$font-size-member-detail;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-member-detail;
+}
+
+.team-member-email {
+  align-self: flex-start;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: theme.$space-4;
+  }
+}
+
+.team-member-article {
+  margin-top: auto;
+  padding-top: theme.$space-64;
+}
+
+.team-member-article-link {
+  display: flex;
+  align-items: center;
+  gap: theme.$space-12;
+  border-top: 1px solid rgba(theme.$text-on-blue, 0.2);
+  padding-top: theme.$space-8;
+  color: inherit;
+  text-decoration: none;
+
+  > span:not(.team-member-article-arrow) {
+    min-width: 0;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: inherit;
+
+    .team-member-article-title {
+      text-decoration: underline;
+      text-underline-offset: theme.$space-4;
+    }
+  }
+}
+
+.team-member-article-icon {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.team-member-article-label {
+  display: block;
+  margin-bottom: theme.$space-4;
+  color: theme.$muted-on-blue-mobile;
+  font-size: theme.$font-size-content-meta;
+  line-height: theme.$line-height-content-meta;
+  text-transform: uppercase;
+}
+
+.team-member-article-title {
+  display: block;
+  font-size: theme.$font-size-member-detail;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-member-detail;
+}
+
+.team-member-article-arrow {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: theme.$font-size-button;
+  line-height: theme.$line-height-button;
+}
+
+.team-member-card--leadership {
+  min-height: 624px;
+  border: 0;
+  color: theme.$text-on-blue;
+  background: theme.$ink-deep;
+
+  > .team-member-photo {
+    width: 46%;
+  }
+
+  > .team-member-content {
+    padding: theme.$space-40 theme.$space-24;
+  }
+
+  .team-member-name {
+    $name-size: clamp(theme.$font-size-member-name, math.div(theme.$font-size-member-name-leadership, theme.$wide-layout-max-width) * 100vw, theme.$font-size-member-name-leadership);
+    margin-top: theme.$space-48;
+    font-size: $name-size;
+    line-height: $name-size;
+  }
+
+  .team-member-role {
+    margin-top: theme.$space-40;
+    color: inherit;
+  }
+
+  .team-member-biography {
+    margin-top: theme.$space-24;
+    color: theme.$muted-on-blue-mobile;
+  }
+
+  .team-member-expertise,
+  .team-member-email {
+    margin-top: theme.$space-64;
+    color: theme.$text-on-blue;
+  }
+}
+
+.team-member-card--counsel {
+  min-height: 0;
+  flex-direction: column;
+  background: white;
+
+  > .team-member-photo {
+    aspect-ratio: 256 / 400;
+  }
+
+  > .team-member-content {
+    flex-grow: 1;
+  }
+
+  .team-member-name {
+    margin-top: 0;
+  }
+
+  .team-member-role {
+    margin-top: theme.$space-12;
+  }
+}
+
+@include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .team-member-card--leadership > .team-member-content {
+    padding-inline: clamp(theme.$space-16, math.div(theme.$space-24, theme.$wide-layout-max-width) * 100vw, theme.$space-24);
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .team-member-card {
+    min-height: 286px;
+    border-color: theme.$border-soft;
+    color: theme.$ink-mobile;
+  }
+
+  .team-member-card > .team-member-content {
+    padding: theme.$space-16;
+  }
+
+  .team-member-name {
+    margin-top: 0;
+    font-size: clamp(theme.$font-size-body, math.div(theme.$font-size-member-name-mobile, 390px) * 100vw, theme.$font-size-member-name-mobile);
+    line-height: theme.$line-height-member-name-mobile;
+  }
+
+  .team-member-role {
+    margin-top: theme.$space-12;
+    font-size: theme.$font-size-content-meta;
+    line-height: theme.$line-height-content-meta;
+  }
+
+  .team-member-biography {
+    margin-top: theme.$space-16;
+    color: theme.$muted-mobile;
+    font-size: theme.$font-size-member-copy-mobile;
+    line-height: theme.$line-height-member-copy-mobile;
+  }
+
+  .team-member-expertise,
+  .team-member-email {
+    margin-top: theme.$space-24;
+    color: theme.$muted-mobile;
+    font-size: theme.$font-size-content-meta;
+    line-height: theme.$line-height-content-meta;
+  }
+
+  .team-member-article {
+    padding-top: theme.$space-12;
+  }
+
+  .team-member-card--leadership {
+    min-height: 366px;
+    color: theme.$text-on-blue;
+
+    > .team-member-photo {
+      width: 45%;
+    }
+
+    .team-member-name {
+      margin-top: theme.$space-8;
+      font-size: clamp(theme.$font-size-body, math.div(theme.$font-size-member-name-mobile, 390px) * 100vw, theme.$font-size-member-name-mobile);
+      line-height: theme.$line-height-member-name-mobile;
+    }
+
+    .team-member-role {
+      margin-top: theme.$space-12;
+    }
+
+    .team-member-biography {
+      margin-top: theme.$space-20;
+      color: theme.$muted-on-blue-mobile;
+    }
+
+    .team-member-expertise,
+    .team-member-email {
+      margin-top: theme.$space-24;
+      color: theme.$text-on-blue;
+    }
+  }
+
+  .team-member-card--counsel {
+    min-height: 0;
+
+    > .team-member-photo {
+      aspect-ratio: 161 / 256;
+    }
+
+    > .team-member-content {
+      padding: theme.$space-12;
+    }
+
+    .team-member-name {
+      font-size: theme.$font-size-member-name-counsel-mobile;
+      line-height: theme.$line-height-member-name-counsel-mobile;
+    }
+
+    .team-member-role {
+      margin-top: theme.$space-8;
+    }
+  }
+}
