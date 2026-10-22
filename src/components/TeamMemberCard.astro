@@ -15,7 +15,7 @@ const { firstName, lastName, role, biography, expertise, email, image, relatedAr
   <div class:list={['team-member-photo', { 'col-auto': variant === 'leadership', 'col-5': variant === 'operational', 'col-12': variant === 'counsel' }]}>
     {image && <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" />}
   </div>
-  <div class:list={['team-member-content', variant === 'counsel' ? 'col-12' : 'col']}>
+  <div class:list={['team-member-content d-flex flex-column', variant === 'counsel' ? 'col-12' : 'col']}>
     <h3 class="team-member-name"><span>{firstName}</span>{lastName && <Fragment>{' '}<span>{lastName}</span></Fragment>}</h3>
     {role && <p class="team-member-role">{role}</p>}
     {biography && <p class="team-member-biography">{biography}</p>}

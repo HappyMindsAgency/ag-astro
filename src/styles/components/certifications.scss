@@ -11,8 +11,6 @@
 }
 
 .certifications .certifications-heading {
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
   gap: theme.$space-40;
   min-height: 546px;
@@ -22,8 +20,6 @@
 }
 
 .certifications .certifications-logos {
-  display: flex;
-  align-items: center;
   padding-inline: theme.$space-80;
   background: theme.$surface-mist;
   scroll-margin-top: 160px;
@@ -90,7 +86,6 @@
   }
 
   .certifications .certifications-logos {
-    display: block;
     padding: theme.$space-30 28px;
     background: theme.$surface-mobile;
   }

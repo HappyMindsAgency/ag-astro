@@ -23,13 +23,13 @@ const { eyebrow, href, label, contained = false, plainBackground = false, second
       </div>
     </div>
     <div class="col-lg-auto">
-      <div class="call-to-action-actions d-flex flex-column gap-3">
+      <div class="call-to-action-actions d-flex flex-column gap-3 mt-3 mt-lg-0">
         {href ? (
-          <a class="btn site-button site-button--light call-to-action-link" href={href}>{label} <span aria-hidden="true">→</span></a>
+          <a class="btn site-button site-button--light site-button--small" href={href}>{label} <span aria-hidden="true">→</span></a>
         ) : (
-          <button class="btn site-button site-button--light call-to-action-link" type="button" disabled>{label} <span aria-hidden="true">→</span></button>
+          <button class="btn site-button site-button--light site-button--small" type="button" disabled>{label} <span aria-hidden="true">→</span></button>
         )}
-        {secondaryAction && <a class="btn site-button site-button--outline-light call-to-action-link" href={secondaryAction.href}>{secondaryAction.label} <span aria-hidden="true">→</span></a>}
+        {secondaryAction && <a class="btn site-button site-button--outline-light site-button--small" href={secondaryAction.href}>{secondaryAction.label} <span aria-hidden="true">→</span></a>}
       </div>
     </div>
   </div>

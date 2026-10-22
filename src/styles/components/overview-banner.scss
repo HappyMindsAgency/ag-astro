@@ -2,8 +2,6 @@
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .overview-banner {
-  display: flex;
-  align-items: center;
   min-height: 432px;
   padding-block: theme.$space-48;
   color: white;

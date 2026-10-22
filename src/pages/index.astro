@@ -70,9 +70,9 @@ const articlePlaceholders: ArticlePreview[] = [
 ---
 
 <Layout headerHeroId="home-hero">
-  <section id="home-hero" class="home-hero" aria-labelledby="page-title">
-    <div class="home-hero-content">
-      <p class="home-hero-eyebrow mb-0">AG Trustees</p>
+  <section id="home-hero" class="home-hero d-flex align-items-center" aria-labelledby="page-title">
+    <div class="home-hero-content d-flex flex-column">
+      <p class="home-hero-eyebrow d-flex align-items-center mb-0">AG Trustees</p>
       <h1 id="page-title" class="home-hero-title mb-0">
         <span class="d-block">Dare forma al patrimonio.</span>
         <span class="d-block type-section-title-accent">Custodirne il futuro.</span>
@@ -107,7 +107,7 @@ const articlePlaceholders: ArticlePreview[] = [
       </div>
       <ol class="row g-0 home-wealth-grid list-unstyled mb-0">
         {needs.map((title, index) => (
-          <li class="col-12 col-md-6 col-xxl-4 home-wealth-card">
+          <li class="col-12 col-md-6 col-xxl-4 d-flex flex-column justify-content-between home-wealth-card">
             <span class="home-card-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <h3 class="home-wealth-card-title mb-0">{title}</h3>
           </li>

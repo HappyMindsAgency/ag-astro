@@ -84,15 +84,6 @@
 
 .related-action {
   margin-top: theme.$space-80;
-
-  .site-button {
-    gap: theme.$space-4;
-    padding: 14px theme.$space-30;
-    font-size: theme.$font-size-cta-label;
-    line-height: theme.$line-height-cta-label;
-    letter-spacing: theme.$letter-spacing-cta-label;
-    text-transform: uppercase;
-  }
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {

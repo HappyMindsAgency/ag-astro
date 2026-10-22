@@ -9,10 +9,6 @@
   .container {
     padding-inline: 0;
   }
-
-  .row {
-    --bs-gutter-x: #{theme.$space-24};
-  }
 }
 
 .about-identity-eyebrow {
@@ -32,7 +28,6 @@
 }
 
 .about-identity .about-identity-cards {
-  --bs-gutter-x: 0;
   margin-top: theme.$space-80;
   border-top: 1px solid rgba(theme.$text-on-blue, 0.2);
   border-left: 1px solid rgba(theme.$text-on-blue, 0.2);
@@ -168,10 +163,6 @@
   .container {
     padding-inline: 0;
   }
-
-  .row {
-    --bs-gutter-x: #{theme.$space-24};
-  }
 }
 
 .about-origin-eyebrow {
@@ -230,9 +221,6 @@
 }
 
 .about-competencies-heading {
-  --bs-gutter-x: #{theme.$space-24};
-  justify-content: space-between;
-
   h2 {
     max-width: 676px;
   }
@@ -252,7 +240,6 @@
   border-top: 1px solid rgba(theme.$ink, 0.3);
 
   .row {
-    --bs-gutter-x: 0;
     min-height: 100px;
     border-bottom: 1px solid rgba(theme.$ink, 0.2);
   }

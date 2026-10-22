@@ -91,7 +91,7 @@ const methodSteps = [
 
   <section class="about-identity section-spacing" aria-labelledby="identity-title">
     <div class="container">
-      <div class="row">
+      <div class="row gx-4">
         <div class="col-lg-5">
           <p class="type-eyebrow about-identity-eyebrow mb-lg-0">Chi è AG Trustees</p>
         </div>
@@ -102,7 +102,7 @@ const methodSteps = [
           <p class="type-section-copy about-identity-copy mb-0">Affianchiamo famiglie, imprenditori e professionisti nell’istituzione e nell’amministrazione di trust, con competenza giuridica, equilibrio e visione di lungo periodo.<br />Perché dietro ogni patrimonio ci sono legami, imprese, responsabilità e progetti che cambiano ed evolvono nel tempo.<br />AG Trustees amministra i beni conferiti in trust, cura gli adempimenti connessi e lavora insieme ai professionisti coinvolti.</p>
         </div>
       </div>
-      <div class="row about-identity-cards">
+      <div class="row gx-0 about-identity-cards">
         {identityCards.map((card, index) => (
           <article class="col-6 col-xxl-3 about-identity-card">
             <p class="about-identity-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
@@ -120,7 +120,7 @@ const methodSteps = [
 
   <section class="about-origin section-spacing" aria-labelledby="origin-title">
     <div class="container">
-      <div class="row align-items-end">
+      <div class="row gx-4 align-items-end">
         <div class="col-lg-7">
           <p class="type-eyebrow type-eyebrow--section about-origin-eyebrow">Come nasce AG Trustees</p>
           <h2 id="origin-title" class="type-section-title type-section-title--compact about-origin-title mb-0">
@@ -140,7 +140,7 @@ const methodSteps = [
 
   <section class="about-competencies section-spacing" aria-labelledby="competencies-title">
     <div class="container">
-      <div class="row align-items-end about-competencies-heading">
+      <div class="row gx-4 align-items-end justify-content-between about-competencies-heading">
         <div class="col-lg-7">
           <p class="type-eyebrow type-eyebrow--section about-competencies-eyebrow">Le nostre competenze</p>
           <h2 id="competencies-title" class="type-section-title type-section-title--compact mb-0">
@@ -153,7 +153,7 @@ const methodSteps = [
       </div>
       <ol class="about-competencies-list list-unstyled mb-0">
         {competencies.map((title, index) => (
-          <li class="row align-items-center">
+          <li class="row gx-0 align-items-center">
             <span class="col-auto about-competency-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <h3 class="col about-competency-title mb-0">{title}</h3>
             <p class="col-lg-5 col-xxl-6 about-competency-description mb-0">{competencyDescription}</p>

@@ -53,16 +53,6 @@ $cta-mobile-content-width: 294px; // Frame Figma da 390 px, con 48 px per lato.
   line-height: theme.$line-height-cta-copy;
 }
 
-.site-button.call-to-action-link {
-  gap: theme.$space-4;
-  padding: 14px theme.$space-30;
-  font-size: theme.$font-size-cta-label;
-  font-weight: theme.$font-weight-medium;
-  line-height: theme.$line-height-cta-label;
-  letter-spacing: theme.$letter-spacing-cta-label;
-  text-transform: uppercase;
-}
-
 @include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
   .call-to-action {
     padding-inline: theme.$space-48;
@@ -89,14 +79,9 @@ $cta-mobile-content-width: 294px; // Frame Figma da 390 px, con 48 px per lato.
     line-height: theme.$line-height-section-lead-mobile;
   }
 
-  .site-button.call-to-action-link {
+  .call-to-action .site-button.site-button--small {
     justify-content: center;
     width: 100%;
-    margin-top: theme.$space-16;
     padding-inline: theme.$space-12;
-  }
-
-  .call-to-action-actions > .call-to-action-link + .call-to-action-link {
-    margin-top: 0;
   }
 }

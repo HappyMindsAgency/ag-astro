@@ -55,17 +55,6 @@
   line-height: theme.$line-height-body;
 }
 
-.site-button.service-catalogue-link {
-  gap: theme.$space-4;
-  margin-top: theme.$space-16;
-  padding: 14px theme.$space-30;
-  font-size: theme.$font-size-cta-label;
-  font-weight: theme.$font-weight-medium;
-  line-height: theme.$line-height-cta-label;
-  letter-spacing: theme.$letter-spacing-cta-label;
-  text-transform: uppercase;
-}
-
 .service-catalogue-item .service-catalogue-arrow {
   position: absolute;
   top: theme.$space-36;

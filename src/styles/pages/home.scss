@@ -2,8 +2,6 @@
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .home-hero {
-  display: flex;
-  align-items: center;
   min-height: 850px;
   padding: theme.$space-32 theme.$space-80 theme.$space-48;
   color: white;
@@ -11,8 +9,6 @@
 }
 
 .home-hero-content {
-  display: flex;
-  flex-direction: column;
   gap: theme.$space-24;
   width: 100%;
   max-width: 1566px;
@@ -21,8 +17,6 @@
 }
 
 .home-hero-eyebrow {
-  display: flex;
-  align-items: center;
   gap: theme.$space-8;
   color: rgba(white, 0.65);
   font-size: theme.$font-size-small;
@@ -111,9 +105,6 @@
 }
 
 .home-wealth-grid .home-wealth-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   gap: theme.$space-40;
   min-height: 215px;
   border-right: 1px solid theme.$footer-border;
