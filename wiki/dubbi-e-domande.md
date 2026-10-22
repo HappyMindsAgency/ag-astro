@@ -97,5 +97,13 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 ## 16. AG Informa: contenuti e collegamenti
 
 - **Articoli:** introduzione, testi, date e categorie sono provvisori. Uso otto esempi della pagina Figma e due della Home per verificare il caricamento progressivo; servono dati, ordine e categorie definitivi da Strapi.
-- **Dettagli:** i link portano al modello esistente `/ag-informa/articolo-provvisorio/`, ancora con il solo titolo. Il dettaglio è da realizzare sul design Figma; i collegamenti definitivi arriveranno dai dati Strapi.
+- **Dettagli:** i link portano al modello `/ag-informa/articolo-provvisorio/`, con contenuti di esempio da Figma; i collegamenti definitivi arriveranno dai dati Strapi.
 - **Newsletter:** manca la destinazione di “Leggi l’ultima newsletter”, che resta disattivato. “Iscriviti” porta al modulo di Contatti; il servizio di iscrizione resta da integrare.
+
+## 17. Dettaglio articolo: contenuti e mobile
+
+- **Strapi:** testo, data, tempo di lettura, autore, nota sull’IA e correlati sono esempi Figma. Servono contenuti definitivi e accordo con Vito sul formato del corpo editoriale e sulle relazioni. Per ora ogni slug mostra lo stesso esempio.
+- **Mobile:** manca un frame completo. Adatto il desktop con indice richiudibile prima del testo; da confrontare con la prossima release.
+- **Indice:** Figma elenca “In breve: le risposte chiave”, ma non mostra la sezione corrispondente. Voce omessa in attesa del contenuto.
+- **FAQ e documenti:** mancano risposte e PDF. Uso Lorem ipsum e download inattivi; servono testi, file e metadati definitivi.
+- **Invito finale:** titolo e descrizione sono Lorem ipsum; servono i testi definitivi.

@@ -1,0 +1,28 @@
+@use '../variables' as theme;
+
+.article-contact-card {
+  padding: theme.$space-24;
+  color: theme.$text-on-blue;
+  background: linear-gradient(135deg, theme.$ink, theme.$article-contact-dark);
+
+  h2 {
+    margin-bottom: theme.$space-12;
+    font-size: theme.$font-size-value-title;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-compact-copy;
+  }
+
+  > p {
+    color: theme.$muted-on-blue-mobile;
+    font-size: theme.$font-size-article-excerpt;
+    line-height: theme.$line-height-article-excerpt;
+  }
+
+  > .article-contact-label {
+    margin-bottom: theme.$space-8;
+    font-size: theme.$font-size-content-meta;
+    line-height: theme.$line-height-content-meta;
+    letter-spacing: theme.$letter-spacing-cta-label;
+    text-transform: uppercase;
+  }
+}

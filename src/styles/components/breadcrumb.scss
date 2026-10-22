@@ -1,0 +1,48 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.breadcrumb.site-breadcrumb {
+  --site-breadcrumb-link-color: #{theme.$muted};
+  --site-breadcrumb-current-color: #{theme.$ink};
+  --bs-breadcrumb-divider: '/';
+  --bs-breadcrumb-divider-color: var(--site-breadcrumb-link-color);
+  --bs-breadcrumb-item-active-color: var(--site-breadcrumb-current-color);
+  margin: 0;
+  padding-block: theme.$space-20;
+  font-size: theme.$font-size-breadcrumb;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-breadcrumb;
+  letter-spacing: theme.$letter-spacing-breadcrumb;
+  text-transform: uppercase;
+
+  a {
+    color: var(--site-breadcrumb-link-color);
+    text-decoration: none;
+  }
+
+  .breadcrumb-item.active {
+    font-weight: theme.$font-weight-medium;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .breadcrumb.site-breadcrumb {
+    --site-breadcrumb-link-color: #{theme.$muted-mobile};
+    --site-breadcrumb-current-color: #{theme.$ink-mobile};
+    --bs-breadcrumb-divider: '›';
+    --bs-breadcrumb-item-padding-x: 9px;
+    padding: 0;
+    font-size: theme.$font-size-small;
+    line-height: theme.$line-height-breadcrumb-mobile;
+    letter-spacing: 0;
+
+    .breadcrumb-item.active {
+      font-weight: theme.$font-weight-regular;
+    }
+  }
+}
+
+.breadcrumb.site-breadcrumb.site-breadcrumb--light {
+  --site-breadcrumb-link-color: #{theme.$muted-on-blue-mobile};
+  --site-breadcrumb-current-color: #{theme.$text-on-blue};
+}

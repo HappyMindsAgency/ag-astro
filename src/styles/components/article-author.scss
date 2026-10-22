@@ -1,0 +1,98 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.article-author {
+  display: grid;
+  grid-template-columns: theme.$space-80 minmax(0, 1fr);
+  column-gap: theme.$space-28;
+  row-gap: theme.$space-16;
+  border: 1px solid rgba(theme.$editorial-border, 0.35);
+  padding: theme.$space-40;
+  color: theme.$ink;
+}
+
+.article-author-image {
+  grid-row: span 2;
+  width: theme.$space-80;
+  height: theme.$space-80;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.article-author-label {
+  margin-bottom: theme.$space-8;
+  color: theme.$editorial-border;
+  font-size: theme.$font-size-content-meta;
+  line-height: theme.$line-height-content-meta;
+  text-transform: uppercase;
+}
+
+.article-author-name {
+  margin-bottom: theme.$space-4;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-compact-copy;
+}
+
+.article-author-role {
+  margin-bottom: 0;
+  font-size: theme.$font-size-small;
+  line-height: theme.$line-height-small;
+}
+
+.article-author-biography {
+  grid-column: 2;
+  color: theme.$muted;
+  font-size: theme.$font-size-article-excerpt;
+  line-height: theme.$line-height-article-excerpt;
+}
+
+.article-author--compact {
+  grid-template-columns: theme.$space-40 minmax(0, 1fr);
+  align-items: center;
+  gap: theme.$space-12;
+  border: 0;
+  padding: 0;
+  color: inherit;
+
+  .article-author-image {
+    grid-row: auto;
+    width: theme.$space-40;
+    height: theme.$space-40;
+  }
+
+  .article-author-name {
+    font-size: theme.$font-size-small;
+    line-height: theme.$line-height-small;
+  }
+
+  .article-author-role {
+    margin: 0;
+    color: theme.$muted-on-blue-mobile;
+    font-size: theme.$font-size-content-meta;
+    line-height: theme.$line-height-content-meta;
+  }
+}
+
+.article-author--no-image {
+  grid-template-columns: minmax(0, 1fr);
+
+  .article-author-biography {
+    grid-column: 1;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .article-author:not(.article-author--compact) {
+    padding: theme.$space-24;
+    column-gap: theme.$space-16;
+
+    .article-author-image {
+      grid-row: auto;
+    }
+
+    .article-author-biography {
+      grid-column: 1 / -1;
+    }
+  }
+}

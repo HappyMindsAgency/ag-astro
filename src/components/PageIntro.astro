@@ -1,4 +1,5 @@
 ---
+import Breadcrumb from './Breadcrumb.astro';
 import '../styles/components/page-intro.scss';
 
 interface Props {
@@ -17,13 +18,7 @@ const copyColumnClass = wideTitle ? 'col-md-6 col-xxl-auto' : 'col-md-6';
 
 <section class:list={['page-intro', { 'page-intro--wide-title': wideTitle, 'page-intro--fit-mobile-title': fitMobileTitle }]} aria-labelledby="page-title">
   <div class="container">
-    <nav aria-label="Percorso di navigazione">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        {parents.map(({ label, href }) => <li class="breadcrumb-item"><a href={href}>{label}</a></li>)}
-        <li class="breadcrumb-item active" aria-current="page">{breadcrumb}</li>
-      </ol>
-    </nav>
+    <Breadcrumb current={breadcrumb} parents={parents} />
 
     <div class="row align-items-end">
       <div class:list={[headingColumnClass, 'page-intro-heading']}>

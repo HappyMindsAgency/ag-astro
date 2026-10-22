@@ -9,28 +9,6 @@
     padding-inline: theme.$space-40;
   }
 
-  .breadcrumb {
-    --bs-breadcrumb-divider: '/';
-    --bs-breadcrumb-divider-color: #{theme.$muted};
-    --bs-breadcrumb-item-active-color: #{theme.$ink};
-    margin: 0;
-    padding-block: theme.$space-20;
-    font-size: theme.$font-size-breadcrumb;
-    font-weight: theme.$font-weight-regular;
-    line-height: theme.$line-height-breadcrumb;
-    letter-spacing: theme.$letter-spacing-breadcrumb;
-    text-transform: uppercase;
-
-    a {
-      color: theme.$muted;
-      text-decoration: none;
-    }
-
-    .breadcrumb-item.active {
-      font-weight: theme.$font-weight-medium;
-    }
-  }
-
   .row {
     --bs-gutter-x: 0;
     --bs-gutter-y: 0;
@@ -87,25 +65,6 @@
     .container {
       max-width: none;
       padding-inline: theme.$page-gutter-mobile;
-    }
-
-    .breadcrumb {
-      --bs-breadcrumb-divider: '›';
-      --bs-breadcrumb-divider-color: #{theme.$muted-mobile};
-      --bs-breadcrumb-item-active-color: #{theme.$ink-mobile};
-      --bs-breadcrumb-item-padding-x: 9px;
-      padding: 0;
-      font-size: theme.$font-size-small;
-      line-height: theme.$line-height-breadcrumb-mobile;
-      letter-spacing: 0;
-
-      a {
-        color: theme.$muted-mobile;
-      }
-
-      .breadcrumb-item.active {
-        font-weight: theme.$font-weight-regular;
-      }
     }
   }
 

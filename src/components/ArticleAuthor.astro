@@ -1,0 +1,21 @@
+---
+import type { TeamMember } from '../types/content';
+import '../styles/components/article-author.scss';
+
+interface Props {
+  author: TeamMember;
+  compact?: boolean;
+}
+
+const { author, compact = false } = Astro.props;
+---
+
+<div class:list={['article-author', { 'article-author--compact': compact, 'article-author--no-image': !author.image }]}>
+  {author.image && <img class="article-author-image" src={author.image.src} alt={author.image.alt} width={author.image.width} height={author.image.height} loading="lazy" />}
+  <div>
+    {!compact && <p class="article-author-label">L’autore</p>}
+    <p class="article-author-name">{author.firstName}{' '}{author.lastName}</p>
+    {author.role && <p class="article-author-role">{author.role}</p>}
+  </div>
+  {!compact && author.biography && <p class="article-author-biography mb-0">{author.biography}</p>}
+</div>

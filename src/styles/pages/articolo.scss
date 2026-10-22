@@ -1,0 +1,281 @@
+@use 'sass:math';
+@use '../variables' as theme;
+@use '../mixins' as shared;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.article-hero > .container,
+.article-main > .container {
+  --bs-gutter-x: #{theme.$space-48};
+  max-width: theme.$frame-max-width + theme.$space-48;
+}
+
+.article-hero {
+  color: theme.$text-on-blue;
+  background: radial-gradient(ellipse, rgba(theme.$brand-red, 0.08), transparent), theme.$brand-blue;
+}
+
+.article-hero-layout {
+  padding-block: theme.$space-64;
+}
+
+.article-category {
+  display: inline-block;
+  margin-bottom: theme.$space-24;
+  border: 1px solid rgba(theme.$text-on-blue, 0.35);
+  padding: theme.$space-4 theme.$space-8;
+  font-size: theme.$font-size-content-meta;
+  line-height: theme.$line-height-content-meta;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.article-title {
+  margin-bottom: theme.$space-24;
+  font-size: clamp(theme.$font-size-section-title-mobile, math.div(theme.$font-size-article-page-title, theme.$wide-layout-max-width) * 100vw, theme.$font-size-article-page-title);
+  font-weight: theme.$font-weight-semibold;
+  line-height: math.div(theme.$line-height-article-page-title, theme.$font-size-article-page-title);
+  letter-spacing: theme.$letter-spacing-article-page-title;
+}
+
+.article-introduction {
+  margin-bottom: theme.$space-40;
+  color: rgba(white, 0.65);
+  font-size: theme.$font-size-article-introduction;
+  line-height: theme.$line-height-article-introduction;
+}
+
+.article-meta {
+  column-gap: theme.$space-20;
+  row-gap: theme.$space-12;
+  color: theme.$muted-on-blue-mobile;
+  font-size: theme.$font-size-content-meta;
+  line-height: theme.$line-height-content-meta;
+
+  .article-author {
+    color: theme.$text-on-blue;
+  }
+}
+
+.article-main {
+  padding-block: 120px theme.$space-64;
+}
+
+.article-sidebar {
+  align-self: start;
+}
+
+.article-sidebar-box {
+  border: 1px solid rgba(theme.$editorial-border, 0.35);
+  padding: theme.$space-24;
+}
+
+.article-sidebar-label {
+  margin-bottom: theme.$space-12;
+  color: theme.$ink;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-compact-copy;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.article-index .nav-link {
+  border-left: 2px solid transparent;
+  padding: theme.$space-8 theme.$space-12;
+  color: theme.$muted;
+  font-size: theme.$font-size-body;
+  line-height: theme.$line-height-compact-copy;
+
+  &.active {
+    border-color: theme.$brand-red;
+    color: theme.$brand-red;
+  }
+
+  &:hover {
+    color: theme.$brand-red;
+  }
+}
+
+.article-index-toggle {
+  border: 0;
+  padding: 0;
+  color: theme.$ink;
+  background: transparent;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-semibold;
+}
+
+.article-share {
+  margin-block: theme.$space-24;
+
+  .article-sidebar-label {
+    color: theme.$editorial-border;
+  }
+}
+
+.article-share-control {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.article-index a:focus-visible,
+.article-index-toggle:focus-visible,
+.article-share-control:focus-visible {
+  outline: 2px solid theme.$brand-blue;
+  outline-offset: theme.$space-4;
+}
+
+.article-prose {
+  color: theme.$ink;
+  font-size: theme.$font-size-section-copy;
+  line-height: theme.$line-height-section-copy;
+
+  section {
+    scroll-margin-top: 160px;
+    margin-bottom: theme.$space-64;
+  }
+
+  h2 {
+    margin-bottom: theme.$space-24;
+    font-size: theme.$font-size-article-section-title;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-article-section-title;
+  }
+
+  h3 {
+    margin-block: theme.$space-32 theme.$space-12;
+    font-size: inherit;
+    font-weight: theme.$font-weight-semibold;
+    line-height: inherit;
+  }
+
+  p,
+  ul,
+  blockquote {
+    margin-bottom: theme.$space-24;
+  }
+
+  li + li {
+    margin-top: theme.$space-12;
+  }
+
+  strong {
+    font-weight: theme.$font-weight-semibold;
+  }
+
+  blockquote {
+    border-left: 3px solid theme.$brand-red;
+    padding: theme.$space-24;
+    background: theme.$surface-quote;
+    font-family: theme.$font-family-quote;
+    font-style: italic;
+    line-height: theme.$line-height-article-quote;
+  }
+}
+
+.article-documents {
+  margin-top: theme.$space-80;
+
+  > h2 {
+    margin-bottom: theme.$space-28;
+    font-size: theme.$font-size-section-title-mobile;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-section-title-mobile;
+  }
+}
+
+.article-editorial-note {
+  gap: theme.$space-12;
+  margin-block: theme.$space-64;
+  color: theme.$ink;
+  font-size: theme.$font-size-body;
+  font-style: italic;
+  line-height: theme.$line-height-body;
+
+  > img {
+    flex-shrink: 0;
+  }
+}
+
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .article-hero-layout > .article-hero-media {
+    @include shared.article-media-column;
+  }
+}
+
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .article-prose h2 {
+    font-size: theme.$font-size-section-title-mobile;
+    line-height: theme.$line-height-section-title-mobile;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .article-hero {
+    padding-top: theme.$space-24;
+  }
+
+  .article-hero-layout {
+    padding-block: theme.$space-40;
+  }
+
+  .article-title {
+    font-size: theme.$font-size-section-title-mobile;
+    line-height: theme.$line-height-section-title-mobile;
+  }
+
+  .article-main {
+    padding-block: theme.$space-64;
+  }
+
+  .article-index .nav {
+    padding-top: theme.$space-16;
+  }
+
+  .article-share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: theme.$space-16;
+    margin-bottom: 0;
+    padding-block: theme.$space-12;
+
+    .article-sidebar-label {
+      margin: 0;
+      font-size: theme.$font-size-small;
+    }
+  }
+
+  .article-prose {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-editorial-copy-mobile;
+
+    section {
+      margin-bottom: theme.$space-48;
+    }
+
+    blockquote {
+      padding: theme.$space-20;
+      line-height: theme.$line-height-editorial-copy-mobile;
+    }
+  }
+
+  .article-documents {
+    margin-top: theme.$space-48;
+  }
+
+  .article-editorial-note {
+    margin-block: theme.$space-40;
+    font-size: theme.$font-size-article-excerpt;
+    line-height: theme.$line-height-article-excerpt;
+  }
+
+  .article-mobile-contact {
+    margin-top: theme.$space-40;
+  }
+}

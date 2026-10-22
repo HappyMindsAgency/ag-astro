@@ -1,5 +1,5 @@
-@use 'sass:math';
 @use '../variables' as theme;
+@use '../mixins' as shared;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .news-main-article {
@@ -128,7 +128,7 @@
 
 @include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
   .news-main-article--hero .news-article-image-column {
-    width: math.percentage(math.div(768px + theme.$space-48, theme.$frame-max-width + theme.$space-48));
+    @include shared.article-media-column;
   }
 }
 

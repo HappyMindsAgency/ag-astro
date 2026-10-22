@@ -58,18 +58,34 @@
 }
 
 .collapse-toggle {
+  --collapse-toggle-stroke: 2px;
+  position: relative;
+  display: inline-block;
   flex-shrink: 0;
+  width: 0.6em;
+  height: 1em;
   color: theme.$brand-red;
   font-size: 22px;
-  line-height: 1;
 
-  &::before {
-    content: '+';
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.6em;
+    height: var(--collapse-toggle-stroke);
+    background: currentColor;
+    transform: translate(-50%, -50%);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(90deg);
   }
 }
 
-[aria-expanded='true'] .collapse-toggle::before {
-  content: '−';
+[aria-expanded='true'] .collapse-toggle::after {
+  display: none;
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {

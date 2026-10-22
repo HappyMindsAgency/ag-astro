@@ -1,0 +1,19 @@
+---
+import '../styles/components/breadcrumb.scss';
+
+interface Props {
+  current: string;
+  parents?: { label: string; href: string }[];
+  light?: boolean;
+}
+
+const { current, parents = [], light = false } = Astro.props;
+---
+
+<nav aria-label="Percorso di navigazione">
+  <ol class:list={['breadcrumb site-breadcrumb', { 'site-breadcrumb--light': light }]}>
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    {parents.map(({ label, href }) => <li class="breadcrumb-item"><a href={href}>{label}</a></li>)}
+    <li class="breadcrumb-item active" aria-current="page">{current}</li>
+  </ol>
+</nav>

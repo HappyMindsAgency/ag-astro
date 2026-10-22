@@ -1,4 +1,9 @@
+@use 'sass:math';
 @use './variables' as theme;
+
+@mixin article-media-column {
+  width: math.percentage(math.div(768px + theme.$space-48, theme.$frame-max-width + theme.$space-48));
+}
 
 @mixin brand-gradient($angle: 104deg) {
   background: linear-gradient($angle, rgba(theme.$brand-blue, 0.94), rgba(theme.$cta-overlay-middle, 0.88) 58%, rgba(theme.$accent-red, 0.91)), url('/assets/immagini/sfondo-cta.jpg') center 46% / cover;

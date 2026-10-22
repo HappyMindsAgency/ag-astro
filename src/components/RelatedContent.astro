@@ -1,21 +1,16 @@
 ---
 import '../styles/components/related-content.scss';
-import type { ArticlePreview } from '../types/content';
-
-interface Document {
-  title: string;
-  downloadUrl?: string;
-  category: string;
-  abbreviation: string;
-  metadata: string;
-}
+import type { ArticlePreview, DocumentPreview } from '../types/content';
+import DocumentList from './DocumentList.astro';
 
 interface Props {
   articles?: ArticlePreview[];
-  documents?: Document[];
+  documents?: DocumentPreview[];
+  eyebrow?: string;
+  showLibraryLink?: boolean;
 }
 
-const { articles = [], documents = [] } = Astro.props;
+const { articles = [], documents = [], eyebrow = 'Approfondimenti', showLibraryLink = true } = Astro.props;
 ---
 
 {(articles.length > 0 || documents.length > 0) && (
@@ -23,8 +18,13 @@ const { articles = [], documents = [] } = Astro.props;
     <div class="container">
       {articles.length > 0 && (
         <section aria-labelledby="related-articles-title">
-          <p class="type-eyebrow type-eyebrow--section related-eyebrow">Approfondimenti</p>
-          <h2 id="related-articles-title" class="related-title">Articoli correlati</h2>
+          <div class="related-articles-header d-flex flex-wrap align-items-end justify-content-between">
+            <div>
+              <p class="type-eyebrow type-eyebrow--section related-eyebrow">{eyebrow}</p>
+              <h2 id="related-articles-title" class="related-title">Articoli correlati</h2>
+            </div>
+            <slot name="articles-action" />
+          </div>
           <div class="row gx-5 gy-5">
             {articles.map(({ title, href, image, category, date, dateTime, excerpt }) => (
               <article class="col-md-6 col-lg-4 related-article">
@@ -42,27 +42,12 @@ const { articles = [], documents = [] } = Astro.props;
       {documents.length > 0 && (
         <section class:list={{ 'related-documents': articles.length > 0 }} aria-labelledby="related-documents-title">
           <h2 id="related-documents-title" class="related-title">Documenti correlati</h2>
-          <ul class="row gx-5 gy-0 list-unstyled mb-0">
-            {documents.map(({ title, downloadUrl, category, abbreviation, metadata }) => (
-              <li class="col-lg-6">
-                <div class="related-document d-flex align-items-center gap-3">
-                  <span class="related-document-badge" aria-hidden="true">{abbreviation}</span>
-                  <div class="flex-grow-1">
-                    <h3 class="related-document-title">{title}</h3>
-                    <p class="related-document-meta mb-0"><span>{category}</span>{' | '}{metadata}</p>
-                  </div>
-                  <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download={downloadUrl ? true : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={`Scarica PDF: ${title}`}>
-                    <span aria-hidden="true">↓</span> Scarica PDF
-                  </a>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <DocumentList documents={documents} />
         </section>
       )}
-      <div class="related-action text-center">
+      {showLibraryLink && <div class="related-action text-center">
         <a class="btn site-button site-button--blue" href="/knowledge-library/">Consulta la Knowledge Library <span aria-hidden="true">→</span></a>
-      </div>
+      </div>}
     </div>
   </div>
 )}

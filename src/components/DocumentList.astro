@@ -1,0 +1,31 @@
+---
+import type { DocumentPreview } from '../types/content';
+import downloadIcon from 'bootstrap-icons/icons/download.svg?raw';
+import '../styles/components/document-list.scss';
+
+interface Props {
+  documents?: DocumentPreview[];
+  compact?: boolean;
+}
+
+const { documents = [], compact = false } = Astro.props;
+---
+
+{documents.length > 0 && (
+  <ul class:list={['document-list row gx-5 gy-0 list-unstyled mb-0', { 'document-list--compact': compact }]}>
+    {documents.map(({ title, downloadUrl, category, abbreviation, metadata }) => (
+      <li class={compact ? 'col-12' : 'col-lg-6'}>
+        <div class="related-document d-flex align-items-center gap-3">
+          <span class="related-document-badge" aria-hidden="true">{abbreviation}</span>
+          <div class="flex-grow-1">
+            <h3 class="related-document-title">{title}</h3>
+            <p class="related-document-meta mb-0"><span>{category}</span>{' | '}{metadata}</p>
+          </div>
+          <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download={downloadUrl ? true : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={`Scarica PDF: ${title}`}>
+            <span class="d-inline-flex" aria-hidden="true" set:html={downloadIcon} /> Scarica PDF
+          </a>
+        </div>
+      </li>
+    ))}
+  </ul>
+)}

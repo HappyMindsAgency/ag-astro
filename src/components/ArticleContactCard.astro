@@ -1,0 +1,17 @@
+---
+import '../styles/components/article-contact-card.scss';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<div class="article-contact-card">
+  <p class="article-contact-label">Consulenza</p>
+  <h2>{title}</h2>
+  <p>{description}</p>
+  <a class="btn site-button site-button--light site-button--small" href="/contatti/">Contattaci <span aria-hidden="true">→</span></a>
+</div>

@@ -121,3 +121,41 @@
     line-height: theme.$line-height-body;
   }
 }
+
+.faq-section.faq-section--embedded {
+  scroll-margin-top: 160px;
+  padding: 0;
+  background: transparent;
+
+  > .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .faq-embedded-title {
+    font-size: theme.$font-size-article-embedded-heading;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-article-embedded-heading;
+  }
+
+  .faq-list,
+  .accordion-item {
+    border-color: theme.$border-soft;
+  }
+
+  .faq-question {
+    padding-block: theme.$space-20;
+    font-size: theme.$font-size-button;
+    line-height: theme.$line-height-button;
+  }
+
+  .collapse-toggle {
+    --collapse-toggle-stroke: 1px;
+    width: theme.$space-24;
+    height: theme.$space-24;
+    border: 1px solid theme.$border-soft;
+    border-radius: 50%;
+    color: theme.$ink;
+    font-size: theme.$font-size-button;
+  }
+}

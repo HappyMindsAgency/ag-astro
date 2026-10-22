@@ -7,7 +7,7 @@ Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/des
 | File | Contenuto |
 | --- | --- |
 | `src/styles/variables.scss` | Misure tipografiche, colori, pesi e spazi condivisi |
-| `src/styles/fonts.scss` | File locali di Jost e relative dichiarazioni `@font-face` |
+| `src/styles/fonts.scss` | Font locali e relative dichiarazioni `@font-face` |
 | `src/styles/typography.scss` | Classi tipografiche per ruolo e varianti mobile |
 | `src/styles/globals.scss` | Configurazione Bootstrap e stile generale |
 | `src/styles/components/` | Stili dei componenti condivisi e dei pulsanti |
@@ -24,7 +24,7 @@ Le pagine solo predisposte riutilizzano `PagePlaceholder`: layout comune, titolo
 
 ## Stile e componenti
 
-- Usa Jost locale e misure in **px**. Bootstrap mantiene le sue unità interne.
+- Usa Jost locale e misure in **px**; le citazioni degli articoli usano Playfair Display corsivo, come in Figma. Bootstrap mantiene le sue unità interne.
 - I sopratitoli desktop sono uniformati a **16 px**, definiti in `$font-size-page-eyebrow` e confermati dal designer. La spaziatura delle lettere è `normal`, gestita da `.type-eyebrow` anche sul mobile.
 - Sul mobile, “Chi è AG Trustees” conserva la variante da 10 px; gli altri sopratitoli di sezione usano `.type-eyebrow--section` da 12 px e maiuscoli.
 - Prima di definire o modificare uno stile condiviso, confronta le occorrenze nelle pagine Figma, comprese quelle ancora da sviluppare. Mantieni lo stesso stile per lo stesso ruolo; ammetti varianti solo se giustificate dal design. Non introdurre correzioni tipografiche nei fogli pagina per elementi già condivisi.
@@ -39,6 +39,8 @@ Le pagine solo predisposte riutilizzano `PagePlaceholder`: layout comune, titolo
 
 `PageIntro` gestisce breadcrumb, sopratitolo, titolo e introduzione. `parents` aggiunge le pagine superiori al breadcrumb. Si usa una volta per pagina; la proprietà `mobileTitleLeading` conserva le varianti `tight` (50 px), `regular` (60 px) e `relaxed` (69 px). I titoli di home, articoli e FAQ hanno ruoli propri.
 
+`Breadcrumb` condivide il percorso di navigazione; `light` lo adatta agli sfondi scuri. È già incluso in `PageIntro`.
+
 Per i paragrafi editoriali usa `.type-section-lead`: 20 px con interlinea 32,2 px sul desktop, 16 px con interlinea 20 px sul mobile. La variante `.type-section-lead--relaxed` mantiene 25 px sul mobile, per la panoramica di Visione e l’introduzione dei servizi. Colori e spazi restano nel relativo contesto. Le descrizioni delle card del metodo usano interlinea 23 px sul desktop e 20 px sul mobile.
 
 Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `fitMobileTitle`, che riduce il corpo sui telefoni più stretti del frame Figma da 390 px. Usa solo `fitMobileTitle` quando serve la riduzione mobile conservando le colonne desktop.
@@ -47,7 +49,7 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `contained` mantiene l’invito entro il frame desktop; `secondaryAction` aggiunge un secondo collegamento. Senza `href`, il pulsante principale rimane disattivato.
 
-`FaqSection` riceve un `id` univoco e le coppie `question`/`answer` dalla pagina; usa Bootstrap Accordion con una risposta aperta alla volta. `largeTitle` conserva il titolo desktop da 68 px di Trust e Contatti; `twoColumns` dispone le domande in due colonne sotto il titolo da `lg`. Il titolo mobile condiviso è da 34 px.
+`FaqSection` riceve un `id` univoco e le coppie `question`/`answer` dalla pagina; usa Bootstrap Accordion con una risposta aperta alla volta. `largeTitle` conserva il titolo desktop da 68 px di Trust e Contatti; `twoColumns` dispone le domande in due colonne sotto il titolo da `lg`. Il titolo mobile condiviso è da 34 px. `embedded` usa la variante compatta del dettaglio articolo.
 
 `ContactSection` accetta una descrizione nello slot, mantenendo il testo predefinito se non viene passato. Recapiti e sedi condivisi con il footer sono in `src/data/contacts.ts`. Il mixin `brand-gradient` in `src/styles/mixins.scss` condivide lo sfondo di CTA e newsletter.
 
@@ -59,7 +61,9 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `TeamMemberCard` riceve un membro di tipo `TeamMember` e la variante `leadership`, `operational` o `counsel`. I dati sono nella pagina Team; i campi facoltativi vengono omessi, conservando lo spazio della foto, e i gruppi senza membri non vengono renderizzati.
 
-Home, Trust, Patrimonio, Team e AG Informa contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. In `RelatedContent`, un documento senza `downloadUrl` mantiene il pulsante inattivo.
+`DocumentList` condivide i documenti di `RelatedContent` e del dettaglio articolo, con variante `compact`. Senza `downloadUrl`, il pulsante resta inattivo. Il corpo editoriale degli articoli usa `.article-prose`; `ArticleAuthor` condivide l’autore compatto della hero e la scheda finale. L’indice usa Bootstrap Collapse e Scrollspy.
+
+Home, Trust, Patrimonio, Team, AG Informa e dettaglio articolo contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. Non anticipare il formato del corpo editoriale o le chiamate API prima dell’accordo con il backend.
 
 `OverviewBanner` condivide la fascia introduttiva con foto di Trust e Patrimonio: testi negli slot, titolo ridotto con `compactTitle` e varianti di sezione nei rispettivi fogli pagina. `.site-button--small` gestisce i pulsanti con etichetta da 11 px; `.collapse-toggle` condivide il segno più/meno di FAQ e accordion.
 

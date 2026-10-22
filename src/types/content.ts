@@ -9,6 +9,20 @@ export interface ArticlePreview {
   featured?: boolean;
 }
 
+export interface DocumentPreview {
+  title: string;
+  downloadUrl?: string;
+  category: string;
+  abbreviation: string;
+  metadata: string;
+}
+
+export interface ArticleDetail extends ArticlePreview {
+  author?: TeamMember;
+  readingTime?: string;
+  editorialNote?: string;
+}
+
 export interface TeamMember {
   firstName: string;
   lastName?: string;
