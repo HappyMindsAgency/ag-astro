@@ -1,0 +1,88 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.editorial-prose {
+  color: theme.$ink;
+  font-size: theme.$font-size-section-copy;
+  line-height: theme.$line-height-section-copy;
+
+  section {
+    scroll-margin-top: 160px;
+    margin-bottom: theme.$space-64;
+  }
+
+  h2 {
+    margin-bottom: theme.$space-24;
+    font-size: theme.$font-size-article-section-title;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-article-section-title;
+  }
+
+  h3 {
+    margin-block: theme.$space-32 theme.$space-12;
+    font-size: inherit;
+    font-weight: theme.$font-weight-semibold;
+    line-height: inherit;
+  }
+
+  p,
+  ul,
+  blockquote {
+    margin-bottom: theme.$space-24;
+  }
+
+  li + li {
+    margin-top: theme.$space-12;
+  }
+
+  strong {
+    font-weight: theme.$font-weight-semibold;
+  }
+
+  blockquote {
+    border-left: 3px solid theme.$brand-red;
+    padding: theme.$space-24;
+    background: theme.$surface-quote;
+    font-family: theme.$font-family-quote;
+    font-style: italic;
+    line-height: theme.$line-height-article-quote;
+  }
+}
+
+.editorial-documents {
+  margin-top: theme.$space-80;
+
+  > h2 {
+    margin-bottom: theme.$space-28;
+    font-size: theme.$font-size-section-title-mobile;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-section-title-mobile;
+  }
+}
+
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .editorial-prose h2 {
+    font-size: theme.$font-size-section-title-mobile;
+    line-height: theme.$line-height-section-title-mobile;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .editorial-prose {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-editorial-copy-mobile;
+
+    section {
+      margin-bottom: theme.$space-48;
+    }
+
+    blockquote {
+      padding: theme.$space-20;
+      line-height: theme.$line-height-editorial-copy-mobile;
+    }
+  }
+
+  .editorial-documents {
+    margin-top: theme.$space-48;
+  }
+}

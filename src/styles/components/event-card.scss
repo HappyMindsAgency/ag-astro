@@ -22,36 +22,6 @@
   padding: theme.$space-20 theme.$space-20 theme.$space-24;
 }
 
-.event-card-date {
-  display: flex;
-  flex: 0 0 60px;
-  flex-direction: column;
-  align-items: center;
-  border-right: 1px solid rgba(theme.$editorial-border, 0.3);
-}
-
-.event-card-day {
-  font-size: theme.$font-size-event-date-day;
-  font-weight: theme.$font-weight-light;
-  line-height: theme.$line-height-event-date-day;
-}
-
-.event-card-month {
-  order: -1;
-  color: theme.$brand-red;
-  font-size: theme.$font-size-event-date-label;
-  font-weight: theme.$font-weight-semibold;
-  line-height: 1;
-  letter-spacing: theme.$letter-spacing-cta-label;
-  text-transform: uppercase;
-}
-
-.event-card-year {
-  color: theme.$event-date-year;
-  font-size: theme.$font-size-event-meta;
-  line-height: theme.$line-height-content-meta;
-}
-
 .event-card-content {
   flex: 1;
   min-width: 0;
@@ -120,22 +90,6 @@
     padding: theme.$space-20 0 theme.$space-24;
   }
 
-  .event-card-date {
-    flex-basis: 72px;
-    min-height: 100px;
-    border-color: rgba(theme.$event-webinar, 0.2);
-    padding-right: theme.$space-24;
-  }
-
-  .event-card-day {
-    font-size: theme.$font-size-event-date-day-compact;
-    line-height: 1;
-  }
-
-  .event-card-month {
-    order: 0;
-  }
-
   .event-card-title {
     font-weight: theme.$font-weight-regular;
   }
@@ -146,8 +100,7 @@
     color: theme.$ink-mobile;
   }
 
-  .event-card-location,
-  .event-card-year {
+  .event-card-location {
     color: theme.$muted-mobile;
   }
 
@@ -155,25 +108,9 @@
     gap: theme.$space-12;
   }
 
-  .event-card-date {
-    flex-basis: theme.$space-40;
-  }
-
-  .event-card-day {
-    font-size: theme.$font-size-event-date-day-mobile;
-    line-height: 1;
-  }
-
-  .event-card-month,
-  .event-card-year,
   .event-card-meta {
     font-size: theme.$font-size-content-meta;
     line-height: theme.$line-height-content-meta;
-  }
-
-  .event-card-month {
-    font-weight: theme.$font-weight-regular;
-    letter-spacing: normal;
   }
 
   .event-card-title {
@@ -189,16 +126,6 @@
   }
 
   .event-card--compact {
-    .event-card-date {
-      flex-basis: theme.$space-48;
-      min-height: 0;
-      padding-right: theme.$space-12;
-    }
-
-    .event-card-day {
-      font-size: theme.$font-size-event-date-day-mobile;
-    }
-
     .event-card-body {
       gap: theme.$space-12;
     }

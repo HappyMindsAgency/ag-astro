@@ -1,0 +1,158 @@
+@use 'sass:math';
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.event-detail-hero > .container,
+.event-detail-main > .container {
+  --bs-gutter-x: #{theme.$space-48};
+  max-width: theme.$frame-max-width + theme.$space-48;
+}
+
+.event-detail-hero {
+  background: radial-gradient(ellipse at top right, rgba(theme.$brand-red, 0.08), transparent 75%);
+}
+
+.event-detail-heading {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  align-items: start;
+  gap: theme.$space-12 theme.$space-20;
+  padding-block: theme.$space-40 theme.$space-32;
+
+  > .event-date {
+    grid-row: 1 / 3;
+  }
+}
+
+.event-detail-meta {
+  gap: theme.$space-8;
+  color: theme.$muted;
+  font-size: theme.$font-size-event-meta;
+  line-height: theme.$line-height-content-meta;
+}
+
+.event-detail-category {
+  border: 1px solid theme.$ink;
+  padding: 2px theme.$space-8;
+  color: theme.$ink;
+  font-size: theme.$font-size-content-meta;
+  line-height: 1;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.event-detail-pin svg {
+  width: 12px;
+  height: 12px;
+}
+
+.event-detail-title {
+  grid-column: 2;
+  font-size: clamp(theme.$font-size-section-title-mobile, math.div(theme.$font-size-section-title-compact, theme.$wide-layout-max-width) * 100vw, theme.$font-size-section-title-compact);
+  font-weight: theme.$font-weight-regular;
+  line-height: math.div(theme.$line-height-section-title-compact, theme.$font-size-section-title-compact);
+  letter-spacing: theme.$letter-spacing-event-page-title;
+}
+
+.event-detail-main {
+  padding-block: theme.$space-64 theme.$space-100;
+}
+
+.event-detail-facts {
+  padding: theme.$space-24;
+  box-shadow: 0 4px 16px rgba(black, 0.06);
+}
+
+.event-detail-fact {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  column-gap: theme.$space-16;
+  border-bottom: 1px solid theme.$border-soft;
+  padding-block: theme.$space-12;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  dt {
+    grid-column: 1 / -1;
+    gap: theme.$space-16;
+    margin-bottom: theme.$space-4;
+    color: theme.$muted;
+    font-size: theme.$font-size-content-meta;
+    font-weight: theme.$font-weight-light;
+    line-height: theme.$line-height-content-meta;
+    text-transform: uppercase;
+  }
+
+  dd {
+    grid-column: 2;
+    font-size: theme.$font-size-body;
+    font-weight: theme.$font-weight-medium;
+    line-height: theme.$line-height-body;
+    overflow-wrap: anywhere;
+  }
+}
+
+.event-detail-fact-icon {
+  flex-shrink: 0;
+  color: theme.$brand-red;
+}
+
+.event-detail-page > .event-list {
+  border-top: 0;
+  background: theme.$surface-events;
+}
+
+@include bs.media-breakpoint-between(md, lg, theme.$grid-breakpoints) {
+  .event-detail-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: theme.$space-24;
+  }
+
+  .event-detail-fact {
+    align-content: start;
+    padding-top: 0;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .event-detail-hero {
+    padding-top: theme.$space-8;
+  }
+
+  .event-detail-heading {
+    grid-template-columns: 64px minmax(0, 1fr);
+    padding-block: theme.$space-32 theme.$space-24;
+  }
+
+  .event-detail-title {
+    font-size: theme.$font-size-section-title-mobile;
+    line-height: theme.$line-height-section-title-mobile;
+    letter-spacing: normal;
+  }
+
+  .event-detail-cover {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .event-detail-main {
+    padding-block: theme.$space-48 theme.$space-64;
+  }
+
+  .event-detail-mobile-contact {
+    margin-top: theme.$space-40;
+  }
+}
+
+@include bs.media-breakpoint-down(sm, theme.$grid-breakpoints) {
+  .event-detail-heading > .event-date {
+    grid-row: 1;
+  }
+
+  .event-detail-title {
+    grid-column: 1 / -1;
+  }
+}

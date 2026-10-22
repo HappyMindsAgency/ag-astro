@@ -1,0 +1,17 @@
+---
+import type { EventPreview } from '../types/content';
+import '../styles/components/event-date.scss';
+
+interface Props {
+  date: EventPreview['date'];
+  variant?: 'card' | 'compact' | 'hero';
+}
+
+const { date, variant = 'card' } = Astro.props;
+---
+
+<time class:list={['event-date', `event-date--${variant}`]} datetime={date.dateTime} aria-label={`${date.days} ${date.month} ${date.year}`}>
+  <span class="event-date-day">{date.days}</span>
+  <span class="event-date-month">{date.month}</span>
+  <span class="event-date-year">{date.year}</span>
+</time>

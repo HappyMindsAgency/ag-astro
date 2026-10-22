@@ -1,5 +1,6 @@
 ---
 import type { EventPreview } from '../types/content';
+import EventDate from './EventDate.astro';
 import '../styles/components/event-card.scss';
 
 interface Props {
@@ -13,11 +14,7 @@ const { event, compact = false } = Astro.props;
 <article class:list={['event-card', { 'event-card--compact': compact }]}>
   {!compact && event.image && <img class="event-card-image" src={event.image.src} alt={event.image.alt} width={event.image.width} height={event.image.height} loading="lazy" />}
   <div class="event-card-body d-flex align-items-start">
-    <time class="event-card-date" datetime={event.date.dateTime} aria-label={`${event.date.days} ${event.date.month} ${event.date.year}`}>
-      <span class="event-card-day">{event.date.days}</span>
-      <span class="event-card-month">{event.date.month}</span>
-      <span class="event-card-year">{event.date.year}</span>
-    </time>
+    <EventDate date={event.date} variant={compact ? 'compact' : 'card'} />
     <div class="event-card-content">
       <div class="event-card-meta d-flex flex-wrap align-items-center">
         {event.format && <span class:list={['event-card-format', { 'event-card-format--webinar': event.format === 'Webinar', 'event-card-format--seminar': event.format === 'Seminario' }]}>{event.format}</span>}

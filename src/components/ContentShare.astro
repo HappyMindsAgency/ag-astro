@@ -1,0 +1,41 @@
+---
+import '../styles/components/content-share.scss';
+
+interface Props {
+  title: string;
+  url?: string;
+}
+
+const { title, url } = Astro.props;
+const shareUrl = url ?? `${Astro.url.origin}${Astro.url.pathname}`;
+---
+
+<div class="content-share" data-content-share data-share-title={title} data-share-url={url}>
+  <p class="content-share-label">Condividi</p>
+  <div class="d-flex align-items-center">
+    <a class="content-share-control" data-share-linkedin href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="Condividi su LinkedIn"><img src="/assets/icone/condividi-linkedin.svg" width="44" height="34" alt="" /></a>
+    <a class="content-share-control" data-share-email href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}`} aria-label="Condividi via email"><img src="/assets/icone/condividi-email.svg" width="44" height="34" alt="" /></a>
+    <button class="content-share-control" type="button" data-copy-link aria-label="Copia il link"><img src="/assets/icone/copia-link.svg" width="40" height="34" alt="" /></button>
+  </div>
+  <span class="visually-hidden" role="status" data-copy-status></span>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-content-share]').forEach((share) => {
+    const shareUrl = share.dataset.shareUrl ?? `${window.location.origin}${window.location.pathname}`;
+    const linkedIn = share.querySelector<HTMLAnchorElement>('[data-share-linkedin]');
+    const email = share.querySelector<HTMLAnchorElement>('[data-share-email]');
+    if (linkedIn) linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+    if (email) email.href = `mailto:?subject=${encodeURIComponent(share.dataset.shareTitle ?? '')}&body=${encodeURIComponent(shareUrl)}`;
+    const copyButton = share.querySelector<HTMLButtonElement>('[data-copy-link]');
+    const status = share.querySelector<HTMLElement>('[data-copy-status]');
+    copyButton?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        if (status) status.textContent = 'Link copiato.';
+      } catch {
+        if (status) status.textContent = 'Non è stato possibile copiare il link.';
+      }
+    });
+  });
+</script>

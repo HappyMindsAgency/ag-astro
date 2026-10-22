@@ -1,0 +1,49 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.content-share {
+  margin-block: theme.$space-24;
+  border: 1px solid rgba(theme.$editorial-border, 0.35);
+  padding: theme.$space-24;
+}
+
+.content-share-label {
+  margin-bottom: theme.$space-12;
+  color: theme.$editorial-border;
+  font-size: theme.$font-size-body;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-compact-copy;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.content-share-control {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+
+  &:focus-visible {
+    outline: 2px solid theme.$brand-blue;
+    outline-offset: theme.$space-4;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .content-share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: theme.$space-16;
+    margin-bottom: 0;
+    padding-block: theme.$space-12;
+
+    .content-share-label {
+      margin: 0;
+      font-size: theme.$font-size-small;
+    }
+  }
+}

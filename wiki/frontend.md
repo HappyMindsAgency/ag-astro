@@ -41,7 +41,7 @@ Per il dettaglio evento usa `/eventi-in-agenda/[slugEvento]/`, seguendo la stess
 
 `PageIntro` gestisce breadcrumb, sopratitolo, titolo e introduzione. `parents` aggiunge le pagine superiori al breadcrumb. Si usa una volta per pagina; la proprietà `mobileTitleLeading` conserva le varianti `tight` (50 px), `regular` (60 px) e `relaxed` (69 px). I titoli di home, articoli e FAQ hanno ruoli propri.
 
-`Breadcrumb` condivide il percorso di navigazione; `light` lo adatta agli sfondi scuri. È già incluso in `PageIntro`.
+`Breadcrumb` condivide il percorso di navigazione; `light` lo adatta agli sfondi scuri. Sotto `lg` (992 px) mostra solo gli ultimi due livelli, da `lg` il percorso completo. È già incluso in `PageIntro`.
 
 Per i paragrafi editoriali usa `.type-section-lead`: 20 px con interlinea 32,2 px sul desktop, 16 px con interlinea 20 px sul mobile. La variante `.type-section-lead--relaxed` mantiene 25 px sul mobile, per la panoramica di Visione e l’introduzione dei servizi. Colori e spazi restano nel relativo contesto. Le descrizioni delle card del metodo usano interlinea 23 px sul desktop e 20 px sul mobile.
 
@@ -63,13 +63,13 @@ Per titoli lunghi, `wideTitle` amplia la colonna del titolo da `xxl` e attiva `f
 
 `NewsArticleCard` condivide le schede della Home e di AG Informa: `standard` per la Home, `compact` per l’archivio, `hero` per l’articolo principale. `NewsFeed` con `archive` mostra otto articoli da `lg` e quattro sotto questa soglia; filtri e “Carica altri articoli” lavorano sull’elenco ricevuto. `categories` ne definisce l’ordine, se specificato.
 
-`EventCard` e `FeaturedEvent` usano `EventPreview`. `EventList` riceve un elenco di qualsiasi lunghezza; `compact` omette foto e descrizioni, un elenco vuoto non viene renderizzato. Senza `href` o `calendarHref`, i rispettivi collegamenti restano inattivi. I titoli degli elenchi Notizie ed Eventi condividono `.type-editorial-list-title`, con la variante `type-editorial-list-title--compact` per il titolo desktop più piccolo.
+`EventCard` e `FeaturedEvent` usano `EventPreview`; `EventDate` condivide la data delle schede e della hero del dettaglio. `EventList` riceve un elenco di qualsiasi lunghezza; `compact` omette foto e descrizioni, `compactTitle` controlla il titolo desktop ridotto. Un elenco vuoto non viene renderizzato. Senza `href` o `calendarHref`, i rispettivi collegamenti restano inattivi. I titoli degli elenchi Notizie ed Eventi condividono `.type-editorial-list-title`.
 
 `TeamMemberCard` riceve un membro di tipo `TeamMember` e la variante `leadership`, `operational` o `counsel`. I dati sono nella pagina Team; i campi facoltativi vengono omessi, conservando lo spazio della foto, e i gruppi senza membri non vengono renderizzati.
 
-`DocumentList` condivide i documenti di `RelatedContent` e del dettaglio articolo, con variante `compact`. Senza `downloadUrl`, il pulsante resta inattivo. Il corpo editoriale degli articoli usa `.article-prose`; `ArticleAuthor` condivide l’autore compatto della hero e la scheda finale. L’indice usa Bootstrap Collapse e Scrollspy.
+`DocumentList` condivide i documenti di `RelatedContent` e dei dettagli editoriali, con variante `compact`. Senza `downloadUrl`, il pulsante resta inattivo. Articoli ed eventi condividono `.editorial-prose`, `ContentShare` ed `EditorialContactCard`. `ArticleAuthor` condivide l’autore compatto della hero e la scheda finale; l’indice dell’articolo usa Bootstrap Collapse e Scrollspy.
 
-Home, Trust, Patrimonio, Team, AG Informa, dettaglio articolo ed Eventi contengono dati provvisori per la revisione grafica. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. Non anticipare il formato del corpo editoriale o le chiamate API prima dell’accordo con il backend.
+Home, Trust, Patrimonio, Team, AG Informa e le pagine editoriali contengono dati provvisori per la revisione grafica. Gli esempi condivisi degli eventi sono in `src/data/event-placeholders.ts`. I commenti `TODO Strapi` indicano i blocchi da sostituire; elimina anche i commenti dopo l’integrazione. Non anticipare il formato del corpo editoriale o le chiamate API prima dell’accordo con il backend.
 
 `OverviewBanner` condivide la fascia introduttiva con foto di Trust e Patrimonio: testi negli slot, titolo ridotto con `compactTitle` e varianti di sezione nei rispettivi fogli pagina. `.site-button--small` gestisce i pulsanti con etichetta da 11 px; `.collapse-toggle` condivide il segno più/meno di FAQ e accordion.
 

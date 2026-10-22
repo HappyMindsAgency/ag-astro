@@ -28,6 +28,12 @@ export interface DocumentPreview {
   metadata: string;
 }
 
+export interface EventDetail extends EventPreview {
+  category?: string;
+  time?: string;
+  cover?: EventPreview['image'];
+}
+
 export interface ArticleDetail extends ArticlePreview {
   author?: TeamMember;
   readingTime?: string;

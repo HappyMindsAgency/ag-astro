@@ -1,0 +1,93 @@
+---
+import type { DocumentPreview, EventDetail } from '../../types/content';
+import { eventPlaceholders } from '../../data/event-placeholders';
+import calendarIcon from 'bootstrap-icons/icons/calendar3.svg?raw';
+import clockIcon from 'bootstrap-icons/icons/clock.svg?raw';
+import locationIcon from 'bootstrap-icons/icons/geo-alt.svg?raw';
+import Layout from '../../components/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import EventDate from '../../components/EventDate.astro';
+import ContentShare from '../../components/ContentShare.astro';
+import EditorialContactCard from '../../components/EditorialContactCard.astro';
+import DocumentList from '../../components/DocumentList.astro';
+import EventList from '../../components/EventList.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import '../../styles/components/editorial-prose.scss';
+import '../../styles/pages/evento.scss';
+
+// TODO Strapi: recuperare l’evento tramite slugEvento e sostituire dati, documenti e correlati provvisori, poi eliminare il commento.
+const event: EventDetail = {
+  ...eventPlaceholders[0],
+  href: Astro.url.pathname,
+  category: 'Convegni e congressi',
+  time: '20:30',
+  cover: { src: '/assets/immagini/eventi/copertina-convegno.webp', alt: 'Relatori e pubblico durante un convegno a Palazzo Clerici', width: 3452, height: 1046 },
+};
+const dateLabel = event.date.dateTime
+  ? new Intl.DateTimeFormat('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(event.date.dateTime))
+  : `${event.date.days} ${event.date.month} ${event.date.year}`;
+const facts = [
+  { label: 'Data', value: dateLabel, icon: calendarIcon, dateTime: event.date.dateTime },
+  ...(event.time ? [{ label: 'Orario', value: event.time, icon: clockIcon, dateTime: event.time }] : []),
+  { label: 'Luogo', value: event.location, icon: locationIcon },
+];
+const documents: DocumentPreview[] = [
+  { title: 'Cassazione Civile, Sez. I, sent. n. 4321/2024 — Trust e separazione patrimoniale', category: 'Giurisprudenza e sentenze', abbreviation: 'GIU', metadata: '14 novembre 2024 | 8 pagine · 340 KB' },
+  { title: 'Tribunale di Milano, decreto n. 1892/2024 — Opponibilità del trust ai creditori', category: 'Giurisprudenza e sentenze', abbreviation: 'GIU', metadata: '03 settembre 2024 | 12 pagine · 278 KB' },
+];
+const relatedEvents = eventPlaceholders.slice(0, 3);
+const consultation = { eyebrow: 'Contatti', title: 'Lorem ipsum dolor sit amet?', description: 'I nostri esperti possono analizzare la tua struttura e guidarti nell’adeguamento.' };
+const provisionalParagraph = 'Praesent imperdiet cursus magna. Nulla quis risus tempor nisi mattis fringilla. Vestibulum vel ligula ac quam consequat sodales. Morbi arcu odio, consectetur et sem nec, pretium dapibus dolor. Suspendisse vulputate, ante eget commodo posuere, odio nisi elementum mauris, quis egestas quam urna volutpat diam. Curabitur mollis tempor eros, id vehicula nibh aliquet eu. Nam sollicitudin, purus vel cursus pretium, ligula tortor fringilla dolor, nec aliquet libero sapien non est. In eget leo et purus vulputate lobortis in fringilla purus. Nunc tempor euismod dui, vel egestas ligula rhoncus sed.';
+---
+
+<Layout>
+  <div class="event-detail-page">
+    <header class="event-detail-hero">
+      <div class="container">
+        <Breadcrumb current={event.category ?? event.format ?? 'Evento'} parents={[{ label: 'AG Informa', href: '/ag-informa/' }, { label: 'Eventi', href: '/eventi-in-agenda/' }]} />
+        <div class="event-detail-heading">
+          <EventDate date={event.date} variant="hero" />
+          <div class="event-detail-meta d-flex flex-wrap align-items-center">
+            {(event.category || event.format) && <span class="event-detail-category">{event.category ?? event.format}</span>}
+            <span class="d-inline-flex align-items-center gap-1"><span class="event-detail-pin d-inline-flex" aria-hidden="true" set:html={locationIcon} />{event.location}</span>
+          </div>
+          <h1 id="page-title" class="event-detail-title mb-0">{event.title}</h1>
+        </div>
+        {event.cover && <img class="event-detail-cover d-block w-100 h-auto" src={event.cover.src} alt={event.cover.alt} width={event.cover.width} height={event.cover.height} />}
+      </div>
+    </header>
+
+    <div class="event-detail-main section-spacing">
+      <div class="container">
+        <div class="row gx-lg-5 gy-5">
+          <aside class="col-lg-3 order-lg-2" aria-label="Informazioni e condivisione dell’evento">
+            <dl class="event-detail-facts mb-0">
+              {facts.map(({ label, value, icon, ...fact }) => <div class="event-detail-fact">
+                <dt class="d-flex align-items-center"><span class="event-detail-fact-icon d-inline-flex" aria-hidden="true" set:html={icon} />{label}</dt>
+                <dd class="mb-0">{'dateTime' in fact && fact.dateTime ? <time datetime={fact.dateTime}>{value}</time> : value}</dd>
+              </div>)}
+            </dl>
+            <ContentShare title={event.title} />
+            <div class="d-none d-lg-block"><EditorialContactCard {...consultation} /></div>
+          </aside>
+          <div class="col-lg-9 order-lg-1">
+            <!-- TODO Strapi: sostituire i quattro paragrafi di esempio con il corpo editoriale dell’evento, mantenendo editorial-prose, poi eliminare il commento. -->
+            <article class="editorial-prose" aria-labelledby="event-body-title">
+              <h2 id="event-body-title">Corpo testo dell’evento</h2>
+              {Array.from({ length: 4 }, () => <p>{provisionalParagraph}</p>)}
+            </article>
+            {documents.length > 0 && <section class="editorial-documents" aria-labelledby="event-documents-title"><h2 id="event-documents-title">Documenti correlati</h2><DocumentList documents={documents} compact /></section>}
+            <div class="event-detail-mobile-contact d-lg-none"><EditorialContactCard {...consultation} /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <EventList id="eventi-correlati" title="Potrebbero interessarti" eyebrow="In agenda" events={relatedEvents} compact compactTitle={false} />
+
+    <CallToAction eyebrow="AG Trustees — Esperti in Trust e Pianificazione patrimoniale" href="/contatti/" label="Parliamone">
+      <Fragment slot="title">Dare continuità al valore<br class="d-none d-xl-block" />{' '}richiede una visione chiara</Fragment>
+      Ogni progetto patrimoniale nasce da una storia diversa. Comprenderla è il primo passo per costruire regole coerenti con le persone, gli obiettivi e il futuro.
+    </CallToAction>
+  </div>
+</Layout>

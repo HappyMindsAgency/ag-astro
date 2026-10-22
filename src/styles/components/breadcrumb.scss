@@ -36,6 +36,18 @@
     line-height: theme.$line-height-breadcrumb-mobile;
     letter-spacing: 0;
 
+    .breadcrumb-item:nth-last-child(n + 3) {
+      display: none;
+    }
+
+    .breadcrumb-item:nth-last-child(2) {
+      padding-left: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+
     .breadcrumb-item.active {
       font-weight: theme.$font-weight-regular;
     }

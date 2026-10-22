@@ -1,0 +1,123 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.event-date {
+  display: flex;
+  flex: 0 0 60px;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid rgba(theme.$editorial-border, 0.3);
+}
+
+.event-date-day {
+  font-size: theme.$font-size-event-date-day;
+  font-weight: theme.$font-weight-light;
+  line-height: theme.$line-height-event-date-day;
+}
+
+.event-date-month {
+  order: -1;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-event-date-label;
+  font-weight: theme.$font-weight-semibold;
+  line-height: 1;
+  letter-spacing: theme.$letter-spacing-cta-label;
+  text-transform: uppercase;
+}
+
+.event-date-year {
+  color: theme.$event-date-year;
+  font-size: theme.$font-size-event-meta;
+  line-height: theme.$line-height-content-meta;
+}
+
+.event-date.event-date--compact {
+  flex-basis: 72px;
+  min-height: 100px;
+  border-color: rgba(theme.$event-webinar, 0.2);
+  padding-right: theme.$space-24;
+
+  .event-date-day {
+    font-size: theme.$font-size-event-date-day-compact;
+    line-height: 1;
+  }
+
+  .event-date-month {
+    order: 0;
+  }
+}
+
+.event-date.event-date--hero {
+  flex-basis: 84px;
+  padding-right: theme.$space-16;
+
+  .event-date-day {
+    font-size: theme.$font-size-event-date-hero-day;
+    line-height: 1;
+  }
+
+  .event-date-month {
+    font-size: theme.$font-size-event-date-hero-label;
+    letter-spacing: normal;
+  }
+
+  .event-date-year {
+    font-size: theme.$font-size-event-date-hero-year;
+    line-height: 1;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .event-date {
+    flex-basis: theme.$space-40;
+  }
+
+  .event-date-day {
+    font-size: theme.$font-size-event-date-day-mobile;
+    line-height: 1;
+  }
+
+  .event-date-month,
+  .event-date-year {
+    font-size: theme.$font-size-content-meta;
+    line-height: theme.$line-height-content-meta;
+  }
+
+  .event-date-month {
+    font-weight: theme.$font-weight-regular;
+    letter-spacing: normal;
+  }
+
+  .event-date-year {
+    color: theme.$muted-mobile;
+  }
+
+  .event-date.event-date--compact {
+    flex-basis: theme.$space-48;
+    min-height: 0;
+    padding-right: theme.$space-12;
+
+    .event-date-day {
+      font-size: theme.$font-size-event-date-day-mobile;
+    }
+  }
+
+  .event-date.event-date--hero {
+    flex-basis: 64px;
+    padding-right: theme.$space-12;
+
+    .event-date-day {
+      font-size: theme.$font-size-event-date-day;
+    }
+
+    .event-date-month {
+      font-size: theme.$font-size-body;
+      font-weight: theme.$font-weight-semibold;
+    }
+
+    .event-date-year {
+      font-size: theme.$font-size-event-date-label;
+      line-height: theme.$line-height-content-meta;
+    }
+  }
+}

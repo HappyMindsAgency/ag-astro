@@ -46,7 +46,9 @@ Realizzata [AG Informa](http://localhost:4321/ag-informa/), con articolo in evid
 
 Realizzato il [dettaglio articolo](http://localhost:4321/ag-informa/articolo-provvisorio/), con indice richiudibile sul mobile, condivisione, autore, FAQ e correlati. Contenuti da Figma e risposte Lorem ipsum; PDF e integrazione Strapi ancora mancanti. Il mobile adatta il desktop in attesa del frame definitivo.
 
-Realizzata [Eventi e formazione](http://localhost:4321/eventi-in-agenda/), con sei eventi provvisori da Figma in griglia e in elenco compatto, usando `EventCard` e `EventList`. La CTA newsletter è condivisa con AG Informa. Calendario in attesa della destinazione; dettaglio evento ancora da realizzare. Dati e selezione degli eventi saranno collegati a Strapi.
+Realizzata [Eventi e formazione](http://localhost:4321/eventi-in-agenda/), con sei eventi provvisori da Figma in griglia e in elenco compatto, usando `EventCard` e `EventList`. La CTA newsletter è condivisa con AG Informa. Calendario in attesa della destinazione; dati e selezione degli eventi saranno collegati a Strapi.
+
+Realizzato il [dettaglio evento](http://localhost:4321/eventi-in-agenda/evento-provvisorio/), con copertina, data, orario, luogo, documenti e correlati. Condivisione, invito ai contatti e stile editoriale sono condivisi con l’articolo. Contenuti provvisori e PDF mancanti; il mobile adatta il desktop in attesa del frame definitivo.
 
 Predisposte Privacy policy e Cookie policy con layout e testi Lorem ipsum, da sostituire con quelli definitivi.
 
