@@ -200,6 +200,8 @@ const navigation: NavigationItem[] = [
 
       item.addEventListener('focusout', () => {
         requestAnimationFrame(() => {
+          // Durante un clic chiude Bootstrap: chiudere prima sposterebbe i pulsanti sotto il puntatore.
+          if (navbar.matches(':active')) return;
           if (!item.contains(document.activeElement) && (!desktopHover.matches || !item.matches(':hover'))) dropdown.hide();
         });
       });
