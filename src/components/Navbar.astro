@@ -176,6 +176,15 @@ const navigation: NavigationItem[] = [
       });
     }
 
+    // Uscendo con il mouse il sottomenu resta aperto per un attimo: un percorso lento o in diagonale non lo chiude.
+    let pendingClose: { item: HTMLElement; hide: () => void; timer: number } | undefined;
+    const settleClose = (item: HTMLElement) => {
+      if (!pendingClose) return;
+      window.clearTimeout(pendingClose.timer);
+      if (pendingClose.item !== item) pendingClose.hide();
+      pendingClose = undefined;
+    };
+
     navbar.querySelectorAll<HTMLElement>('.dropdown').forEach((item) => {
       const toggle = item.querySelector<HTMLButtonElement>('.header-submenu-toggle');
       if (!toggle) return;
@@ -184,6 +193,7 @@ const navigation: NavigationItem[] = [
 
       item.addEventListener('pointerenter', (event) => {
         if (event.pointerType !== 'mouse' || !desktopHover.matches) return;
+        settleClose(item);
 
         // Su hover ripristino il focus che Bootstrap sposta sulla freccia.
         const focused = document.activeElement;
@@ -197,7 +207,9 @@ const navigation: NavigationItem[] = [
       });
 
       item.addEventListener('pointerleave', (event) => {
-        if (event.pointerType === 'mouse' && desktopHover.matches && !item.contains(document.activeElement)) dropdown.hide();
+        if (event.pointerType !== 'mouse' || !desktopHover.matches || item.contains(document.activeElement)) return;
+        const hide = () => dropdown.hide();
+        pendingClose = { item, hide, timer: window.setTimeout(() => { pendingClose = undefined; hide(); }, 300) };
       });
 
       item.addEventListener('focusout', () => {

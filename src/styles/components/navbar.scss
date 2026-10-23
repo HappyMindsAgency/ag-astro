@@ -196,6 +196,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .site-navbar .header-submenu {
+  --bs-dropdown-spacer: 0;
   --bs-dropdown-padding-y: #{theme.$space-8};
   --bs-dropdown-border-width: 0;
   --bs-dropdown-border-radius: 0 0 6px 6px;
