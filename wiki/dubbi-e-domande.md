@@ -54,7 +54,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Contatti | Titolo della fascia sedi e descrizione newsletter provvisori. |
 | Home | Presentazione, descrizioni dei servizi, introduzione Patrimonio, card del metodo e newsletter provvisori. Evento e articoli attendono dati e link ai dettagli da Strapi. |
 | Team | Titoli, ruoli, biografie e articoli collegati provvisori. Per i profili individuali il percorso è predisposto: mancano design, contenuti e conferma dei collegamenti dai nomi. |
-| AG Informa | Introduzione, articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
+| AG Informa | Articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
 | Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
 | Eventi | Introduzione, date, luoghi e testi provvisori; servono criteri di selezione dei due elenchi. |
 | Dettaglio evento | Testo, orario, categoria, documenti, correlati e piccolo invito ai contatti provvisori; il primo correlato ripete l’evento corrente. |
