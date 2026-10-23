@@ -1,12 +1,18 @@
 ---
 import '../styles/components/contact-section.scss';
+
+interface Props {
+  eyebrow?: string;
+}
+
+const { eyebrow = 'Contatti' } = Astro.props;
 ---
 
 <section id="richiesta-contatto" class="contact-section section-spacing" aria-labelledby="contact-title">
   <div class="container section-container px-lg-0">
     <div class="row gx-0 contact-section-layout">
       <div class="col-lg-5">
-        <p class="type-eyebrow type-eyebrow--section contact-section-eyebrow">Contatti</p>
+        <p class="type-eyebrow type-eyebrow--section contact-section-eyebrow">{eyebrow}</p>
         <h2 id="contact-title" class="contact-section-title">Parla con un <span>professionista.</span></h2>
         <p class="type-section-lead contact-section-copy mb-0">
           <slot>
