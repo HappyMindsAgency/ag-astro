@@ -3,7 +3,7 @@
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .service-overview {
-  scroll-margin-top: 160px;
+  scroll-margin-top: theme.$anchor-offset;
   --section-gradient-angle: 131deg;
   padding-block: 110px;
   color: white;

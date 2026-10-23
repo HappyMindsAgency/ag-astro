@@ -161,7 +161,7 @@ const consultation = { title: 'Il tuo trust è conforme alla nuova normativa?', 
 
   const article = document.querySelector<HTMLElement>('[data-article]');
   if (article) {
-    const readingLine = 160;
+    const readingLine = parseFloat(getComputedStyle(article.querySelector('.editorial-prose section')!).scrollMarginTop);
     const readingBand = 48;
     const createIndexSpy = () => new ScrollSpy(document.body, {
       target: '#article-index-links',

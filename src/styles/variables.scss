@@ -272,6 +272,7 @@ $wide-layout-max-width: 1920px;
 $frame-max-width: 1717px;
 $page-gutter-mobile: $space-24;
 $header-expand-breakpoint: map.get($grid-breakpoints, xl);
+$anchor-offset: 160px;
 
 $interaction-duration: 150ms;
 $interaction-easing: ease-out;

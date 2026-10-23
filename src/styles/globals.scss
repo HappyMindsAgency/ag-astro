@@ -31,7 +31,7 @@ body {
 
 main {
   flex: 1;
-  scroll-margin-top: 160px;
+  scroll-margin-top: theme.$anchor-offset;
 }
 
 @include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {

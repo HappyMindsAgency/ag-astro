@@ -64,7 +64,7 @@
 
 .trust-editorial--process {
   padding-block: 144px;
-  scroll-margin-top: 160px;
+  scroll-margin-top: theme.$anchor-offset;
 
   .trust-process-content {
     padding-inline: theme.$space-48;

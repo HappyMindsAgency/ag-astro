@@ -7,7 +7,7 @@
   line-height: theme.$line-height-section-copy;
 
   section {
-    scroll-margin-top: 160px;
+    scroll-margin-top: theme.$anchor-offset;
     margin-bottom: theme.$space-64;
   }
 

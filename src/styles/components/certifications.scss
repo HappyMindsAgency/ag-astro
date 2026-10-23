@@ -22,7 +22,7 @@
 .certifications .certifications-logos {
   padding-inline: theme.$space-80;
   background: theme.$surface-mist;
-  scroll-margin-top: 160px;
+  scroll-margin-top: theme.$anchor-offset;
 }
 
 .certifications-logo {

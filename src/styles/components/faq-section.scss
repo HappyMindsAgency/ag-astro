@@ -120,7 +120,7 @@
 }
 
 .faq-section.faq-section--embedded {
-  scroll-margin-top: 160px;
+  scroll-margin-top: theme.$anchor-offset;
   padding: 0;
   background: transparent;
 
