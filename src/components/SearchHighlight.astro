@@ -1,0 +1,25 @@
+---
+import { normalizeSearchText, searchTerms } from '../data/search-text';
+
+interface Props {
+  text: string;
+  query: string;
+}
+
+const { text, query } = Astro.props;
+const normalized = normalizeSearchText(text);
+const matches = Array.from({ length: text.length }, () => false);
+if (normalized.length === text.length) {
+  searchTerms(query).forEach((term) => {
+    for (let index = normalized.indexOf(term); index !== -1; index = normalized.indexOf(term, index + 1)) matches.fill(true, index, index + term.length);
+  });
+}
+const segments = text.split('').reduce<{ text: string; match: boolean }[]>((list, character, index) => {
+  const last = list.at(-1);
+  if (last?.match === matches[index]) last.text += character;
+  else list.push({ text: character, match: matches[index] });
+  return list;
+}, []);
+---
+
+{segments.map(({ text, match }) => match ? <mark class="search-highlight">{text}</mark> : text)}
