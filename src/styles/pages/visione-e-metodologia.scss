@@ -6,6 +6,10 @@
   color: theme.$brand-red;
 }
 
+.vision-overview {
+  padding-bottom: clamp(0px, calc((100% - #{theme.$wide-layout-max-width}) / 2), theme.$space-80);
+}
+
 .vision-story {
   min-height: 554px;
   padding-block: 144px;

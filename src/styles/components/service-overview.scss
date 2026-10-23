@@ -10,7 +10,9 @@
   @include shared.architectural-gradient(var(--section-gradient-angle));
 }
 
-.service-overview-heading {
+.service-overview-heading,
+.service-overview-list,
+.service-overview-action {
   max-width: 1000px;
 }
 
@@ -33,7 +35,6 @@
 }
 
 .service-overview-list {
-  max-width: 1000px;
   margin-top: theme.$space-64;
   border-top: 0.8px solid rgba(white, 0.28);
   padding-top: theme.$space-24;
