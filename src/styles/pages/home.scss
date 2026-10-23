@@ -1,4 +1,5 @@
 @use '../variables' as theme;
+@use '../mixins' as shared;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .home-hero {
@@ -62,18 +63,7 @@
 }
 
 .home-brand-mark {
-  position: absolute;
-  z-index: -1;
-  top: -200px;
-  right: 0;
-  width: 650px;
-  max-width: 50%;
-  height: auto;
-  aspect-ratio: 1009 / 657;
-  object-fit: cover;
-  object-position: top;
-  opacity: 0.05;
-  pointer-events: none;
+  @include shared.brand-watermark(650px);
 }
 
 .home-contained {

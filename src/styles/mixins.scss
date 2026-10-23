@@ -5,6 +5,21 @@
   width: math.percentage(math.div(768px + theme.$space-48, theme.$frame-max-width + theme.$space-48));
 }
 
+@mixin brand-watermark($width) {
+  position: absolute;
+  z-index: -1;
+  top: -200px;
+  right: 0;
+  width: $width;
+  max-width: 50%;
+  height: auto;
+  aspect-ratio: 1009 / 657;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
 @mixin brand-gradient($angle: 104deg) {
   background: linear-gradient($angle, rgba(theme.$brand-blue, 0.94), rgba(theme.$cta-overlay-middle, 0.88) 58%, rgba(theme.$accent-red, 0.91)), url('/assets/immagini/sfondo-cta.jpg') center 46% / cover;
 }

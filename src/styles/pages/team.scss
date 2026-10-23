@@ -68,18 +68,7 @@
 }
 
 .team-section-mark {
-  position: absolute;
-  z-index: -1;
-  top: -200px;
-  right: 0;
-  width: 700px;
-  max-width: 50%;
-  height: auto;
-  aspect-ratio: 1009 / 657;
-  object-fit: cover;
-  object-position: top;
-  opacity: 0.05;
-  pointer-events: none;
+  @include shared.brand-watermark(700px);
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
