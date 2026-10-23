@@ -3,11 +3,6 @@
 
 .event-list {
   padding-block: 72px theme.$space-80;
-
-  > .container {
-    --bs-gutter-x: #{theme.$space-48};
-    max-width: theme.$frame-max-width + theme.$space-48;
-  }
 }
 
 .event-list-header {

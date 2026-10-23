@@ -3,12 +3,6 @@
 @use '../mixins' as shared;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
-.article-hero > .container,
-.article-main > .container {
-  --bs-gutter-x: #{theme.$space-48};
-  max-width: theme.$frame-max-width + theme.$space-48;
-}
-
 .article-hero {
   color: theme.$text-on-blue;
   background: radial-gradient(ellipse, rgba(theme.$brand-red, 0.08), transparent), theme.$brand-blue;

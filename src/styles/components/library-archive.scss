@@ -3,11 +3,6 @@
 
 .library-archive {
   padding-block: theme.$space-8 160px;
-
-  > .container {
-    --bs-gutter-x: #{theme.$space-48};
-    max-width: theme.$frame-max-width + theme.$space-48;
-  }
 }
 
 .library-categories {

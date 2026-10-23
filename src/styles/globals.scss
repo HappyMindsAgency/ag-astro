@@ -24,6 +24,11 @@ body {
   line-height: theme.$line-height-body;
 }
 
+.frame-container {
+  --bs-gutter-x: #{theme.$space-48};
+  max-width: theme.$frame-max-width + theme.$space-48;
+}
+
 main {
   flex: 1;
   scroll-margin-top: 160px;

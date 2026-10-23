@@ -4,11 +4,6 @@
 .ag-informa-featured {
   padding-block: theme.$space-80;
   background: theme.$surface-mist;
-
-  > .container {
-    --bs-gutter-x: #{theme.$space-48};
-    max-width: theme.$frame-max-width + theme.$space-48;
-  }
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {

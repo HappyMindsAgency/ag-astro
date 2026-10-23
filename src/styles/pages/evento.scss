@@ -2,12 +2,6 @@
 @use '../variables' as theme;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
-.event-detail-hero > .container,
-.event-detail-main > .container {
-  --bs-gutter-x: #{theme.$space-48};
-  max-width: theme.$frame-max-width + theme.$space-48;
-}
-
 .event-detail-hero {
   background: radial-gradient(ellipse at top right, rgba(theme.$brand-red, 0.08), transparent 75%);
 }
