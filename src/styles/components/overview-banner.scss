@@ -6,10 +6,6 @@
   padding-block: theme.$space-48;
   color: white;
   background: linear-gradient(rgba(theme.$ink-mobile, 0.75), rgba(theme.$ink-mobile, 0.75)), url('/assets/immagini/ufficio-panorama.jpg') center / cover;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .overview-banner-eyebrow {
@@ -28,10 +24,5 @@
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .overview-banner {
     padding-block: theme.$space-64;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 }

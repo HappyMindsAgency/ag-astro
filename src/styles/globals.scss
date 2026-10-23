@@ -29,6 +29,13 @@ body {
   max-width: theme.$frame-max-width + theme.$space-48;
 }
 
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .container.section-container {
+    max-width: none;
+    padding-inline: theme.$page-gutter-mobile;
+  }
+}
+
 main {
   flex: 1;
   scroll-margin-top: theme.$anchor-offset;

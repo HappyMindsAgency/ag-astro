@@ -68,10 +68,6 @@
 
 .home-contained {
   padding-block: 110px;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .home-section-label {
@@ -236,11 +232,6 @@
 
   .home-contained {
     padding-block: theme.$space-64;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .home-section-label {

@@ -16,7 +16,7 @@ const listId = `${id}-list`;
 ---
 
 <section id={id} class:list={['faq-section', { 'section-spacing': !embedded, 'faq-section--large-title': largeTitle, 'faq-section--two-columns': twoColumns, 'faq-section--embedded': embedded }]} aria-labelledby={`${id}-title`}>
-  <div class="container">
+  <div class="container section-container px-lg-0">
     <div class="row gx-4 gy-4">
       <div class={twoColumns || embedded ? 'col-12' : 'col-lg-6'}>
         {!embedded && <p class="type-eyebrow type-eyebrow--section faq-eyebrow">FAQ</p>}

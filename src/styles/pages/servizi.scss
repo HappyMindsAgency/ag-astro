@@ -7,10 +7,6 @@
   padding-block: 110px;
   color: white;
   @include shared.architectural-gradient(var(--section-gradient-angle));
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .service-catalogue-eyebrow,
@@ -69,10 +65,6 @@
 .services-responsibility {
   padding-block: 144px;
   background: theme.$surface-warm;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .services-responsibility-eyebrow,
@@ -92,11 +84,6 @@
   .service-catalogue,
   .services-responsibility {
     padding-block: theme.$space-64;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .service-catalogue {

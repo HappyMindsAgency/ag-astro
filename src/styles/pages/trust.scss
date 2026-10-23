@@ -88,10 +88,6 @@
   color: white;
   background: linear-gradient(135deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url('/assets/immagini/ufficio-panorama.jpg') center;
   background-size: cover, 100% 104%;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .trust-participants-list {
@@ -121,10 +117,6 @@
 .trust-segregation,
 .trust-assets {
   padding-block: 144px;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .trust-assets {
@@ -158,10 +150,6 @@
   padding-block: 128px;
   color: white;
   background: theme.$ink;
-
-  .container {
-    padding-inline: 0;
-  }
 
   .trust-eyebrow {
     color: white;
@@ -210,11 +198,6 @@
   .trust-assets,
   .trust-professional {
     padding-block: theme.$space-64;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .trust-editorial .editorial-image {

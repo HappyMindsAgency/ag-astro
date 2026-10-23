@@ -5,10 +5,6 @@
   padding-block: 144px;
   background: theme.$surface-mist;
 
-  .container {
-    padding-inline: 0;
-  }
-
   .accordion-item {
     border-bottom: 1px solid theme.$editorial-border;
   }
@@ -79,11 +75,6 @@
   .faq-section {
     padding-block: theme.$space-64;
     background: theme.$surface-faq-mobile;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
 
     .accordion-item {
       border-color: theme.$border-soft;

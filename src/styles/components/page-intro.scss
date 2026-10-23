@@ -5,10 +5,6 @@
   min-height: 541px;
   border-bottom: 0.8px solid theme.$border;
 
-  .container {
-    padding-inline: theme.$space-40;
-  }
-
   .row {
     padding-block: theme.$space-40;
   }
@@ -21,6 +17,12 @@
 
 .page-intro-copy {
   padding-left: theme.$space-36;
+}
+
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .page-intro .container {
+    padding-inline: theme.$space-40;
+  }
 }
 
 @include bs.media-breakpoint-between(md, xxl, theme.$grid-breakpoints) {
@@ -58,11 +60,6 @@
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .page-intro {
     padding-top: theme.$space-8;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .page-intro-eyebrow {

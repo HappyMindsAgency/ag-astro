@@ -7,10 +7,6 @@
   padding-block: 70px;
   color: white;
   @include shared.brand-gradient;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .newsletter-section-title {
@@ -94,10 +90,5 @@
   .newsletter-section {
     padding-block: theme.$space-64;
     background-position: center;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 }

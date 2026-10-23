@@ -89,11 +89,6 @@
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .related-content {
     padding-block: theme.$space-64;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .related-title {

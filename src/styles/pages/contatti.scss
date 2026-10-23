@@ -5,10 +5,6 @@
   padding-block: 110px;
   color: theme.$text-on-blue;
   background: theme.$brand-blue;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .contact-offices-eyebrow {
@@ -83,10 +79,6 @@
 .office-location-heading {
   padding-top: 144px;
   padding-bottom: theme.$space-48;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .office-location-eyebrow {
@@ -156,12 +148,6 @@
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .contact-offices {
     padding-block: theme.$space-64;
-  }
-
-  .contact-offices .container,
-  .office-location-heading .container {
-    max-width: none;
-    padding-inline: theme.$page-gutter-mobile;
   }
 
   .contact-offices-eyebrow,

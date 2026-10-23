@@ -70,7 +70,7 @@ const sections: TeamSection[] = [
   {sections.filter(({ members }) => members.length > 0).map(({ id, eyebrow, title, accent, summary, members }) => (
     <section class:list={['team-section section-spacing', `team-section--${id}`]} aria-labelledby={`team-${id}-title`}>
       {id === 'operational' && <img class="team-section-mark d-none d-lg-block" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" loading="lazy" />}
-      <div class="container">
+      <div class:list={['container section-container', { 'px-0': id === 'leadership' }]}>
         <div class="row gx-4 gy-4 align-items-end team-section-header">
           <div class="col-lg-9">
             <p class="type-eyebrow type-eyebrow--section team-section-eyebrow">{eyebrow}</p>

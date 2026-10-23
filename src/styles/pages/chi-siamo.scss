@@ -5,10 +5,6 @@
   padding-block: theme.$space-100 theme.$space-64;
   color: white;
   background: theme.$brand-blue;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .about-identity-eyebrow {
@@ -70,11 +66,6 @@
   .about-identity {
     padding-block: 42px theme.$space-32;
     background: theme.$ink-mobile;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .about-identity-eyebrow {
@@ -159,10 +150,6 @@
 .about-origin {
   padding-block: 144px;
   background: theme.$surface-warm;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .about-origin-eyebrow {
@@ -187,11 +174,6 @@
     padding-block: theme.$space-64;
     background: white;
 
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
-
     .row {
       row-gap: theme.$space-28;
     }
@@ -214,10 +196,6 @@
 .about-competencies {
   padding-block: 144px 168px;
   background: theme.$surface-sand;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .about-competencies-heading {
@@ -281,11 +259,6 @@
   .about-competencies {
     padding-block: theme.$space-64;
     background: white;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .about-competencies-heading {
@@ -345,10 +318,6 @@
   background-image: linear-gradient(133.17deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375) 100%), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
   background-position: center;
   background-size: cover, 100% 103.8%;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .about-method-heading {
@@ -404,11 +373,6 @@
     padding-block: theme.$space-64;
     background-image: linear-gradient(123.14deg, rgba(theme.$method-overlay-blue-mobile, 0.94), rgba(theme.$method-overlay-middle-mobile, 0.88) 55%, rgba(theme.$method-overlay-red-mobile, 0.85)), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
     background-size: cover;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .about-method-heading {
@@ -464,10 +428,6 @@
   position: relative;
   overflow: hidden;
   padding-block: 186px 228px;
-
-  .container {
-    padding-inline: 0;
-  }
 }
 
 .about-team-mark {
@@ -527,11 +487,6 @@
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .about-team {
     padding-block: theme.$space-64;
-
-    .container {
-      max-width: none;
-      padding-inline: theme.$page-gutter-mobile;
-    }
   }
 
   .about-team-eyebrow {
