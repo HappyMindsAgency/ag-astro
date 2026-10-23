@@ -53,7 +53,9 @@ import '../styles/components/site-search.scss';
       try {
         const response = await fetch(`/cerca/suggerimenti/?q=${encodeURIComponent(query)}`, { signal: request.signal });
         if (!response.ok) return;
-        suggestions.innerHTML = await response.text();
+        const html = await response.text();
+        if (query !== input.value.trim()) return;
+        suggestions.innerHTML = html;
         status.textContent = suggestions.querySelector<HTMLElement>('[data-summary]')?.dataset.summary ?? '';
       } catch {
         // Richiesta superata da una più recente o rete assente: resta l’invio del modulo.
@@ -64,10 +66,10 @@ import '../styles/components/site-search.scss';
 
     input.addEventListener('input', () => {
       window.clearTimeout(timer);
+      request?.abort();
       const query = input.value.trim();
       // Nel menu compatto i suggerimenti finirebbero sotto la tastiera: l’invio porta a /cerca/.
       if (query.length < 2 || !desktop.matches) {
-        request?.abort();
         suggestions.replaceChildren();
         status.textContent = '';
         return;
