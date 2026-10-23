@@ -3,6 +3,7 @@ import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import ContactSection from '../../components/ContactSection.astro';
 import NewsletterSection from '../../components/NewsletterSection.astro';
+import { newsletterText } from '../../data/newsletter';
 import FaqSection from '../../components/FaqSection.astro';
 import { contacts, offices } from '../../data/contacts';
 import '../../styles/pages/contatti.scss';
@@ -85,8 +86,9 @@ const faqs = [
     Siamo a disposizione per un primo colloquio conoscitivo, senza impegno. Raccontaci la tua situazione e valuteremo insieme il percorso più adatto.
   </ContactSection>
 
-  <NewsletterSection title="Ag Informa - Iscrizione alla newsletter">
-    Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum
+  <NewsletterSection title={newsletterText.title}>
+    {newsletterText.introduction}<br />
+    {newsletterText.description}
   </NewsletterSection>
 
   <FaqSection id="faq-contatti" items={faqs} largeTitle twoColumns>

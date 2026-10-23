@@ -50,7 +50,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Chi siamo | Restano segnaposto le descrizioni di Progettazione e governance del trust e Patrimonio e continuità; confermare anche le voci rispetto al mobile. |
 | Visione e metodologia | “Titolo della sezione”, terzo e quarto servizio, descrizioni e paragrafi Lorem ipsum/Cras et lorem. La CTA parla di newsletter ma porta ai servizi: confermare testo e destinazione. |
 | Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
-| Contatti | Titolo della fascia sedi e descrizione newsletter provvisori. |
+| Contatti | Titolo della fascia sedi provvisorio. |
 | Home | Presentazione, descrizioni dei servizi, introduzione Patrimonio e card del metodo provvisori. Evento e articoli attendono dati e link ai dettagli da Strapi. |
 | Team | Titoli, ruoli, biografie e articoli collegati provvisori. Per i profili individuali il percorso è predisposto: mancano design, contenuti e conferma dei collegamenti dai nomi. |
 | AG Informa | Articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
