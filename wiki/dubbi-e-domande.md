@@ -56,7 +56,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Team | Titoli, ruoli, biografie e articoli collegati provvisori. Per i profili individuali il percorso è predisposto: mancano design, contenuti e conferma dei collegamenti dai nomi. |
 | AG Informa | Articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
 | Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
-| Eventi | Introduzione, date, luoghi e testi provvisori; servono criteri di selezione dei due elenchi. |
+| Eventi | Date, luoghi e contenuti degli eventi provvisori; servono criteri di selezione dei due elenchi. |
 | Dettaglio evento | Testo, orario, categoria, documenti, correlati e piccolo invito ai contatti provvisori; il primo correlato ripete l’evento corrente. |
 | Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. Testo di Guide e tutorial provvisorio. |
 
