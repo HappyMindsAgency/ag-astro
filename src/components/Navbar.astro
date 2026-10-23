@@ -1,4 +1,6 @@
 ---
+import SiteSearch from './SiteSearch.astro';
+
 interface Props {
   linkedinUrl?: string;
   heroId?: string;
@@ -7,6 +9,8 @@ interface Props {
 const { linkedinUrl, heroId } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const contactIsCurrent = currentPath === '/contatti';
+const LinkedIn = linkedinUrl ? 'a' : 'span';
+const linkedinAttributes = linkedinUrl ? { href: linkedinUrl, 'aria-label': 'AG Trustees su LinkedIn' } : { role: 'img', 'aria-label': 'LinkedIn' };
 interface NavigationItem {
   label: string;
   href: string;
@@ -100,13 +104,11 @@ const navigation: NavigationItem[] = [
         <div class="header-tools d-flex align-items-baseline">
           <a class:list={['header-contact d-none d-xl-inline-flex', { active: contactIsCurrent }]} href="/contatti/" data-label="Contatti" aria-current={contactIsCurrent ? 'page' : undefined}>Contatti</a>
           <span class="vr d-none d-xl-inline-block"></span>
-          <button class="header-icon" type="button" disabled aria-label="Cerca nel sito"><img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+          {/* LinkedIn precede la lente solo nel menu compatto: due copie mantengono l’ordine del Tab uguale a quello visivo. */}
+          <LinkedIn class="header-icon d-xl-none" {...linkedinAttributes}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></LinkedIn>
+          <SiteSearch />
           <span class="vr d-none d-xl-inline-block"></span>
-          {linkedinUrl ? (
-            <a class="header-icon" href={linkedinUrl} aria-label="AG Trustees su LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
-          ) : (
-            <span class="header-icon" role="img" aria-label="LinkedIn"><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></span>
-          )}
+          <LinkedIn class="header-icon d-none d-xl-inline-flex" {...linkedinAttributes}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></LinkedIn>
           <span class="vr d-none d-xl-inline-block"></span>
           <span class="header-language ms-auto" lang="it" aria-label="Lingua attuale: italiano">ITA</span>
         </div>

@@ -1,0 +1,94 @@
+---
+import closeIcon from 'bootstrap-icons/icons/x-lg.svg?raw';
+import '../styles/components/site-search.scss';
+---
+
+<button class="header-icon site-search-toggle" type="button" aria-controls="site-search" aria-expanded="false" aria-label="Apri o chiudi la ricerca">
+  <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" />
+  <span class="site-search-close" aria-hidden="true" set:html={closeIcon} />
+</button>
+<div id="site-search" class="site-search" hidden data-site-search>
+  <form class="site-search-form d-flex align-items-center" action="/cerca/" method="get" role="search" aria-label="Cerca nel sito">
+    <label class="visually-hidden" for="site-search-query">Cerca nel sito</label>
+    <input id="site-search-query" class="site-search-input flex-grow-1" name="q" type="search" placeholder="Cerca nel sito" autocomplete="off" enterkeyhint="search" />
+    <button class="site-search-submit" type="submit" aria-label="Mostra tutti i risultati">→</button>
+  </form>
+  <div class="site-search-suggestions" data-site-search-suggestions></div>
+  <p class="visually-hidden" role="status" data-site-search-status></p>
+</div>
+
+<script>
+  import FocusTrap from 'bootstrap/js/dist/util/focustrap';
+
+  document.querySelectorAll<HTMLElement>('[data-site-search]').forEach((search) => {
+    const toggle = document.querySelector<HTMLButtonElement>(`[aria-controls="${search.id}"]`);
+    const tools = search.parentElement;
+    const input = search.querySelector<HTMLInputElement>('input');
+    const suggestions = search.querySelector<HTMLElement>('[data-site-search-suggestions]');
+    const status = search.querySelector<HTMLElement>('[data-site-search-status]');
+    if (!toggle || !tools || !input || !suggestions || !status) return;
+
+    const breakpoint = getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-xl').trim();
+    const desktop = matchMedia(`(min-width: ${breakpoint})`);
+    // Nel menu compatto la tastiera resta già nella navbar.
+    const focusTrap = new FocusTrap({ trapElement: tools, autofocus: false });
+    let timer: number | undefined;
+    let request: AbortController | undefined;
+
+    const setOpen = (open: boolean, restoreFocus = false) => {
+      search.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      if (open) {
+        input.focus();
+        if (desktop.matches) focusTrap.activate();
+      } else {
+        focusTrap.deactivate();
+        if (restoreFocus) toggle.focus();
+      }
+    };
+
+    const suggest = async (query: string) => {
+      request?.abort();
+      request = new AbortController();
+      try {
+        const response = await fetch(`/cerca/suggerimenti/?q=${encodeURIComponent(query)}`, { signal: request.signal });
+        if (!response.ok) return;
+        suggestions.innerHTML = await response.text();
+        status.textContent = suggestions.querySelector<HTMLElement>('[data-summary]')?.dataset.summary ?? '';
+      } catch {
+        // Richiesta superata da una più recente o rete assente: resta l’invio del modulo.
+      }
+    };
+
+    toggle.addEventListener('click', () => setOpen(search.hidden));
+
+    input.addEventListener('input', () => {
+      window.clearTimeout(timer);
+      const query = input.value.trim();
+      // Nel menu compatto i suggerimenti finirebbero sotto la tastiera: l’invio porta a /cerca/.
+      if (query.length < 2 || !desktop.matches) {
+        request?.abort();
+        suggestions.replaceChildren();
+        status.textContent = '';
+        return;
+      }
+      timer = window.setTimeout(() => suggest(query), 200);
+    });
+
+    tools.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || search.hidden) return;
+      // Evita che lo stesso Escape chiuda anche il menu compatto.
+      event.stopPropagation();
+      setOpen(false, true);
+    });
+
+    // Lo sfondo oscurato è un pseudo-elemento dell'header.
+    const header = search.closest<HTMLElement>('.site-header');
+    header?.addEventListener('click', (event) => {
+      if (event.target === header) setOpen(false);
+    });
+
+    search.closest('.navbar-collapse')?.addEventListener('hidden.bs.collapse', () => setOpen(false));
+    desktop.addEventListener('change', () => setOpen(false));
+  });
+</script>

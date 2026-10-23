@@ -1,0 +1,189 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.site-search-toggle {
+  color: var(--bs-navbar-color);
+
+  &[aria-expanded='true'] img,
+  &:not([aria-expanded='true']) .site-search-close {
+    display: none;
+  }
+
+  svg {
+    display: block;
+    width: var(--header-icon-size);
+    height: var(--header-icon-size);
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$ink;
+    outline-offset: 4px;
+  }
+}
+
+.site-search-form {
+  gap: theme.$space-16;
+  border-bottom: 1px solid theme.$border;
+
+  &:focus-within {
+    border-color: theme.$brand-red;
+    box-shadow: 0 1px theme.$brand-red;
+  }
+}
+
+.site-search-input {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  color: theme.$ink;
+  background: transparent;
+  outline: 0;
+
+  &::placeholder {
+    color: theme.$muted-mobile;
+    opacity: 1;
+  }
+
+  &::-webkit-search-cancel-button {
+    appearance: none;
+  }
+}
+
+.site-search-submit {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  padding: 0;
+  color: theme.$brand-red;
+  background: transparent;
+  font-size: theme.$font-size-section-lead;
+
+  &:focus-visible {
+    outline: 2px solid theme.$ink;
+    outline-offset: -2px;
+  }
+}
+
+.site-search-list {
+  margin-top: theme.$space-8;
+}
+
+.site-search-suggestion {
+  gap: theme.$space-16;
+  border-bottom: 1px solid theme.$border-soft;
+  padding-block: theme.$space-12;
+  color: theme.$ink;
+  text-decoration: none;
+
+  &:hover {
+    color: theme.$ink;
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$ink;
+    outline-offset: 2px;
+  }
+}
+
+.site-search-title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.site-search-type {
+  flex: 0 0 72px;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-content-meta;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-content-meta;
+  text-transform: uppercase;
+}
+
+.site-search-all,
+.site-search-empty {
+  margin-top: theme.$space-24;
+}
+
+.site-search-empty {
+  color: theme.$muted;
+}
+
+.search-highlight {
+  padding: 0;
+  color: inherit;
+  background: none;
+  font-weight: theme.$font-weight-semibold;
+}
+
+@include bs.media-breakpoint-up(xl, theme.$grid-breakpoints) {
+  .site-search {
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    border-radius: 0 0 6px 6px;
+    padding: theme.$space-48 var(--bs-navbar-padding-x) theme.$space-64;
+    background: white;
+    box-shadow: 0 16px 24px -12px rgba(theme.$ink, 0.25);
+
+    > * {
+      max-width: 800px;
+      margin-inline: auto;
+    }
+  }
+
+  .site-search-input {
+    padding-block: theme.$space-8;
+    font-size: theme.$font-size-page-lead;
+    font-weight: theme.$font-weight-light;
+    line-height: theme.$line-height-page-lead;
+  }
+
+  .site-search-submit {
+    font-size: theme.$font-size-page-lead;
+  }
+}
+
+@include bs.media-breakpoint-down(xl, theme.$grid-breakpoints) {
+  .site-search {
+    flex: 1 1 0;
+    align-self: center;
+    min-width: 0;
+    margin-inline: theme.$space-4 theme.$space-16;
+  }
+
+  .site-search-input {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-body;
+  }
+
+  .site-search-suggestions {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @include bs.media-breakpoint-up(xl, theme.$grid-breakpoints) {
+    .site-search {
+      animation: header-submenu-in theme.$interaction-duration theme.$interaction-easing;
+    }
+  }
+
+  @include bs.media-breakpoint-down(xl, theme.$grid-breakpoints) {
+    .site-search {
+      animation: site-search-in 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+  }
+}
+
+@keyframes site-search-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0);
+  }
+}
