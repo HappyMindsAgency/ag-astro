@@ -1,5 +1,18 @@
 ---
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import Layout from '../../components/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import SearchResults from '../../components/SearchResults.astro';
+import { searchSite } from '../../data/search';
+
+const query = Astro.url.searchParams.get('q')?.trim() ?? '';
+const results = query ? await searchSite(query) : [];
 ---
 
-<PagePlaceholder title="Risultati ricerca interna" />
+<Layout>
+  <PageIntro breadcrumb="Ricerca" eyebrow="Ricerca" compact>
+    <Fragment slot="title"><span class="d-block">Cerca</span>{' '}<span class="d-block text-secondary">nel sito.</span></Fragment>
+    {query ? `${results.length ? 'Risultati' : 'Nessun risultato'} per “${query}”.` : 'Pagine, notizie, eventi e documenti della Knowledge Library.'}
+  </PageIntro>
+
+  <SearchResults query={query} results={results} />
+</Layout>

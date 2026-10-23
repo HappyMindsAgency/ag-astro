@@ -10,6 +10,11 @@
   }
 }
 
+.page-intro.page-intro--compact {
+  min-height: 0;
+  border-bottom: 0;
+}
+
 .page-intro-eyebrow {
   margin-bottom: theme.$space-40;
   color: theme.$brand-red;
@@ -46,6 +51,10 @@
 }
 
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .page-intro.page-intro--compact .row {
+    padding-bottom: theme.$space-80;
+  }
+
   .page-intro--wide-title {
     .container {
       padding-right: 0;
