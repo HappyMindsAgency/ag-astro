@@ -19,7 +19,8 @@ Servono inoltre le destinazioni di LinkedIn, Certificazioni nel footer, “Leggi
 
 - **Strapi:** servono dati definitivi, relazioni, URL dei PDF e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
 - **FAQ:** servono risposte e sostituzione delle domande segnaposto di Servizi, Trust e Patrimonio. Le risposte attuali sono Lorem ipsum.
-- **Servizi esterni:** configurazione di moduli contatti, newsletter, ricerca e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
+- **Servizi esterni:** configurazione di moduli contatti, newsletter e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
+- **Ricerca e Knowledge Library:** scegliere con Vito la fonte dei risultati (filtri di Strapi o motore dedicato) e stimare il numero di documenti. La Library filtra nel browser tutti i documenti caricati: oltre qualche decina i filtri andranno spostati sul server, con la stessa fonte della ricerca.
 - **Pagine legali:** servono testi definitivi per Privacy e Cookie e contenuti di Credits.
 
 ## Asset mancanti
