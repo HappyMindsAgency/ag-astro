@@ -8,6 +8,7 @@ import ServiceOverview from '../components/ServiceOverview.astro';
 import FeaturedEvent from '../components/FeaturedEvent.astro';
 import NewsFeed from '../components/NewsFeed.astro';
 import NewsletterSection from '../components/NewsletterSection.astro';
+import { newsletterText } from '../data/newsletter';
 import '../styles/pages/home.scss';
 
 const companyDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula.';
@@ -28,7 +29,6 @@ const trustPoints = [
   'Il trustee professionale assicura competenza e continuità.',
 ];
 const values = ['Esperienza specialistica', 'Indipendenza', 'Multidisciplinarità', 'Relazione personale', 'Continuità', 'Aggiornamento costante'];
-const newsletterDescription = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum';
 // TODO Strapi: sostituire evento e articoli provvisori con i dati di Strapi ed eliminare questo commento.
 const featuredEventPlaceholder: ComponentProps<typeof FeaturedEvent>['event'] = {
   title: 'Il Trust in Italia:\nXI Congresso Nazionale e Domenica Specialistica',
@@ -158,6 +158,9 @@ const articlePlaceholders: ArticlePreview[] = [
   </section>
 
   <NewsFeed articles={articlePlaceholders} />
-  <NewsletterSection title="Iscrizione alla newsletter">{newsletterDescription}</NewsletterSection>
+  <NewsletterSection title={newsletterText.title}>
+    {newsletterText.introduction}<br />
+    {newsletterText.description}
+  </NewsletterSection>
 </Layout>
 

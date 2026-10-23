@@ -51,7 +51,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Visione e metodologia | “Titolo della sezione”, terzo e quarto servizio, descrizioni e paragrafi Lorem ipsum/Cras et lorem. La CTA parla di newsletter ma porta ai servizi: confermare testo e destinazione. |
 | Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
 | Contatti | Titolo della fascia sedi e descrizione newsletter provvisori. |
-| Home | Presentazione, descrizioni dei servizi, introduzione Patrimonio, card del metodo e newsletter provvisori. Evento e articoli attendono dati e link ai dettagli da Strapi. |
+| Home | Presentazione, descrizioni dei servizi, introduzione Patrimonio e card del metodo provvisori. Evento e articoli attendono dati e link ai dettagli da Strapi. |
 | Team | Titoli, ruoli, biografie e articoli collegati provvisori. Per i profili individuali il percorso è predisposto: mancano design, contenuti e conferma dei collegamenti dai nomi. |
 | AG Informa | Articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
 | Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
