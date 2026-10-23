@@ -59,10 +59,11 @@ I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura de
 
 - Usa `container`, `row`, `col-*` e `offset-*`, senza duplicare le mappe dei breakpoint Bootstrap. Le sezioni crescono con il contenuto: evita altezze che taglino il testo.
 - Il container `xxl` misura 1376 px (`$page-container-max-width`). Le sezioni contenute della Home e la newsletter usano 1280 px (`$content-container-max-width`); `NewsFeed` affianca le colonne da `xl`.
+- Sotto `lg` i container delle sezioni usano `.section-container`: larghezza piena e margini di 24 px (`$page-gutter-mobile`); `px-lg-0` li azzera da `lg`. Le pagine segnaposto mantengono il `.container` di Bootstrap. `.frame-container` allinea archivi, articolo ed evento alla cornice di navbar e footer.
 - `PageIntro` usa 40 px di padding, 24 px sotto `lg`; colonne 6+6 con divisore rosso da `md`, layout verticale sotto 768 px e tipografia compatta fino a 991 px. Fra `md` e `xxl` mantiene 80 px sotto il contenuto.
 - Sotto `lg`, `PageIntro` aggiunge 8 px sopra la breadcrumb; dopo il percorso lascia 24 px sotto `md` e 40 px da `md`.
 - Fra `lg` e `xxl` (992–1399 px), usa `$*-tablet` e `.section-spacing` per 80 px di padding verticale. Le griglie a quattro card usano `col-6 col-xxl-3`.
-- Navbar e footer sono centrati, con margini minimi di 24 px e larghezza massima `$frame-max-width` (1717 px). La navbar usa `navbar-expand-xl`: soglia di 1200 px condivisa con lo script; logo, spazi e corpo crescono con `fluid()` fino a 1920 px.
+- Navbar e footer sono centrati, con margini minimi di 24 px e larghezza massima `$frame-max-width` (1717 px). La navbar usa `navbar-expand-xl` (1200 px) e lo script legge la stessa soglia da `--bs-breakpoint-xl`, come Notizie e Library da `--bs-breakpoint-lg`; logo, spazi e corpo crescono con `fluid()` fino a 1920 px.
 - Nel menu compatto, Contatti compare nella barra da 390 px; le voci crescono da 22 a 28 px fra 360 e 430 px. Nel footer, Menu e Utility sono affiancate sotto `md`; da `md` le colonne automatiche usano `justify-content-between`.
 - Foto e testo, certificazioni, video e CTA ampie mantengono il limite `$wide-layout-max-width` ricavato dal desktop da 1920 px. Gli sfondi continuano a tutta larghezza. Sotto 390 px i margini delle CTA si riducono fino a 24 px.
 - Per gli a capo forzati usa il primo breakpoint Bootstrap in cui le righe entrano interamente, verificando anche subito prima e dopo la soglia. Nel paragrafo introduttivo dei contatti gli a capo valgono solo da `xxl`.
@@ -76,7 +77,8 @@ Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo
 - `.site-button--outline-light` diventa bianco con testo blu; `.service-list-row` evidenzia le righe senza spostare il contenuto.
 - `.contact-action-link` schiarisce testo e bordo; `.contact-action-arrow` avanza di 4 px anche al focus da tastiera.
 - Le transizioni usano `$interaction-duration` (150 ms) e `$interaction-easing`, rispettando il movimento ridotto. Gli effetti assenti dal prototipo si valutano separatamente.
-- Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership.
+- Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership; `brand-watermark` la filigrana del logo di Home e Team.
+- `$anchor-offset` (160 px) è lo `scroll-margin-top` delle ancore sotto l’header; lo ScrollSpy dell’articolo ne ricava la linea di lettura.
 - La linea superiore del footer sta dietro le sezioni e compare solo quando l’ultima non ha uno sfondo.
 
 ## Dati, percorsi e integrazioni
