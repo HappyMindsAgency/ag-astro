@@ -36,7 +36,7 @@ I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura de
 
 `.type-section-lead` usa 20/32.2 px sul desktop e 16/20 px sul mobile; `--relaxed` mantiene 25 px di interlinea mobile. Le descrizioni delle card del metodo hanno interlinea 23 px desktop e 20 px mobile. Sotto `lg`, `.type-section-title--compact` conserva `letter-spacing: normal`.
 
-`CallToAction` condivide sopratitolo da 16 px senza maiuscolo forzato, descrizione da 16 px bianco pieno (interlinea 26 px desktop, 20 px mobile) e titolo da 40 px desktop/32 px mobile, con interlinea 46 px e `text-wrap: balance`. `contained` mantiene il limite del frame desktop; `plainBackground` conserva il gradiente senza foto di Library e dettaglio articolo. `NewsletterCallToAction` mantiene invece la foto sia sul desktop sia sul mobile, come approvato.
+`CallToAction` condivide sopratitolo da 16 px senza maiuscolo forzato, descrizione da 16 px bianco pieno (interlinea 26 px desktop, 20 px mobile) e titolo da 40 px desktop/32 px mobile, con interlinea 46 px e `text-wrap: balance`. `contained` mantiene il limite del frame desktop; `plainBackground` conserva il gradiente senza foto di Library e dettaglio articolo. `NewsletterCallToAction` mantiene la foto sia sul desktop sia sul mobile; nella Knowledge Library usa `plainBackground` per conservare il gradiente senza foto.
 
 `FaqSection` riceve un `id` univoco e le coppie domanda/risposta. Conserva i titoli desktop da 56 px o, con `largeTitle`, 68 px per Trust e Contatti; sul mobile usa 34 px. `twoColumns` dispone le domande in due colonne da `lg`; `embedded` mantiene la variante compatta dell’articolo. Una sola risposta aperta per gruppo.
 

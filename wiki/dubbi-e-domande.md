@@ -18,9 +18,8 @@ Provare ogni occorrenza dopo l’integrazione; se una destinazione non è previs
 
 | Elemento | Dove verificarlo | Da completare |
 | --- | --- | --- |
-| Leggi l’ultima newsletter | CTA finale di AG Informa ed Eventi | URL della newsletter in `NewsletterCallToAction` (`latestNewsletterUrl`). |
+| Leggi l’ultima newsletter | CTA finale di AG Informa, Eventi e Knowledge Library | URL della newsletter in `NewsletterCallToAction` (`latestNewsletterUrl`). |
 | Calendario completo | Entrambi gli elenchi Eventi e i correlati del dettaglio evento | Destinazione in `EventList` (`calendarHref`). |
-| Vai alla pagina — Guide e tutorial | CTA finale della Knowledge Library | Destinazione in `CallToAction` (`href`). |
 | PDF e documenti della ricerca | Library, correlati di Trust/Patrimonio/articolo/evento e risultati della ricerca | URL dei file da Strapi (`downloadUrl`). |
 | LinkedIn | Header e footer di tutte le pagine | URL del profilo tramite `Layout` (`linkedinUrl`). |
 | Certificazioni | Utility del footer | Destinazione da confermare. |
@@ -58,7 +57,8 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
 | Eventi | Date, luoghi e contenuti degli eventi provvisori; servono criteri di selezione dei due elenchi. |
 | Dettaglio evento | Testo, orario, categoria, documenti, correlati e piccolo invito ai contatti provvisori; il primo correlato ripete l’evento corrente. |
-| Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. Testo di Guide e tutorial provvisorio. |
+| Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. I Link utili attendono l’indicazione grafica del designer. |
+| 404 | Mantenere il segnaposto: la pagina completa attende le indicazioni grafiche del designer. |
 
 ## Mobile: confronto con la prossima release
 

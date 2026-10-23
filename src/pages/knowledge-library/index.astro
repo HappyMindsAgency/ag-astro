@@ -2,7 +2,7 @@
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import LibraryArchive from '../../components/LibraryArchive.astro';
-import CallToAction from '../../components/CallToAction.astro';
+import NewsletterCallToAction from '../../components/NewsletterCallToAction.astro';
 import { libraryDocumentPlaceholders, libraryCategories } from '../../data/library-placeholders';
 import '../../styles/pages/knowledge-library.scss';
 ---
@@ -16,10 +16,6 @@ import '../../styles/pages/knowledge-library.scss';
 
     <LibraryArchive documents={libraryDocumentPlaceholders} categories={libraryCategories} />
 
-    <!-- TODO Strapi: sostituire testo e destinazione provvisori di Guide e tutorial, poi eliminare il commento. -->
-    <CallToAction contained plainBackground eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" label="Vai alla pagina">
-      <Fragment slot="title">Guide e tutorial</Fragment>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula augue, id ultrices turpis ullamcorper in. In porttitor quam ultricies elementum commodo.
-    </CallToAction>
+    <NewsletterCallToAction plainBackground />
   </div>
 </Layout>
