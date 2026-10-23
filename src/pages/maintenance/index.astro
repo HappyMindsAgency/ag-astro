@@ -1,0 +1,36 @@
+---
+import Head from '../../components/Head.astro';
+import '../../styles/globals.scss';
+
+Astro.response.status = 503;
+Astro.response.headers.set('Retry-After', '3600');
+Astro.response.headers.set('X-Robots-Tag', 'noindex');
+---
+<!DOCTYPE html>
+<html lang="it">
+    <Head title="Nuovo sito in arrivo | AG Trustees" />
+    <body>
+        <main class="maintenance container text-center">
+            <img src="/assets/brand/ag-logo-orizzontale.png" alt="AG Trustees" class="maintenance__logo" />
+            <h1 class="type-section-title">Il nuovo sito è in arrivo</h1>
+            <p class="type-section-lead mb-0">Stiamo realizzando il nuovo sito di AG Trustees. Torna a trovarci a breve.</p>
+        </main>
+    </body>
+</html>
+
+<style>
+    .maintenance {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        min-height: 100vh;
+        padding-block: 48px;
+    }
+
+    .maintenance__logo {
+        width: min(280px, 70vw);
+        height: auto;
+    }
+</style>
