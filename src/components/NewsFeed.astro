@@ -75,7 +75,7 @@ const otherArticles = archive ? [] : articles.slice(2);
     const more = feed.querySelector<HTMLButtonElement>('[data-news-more]');
     const reset = feed.querySelector<HTMLButtonElement>('[data-news-reset]');
     const paginated = feed.hasAttribute('data-news-paginated');
-    const desktop = window.matchMedia('(min-width: 992px)');
+    const desktop = window.matchMedia(`(min-width: ${getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-lg')})`);
     const pageSize = () => desktop.matches ? 8 : 4;
     let activeFilter = 'all';
     let visibleLimit = pageSize();

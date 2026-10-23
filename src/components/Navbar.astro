@@ -121,7 +121,7 @@ const navigation: NavigationItem[] = [
   import FocusTrap from 'bootstrap/js/dist/util/focustrap';
 
   document.querySelectorAll<HTMLElement>('.site-navbar').forEach((navbar) => {
-    const breakpoint = getComputedStyle(navbar).getPropertyValue('--header-expand-breakpoint').trim();
+    const breakpoint = getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-xl').trim();
     const desktop = matchMedia(`(min-width: ${breakpoint})`);
     const desktopHover = matchMedia(`(min-width: ${breakpoint}) and (hover: hover) and (pointer: fine)`);
     const header = navbar.closest<HTMLElement>('.site-header');

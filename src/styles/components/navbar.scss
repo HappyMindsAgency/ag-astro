@@ -83,7 +83,6 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .site-navbar {
-  --header-expand-breakpoint: #{theme.$header-expand-breakpoint};
   --header-nav-font-size: #{fluid(theme.$font-size-header-nav, theme.$font-size-body, $to: 1600px)};
   --header-logo-width: #{fluid(192px, 304px, $to: 1456px)};
   --header-bar-height: 80px;

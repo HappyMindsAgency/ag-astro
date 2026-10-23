@@ -77,7 +77,7 @@ const { id = 'library-archive', documents = [], categories = [...new Set(documen
     const order = form.querySelector<HTMLSelectElement>('[name="order"]')!;
     const categoryButtons = form.querySelectorAll<HTMLButtonElement>('[data-library-category]');
     const items = [...archive.querySelectorAll<HTMLElement>('[data-document]')];
-    const desktop = window.matchMedia('(min-width: 992px)');
+    const desktop = window.matchMedia(`(min-width: ${getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-lg')})`);
     const pageSize = () => desktop.matches ? 12 : 4;
     let limit = pageSize();
     let category = '';

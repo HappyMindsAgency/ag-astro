@@ -10,7 +10,8 @@ interface Props {
 }
 
 const { id, items, largeTitle = false, twoColumns = false, embedded = false } = Astro.props;
-const columns = twoColumns ? [items.slice(0, Math.ceil(items.length / 2)), items.slice(Math.ceil(items.length / 2))] : [items];
+const half = Math.ceil(items.length / 2);
+const columns = twoColumns ? [items.slice(0, half), items.slice(half)] : [items];
 const listId = `${id}-list`;
 ---
 
@@ -24,13 +25,10 @@ const listId = `${id}-list`;
       <div class={twoColumns || embedded ? 'col-12' : 'col-lg-6'}>
         <div id={listId} class:list={['accordion faq-list', { 'row g-0': twoColumns }]}>
           {columns.map((column, columnIndex) => (
-            <div class:list={[twoColumns ? 'col-lg-6' : undefined, {
-              'pe-lg-4': twoColumns && columnIndex === 0,
-              'ps-lg-4': twoColumns && columnIndex === 1,
-            }]}>
+            <div class:list={{ 'col-lg-6': twoColumns, 'pe-lg-4': twoColumns && columnIndex === 0, 'ps-lg-4': twoColumns && columnIndex === 1 }}>
               <div class="faq-list-column">
                 {column.map(({ question, answer }, itemIndex) => {
-                  const index = columnIndex * Math.ceil(items.length / 2) + itemIndex;
+                  const index = columnIndex * half + itemIndex;
                   const questionId = `${id}-question-${index}`;
                   const answerId = `${id}-answer-${index}`;
 

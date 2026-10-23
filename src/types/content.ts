@@ -1,7 +1,14 @@
+export interface ContentImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export interface ArticlePreview {
   title: string;
   href: string;
-  image: { src: string; alt: string; width: number; height: number };
+  image: ContentImage;
   category: string;
   date: string;
   dateTime: string;
@@ -12,7 +19,7 @@ export interface ArticlePreview {
 export interface EventPreview {
   title: string;
   href?: string;
-  image?: { src: string; alt: string; width: number; height: number };
+  image?: ContentImage;
   organizer?: string;
   location: string;
   format?: 'Convegno' | 'Webinar' | 'Seminario';
@@ -33,7 +40,7 @@ export interface DocumentPreview {
 export interface EventDetail extends EventPreview {
   category?: string;
   time?: string;
-  cover?: EventPreview['image'];
+  cover?: ContentImage;
 }
 
 export interface ArticleDetail extends ArticlePreview {
@@ -49,6 +56,6 @@ export interface TeamMember {
   biography?: string;
   expertise?: string;
   email?: string;
-  image?: { src: string; alt: string; width: number; height: number };
+  image?: ContentImage;
   relatedArticle?: { title: string; href: string };
 }

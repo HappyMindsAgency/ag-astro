@@ -1,9 +1,8 @@
 ---
-import Head from '../components/Head.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Head from './Head.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
 import '../styles/globals.scss';
-
 
 interface Props {
     lang?: string;
@@ -14,7 +13,6 @@ interface Props {
 }
 
 const { lang = 'it', title = 'AG Trustees', description, linkedinUrl, headerHeroId } = Astro.props;
-
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -27,9 +25,5 @@ const { lang = 'it', title = 'AG Trustees', description, linkedinUrl, headerHero
         </main>
         <Footer linkedinUrl={linkedinUrl} />
     </body>
-
-    <script>
-        import 'bootstrap/js/dist/collapse';
-    </script>
 </html>
 
