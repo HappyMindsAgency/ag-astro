@@ -44,13 +44,13 @@ const historySteps = [
   },
 ];
 
-const competencies = [
-  'Progettazione e governance del trust',
-  'Patrimonio e continuità',
-  'Amministrazione e adempimenti',
-];
-
 const competencyDescription = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies.';
+
+const competencies = [
+  { title: 'Progettazione e governance del trust', description: competencyDescription },
+  { title: 'Patrimonio e continuità', description: competencyDescription },
+  { title: 'Amministrazione e adempimenti', description: 'Gestione amministrativa, contabile e fiscale, organizzazione della documentazione, rendicontazione e coordinamento con i professionisti coinvolti.' },
+];
 
 const methodSteps = [
   {
@@ -152,11 +152,11 @@ const methodSteps = [
         </div>
       </div>
       <ol class="about-competencies-list list-unstyled mb-0">
-        {competencies.map((title, index) => (
+        {competencies.map(({ title, description }, index) => (
           <li class="row gx-0 align-items-center">
             <span class="col-auto about-competency-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <h3 class="col about-competency-title mb-0">{title}</h3>
-            <p class="col-lg-5 col-xxl-6 about-competency-description mb-0">{competencyDescription}</p>
+            <p class="col-lg-5 col-xxl-6 about-competency-description mb-0">{description}</p>
           </li>
         ))}
       </ol>

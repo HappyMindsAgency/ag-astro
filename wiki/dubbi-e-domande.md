@@ -48,7 +48,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 
 | Pagina | Punti da chiarire o sostituire |
 | --- | --- |
-| Chi siamo | Le tre descrizioni delle competenze sono segnaposto; confermare anche le voci rispetto al mobile. |
+| Chi siamo | Restano segnaposto le descrizioni di Progettazione e governance del trust e Patrimonio e continuità; confermare anche le voci rispetto al mobile. |
 | Visione e metodologia | “Titolo della sezione”, terzo e quarto servizio, descrizioni e paragrafi Lorem ipsum/Cras et lorem. La CTA parla di newsletter ma porta ai servizi: confermare testo e destinazione. |
 | Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
 | Contatti | Titolo della fascia sedi e descrizione newsletter provvisori. |
