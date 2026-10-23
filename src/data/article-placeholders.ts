@@ -1,0 +1,75 @@
+import type { ArticlePreview } from '../types/content';
+
+// TODO Strapi: sostituire articoli, categorie e collegamenti provvisori con i dati di Strapi ed eliminare questo commento.
+export const articleCategories = ['Trust', 'Fisco e normativa', 'Patrimonio', 'Impresa'];
+
+const archivePlaceholders: ArticlePreview[] = [
+  {
+    title: 'Trust familiari e passaggio generazionale: una guida alle nuove opportunità',
+    category: 'Trust', date: '18 settembre 2026', dateTime: '2026-09-18', featured: true,
+    imageName: 'trust-familiari', alt: 'Una famiglia incontra i consulenti per la pianificazione patrimoniale',
+    excerpt: 'Una panoramica operativa sui principali strumenti per organizzare il patrimonio familiare, definire ruoli chiari e accompagnare il ricambio generazionale.',
+  },
+  {
+    title: 'Fondi pensione integrativi: scenari e vantaggi per professionisti e imprese',
+    category: 'Impresa', date: '5 marzo 2026', dateTime: '2026-03-05', featured: true,
+    imageName: 'fondi-pensione', alt: 'Consulenti riuniti intorno a un tavolo di lavoro',
+    excerpt: 'Una sintesi delle opportunità previdenziali e fiscali per costruire un piano complementare coerente con reddito, età e obiettivi futuri.',
+  },
+  {
+    title: 'Clausole di governance nel trust: come prevenire conflitti tra beneficiari',
+    category: 'Trust', date: '10 settembre 2026', dateTime: '2026-09-10',
+    imageName: 'governance-trust', alt: 'Una riunione di consulenza sul patrimonio familiare',
+    excerpt: 'Un approfondimento sulle clausole che regolano decisioni, poteri del trustee e meccanismi di tutela nei trust con più rami familiari.',
+  },
+  {
+    title: 'Protezione dei beni nel trust: ruoli, limiti e responsabilità',
+    category: 'Trust', date: '22 febbraio 2026', dateTime: '2026-02-22',
+    imageName: 'protezione-beni', alt: 'Un professionista attraversa un passaggio pedonale',
+    excerpt: 'Il quadro essenziale dei compiti di trustee, guardiano e beneficiari, con attenzione alla corretta separazione del patrimonio conferito.',
+  },
+  {
+    title: 'Monitoraggio fiscale: gli adempimenti per disponente e beneficiari',
+    category: 'Fisco e normativa', date: '3 settembre 2026', dateTime: '2026-09-03',
+    imageName: 'monitoraggio-fiscale', alt: 'Consulenti esaminano documenti e prospetti finanziari',
+    excerpt: 'Indicazioni pratiche, con esempi plausibili, sugli obblighi dichiarativi, sui flussi informativi e sulle attribuzioni ai beneficiari residenti.',
+  },
+  {
+    title: 'Trust e dichiarazioni: le novità operative per il periodo d’imposta',
+    category: 'Fisco e normativa', date: '18 febbraio 2026', dateTime: '2026-02-18',
+    imageName: 'dichiarazioni', alt: 'Una stretta di mano al termine di un incontro',
+    excerpt: 'Un riepilogo plausibile delle informazioni da raccogliere e dei controlli da prevedere per una gestione documentale più ordinata.',
+  },
+  {
+    title: 'Immobili e opere d’arte: criteri per una gestione patrimoniale coordinata',
+    category: 'Patrimonio', date: '27 agosto 2026', dateTime: '2026-08-27',
+    imageName: 'immobili-arte', alt: 'Una consulenza patrimoniale in una sala con opere d’arte',
+    excerpt: 'Valutazione, custodia e pianificazione successoria degli asset non finanziari in una strategia patrimoniale di lungo periodo.',
+  },
+  {
+    title: 'Diversificare il patrimonio familiare tra liquidità, immobili e partecipazioni',
+    category: 'Patrimonio', date: '13 febbraio 2026', dateTime: '2026-02-13',
+    imageName: 'diversificazione', alt: 'Una famiglia e i consulenti discutono la gestione degli investimenti',
+    excerpt: 'Principi e criteri per bilanciare rendimento, rischio e disponibilità delle risorse in una pianificazione condivisa fra generazioni.',
+  },
+].map(({ imageName, alt, ...article }) => ({
+  ...article,
+  href: '/ag-informa/articolo-provvisorio/',
+  image: { src: `/assets/immagini/ag-informa/${imageName}.webp`, alt, width: imageName === 'trust-familiari' ? 1536 : 480, height: imageName === 'trust-familiari' ? 864 : 270 },
+}));
+const additionalPlaceholders: ArticlePreview[] = [
+  {
+    title: 'Riforma fiscale 2025: le novità per i trust nella legge delega',
+    category: 'Fisco e normativa', date: '18 settembre 2026', dateTime: '2026-09-18',
+    image: { src: '/assets/immagini/home-articolo-fisco-provvisorio.webp', alt: 'Statua della giustizia con bilancia e spada', width: 480, height: 270 },
+    excerpt: 'Il decreto attuativo della delega fiscale introduce importanti chiarimenti sulla tassazione dei trust opachi e trasparenti. Analisi delle principali disposizioni.',
+  },
+  {
+    title: 'Trust e successione: la Cassazione consolida il principio di separazione patrimoniale',
+    category: 'Trust', date: '10 settembre 2026', dateTime: '2026-09-10',
+    image: { src: '/assets/immagini/home-articolo-trust-provvisorio.webp', alt: 'Scaffali di una biblioteca', width: 480, height: 270 },
+    excerpt: 'Con la sentenza n. 18421/2026 la Suprema Corte ribadisce l’efficacia del trust come strumento di protezione patrimoniale nelle procedure concorsuali.',
+  },
+].map((article) => ({ ...article, href: '/ag-informa/articolo-provvisorio/' }));
+
+export const articlePlaceholders = [...archivePlaceholders, ...additionalPlaceholders];

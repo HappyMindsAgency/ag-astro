@@ -32,7 +32,7 @@ Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/des
 
 I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura delle lettere `normal` tramite `.type-eyebrow`. Sul mobile, “Chi è AG Trustees” conserva 10 px; `.type-eyebrow--section` usa 12 px e maiuscole.
 
-`PageIntro` include breadcrumb, titolo e introduzione. `mobileTitleLeading` conserva le interlinee `tight` (50 px), `regular` (60 px) e `relaxed` (69 px). `wideTitle` amplia la colonna da `xxl` e attiva `fitMobileTitle`, che riduce il corpo sotto 390 px; usa solo `fitMobileTitle` se basta l’adattamento mobile.
+`PageIntro` include breadcrumb, titolo e introduzione. `mobileTitleLeading` conserva le interlinee `tight` (50 px), `regular` (60 px) e `relaxed` (69 px). `wideTitle` amplia la colonna da `xxl` e attiva `fitMobileTitle`, che riduce il corpo sotto 390 px; usa solo `fitMobileTitle` se basta l’adattamento mobile. `compact` toglie altezza minima e divisore quando subito dopo c’è un modulo, come in Cerca.
 
 `.type-section-lead` usa 20/32.2 px sul desktop e 16/20 px sul mobile; `--relaxed` mantiene 25 px di interlinea mobile. Le descrizioni delle card del metodo hanno interlinea 23 px desktop e 20 px mobile. Sotto `lg`, `.type-section-title--compact` conserva `letter-spacing: normal`.
 
@@ -52,6 +52,7 @@ I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura de
 | `TeamMemberCard` | Schede `leadership`, `operational` e `counsel`, con gruppi di qualsiasi lunghezza. |
 | `RelatedContent`, `DocumentList` | Correlati e documenti; `DocumentList` passa a due colonne da `xl`, `compact` ne mantiene una e `tone` gestisce i colori di categoria. |
 | `LibraryArchive`, `.content-filter` | Ricerca, categorie, date ISO inclusive, ordinamento e caricamento progressivo: 12 documenti da `lg`, quattro sotto. Filtri condivisi con AG Informa. |
+| `SiteSearch`, `SearchResults`, `SearchHighlight` | Lente dell’header e pagina `/cerca/`; suggerimenti da `xl`, sotto l’invio porta a `/cerca/`. La fonte è `searchSite()`; `search-text.ts` condivide con la Library il confronto senza maiuscole e accenti. I profili del team restano fuori dall’indice finché non pronti. |
 | `.editorial-prose`, `ContentShare`, `EditorialContactCard`, `ArticleAuthor` | Stile e blocchi editoriali condivisi; l’indice dell’articolo usa Bootstrap Collapse e Scrollspy. |
 | `.type-editorial-list-title`, `.collapse-toggle`, `.site-button--small` | Titoli Notizie/Eventi, segno più/meno degli accordion e pulsanti con etichetta da 11 px. |
 

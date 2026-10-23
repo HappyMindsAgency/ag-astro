@@ -1,0 +1,108 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.search-results {
+  padding-bottom: 160px;
+
+  &.section-spacing {
+    padding-top: 0;
+  }
+
+  .container > * {
+    max-width: 960px;
+  }
+
+  .library-search {
+    border-top: 0;
+    padding-top: 0;
+  }
+}
+
+.search-results-filters {
+  margin-top: theme.$space-24;
+
+  + .library-count {
+    margin-top: theme.$space-24;
+  }
+}
+
+.search-result {
+  border-top: 1px solid theme.$border-soft;
+  padding-block: theme.$space-24;
+}
+
+.search-result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: theme.$space-8;
+  margin-bottom: theme.$space-8;
+  color: theme.$editorial-border;
+  font-size: theme.$font-size-content-meta;
+  line-height: theme.$line-height-content-meta;
+
+  > span:first-child {
+    color: theme.$brand-red;
+    font-weight: theme.$font-weight-semibold;
+    text-transform: uppercase;
+  }
+
+  > * + * {
+    border-left: 1px solid theme.$border-soft;
+    padding-left: theme.$space-8;
+  }
+}
+
+.search-result-title,
+.search-result-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.search-result-title {
+  margin-bottom: theme.$space-8;
+  color: theme.$ink;
+  font-size: theme.$font-size-article-list-title;
+  font-weight: theme.$font-weight-semibold;
+  line-height: theme.$line-height-article-list-title;
+  -webkit-line-clamp: 3;
+
+  &:focus-within {
+    outline: 2px solid theme.$brand-blue;
+    outline-offset: theme.$space-4;
+  }
+
+  a:focus-visible {
+    outline: none;
+  }
+}
+
+.search-result-excerpt {
+  color: theme.$muted;
+  font-size: theme.$font-size-article-excerpt;
+  line-height: theme.$line-height-article-excerpt;
+  -webkit-line-clamp: 3;
+}
+
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .search-results .container {
+    padding-inline: theme.$space-40;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .search-results {
+    padding-bottom: theme.$space-64;
+  }
+
+  .search-result-title {
+    font-size: theme.$font-size-article-title;
+    line-height: theme.$line-height-article-title;
+  }
+
+  .search-result-excerpt {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-editorial-copy-mobile;
+    -webkit-line-clamp: 4;
+  }
+}

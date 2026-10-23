@@ -21,7 +21,7 @@ Provare ogni occorrenza dopo l’integrazione; se una destinazione non è previs
 | Leggi l’ultima newsletter | CTA finale di AG Informa ed Eventi | URL della newsletter in `NewsletterCallToAction` (`latestNewsletterUrl`). |
 | Calendario completo | Entrambi gli elenchi Eventi e i correlati del dettaglio evento | Destinazione in `EventList` (`calendarHref`). |
 | Vai alla pagina — Guide e tutorial | CTA finale della Knowledge Library | Destinazione in `CallToAction` (`href`). |
-| Scarica PDF | Library e documenti correlati di Trust, Patrimonio, articolo ed evento | URL dei file da Strapi (`downloadUrl`). |
+| PDF e documenti della ricerca | Library, correlati di Trust/Patrimonio/articolo/evento e risultati della ricerca | URL dei file da Strapi (`downloadUrl`). |
 | LinkedIn | Header e footer di tutte le pagine | URL del profilo tramite `Layout` (`linkedinUrl`). |
 | Certificazioni | Utility del footer | Destinazione da confermare. |
 | FAQ | Menu del footer | Confermare destinazione e rapporto con le FAQ della Library; manca una pagina dedicata nel file degli slug. |
@@ -33,7 +33,9 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 
 - **Strapi:** servono dati definitivi, relazioni e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
 - **FAQ:** servono risposte e sostituzione delle domande segnaposto di Servizi, Trust e Patrimonio. Le risposte attuali sono Lorem ipsum.
-- **Servizi esterni:** configurazione di moduli contatti, newsletter, ricerca e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
+- **Servizi esterni:** configurazione di moduli contatti, newsletter e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
+- **Ricerca e Knowledge Library:** scegliere con Vito la fonte dei risultati (filtri di Strapi o motore dedicato) e stimare il numero di documenti. Valutare i filtri della Library sul server in base al volume dei dati e alle prestazioni.
+- **SEO della ricerca:** gestire `noindex, follow` di `/cerca/` tramite la SEO dinamica di Strapi.
 - **Pagine legali:** servono testi definitivi per Privacy e Cookie e contenuti di Credits.
 
 ## Asset mancanti

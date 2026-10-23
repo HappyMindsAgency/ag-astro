@@ -30,7 +30,7 @@ La build usa l’adapter Node standalone; in ambiente Vercel seleziona l’adapt
 
 ## Stato delle pagine
 
-Realizzati header, footer e le 13 pagine del design:
+Realizzati header, footer, le 13 pagine del design e la ricerca:
 
 | Pagina | Anteprima locale |
 | --- | --- |
@@ -47,7 +47,10 @@ Realizzati header, footer e le 13 pagine del design:
 | Eventi e formazione | [Apri](http://localhost:4321/eventi-in-agenda/) |
 | Dettaglio evento | [Apri](http://localhost:4321/eventi-in-agenda/evento-provvisorio/) |
 | Knowledge Library | [Apri](http://localhost:4321/knowledge-library/) |
+| Ricerca | [Apri](http://localhost:4321/cerca/?q=trust) |
 
 Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completare con Strapi e il team. I frame mobile incompleti o incoerenti, compreso Trust, attendono il confronto con il design definitivo; i punti aperti sono nella wiki.
 
-Privacy e Cookie hanno layout e Lorem ipsum. Ricerca, Credits, 404, profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.
+La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre si scrive e li elenca in `/cerca/`; per ora usa pagine e contenuti provvisori, in attesa della fonte concordata con il backend.
+
+Privacy e Cookie hanno layout e Lorem ipsum. Credits, 404, profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.

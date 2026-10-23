@@ -63,6 +63,8 @@ const { id = 'library-archive', documents = [], categories = [...new Set(documen
 </section>
 
 <script>
+  import { normalizeSearchText, searchTerms } from '../data/search-text';
+
   document.querySelectorAll<HTMLElement>('[data-library-archive]').forEach((archive) => {
     const form = archive.querySelector<HTMLFormElement>('[data-library-form]');
     const list = archive.querySelector<HTMLElement>('.document-list');
@@ -81,7 +83,7 @@ const { id = 'library-archive', documents = [], categories = [...new Set(documen
     const pageSize = () => desktop.matches ? 12 : 4;
     let limit = pageSize();
     let category = '';
-    let criteria = { query: '', from: '', to: '', order: 'recent' };
+    let criteria = { terms: [] as string[], from: '', to: '', order: 'recent' };
 
     const render = () => {
       const matching = items.filter((item) => {
@@ -89,7 +91,7 @@ const { id = 'library-archive', documents = [], categories = [...new Set(documen
         const date = item.dataset.documentDate ?? '';
         const title = item.querySelector('.related-document-title')?.textContent ?? '';
         return (!category || itemCategory === category)
-          && `${title} ${itemCategory}`.toLocaleLowerCase('it').includes(criteria.query)
+          && criteria.terms.every((term) => normalizeSearchText(`${title} ${itemCategory}`).includes(term))
           && (!criteria.from || date >= criteria.from)
           && (!criteria.to || (date !== '' && date <= criteria.to));
       }).sort((a, b) => {
@@ -108,7 +110,7 @@ const { id = 'library-archive', documents = [], categories = [...new Set(documen
       to.setCustomValidity(from.value && to.value && from.value > to.value ? 'La data finale deve essere uguale o successiva a quella iniziale.' : '');
       if (!form.reportValidity()) return;
       category = nextCategory;
-      criteria = { query: query.value.trim().toLocaleLowerCase('it'), from: from.value, to: to.value, order: order.value };
+      criteria = { terms: searchTerms(query.value), from: from.value, to: to.value, order: order.value };
       limit = pageSize();
       render();
     };
@@ -120,7 +122,7 @@ const { id = 'library-archive', documents = [], categories = [...new Set(documen
     [from, to].forEach(input => input.addEventListener('input', () => to.setCustomValidity('')));
     form.addEventListener('reset', () => {
       category = '';
-      criteria = { query: '', from: '', to: '', order: 'recent' };
+      criteria = { terms: [], from: '', to: '', order: 'recent' };
       limit = pageSize();
       to.setCustomValidity('');
       render();

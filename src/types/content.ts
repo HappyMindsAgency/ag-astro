@@ -59,3 +59,12 @@ export interface TeamMember {
   image?: ContentImage;
   relatedArticle?: { title: string; href: string };
 }
+
+export interface SearchResult {
+  type: 'page' | 'article' | 'event' | 'document';
+  title: string;
+  href?: string;
+  excerpt?: string;
+  category?: string;
+  dateTime?: string;
+}

@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:math';
 @use '../variables' as theme;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
@@ -8,6 +9,7 @@
 }
 
 $menu-open: '.navbar-toggler[aria-expanded="true"]';
+$search-open: '.site-search-toggle[aria-expanded="true"]';
 $menu-duration: 300ms;
 $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
 
@@ -48,6 +50,20 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
 
 .site-header {
   padding: 25px theme.$space-24 45px;
+
+  &::before {
+    position: fixed;
+    inset: 0;
+    background: rgba(theme.$ink-deep, 0.45);
+    content: '';
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &:has(#{$menu-open}, #{$search-open})::before {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .site-header.site-header--hero {
@@ -55,7 +71,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
   inset: 0 0 auto;
   background: white;
 
-  &.is-over-hero:not(:has(.navbar-toggler[aria-expanded='true'], .navbar-collapse.show, .navbar-collapse.collapsing)) {
+  &.is-over-hero:not(:has(#{$menu-open}, #{$search-open}, .navbar-collapse.show, .navbar-collapse.collapsing)) {
     background: transparent;
 
     .site-navbar {
@@ -76,7 +92,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
       color: white;
     }
 
-    :is(.navbar-brand, .nav-link, .header-contact, .navbar-toggler, .header-submenu-toggle):focus-visible {
+    :is(.navbar-brand, .nav-link, .header-contact, .navbar-toggler, .header-submenu-toggle, .header-icon):focus-visible {
       outline-color: white;
     }
   }
@@ -99,7 +115,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
   max-width: theme.$frame-max-width;
   min-height: var(--header-bar-height);
   margin-inline: auto;
-  background: rgba(theme.$ink, 0.05);
+  background: color.mix(theme.$ink, white, 5%);
 
   .navbar-brand {
     flex: 0 1 var(--header-logo-width);
@@ -180,6 +196,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .site-navbar .header-submenu {
+  --bs-dropdown-spacer: 0;
   --bs-dropdown-padding-y: #{theme.$space-8};
   --bs-dropdown-border-width: 0;
   --bs-dropdown-border-radius: 0 0 6px 6px;
@@ -322,20 +339,6 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
 @include bs.media-breakpoint-down(xl, theme.$grid-breakpoints) {
   .site-header {
     padding: theme.$space-16 theme.$space-12;
-
-    &::before {
-      position: fixed;
-      inset: 0;
-      background: rgba(theme.$ink-deep, 0.45);
-      content: '';
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    &:has(#{$menu-open})::before {
-      opacity: 1;
-      visibility: visible;
-    }
   }
 
   :root:has(.site-header #{$menu-open}) {
@@ -521,11 +524,11 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
     animation: header-submenu-in theme.$interaction-duration theme.$interaction-easing;
   }
 
-  @include bs.media-breakpoint-down(xl, theme.$grid-breakpoints) {
-    .site-header::before {
-      transition: opacity $menu-duration $menu-easing, visibility $menu-duration $menu-easing;
-    }
+  .site-header::before {
+    transition: opacity $menu-duration $menu-easing, visibility $menu-duration $menu-easing;
+  }
 
+  @include bs.media-breakpoint-down(xl, theme.$grid-breakpoints) {
     .site-navbar .navbar-collapse.collapsing {
       transition: height $menu-duration $menu-easing;
     }
