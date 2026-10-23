@@ -127,6 +127,9 @@
   --bs-btn-active-color: #{theme.$brand-blue};
   --bs-btn-active-bg: white;
   --bs-btn-active-border-color: white;
+  --bs-btn-disabled-color: white;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #{theme.$button-border-on-dark};
 }
 
 .contact-action-link {

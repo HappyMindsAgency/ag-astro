@@ -4,6 +4,7 @@ import Layout from '../../../components/Layout.astro';
 import PageIntro from '../../../components/PageIntro.astro';
 import TeamMemberCard from '../../../components/TeamMemberCard.astro';
 import NewsletterSection from '../../../components/NewsletterSection.astro';
+import { newsletterText } from '../../../data/newsletter';
 import '../../../styles/pages/team.scss';
 
 interface TeamSection {
@@ -92,7 +93,8 @@ const sections: TeamSection[] = [
     </section>
   ))}
 
-  <NewsletterSection title="Ag Informa - Iscrizione alla newsletter">
-    Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum
+  <NewsletterSection title={newsletterText.title}>
+    {newsletterText.introduction}<br />
+    {newsletterText.description}
   </NewsletterSection>
 </Layout>

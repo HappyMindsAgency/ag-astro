@@ -19,17 +19,17 @@ const faqs = [
 ---
 
 <Layout>
-  <PageIntro breadcrumb="Contatti" eyebrow="La fiducia comincia dalle persone." mobileTitleLeading="tight" wideTitle>
+  <PageIntro breadcrumb="Contatti" eyebrow="Ogni progetto comincia da un confronto" mobileTitleLeading="tight" wideTitle>
     <Fragment slot="title">Contatta<br /><span class="type-section-title-accent">AG Trustees.</span></Fragment>
-    Competenze diverse, una responsabilità condivisa: accompagnare ogni progetto con ascolto, competenza e continuità.
+    Presentaci le tue esigenze o richiedi maggiori informazioni sui nostri servizi.
   </PageIntro>
 
   <section class="contact-offices section-spacing" aria-labelledby="contact-offices-title">
     <div class="container section-container px-lg-0">
       <div class="row align-items-end gy-4">
         <div class="col-lg-7">
-          <p class="type-eyebrow type-eyebrow--section contact-offices-eyebrow">Contatti e sedi</p>
-          <h2 id="contact-offices-title" class="type-section-title contact-offices-title mb-0">Lorem ipsum.<br /><span>dolor sit amet.</span></h2>
+          <p class="type-eyebrow type-eyebrow--section contact-offices-eyebrow">I nostri contatti</p>
+          <h2 id="contact-offices-title" class="type-section-title contact-offices-title mb-0">Siamo a disposizione<br class="d-none d-xl-block" />{' '}<span>per informazioni<br class="d-none d-xxl-block" />{' '}o richieste</span></h2>
         </div>
         <div class="col-lg-5">
           <div class="contact-offices-links">
@@ -81,12 +81,10 @@ const faqs = [
     </div>
   </section>
 
-  <ContactSection>
-    Siamo a disposizione per un primo colloquio conoscitivo, senza impegno. Raccontaci la tua situazione e valuteremo insieme il percorso più adatto.
-  </ContactSection>
+  <ContactSection eyebrow="Contattaci" />
 
-  <NewsletterSection title="Ag Informa - Iscrizione alla newsletter">
-    Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum
+  <NewsletterSection title="AG informa - Ricevi notizie e aggiornamenti">
+    Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.
   </NewsletterSection>
 
   <FaqSection id="faq-contatti" items={faqs} largeTitle twoColumns>

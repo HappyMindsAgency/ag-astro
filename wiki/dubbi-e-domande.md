@@ -6,10 +6,10 @@ Punti ancora aperti con designer e team sulla **3° Release**. Le scelte già ap
 
 Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 
-- **Galvani e Argos (P03):** pagina dedicata o sezione di Chi siamo? Pagina separata non predisposta.
+- **Galvani e Argos (P03):** pagina dedicata o sezione di Chi siamo? Attendere le indicazioni grafiche del designer; pagina separata non predisposta.
 - **Family office (P08):** in standby perché potrebbe andare su Fidire. Pagina non predisposta.
 - **Library (P15–P16):** confermare la gerarchia: Percorso IT usa `/knowledge-library/[tipologia]/`, Pagina padre cita `/knowledge-library/tipologia/`.
-- **Filtri tematici, Newsletter e accesso ai dati (P14, P20, P24):** presenza al lancio da decidere; pagine non predisposte.
+- **Filtri tematici, Newsletter e accesso ai dati (P14, P20, P24):** presenza al lancio da decidere; pagine non predisposte. Le schermate di iscrizione e conferma newsletter attendono il designer.
 - **Informazioni societarie (P26):** riga incompleta, senza percorso o indicazione sul lancio.
 
 ### Collegamenti da completare prima del lancio
@@ -18,9 +18,8 @@ Provare ogni occorrenza dopo l’integrazione; se una destinazione non è previs
 
 | Elemento | Dove verificarlo | Da completare |
 | --- | --- | --- |
-| Leggi l’ultima newsletter | CTA finale di AG Informa ed Eventi | URL della newsletter in `NewsletterCallToAction` (`latestNewsletterUrl`). |
+| Leggi l’ultima newsletter | CTA finale di AG Informa, Eventi e Knowledge Library | URL della newsletter in `NewsletterCallToAction` (`latestNewsletterUrl`). |
 | Calendario completo | Entrambi gli elenchi Eventi e i correlati del dettaglio evento | Destinazione in `EventList` (`calendarHref`). |
-| Vai alla pagina — Guide e tutorial | CTA finale della Knowledge Library | Destinazione in `CallToAction` (`href`). |
 | PDF e documenti della ricerca | Library, correlati di Trust/Patrimonio/articolo/evento e risultati della ricerca | URL dei file da Strapi (`downloadUrl`). |
 | LinkedIn | Header e footer di tutte le pagine | URL del profilo tramite `Layout` (`linkedinUrl`). |
 | Certificazioni | Utility del footer | Destinazione da confermare. |
@@ -32,7 +31,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 ## Integrazioni e contenuti comuni
 
 - **Strapi:** servono dati definitivi, relazioni e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
-- **FAQ:** servono risposte e sostituzione delle domande segnaposto di Servizi, Trust e Patrimonio. Le risposte attuali sono Lorem ipsum.
+- **FAQ:** la prima risposta di Servizi e Patrimonio è definitiva; restano due domande e risposte segnaposto per pagina e le ulteriori FAQ richieste nel file testi. Trust attende ancora le risposte definitive e la sostituzione delle domande segnaposto.
 - **Servizi esterni:** configurazione di moduli contatti, newsletter e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
 - **Ricerca e Knowledge Library:** scegliere con Vito la fonte dei risultati (filtri di Strapi o motore dedicato) e stimare il numero di documenti. Valutare i filtri della Library sul server in base al volume dei dati e alle prestazioni.
 - **SEO della ricerca:** gestire `noindex, follow` di `/cerca/` tramite la SEO dinamica di Strapi.
@@ -48,17 +47,18 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 
 | Pagina | Punti da chiarire o sostituire |
 | --- | --- |
-| Chi siamo | Le tre descrizioni delle competenze sono segnaposto; confermare anche le voci rispetto al mobile. |
+| Chi siamo | Restano segnaposto le descrizioni di Progettazione e governance del trust e Patrimonio e continuità; confermare anche le voci rispetto al mobile. |
 | Visione e metodologia | “Titolo della sezione”, terzo e quarto servizio, descrizioni e paragrafi Lorem ipsum/Cras et lorem. La CTA parla di newsletter ma porta ai servizi: confermare testo e destinazione. |
 | Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
-| Contatti | Titolo della fascia sedi e descrizione newsletter provvisori. |
-| Home | Presentazione, descrizioni dei servizi, introduzione Patrimonio, card del metodo e newsletter provvisori. Evento e articoli attendono dati e link ai dettagli da Strapi. |
+| Contatti | FAQ definitive mancanti. Il design mantiene una sola CTA newsletter; confermare se aggiungere “Leggi l’ultima newsletter”. |
+| Home | Presentazione, descrizioni dei servizi, introduzione Patrimonio e card del metodo provvisori. Evento e articoli attendono dati e link ai dettagli da Strapi. |
 | Team | Titoli, ruoli, biografie e articoli collegati provvisori. Per i profili individuali il percorso è predisposto: mancano design, contenuti e conferma dei collegamenti dai nomi. |
-| AG Informa | Introduzione, articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
+| AG Informa | Articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
 | Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
-| Eventi | Introduzione, date, luoghi e testi provvisori; servono criteri di selezione dei due elenchi. |
+| Eventi | Date, luoghi e contenuti degli eventi provvisori; servono criteri di selezione dei due elenchi. |
 | Dettaglio evento | Testo, orario, categoria, documenti, correlati e piccolo invito ai contatti provvisori; il primo correlato ripete l’evento corrente. |
-| Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. Testo di Guide e tutorial provvisorio. |
+| Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. I Link utili attendono l’indicazione grafica del designer. |
+| 404 | Mantenere il segnaposto: la pagina completa attende le indicazioni grafiche del designer. |
 
 ## Mobile: confronto con la prossima release
 

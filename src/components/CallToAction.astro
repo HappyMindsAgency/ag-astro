@@ -7,7 +7,7 @@ interface Props {
   label: string;
   contained?: boolean;
   plainBackground?: boolean;
-  secondaryAction?: { label: string; href: string };
+  secondaryAction?: { label: string; href?: string };
 }
 
 const { eyebrow, href, label, contained = false, plainBackground = false, secondaryAction } = Astro.props;
@@ -29,7 +29,11 @@ const { eyebrow, href, label, contained = false, plainBackground = false, second
         ) : (
           <button class="btn site-button site-button--light site-button--small" type="button" disabled>{label}</button>
         )}
-        {secondaryAction && <a class="btn site-button site-button--outline-light site-button--small" href={secondaryAction.href}>{secondaryAction.label} <span aria-hidden="true">→</span></a>}
+        {secondaryAction && (secondaryAction.href ? (
+          <a class="btn site-button site-button--outline-light site-button--small" href={secondaryAction.href}>{secondaryAction.label} <span aria-hidden="true">→</span></a>
+        ) : (
+          <button class="btn site-button site-button--outline-light site-button--small" type="button" disabled>{secondaryAction.label}</button>
+        ))}
       </div>
     </div>
   </div>
