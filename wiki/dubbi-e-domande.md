@@ -11,20 +11,34 @@ Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 - **Library (P15–P16):** confermare la gerarchia: Percorso IT usa `/knowledge-library/[tipologia]/`, Pagina padre cita `/knowledge-library/tipologia/`.
 - **Filtri tematici, Newsletter e accesso ai dati (P14, P20, P24):** presenza al lancio da decidere; pagine non predisposte.
 - **Informazioni societarie (P26):** riga incompleta, senza percorso o indicazione sul lancio.
-- **FAQ nel footer:** manca una pagina dedicata nel file. Confermare destinazione e rapporto con le FAQ della Library.
 
-Servono inoltre le destinazioni di LinkedIn, Certificazioni nel footer, “Leggi l’ultima newsletter”, calendario completo e Guide e tutorial. Le singole voci dei servizi, delle competenze di Chi siamo e delle esigenze patrimoniali nella Home attendono i rispettivi collegamenti; le frecce restano decorative.
+### Collegamenti da completare prima del lancio
+
+Provare ogni occorrenza dopo l’integrazione; se una destinazione non è prevista al lancio, decidere se omettere il relativo invito. Rimuovere le righe risolte.
+
+| Elemento | Dove verificarlo | Da completare |
+| --- | --- | --- |
+| Leggi l’ultima newsletter | CTA finale di AG Informa ed Eventi | URL della newsletter in `NewsletterCallToAction` (`latestNewsletterUrl`). |
+| Calendario completo | Entrambi gli elenchi Eventi e i correlati del dettaglio evento | Destinazione in `EventList` (`calendarHref`). |
+| Vai alla pagina — Guide e tutorial | CTA finale della Knowledge Library | Destinazione in `CallToAction` (`href`). |
+| Scarica PDF | Library e documenti correlati di Trust, Patrimonio, articolo ed evento | URL dei file da Strapi (`downloadUrl`). |
+| LinkedIn | Header e footer di tutte le pagine | URL del profilo tramite `Layout` (`linkedinUrl`). |
+| Certificazioni | Utility del footer | Destinazione da confermare. |
+| FAQ | Menu del footer | Confermare destinazione e rapporto con le FAQ della Library; manca una pagina dedicata nel file degli slug. |
+| Galvani e Argos / Newsletter | Sottomenu dell’header | Confermare destinazioni e presenza al lancio, come nei punti P03 e P20 sopra. |
+
+Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dalle esigenze patrimoniali nella Home.
 
 ## Integrazioni e contenuti comuni
 
-- **Strapi:** servono dati definitivi, relazioni, URL dei PDF e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
+- **Strapi:** servono dati definitivi, relazioni e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
 - **FAQ:** servono risposte e sostituzione delle domande segnaposto di Servizi, Trust e Patrimonio. Le risposte attuali sono Lorem ipsum.
 - **Servizi esterni:** configurazione di moduli contatti, newsletter, ricerca e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
 - **Pagine legali:** servono testi definitivi per Privacy e Cookie e contenuti di Credits.
 
 ## Asset mancanti
 
-- **Chi siamo:** video e poster; servono file o URL e indicazioni su controlli, riproduzione e resa mobile. Lo spazio è predisposto e vuoto.
+- **Chi siamo:** video previsto dopo il lancio, con spazio predisposto ma nascosto. Quando disponibile serviranno file o URL, poster e indicazioni sulla riproduzione.
 - **Home:** foto hero definitiva, in sostituzione dell’immagine Figma con watermark Unsplash+.
 - **Team:** foto di Sonia Franchini, Michela e Giuseppina Ranzenigo; manca anche il cognome di Michela.
 

@@ -27,7 +27,7 @@ const { eyebrow, href, label, contained = false, plainBackground = false, second
         {href ? (
           <a class="btn site-button site-button--light site-button--small" href={href}>{label} <span aria-hidden="true">→</span></a>
         ) : (
-          <button class="btn site-button site-button--light site-button--small" type="button" disabled>{label} <span aria-hidden="true">→</span></button>
+          <button class="btn site-button site-button--light site-button--small" type="button" disabled>{label}</button>
         )}
         {secondaryAction && <a class="btn site-button site-button--outline-light site-button--small" href={secondaryAction.href}>{secondaryAction.label} <span aria-hidden="true">→</span></a>}
       </div>

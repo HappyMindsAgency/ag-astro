@@ -23,7 +23,6 @@
 }
 
 .service-catalogue-list .service-catalogue-item {
-  position: relative;
   padding-block: theme.$space-36;
   border-bottom: 1px solid rgba(white, 0.3);
 }
@@ -49,17 +48,6 @@
   font-size: theme.$font-size-body;
   font-weight: theme.$font-weight-light;
   line-height: theme.$line-height-body;
-}
-
-.service-catalogue-item .service-catalogue-arrow {
-  position: absolute;
-  top: theme.$space-36;
-  right: 0;
-  width: auto;
-
-  &::before {
-    content: '→';
-  }
 }
 
 .services-responsibility {
@@ -134,14 +122,6 @@
     font-size: theme.$font-size-service-copy-mobile;
     font-weight: theme.$font-weight-regular;
     line-height: theme.$line-height-service-item-mobile;
-  }
-
-  .service-catalogue-arrow {
-    font-size: 22px;
-  }
-
-  .service-catalogue-item .service-catalogue-arrow::before {
-    content: '+';
   }
 
   .services-responsibility {

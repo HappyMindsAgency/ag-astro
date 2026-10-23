@@ -23,7 +23,7 @@ const { id, title, eyebrow, events = [], compact = false, compactTitle = compact
         {eyebrow && <p class="type-eyebrow type-eyebrow--section event-list-eyebrow">{eyebrow}</p>}
         <h2 id={`${id}-title`} class:list={['type-editorial-list-title mb-0', { 'type-editorial-list-title--compact': compactTitle }]}>{title}</h2>
       </div>
-      <a class="site-text-link" href={calendarHref} aria-disabled={calendarHref ? undefined : 'true'}>Calendario completo <span aria-hidden="true">→</span></a>
+      <a class="site-text-link" href={calendarHref} aria-disabled={calendarHref ? undefined : 'true'}>Calendario completo {calendarHref && <span aria-hidden="true">→</span>}</a>
     </div>
     <div class="row gx-4 gy-5">
       {events.map(event => <div class="col-md-6 col-xl-4"><EventCard event={event} compact={compact} /></div>)}

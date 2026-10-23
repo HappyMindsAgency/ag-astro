@@ -22,8 +22,7 @@ const { id, services, introduction } = Astro.props;
         <li class="row g-0 align-items-center service-overview-item service-list-row">
           <span class="col-1 service-overview-item-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
           <h3 class="col-5 service-overview-item-title mb-0">{title}</h3>
-          <p class="col-5 service-overview-item-copy mb-0">{description}</p>
-          <span class="col-1 text-end" aria-hidden="true">→</span>
+          <p class="col-6 service-overview-item-copy mb-0">{description}</p>
         </li>
       ))}
     </ol>

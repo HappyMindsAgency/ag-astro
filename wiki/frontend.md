@@ -63,6 +63,7 @@ I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura de
 - `PageIntro` usa 40 px di padding, 24 px sotto `lg`; colonne 6+6 con divisore rosso da `md`, layout verticale sotto 768 px e tipografia compatta fino a 991 px. Fra `md` e `xxl` mantiene 80 px sotto il contenuto.
 - Sotto `lg`, `PageIntro` aggiunge 8 px sopra la breadcrumb; dopo il percorso lascia 24 px sotto `md` e 40 px da `md`.
 - Fra `lg` e `xxl` (992–1399 px), usa `$*-tablet` e `.section-spacing` per 80 px di padding verticale. Le griglie a quattro card usano `col-6 col-xxl-3`.
+- I leader del Team restano impilati e centrati sotto `xxl`: larghezza massima di 640 px sotto `md`, 960 px da `md`. Fra `md` e `xxl` le card usano spazi compatti, un terzo per la foto e altezza legata al testo; le immagini restano ancorate in alto. Da 1400 px sono affiancati in tre colonne.
 - Navbar e footer sono centrati, con margini minimi di 24 px e larghezza massima `$frame-max-width` (1717 px). La navbar usa `navbar-expand-xl` (1200 px) e lo script legge la stessa soglia da `--bs-breakpoint-xl`, come Notizie e Library da `--bs-breakpoint-lg`; logo, spazi e corpo crescono con `fluid()` fino a 1920 px.
 - Nel menu compatto, Contatti compare nella barra da 390 px; le voci crescono da 22 a 28 px fra 360 e 430 px. Nel footer, Menu e Utility sono affiancate sotto `md`; da `md` le colonne automatiche usano `justify-content-between`.
 - Foto e testo, certificazioni, video e CTA ampie mantengono il limite `$wide-layout-max-width` ricavato dal desktop da 1920 px. Gli sfondi continuano a tutta larghezza. Sotto 390 px i margini delle CTA si riducono fino a 24 px.
@@ -90,7 +91,7 @@ Organizza le pagine in cartelle con `index.astro`, seguendo **Percorso IT** nel 
 
 I componenti ricevono dati tramite proprietà, senza API. Usa i tipi in `src/types/content.ts`; gruppi di correlati vuoti e relativo spazio non vengono renderizzati. I commenti `TODO Strapi` indicano gli esempi da sostituire: elimina anche il commento dopo l’integrazione. Non anticipare formato del corpo editoriale o chiamate API prima dell’accordo con Vito.
 
-Moduli e mappa hanno per ora struttura e stile. Senza destinazione, pulsanti e download restano inattivi; le frecce decorative non simulano collegamenti. I metadati SEO arriveranno da Strapi: non definirli nelle pagine.
+Moduli e mappa hanno per ora struttura e stile. Senza destinazione, pulsanti e download restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL. Le singole voci dei servizi non hanno pagine dedicate; gli elenchi descrittivi senza collegamenti non mostrano frecce o simboli di apertura. Lo spazio video di Chi siamo resta nascosto al lancio. I metadati SEO arriveranno da Strapi: non definirli nelle pagine.
 
 ## Prima di condividere
 

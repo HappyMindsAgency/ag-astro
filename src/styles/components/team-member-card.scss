@@ -294,3 +294,41 @@
     }
   }
 }
+
+@include bs.media-breakpoint-between(md, xxl, theme.$grid-breakpoints) {
+  .team-member-card--leadership {
+    min-height: 400px;
+
+    > .team-member-photo {
+      width: math.percentage(math.div(1, 3));
+    }
+
+    > .team-member-content {
+      gap: theme.$space-16;
+      padding: theme.$space-32;
+
+      > :not(.team-member-article) {
+        margin-block: 0;
+      }
+    }
+
+    .team-member-name {
+      font-size: theme.$font-size-member-name;
+      line-height: theme.$line-height-member-name;
+
+      > span {
+        display: inline;
+      }
+    }
+
+    .team-member-role,
+    .team-member-biography {
+      font-size: theme.$font-size-body;
+      line-height: theme.$line-height-compact-copy;
+    }
+
+    .team-member-article {
+      padding-top: 0;
+    }
+  }
+}

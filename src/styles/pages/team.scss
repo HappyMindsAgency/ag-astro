@@ -59,6 +59,19 @@
   }
 }
 
+@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
+  .team-section--leadership .team-members {
+    max-width: 640px;
+    margin-inline: auto;
+  }
+}
+
+@include bs.media-breakpoint-between(md, xxl, theme.$grid-breakpoints) {
+  .team-section--leadership .team-members {
+    max-width: 960px;
+  }
+}
+
 .team-section--operational,
 .team-section--counsel {
   background: theme.$surface-sand;

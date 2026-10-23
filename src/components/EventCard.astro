@@ -22,7 +22,7 @@ const { event, compact = false } = Astro.props;
       </div>
       <h3 class="event-card-title">{event.href ? <a class="site-title-link" href={event.href}>{event.title}</a> : event.title}</h3>
       {!compact && event.description && <p class="event-card-description">{event.description}</p>}
-      <a class="site-text-link mt-auto align-self-start" href={event.href} aria-disabled={event.href ? undefined : 'true'} aria-label={`Dettagli: ${event.title}`}>Dettagli <span aria-hidden="true">→</span></a>
+      <a class="site-text-link mt-auto align-self-start" href={event.href} aria-disabled={event.href ? undefined : 'true'} aria-label={`Dettagli: ${event.title}`}>Dettagli {event.href && <span aria-hidden="true">→</span>}</a>
     </div>
   </div>
 </article>

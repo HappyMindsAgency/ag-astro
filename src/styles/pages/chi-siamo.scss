@@ -243,12 +243,6 @@
   line-height: theme.$line-height-body;
 }
 
-.about-competencies-list .about-competency-arrow {
-  width: 48px;
-  color: theme.$brand-red;
-  text-align: center;
-}
-
 @include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
   .about-competencies-list .about-competency-description {
     padding-left: theme.$space-24;
@@ -304,10 +298,6 @@
     color: theme.$footer-text;
     font-size: theme.$font-size-card-copy-mobile;
     line-height: theme.$line-height-compact-copy;
-  }
-
-  .about-competencies-list .about-competency-arrow {
-    display: none;
   }
 }
 
