@@ -5,14 +5,12 @@ interface Props {
   linkedinUrl?: string;
   privacyPolicyUrl?: string;
   cookiePolicyUrl?: string;
-  creditsUrl?: string;
 }
 
 const {
   linkedinUrl,
   privacyPolicyUrl = '/privacy-policy/',
   cookiePolicyUrl = '/cookie-policy/',
-  creditsUrl = '/credits/',
 } = Astro.props;
 const menu = [
   { label: 'Chi siamo', href: '/chi-siamo/' },
@@ -26,12 +24,11 @@ const menu = [
 const legalLinks = [
   { label: 'Privacy Policy', href: privacyPolicyUrl },
   { label: 'Cookie Policy', href: cookiePolicyUrl },
-  { label: 'Credits', href: creditsUrl },
 ];
 ---
 
 <footer class="site-footer" id="contatti">
-  <div class="container-fluid p-0">
+  <div class="container-fluid">
     <div class="footer-columns row gx-0 gy-4 gy-md-5 justify-content-between">
       <div class="col-12 col-lg-auto">
         <a href="/" aria-label="AG Trustees — Homepage">
@@ -87,5 +84,8 @@ const legalLinks = [
         {legalLinks.map(({ label, href }) => <li>{href ? <a href={href}>{label}</a> : <span>{label}</span>}</li>)}
       </ul>
     </div>
+  </div>
+  <div class="footer-agency text-center">
+    <p class="mb-0">Prodotto originale frutto delle menti creative e felici di&nbsp;<a href="https://happyminds.it/">HappyMinds</a></p>
   </div>
 </footer>

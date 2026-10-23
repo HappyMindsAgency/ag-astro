@@ -36,7 +36,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 - **Servizi esterni:** configurazione di moduli contatti, newsletter e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
 - **Ricerca e Knowledge Library:** scegliere con Vito la fonte dei risultati (filtri di Strapi o motore dedicato) e stimare il numero di documenti. Valutare i filtri della Library sul server in base al volume dei dati e alle prestazioni.
 - **SEO della ricerca:** gestire `noindex, follow` di `/cerca/` tramite la SEO dinamica di Strapi.
-- **Pagine legali:** servono testi definitivi per Privacy e Cookie e contenuti di Credits.
+- **Pagine legali:** servono testi definitivi per Privacy e Cookie.
 
 ## Asset mancanti
 

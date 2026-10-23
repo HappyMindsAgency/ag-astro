@@ -3,7 +3,6 @@
 
 .site-footer {
   position: relative;
-  padding: theme.$space-80 theme.$space-24 theme.$space-40;
   color: theme.$footer-text;
 
   // Sta dietro le sezioni: si vede solo se l'ultima sezione della pagina non ha uno sfondo.
@@ -16,7 +15,8 @@
   }
 
   > .container-fluid {
-    max-width: theme.$frame-max-width;
+    max-width: theme.$frame-max-width + theme.$space-48;
+    padding: theme.$space-80 theme.$space-24 theme.$space-40;
   }
 
   a {
@@ -97,6 +97,28 @@
   content: '·';
 }
 
+.footer-agency {
+  width: calc(100% - #{theme.$space-48});
+  max-width: theme.$frame-max-width;
+  margin-inline: auto;
+  border-top: 0.8px solid theme.$footer-border;
+  padding-block: theme.$space-8;
+  font-size: theme.$font-size-small;
+  line-height: theme.$line-height-small;
+  text-wrap: balance;
+
+  a {
+    color: theme.$brand-blue;
+    font-weight: theme.$font-weight-medium;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 2px solid theme.$brand-blue;
+      outline-offset: theme.$space-4;
+    }
+  }
+}
+
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
   .footer-logo {
     width: 320px;
@@ -104,7 +126,7 @@
 }
 
 @include bs.media-breakpoint-down(md, theme.$grid-breakpoints) {
-  .site-footer {
+  .site-footer > .container-fluid {
     padding-block: theme.$space-48 theme.$space-32;
   }
 

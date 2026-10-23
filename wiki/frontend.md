@@ -85,6 +85,7 @@ Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo
 - Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership; `brand-watermark` la filigrana del logo di Home e Team.
 - `$anchor-offset` (160 px) è lo `scroll-margin-top` delle ancore sotto l’header; lo ScrollSpy dell’articolo ne ricava la linea di lettura.
 - La linea superiore del footer sta dietro le sezioni e compare solo quando l’ultima non ha uno sfondo.
+- La firma HappyMinds nella fascia finale del footer sostituisce la pagina Credits.
 
 ## Dati, percorsi e integrazioni
 

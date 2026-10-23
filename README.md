@@ -53,4 +53,4 @@ Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completar
 
 La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre si scrive e li elenca in `/cerca/`; per ora usa pagine e contenuti provvisori, in attesa della fonte concordata con il backend.
 
-Privacy e Cookie hanno layout e Lorem ipsum. Credits, 404, profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.
+Privacy e Cookie hanno layout e Lorem ipsum. 404, profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.
