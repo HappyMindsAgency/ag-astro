@@ -11,18 +11,18 @@ interface Props {
 const { event, compact = false } = Astro.props;
 ---
 
-<article class:list={['event-card', { 'event-card--compact': compact }]}>
-  {!compact && event.image && <img class="event-card-image" src={event.image.src} alt={event.image.alt} width={event.image.width} height={event.image.height} loading="lazy" />}
-  <div class="event-card-body d-flex align-items-start">
+<article class:list={['event-card d-flex flex-column', { 'event-card--compact': compact }]}>
+  {!compact && event.image && <a class="d-block flex-shrink-0" href={event.href} tabindex="-1" aria-hidden={event.href ? 'true' : undefined}><img class="event-card-image" src={event.image.src} alt={event.image.alt} width={event.image.width} height={event.image.height} loading="lazy" /></a>}
+  <div class="event-card-body d-flex align-items-start flex-grow-1">
     <EventDate date={event.date} variant={compact ? 'compact' : 'card'} />
-    <div class="event-card-content">
+    <div class="event-card-content d-flex flex-column align-self-stretch">
       <div class="event-card-meta d-flex flex-wrap align-items-center">
         {event.format && <span class:list={['event-card-format', { 'event-card-format--webinar': event.format === 'Webinar', 'event-card-format--seminar': event.format === 'Seminario' }]}>{event.format}</span>}
         <span class="event-card-location d-inline-flex align-items-center"><span class="event-card-pin" aria-hidden="true"></span>{event.location}</span>
       </div>
-      <h3 class="event-card-title">{event.title}</h3>
+      <h3 class="event-card-title">{event.href ? <a class="site-title-link" href={event.href}>{event.title}</a> : event.title}</h3>
       {!compact && event.description && <p class="event-card-description">{event.description}</p>}
-      <a class="site-text-link" href={event.href} aria-disabled={event.href ? undefined : 'true'} aria-label={`Dettagli: ${event.title}`}>Dettagli <span aria-hidden="true">→</span></a>
+      <a class="site-text-link mt-auto align-self-start" href={event.href} aria-disabled={event.href ? undefined : 'true'} aria-label={`Dettagli: ${event.title}`}>Dettagli <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </article>

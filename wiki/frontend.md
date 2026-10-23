@@ -75,6 +75,9 @@ La navbar usa Bootstrap Dropdown: il testo apre la pagina, la freccia separata c
 Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo. `FocusTrap` mantiene la tastiera nella navbar. Sulla Home l’header resta fisso e chiaro sopra la hero (`headerHeroId`), poi torna normale; anche il menu aperto usa lo stile normale.
 
 - `.site-button--outline-light` diventa bianco con testo blu; `.service-list-row` evidenzia le righe senza spostare il contenuto.
+- I pulsanti chiari hanno un focus bianco sugli sfondi scuri. `.site-title-link` sottolinea i titoli al passaggio del mouse e al focus; le frecce dei pulsanti restano ferme.
+- Le card Eventi allineano “Dettagli” in fondo; titolo fino a 3 righe e descrizione fino a 4 (5 sotto `lg`), poi puntini di sospensione. Foto e titolo aprono il dettaglio.
+- `ContentShare` conferma la copia con un Tooltip Bootstrap e un messaggio accessibile; Escape chiude il feedback. Il segno più/meno degli accordion usa la transizione comune.
 - `.contact-action-link` schiarisce testo e bordo; `.contact-action-arrow` avanza di 4 px anche al focus da tastiera.
 - Le transizioni usano `$interaction-duration` (150 ms) e `$interaction-easing`, rispettando il movimento ridotto. Gli effetti assenti dal prototipo si valutano separatamente.
 - Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership; `brand-watermark` la filigrana del logo di Home e Team.

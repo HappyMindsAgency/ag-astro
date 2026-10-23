@@ -3,6 +3,7 @@
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .home-hero {
+  --site-button-focus-color: white;
   min-height: 850px;
   padding: theme.$space-32 theme.$space-80 theme.$space-48;
   color: white;

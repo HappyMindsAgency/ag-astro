@@ -71,6 +71,7 @@
   font-size: theme.$font-size-event-card-title;
   font-weight: theme.$font-weight-medium;
   line-height: theme.$line-height-event-card-title;
+  -webkit-line-clamp: 3;
 }
 
 .event-card-description {
@@ -78,6 +79,23 @@
   color: rgba(theme.$ink, 0.6);
   font-size: theme.$font-size-event-card-copy;
   line-height: theme.$line-height-compact-copy;
+  -webkit-line-clamp: 4;
+}
+
+.event-card-title,
+.event-card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-card-title:focus-within {
+  outline: 2px solid theme.$brand-blue;
+  outline-offset: theme.$space-4;
+}
+
+.event-card-title a:focus-visible {
+  outline: none;
 }
 
 .event-card--compact {
@@ -123,6 +141,7 @@
     font-size: theme.$font-size-small;
     font-weight: theme.$font-weight-light;
     line-height: theme.$line-height-event-card-copy-mobile;
+    -webkit-line-clamp: 5;
   }
 
   .event-card--compact {

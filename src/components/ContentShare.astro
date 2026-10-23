@@ -21,6 +21,8 @@ const shareUrl = url ?? `${Astro.url.origin}${Astro.url.pathname}`;
 </div>
 
 <script>
+  import Tooltip from 'bootstrap/js/dist/tooltip';
+
   document.querySelectorAll<HTMLElement>('[data-content-share]').forEach((share) => {
     const shareUrl = share.dataset.shareUrl ?? `${window.location.origin}${window.location.pathname}`;
     const linkedIn = share.querySelector<HTMLAnchorElement>('[data-share-linkedin]');
@@ -29,13 +31,38 @@ const shareUrl = url ?? `${Astro.url.origin}${Astro.url.pathname}`;
     if (email) email.href = `mailto:?subject=${encodeURIComponent(share.dataset.shareTitle ?? '')}&body=${encodeURIComponent(shareUrl)}`;
     const copyButton = share.querySelector<HTMLButtonElement>('[data-copy-link]');
     const status = share.querySelector<HTMLElement>('[data-copy-status]');
-    copyButton?.addEventListener('click', async () => {
+    if (!copyButton) return;
+    const feedback = Tooltip.getOrCreateInstance(copyButton, {
+      title: 'Link copiato.',
+      animation: false,
+      trigger: 'manual',
+      placement: 'top',
+      container: 'body',
+      customClass: 'copy-feedback-tooltip',
+    });
+    let feedbackTimeout: ReturnType<typeof window.setTimeout>;
+
+    copyButton.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        window.clearTimeout(feedbackTimeout);
+        feedback.hide();
+      }
+    });
+
+    copyButton.addEventListener('click', async () => {
+      let message: string;
       try {
         await navigator.clipboard.writeText(shareUrl);
-        if (status) status.textContent = 'Link copiato.';
+        message = 'Link copiato.';
       } catch {
-        if (status) status.textContent = 'Non è stato possibile copiare il link.';
+        message = 'Non è stato possibile copiare il link.';
       }
+      if (status) status.textContent = message;
+      window.clearTimeout(feedbackTimeout);
+      feedback.hide();
+      feedback.setContent({ '.tooltip-inner': message });
+      feedback.show();
+      feedbackTimeout = window.setTimeout(() => feedback.hide(), 2000);
     });
   });
 </script>

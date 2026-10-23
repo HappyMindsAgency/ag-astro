@@ -27,12 +27,13 @@
   line-height: theme.$line-height-button;
 
   &:focus-visible {
-    outline: 2px solid theme.$ink;
+    outline: 2px solid var(--site-button-focus-color, #{theme.$ink});
     outline-offset: 4px;
   }
 }
 
 .site-button--light {
+  --site-button-focus-color: white;
   --bs-btn-color: #{theme.$brand-blue};
   --bs-btn-bg: white;
   --bs-btn-border-color: #{theme.$button-border-light};
@@ -84,7 +85,8 @@
 }
 
 [aria-expanded='true'] .collapse-toggle::after {
-  display: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(0deg);
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
@@ -115,6 +117,7 @@
 }
 
 .site-button.site-button--outline-light {
+  --site-button-focus-color: white;
   --bs-btn-color: white;
   --bs-btn-bg: transparent;
   --bs-btn-border-color: #{theme.$button-border-on-dark};
@@ -124,10 +127,6 @@
   --bs-btn-active-color: #{theme.$brand-blue};
   --bs-btn-active-bg: white;
   --bs-btn-active-border-color: white;
-
-  &:focus-visible {
-    outline-color: white;
-  }
 }
 
 .contact-action-link {
@@ -162,6 +161,21 @@
   }
 }
 
+.site-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.site-title-link:is(:hover, :focus-visible),
+a:is(:hover, :focus-visible) .site-title-link {
+  text-decoration: underline;
+  text-underline-offset: theme.$space-4;
+}
+
+a.site-title-link:is(:hover, :focus-visible) {
+  color: inherit;
+}
+
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .site-text-link {
     font-size: theme.$font-size-small;
@@ -170,6 +184,11 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .collapse-toggle::after {
+    transition: transform theme.$interaction-duration theme.$interaction-easing,
+      opacity theme.$interaction-duration theme.$interaction-easing;
+  }
+
   .site-button {
     transition: color theme.$interaction-duration theme.$interaction-easing,
       background-color theme.$interaction-duration theme.$interaction-easing,

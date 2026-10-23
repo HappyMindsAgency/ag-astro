@@ -33,7 +33,7 @@ const textColumn = variant === 'hero' ? 'col-12 col-lg' : variant === 'compact' 
     </div>
     <div class={textColumn}>
       <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{featured ? 'In evidenza' : category}</span><time datetime={dateTime}>{date}</time></p>
-      <Heading class="news-main-title"><a href={href}>{title}</a></Heading>
+      <Heading class="news-main-title"><a class="site-title-link" href={href}>{title}</a></Heading>
       <p class="news-main-excerpt">{excerpt}</p>
       <a class="news-read-more" href={href} aria-label={`Leggi: ${title}`}>Leggi <span aria-hidden="true">→</span></a>
     </div>

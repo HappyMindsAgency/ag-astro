@@ -32,6 +32,15 @@
   }
 }
 
+.copy-feedback-tooltip {
+  --bs-tooltip-bg: #{theme.$ink};
+  --bs-tooltip-color: white;
+  --bs-tooltip-border-radius: 0;
+  --bs-tooltip-font-size: #{theme.$font-size-small};
+  --bs-tooltip-padding-x: #{theme.$space-12};
+  --bs-tooltip-padding-y: #{theme.$space-8};
+}
+
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .content-share {
     display: flex;
