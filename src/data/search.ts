@@ -14,6 +14,7 @@ export const searchResultTypes: Record<SearchResult['type'], { label: string; pl
 // TODO Strapi: sostituire pagine e contenuti provvisori con la fonte concordata per la ricerca ed eliminare questo commento.
 const placeholderIndex: SearchResult[] = [
   { type: 'page', title: 'Chi siamo', href: '/chi-siamo/', excerpt: 'AG Trustees è una trust company italiana nata dall’integrazione di Galvani Fiduciaria e Argos Trustees, dedicata all’amministrazione di trust.' },
+  { type: 'page', title: 'Galvani Fiduciaria e Argos Trustees', href: '/chi-siamo/galvani-fiduciaria-argos-trustees/', excerpt: 'Le esperienze di Galvani Fiduciaria e Argos Trustees da cui nasce AG Trustees, una trust company italiana dedicata all’amministrazione professionale di trust.' },
   { type: 'page', title: 'Visione e metodologia', href: '/chi-siamo/visione-metodologia/', excerpt: 'Comprendere, amministrare, accompagnare: i principi e il metodo con cui AG Trustees assume e gestisce ogni incarico di trustee.' },
   { type: 'page', title: 'Il team', href: '/chi-siamo/team/', excerpt: 'Le persone di AG Trustees: competenze legali, fiscali e amministrative al servizio di trust, passaggio generazionale e tutela del patrimonio.' },
   { type: 'page', title: 'Servizi', href: '/servizi/', excerpt: 'Istituzione e amministrazione del trust, incarichi di trustee, co-trustee e guardiano, contabilità e adempimenti fiscali: i servizi di AG Trustees.' },

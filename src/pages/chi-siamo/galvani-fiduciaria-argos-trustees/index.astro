@@ -1,0 +1,90 @@
+---
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import ImageOverview from '../../../components/ImageOverview.astro';
+import OverviewBanner from '../../../components/OverviewBanner.astro';
+import '../../../styles/pages/galvani-argos.scss';
+
+const companies = [
+  {
+    name: 'Argos Trustees',
+    subtitle: 'Una competenza specialistica nel trust',
+    paragraphs: [
+      'Argos Trustees ha sviluppato un’esperienza specifica nell’assunzione di incarichi di trustee e nella gestione di progetti rivolti alla protezione e alla continuità del patrimonio.',
+      'Un percorso fondato sulla conoscenza dello strumento, sulla definizione di assetti di governance chiari e sul coordinamento con i professionisti coinvolti.',
+    ],
+  },
+  {
+    name: 'Galvani Fiduciaria',
+    subtitle: 'Un’esperienza tra le prime in Italia',
+    paragraphs: [
+      'Galvani Fiduciaria è stata tra le prime società italiane a intraprendere l’attività di trustee professionale. Nel tempo ha maturato una conoscenza approfondita della gestione patrimoniale e fiduciaria, costruendo rapporti continuativi con famiglie, imprenditori e professionisti.',
+      'La varietà degli incarichi assunti ha contribuito a consolidare un metodo fondato su competenza, rigore e responsabilità.',
+    ],
+  },
+];
+---
+
+<Layout>
+  <PageIntro breadcrumb="Galvani Fiduciaria e Argos Trustees" parents={[{ label: 'Chi siamo', href: '/chi-siamo/' }]} eyebrow="Due storie, una nuova realtà" titleSize="compact" wideTitle>
+    <Fragment slot="title">Galvani<br class="d-none d-xxl-block" />{' '}Fiduciaria e{' '}<span class="d-block type-section-title-accent">Argos Trustees.</span></Fragment>
+    AG Trustees nasce dall’incontro di esperienze consolidate nell’amministrazione di trust e nella gestione fiduciaria. Competenze costruite nel tempo che oggi appartengono a un’unica società, con una visione condivisa del futuro.
+  </PageIntro>
+
+  <ImageOverview id="esperienze" class="heritage-overview" plainImage image={{ src: '/assets/immagini/ag-trustees-esperienza-fiduciaria.jpg', alt: 'Due professionisti nella sede di AG Trustees', width: 1170, height: 780 }}>
+    <Fragment slot="title">Esperienze diverse,<br class="d-none d-xxl-block" />{' '}<span class="type-section-title-accent">una responsabilità comune.</span></Fragment>
+    <Fragment slot="copy">
+      <p>Prima di diventare AG Trustees, il nostro percorso ha attraversato realtà, competenze e relazioni professionali diverse. Argos Trustees e Galvani Fiduciaria hanno maturato esperienze complementari, unite dalla stessa attenzione verso le persone, i patrimoni e le responsabilità affidate.</p>
+      <p class="mb-0">La loro integrazione non rappresenta soltanto l’incontro tra due società, ma l’inizio di una nuova identità specializzata nell’amministrazione professionale di trust.</p>
+    </Fragment>
+  </ImageOverview>
+
+  <section class="heritage-companies section-spacing" aria-labelledby="heritage-companies-title">
+    <img class="heritage-watermark" src="/assets/brand/ag-logo-verticale-nero.png" alt="" width="1200" height="1145" loading="lazy" aria-hidden="true" />
+    <div class="container section-container px-lg-0">
+      <h2 id="heritage-companies-title" class="type-section-title type-section-title--compact mb-0">Le esperienze da cui nasce<br class="d-none d-lg-block" />{' '}<span class="type-section-title-accent">AG Trustees.</span></h2>
+      <div class="row g-0 heritage-company-grid">
+        {companies.map(({ name, subtitle, paragraphs }, index) => (
+          <article class="col-lg-6 heritage-company-card">
+            <p class="heritage-company-index">{String(index + 1).padStart(2, '0')}</p>
+            <h3 class="type-section-title type-section-title--compact heritage-company-name">{name}</h3>
+            <p class="heritage-company-subtitle">{subtitle}</p>
+            <div class="type-section-lead heritage-company-copy">
+              {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <OverviewBanner id="incontro" eyebrow="L’incontro" class="heritage-meeting section-spacing">
+    <Fragment slot="title">Quando le competenze diventano <span class="overview-banner-accent">una <span class="d-xl-block">visione condivisa.</span></span></Fragment>
+    <p>Le esperienze maturate convergono attorno a una stessa idea: amministrare un trust significa assumere una responsabilità concreta verso le persone, le finalità e i patrimoni affidati.</p>
+    <p>Da questa consapevolezza nasce la scelta di unire competenze specialistiche, capacità amministrative e visione di lungo periodo in una nuova società.</p>
+  </OverviewBanner>
+
+  <section class="heritage-today section-spacing" aria-labelledby="heritage-today-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-6">
+          <p class="type-eyebrow type-eyebrow--section heritage-today-eyebrow">AG Trustees oggi</p>
+          <h2 id="heritage-today-title" class="type-section-title type-section-title--compact mb-0">Una sola società,<br class="d-none d-xxl-block" />{' '}<span class="type-section-title-accent">un patrimonio di esperienza.</span></h2>
+        </div>
+        <div class="col-lg-6 type-section-lead heritage-today-copy">
+          <p>Oggi AG Trustees è una trust company italiana dedicata all’amministrazione professionale di trust.</p>
+          <p>Può assumere incarichi di trustee, co-trustee e guardiano, amministrando i beni conferiti, curando gli adempimenti e coordinandosi con consulenti e professionisti. Lo fa attraverso un metodo condiviso, capace di coniugare competenza giuridica, responsabilità fiduciaria e attenzione alle persone.</p>
+          <a class="btn site-button" href="/chi-siamo/">Chi siamo <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="heritage-future section-spacing text-center" aria-labelledby="heritage-future-title">
+    <div class="container section-container px-lg-0">
+      <p class="type-eyebrow type-eyebrow--section heritage-future-eyebrow">Il futuro</p>
+      <h2 id="heritage-future-title" class="type-section-title type-section-title--compact">Amministriamo il presente<br class="d-none d-xl-block" />{' '}con <span class="type-section-title-accent">una visione condivisa del futuro.</span></h2>
+      <p class="type-section-lead mb-0">L’esperienza da cui proveniamo ci permette di guardare avanti con consapevolezza. Vogliamo contribuire a una cultura della responsabilità patrimoniale capace di accompagnare persone, famiglie e imprese nelle scelte che attraversano il tempo e le generazioni.</p>
+    </div>
+  </section>
+</Layout>

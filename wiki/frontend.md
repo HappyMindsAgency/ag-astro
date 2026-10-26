@@ -32,7 +32,7 @@ Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/des
 
 I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura delle lettere `normal` tramite `.type-eyebrow`. Sul mobile, “Chi è AG Trustees” conserva 10 px; `.type-eyebrow--section` usa 12 px e maiuscole.
 
-`PageIntro` include breadcrumb, titolo e introduzione. `mobileTitleLeading` conserva le interlinee `tight` (50 px), `regular` (60 px) e `relaxed` (69 px). `wideTitle` amplia la colonna da `xxl` e attiva `fitMobileTitle`, che riduce il corpo sotto 390 px; usa solo `fitMobileTitle` se basta l’adattamento mobile. `compact` toglie altezza minima e divisore quando subito dopo c’è un modulo, come in Cerca.
+`PageIntro` include breadcrumb, titolo e introduzione. `mobileTitleLeading` conserva le interlinee `tight` (50 px), `regular` (60 px) e `relaxed` (69 px). `wideTitle` amplia la colonna da `xxl` e attiva `fitMobileTitle`, che riduce il corpo sotto 390 px; usa solo `fitMobileTitle` se basta l’adattamento mobile. `compact` toglie altezza minima e divisore quando subito dopo c’è un modulo, come in Cerca. `titleSize="compact"` conserva i 105/110 px desktop del frame Galvani e Argos; tablet e mobile usano le misure comuni.
 
 `.type-section-lead` usa 20/32.2 px sul desktop e 16/20 px sul mobile; `--relaxed` mantiene 25 px di interlinea mobile. Le descrizioni delle card del metodo hanno interlinea 23 px desktop e 20 px mobile. Sotto `lg`, `.type-section-title--compact` conserva `letter-spacing: normal`.
 

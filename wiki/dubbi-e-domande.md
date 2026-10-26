@@ -6,7 +6,6 @@ Punti ancora aperti con designer e team sulla **3° Release**. Le scelte già ap
 
 Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 
-- **Galvani e Argos (P03):** pagina dedicata o sezione di Chi siamo? Attendere le indicazioni grafiche del designer; pagina separata non predisposta.
 - **Family office (P08):** in standby perché potrebbe andare su Fidire. Pagina non predisposta.
 - **Library (P15–P16):** confermare la gerarchia: Percorso IT usa `/knowledge-library/[tipologia]/`, Pagina padre cita `/knowledge-library/tipologia/`.
 - **Filtri tematici, Newsletter e accesso ai dati (P14, P20, P24):** presenza al lancio da decidere; pagine non predisposte. Le schermate di iscrizione e conferma newsletter attendono il designer.
@@ -24,7 +23,7 @@ Provare ogni occorrenza dopo l’integrazione; se una destinazione non è previs
 | LinkedIn | Header e footer di tutte le pagine | URL del profilo tramite `Layout` (`linkedinUrl`). |
 | Certificazioni | Utility del footer | Destinazione da confermare. |
 | FAQ | Menu del footer | Confermare destinazione e rapporto con le FAQ della Library; manca una pagina dedicata nel file degli slug. |
-| Galvani e Argos / Newsletter | Sottomenu dell’header | Confermare destinazioni e presenza al lancio, come nei punti P03 e P20 sopra. |
+| Newsletter | Sottomenu dell’header | Confermare destinazione e presenza al lancio, come nel punto P20 sopra. |
 
 Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dalle esigenze patrimoniali nella Home.
 
@@ -58,7 +57,6 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Eventi | Date, luoghi e contenuti degli eventi provvisori; servono criteri di selezione dei due elenchi. |
 | Dettaglio evento | Testo, orario, categoria, documenti, correlati e piccolo invito ai contatti provvisori; il primo correlato ripete l’evento corrente. |
 | Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. I Link utili attendono l’indicazione grafica del designer. |
-| 404 | Mantenere il segnaposto: la pagina completa attende le indicazioni grafiche del designer. |
 
 ## Mobile: confronto con la prossima release
 
@@ -67,6 +65,7 @@ Mantengo i contenuti desktop e gli adattamenti già approvati. Da ricontrollare 
 | Pagina | Incongruenza o design mancante |
 | --- | --- |
 | Chi siamo | Sei competenze e otto voci del metodo, contro tre e quattro del desktop. |
+| Galvani e Argos / 404 | Mancano i frame mobile; adattamento con le regole comuni. |
 | Visione e metodologia | Introduzione e testo del metodo diversi dal desktop. |
 | Servizi | Titolo e introduzione riprendono Visione; sette servizi identici e FAQ riferite a Trust e Patrimonio. |
 | Trust | Breadcrumb Patrimonio, sopratitolo ripreso da Visione e testi relativi al patrimonio. |

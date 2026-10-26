@@ -3,7 +3,7 @@
 
 .overview-banner {
   min-height: 432px;
-  padding-block: theme.$space-48;
+  padding-block: var(--overview-banner-padding-block, #{theme.$space-48});
   color: white;
   background: linear-gradient(rgba(theme.$ink-mobile, 0.75), rgba(theme.$ink-mobile, 0.75)), url('/assets/immagini/ufficio-panorama.jpg') center / cover;
 }

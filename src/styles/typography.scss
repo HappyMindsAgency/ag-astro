@@ -7,6 +7,11 @@
   line-height: theme.$line-height-page-title;
 }
 
+.type-page-title--compact {
+  font-size: theme.$font-size-page-title-compact;
+  line-height: theme.$line-height-page-title-compact;
+}
+
 .type-eyebrow {
   font-size: theme.$font-size-page-eyebrow;
   font-weight: theme.$font-weight-regular;

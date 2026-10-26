@@ -1,0 +1,121 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.container.not-found-container {
+  padding-inline: theme.$space-40;
+}
+
+.not-found-content {
+  padding-block: theme.$space-40 144px;
+}
+
+.not-found-eyebrow {
+  margin-bottom: theme.$space-40;
+  color: theme.$brand-red;
+}
+
+.not-found-title {
+  margin-bottom: theme.$space-24;
+  font-size: theme.$font-size-not-found-title;
+  font-weight: theme.$font-weight-regular;
+  line-height: theme.$line-height-not-found-title;
+}
+
+.not-found-copy {
+  color: theme.$editorial-text;
+}
+
+.not-found-home {
+  margin-top: theme.$space-24;
+}
+
+.not-found-explore {
+  margin-top: theme.$space-64;
+
+  h2 {
+    margin-bottom: theme.$space-40;
+    font-size: theme.$font-size-card-title;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-card-title;
+  }
+}
+
+.not-found-link {
+  display: flex;
+  align-items: center;
+  gap: theme.$space-16;
+  min-height: 64px;
+  border-bottom: 1px solid theme.$footer-border;
+  padding-block: theme.$space-16;
+  color: theme.$ink;
+  font-size: theme.$font-size-section-lead;
+  line-height: theme.$line-height-body;
+  text-decoration: none;
+
+  &:hover {
+    color: theme.$brand-red;
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$brand-blue;
+    outline-offset: 4px;
+  }
+}
+
+.not-found-index {
+  flex-shrink: 0;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-small;
+  line-height: theme.$line-height-small;
+}
+
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .not-found-title {
+    font-size: theme.$font-size-page-title-tablet;
+    line-height: theme.$line-height-page-title-tablet;
+  }
+
+  .not-found-content {
+    padding-bottom: theme.$space-80;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .container.not-found-container {
+    padding-inline: theme.$page-gutter-mobile;
+  }
+
+  .not-found {
+    padding-top: theme.$space-8;
+  }
+
+  .not-found-content {
+    padding-block: theme.$space-40 theme.$space-64;
+  }
+
+  .not-found-title {
+    font-size: theme.$font-size-page-title-mobile;
+    line-height: theme.$line-height-page-title-mobile;
+  }
+
+  .not-found-explore {
+    margin-top: theme.$space-48;
+
+    h2 {
+      margin-bottom: theme.$space-24;
+      font-size: theme.$font-size-card-title-mobile;
+      line-height: theme.$line-height-card-title-mobile;
+    }
+  }
+
+  .not-found-link {
+    font-size: theme.$font-size-body;
+    line-height: theme.$line-height-body;
+  }
+}
+
+@include bs.media-breakpoint-down(md, theme.$grid-breakpoints) {
+  .not-found-content {
+    padding-top: theme.$space-24;
+  }
+}

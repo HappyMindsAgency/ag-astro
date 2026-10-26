@@ -1,0 +1,135 @@
+@use '../variables' as theme;
+@use '../mixins' as shared;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.heritage-overview .image-overview-copy {
+  border-top: 0;
+  padding-top: 0;
+
+  p + p {
+    margin-top: theme.$space-32;
+  }
+}
+
+.heritage-companies,
+.heritage-today {
+  padding-block: 144px;
+}
+
+.heritage-companies {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.heritage-watermark {
+  @include shared.brand-watermark(650px);
+  top: 0;
+}
+
+.heritage-company-grid {
+  margin-top: theme.$space-64;
+  border-top: 1px solid theme.$ink;
+  border-left: 1px solid theme.$ink;
+}
+
+.heritage-company-grid .heritage-company-card {
+  border-right: 1px solid theme.$ink;
+  border-bottom: 1px solid theme.$ink;
+  padding: theme.$space-40 theme.$space-32 theme.$space-64;
+}
+
+.heritage-company-index {
+  margin-bottom: theme.$space-24;
+  font-size: theme.$font-size-small;
+  line-height: theme.$line-height-small;
+}
+
+.heritage-company-name {
+  margin-bottom: theme.$space-24;
+}
+
+.heritage-company-subtitle {
+  margin-bottom: theme.$space-20;
+  color: theme.$brand-red;
+  font-size: theme.$font-size-card-title;
+  font-weight: theme.$font-weight-bold;
+  line-height: theme.$line-height-card-title;
+}
+
+.heritage-company-copy {
+  color: theme.$editorial-text;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  p + p {
+    margin-top: theme.$space-32;
+  }
+}
+
+.overview-banner.heritage-meeting {
+  --overview-banner-padding-block: 144px;
+  @include shared.architectural-gradient(131deg, '/assets/immagini/ag-trustees-unione-competenze-fiduciarie.jpg');
+  background-position: center, center top;
+  background-size: cover;
+
+  .overview-banner-copy p + p {
+    margin-top: theme.$space-32;
+  }
+}
+
+.heritage-today-eyebrow,
+.heritage-future-eyebrow {
+  margin-bottom: theme.$space-40;
+}
+
+.heritage-today-eyebrow {
+  color: theme.$brand-red;
+}
+
+.heritage-today-copy {
+  color: theme.$editorial-text;
+
+  p {
+    margin-bottom: theme.$space-32;
+  }
+}
+
+.heritage-future {
+  padding-block: 96px;
+  color: white;
+  background: theme.$ink;
+
+  h2 {
+    margin-bottom: theme.$space-32;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .heritage-companies,
+  .heritage-today,
+  .overview-banner.heritage-meeting,
+  .heritage-future {
+    padding-block: theme.$space-64;
+  }
+
+  .heritage-company-grid {
+    margin-top: theme.$space-40;
+  }
+
+  .heritage-company-grid .heritage-company-card {
+    padding: theme.$space-28 theme.$space-24 theme.$space-40;
+  }
+
+  .heritage-company-subtitle {
+    font-size: theme.$font-size-card-title-mobile;
+    line-height: theme.$line-height-card-title-mobile;
+  }
+
+  .heritage-today-eyebrow,
+  .heritage-future-eyebrow {
+    margin-bottom: theme.$space-28;
+  }
+}

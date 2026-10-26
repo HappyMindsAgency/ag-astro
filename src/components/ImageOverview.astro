@@ -4,7 +4,7 @@ import '../styles/components/image-overview.scss';
 
 interface Props {
   id: string;
-  eyebrow: string;
+  eyebrow?: string;
   image: { src: string; alt?: string; width: number; height: number };
   plainImage?: boolean;
   class?: string;
@@ -20,9 +20,13 @@ const { id, eyebrow, image, plainImage = false, class: className } = Astro.props
       <EditorialImage {...image} plain={plainImage} />
     </div>
     <div class="col-lg-6 image-overview-content">
-      <p class="type-eyebrow type-eyebrow--section image-overview-eyebrow">{eyebrow}</p>
+      {eyebrow && <p class="type-eyebrow type-eyebrow--section image-overview-eyebrow">{eyebrow}</p>}
       <h2 id={`${id}-title`} class="type-section-title mb-0"><slot name="title" /></h2>
-      <p class="type-section-lead type-section-lead--relaxed image-overview-copy mb-0"><slot /></p>
+      {Astro.slots.has('copy') ? (
+        <div class="type-section-lead type-section-lead--relaxed image-overview-copy mb-0"><slot name="copy" /></div>
+      ) : (
+        <p class="type-section-lead type-section-lead--relaxed image-overview-copy mb-0"><slot /></p>
+      )}
       {Astro.slots.has('action') && <div class="image-overview-action"><slot name="action" /></div>}
     </div>
   </div>

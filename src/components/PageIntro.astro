@@ -10,9 +10,10 @@ interface Props {
   wideTitle?: boolean;
   fitMobileTitle?: boolean;
   compact?: boolean;
+  titleSize?: 'default' | 'compact';
 }
 
-const { breadcrumb, parents = [], eyebrow, mobileTitleLeading = 'regular', wideTitle = false, fitMobileTitle = wideTitle, compact = false } = Astro.props;
+const { breadcrumb, parents = [], eyebrow, mobileTitleLeading = 'regular', wideTitle = false, fitMobileTitle = wideTitle, compact = false, titleSize = 'default' } = Astro.props;
 const headingColumnClass = wideTitle ? 'col-md-6 col-xxl' : 'col-md-6';
 const copyColumnClass = wideTitle ? 'col-md-6 col-xxl-auto' : 'col-md-6';
 ---
@@ -27,6 +28,7 @@ const copyColumnClass = wideTitle ? 'col-md-6 col-xxl-auto' : 'col-md-6';
         <h1 id="page-title" class:list={['type-page-title mb-0', {
           'type-page-title--tight': mobileTitleLeading === 'tight',
           'type-page-title--relaxed': mobileTitleLeading === 'relaxed',
+          'type-page-title--compact': titleSize === 'compact',
         }]}>
           <slot name="title" />
         </h1>

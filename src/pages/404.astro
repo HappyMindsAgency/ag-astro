@@ -1,7 +1,52 @@
 ---
-import PagePlaceholder from '../components/PagePlaceholder.astro';
+import Layout from '../components/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import '../styles/pages/not-found.scss';
 
 Astro.response.status = 404;
+
+const links = [
+  { label: 'Scopri AG Trustees', href: '/chi-siamo/' },
+  { label: 'Esplora i servizi', href: '/servizi/' },
+  { label: 'Consulta AG Informa', href: '/ag-informa/' },
+  { label: 'Accedi alla Knowledge Library', href: '/knowledge-library/' },
+  { label: 'Contattaci', href: '/contatti/' },
+];
+const columnLength = Math.ceil(links.length / 2);
+const columns = [links.slice(0, columnLength), links.slice(columnLength)];
 ---
 
-<PagePlaceholder title="Pagina non trovata" />
+<Layout>
+  <section class="not-found" aria-labelledby="page-title">
+    <div class="container section-container not-found-container">
+      <Breadcrumb current="404" />
+      <div class="not-found-content">
+        <p class="type-eyebrow not-found-eyebrow">Errore 404 · Pagina non trovata</p>
+        <h1 id="page-title" class="not-found-title">Troviamo<br /> <span class="type-section-title-accent">una nuova direzione.</span></h1>
+        <p class="type-section-lead not-found-copy mb-0"><span class="d-xl-block">Il contenuto che stai cercando potrebbe essere stato spostato oppure aggiornato.</span>{' '}Puoi tornare alla homepage, consultare gli approfondimenti di AG Informa o effettuare una nuova ricerca.</p>
+        <a class="btn site-button not-found-home" href="/">Torna alla homepage <span aria-hidden="true">→</span></a>
+
+        <nav class="not-found-explore" aria-labelledby="not-found-explore-title">
+          <h2 id="not-found-explore-title">Oppure continua a esplorare:</h2>
+          <div class="row gx-5">
+            {columns.map((column, columnIndex) => (
+              <div class="col-md-6">
+                <ol class="list-unstyled mb-0" start={columnIndex * columnLength + 1}>
+                  {column.map(({ label, href }, index) => (
+                    <li>
+                      <a class="not-found-link" href={href}>
+                        <span class="not-found-index" aria-hidden="true">{String(columnIndex * columnLength + index + 1).padStart(2, '0')}</span>
+                        <span>{label}</span>
+                        <span class="ms-auto" aria-hidden="true">→</span>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </nav>
+      </div>
+    </div>
+  </section>
+</Layout>
