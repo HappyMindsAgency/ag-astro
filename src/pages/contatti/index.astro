@@ -7,15 +7,11 @@ import FaqSection from '../../components/FaqSection.astro';
 import { contacts, offices } from '../../data/contacts';
 import '../../styles/pages/contatti.scss';
 
-const faqAnswer = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies.';
 const faqs = [
-  'Qual è la differenza tra trustee e guardiano?',
-  'Quando è utile nominare un co-trustee?',
-  'Chi sceglie il trustee?',
-  'Chi cura la contabilità e gli adempimenti fiscali?',
-  'Come viene rendicontata la gestione?',
-  'AG Trustees può assumere un incarico in un trust già istituito?',
-].map((question) => ({ question, answer: faqAnswer }));
+  { question: 'Come posso richiedere un primo incontro?', answer: 'È possibile contattarci attraverso il modulo online, telefonicamente o via email. Un primo confronto permette di comprendere l’esigenza e individuare le professionalità da coinvolgere.' },
+  { question: 'Quali informazioni devo fornire per essere ricontattato?', answer: 'È sufficiente indicare i propri recapiti e descrivere sinteticamente il motivo della richiesta. Eventuali documenti e informazioni più dettagliate potranno essere condivisi successivamente, nel rispetto della riservatezza.' },
+  { question: 'Posso contattare AG Trustees anche se il trust non è ancora stato istituito?', answer: 'Sì. Possiamo partecipare alla fase preliminare insieme ai professionisti incaricati, contribuendo alla valutazione delle finalità, dei ruoli e delle modalità di amministrazione.' },
+];
 ---
 
 <Layout>
@@ -83,7 +79,7 @@ const faqs = [
 
   <ContactSection eyebrow="Contattaci" />
 
-  <NewsletterSection title="AG informa - Ricevi notizie e aggiornamenti">
+  <NewsletterSection title="AG informa - Ricevi notizie e aggiornamenti" secondaryAction={{ label: 'Leggi l’ultima newsletter' }}>
     Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.
   </NewsletterSection>
 
