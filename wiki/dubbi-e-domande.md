@@ -52,7 +52,8 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Contatti | Il testo di ringraziamento in A36 è disponibile; schermata e comportamento dopo l’invio restano da concordare con designer e backend. Manca la destinazione di “Leggi l’ultima newsletter”, come nella tabella sopra. |
 | Home | Manca il testo introduttivo della sezione Patrimonio; definire la collocazione della CTA del foglio Home!A56. Evento e articoli attendono dati e link da Strapi. La versione inglese del foglio non è ancora integrata. |
 | Trust | Articoli e documenti correlati saranno dinamici. Confermare solo la collocazione dei testi fissi A84/A86 e delle CTA A88/A89 nel design. |
-| Team | Descrizioni, profili e articoli collegati saranno gestiti tramite Strapi. Il blocco contatti A20:A24 non corrisponde alla newsletter attuale: confermare la collocazione. Profili individuali: percorsi predisposti, design mancante. |
+| Team | Descrizioni, profili e articoli collegati saranno gestiti tramite Strapi. Il blocco contatti A20:A24 non corrisponde alla newsletter attuale: confermare la collocazione. Il testo della fascia newsletter resta provvisorio. Profili individuali: percorsi predisposti, design mancante. |
+| Newsletter | Il foglio NL è destinato alla pagina dedicata, da realizzare dopo le indicazioni grafiche del designer: A3/A4/A6 per titolo e testi, A8:A9 per il modulo, A15/A17 per la conferma. Non usare questi testi nelle fasce newsletter delle altre pagine. |
 | AG Informa | Articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
 | Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
 | Eventi | Date, luoghi e contenuti degli eventi provvisori; servono criteri di selezione dei due elenchi. |
