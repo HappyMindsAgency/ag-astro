@@ -6,7 +6,6 @@ Punti ancora aperti con designer e team sulla **3° Release**. Le scelte già ap
 
 Dal [file degli slug](AG_Trustees_Slug.xlsx) restano da chiarire:
 
-- **Galvani e Argos (P03):** pagina dedicata o sezione di Chi siamo? Attendere le indicazioni grafiche del designer; pagina separata non predisposta.
 - **Family office (P08):** in standby perché potrebbe andare su Fidire. Pagina non predisposta.
 - **Library (P15–P16):** confermare la gerarchia: Percorso IT usa `/knowledge-library/[tipologia]/`, Pagina padre cita `/knowledge-library/tipologia/`.
 - **Filtri tematici, Newsletter e accesso ai dati (P14, P20, P24):** presenza al lancio da decidere; pagine non predisposte. Le schermate di iscrizione e conferma newsletter attendono il designer.
@@ -24,13 +23,13 @@ Provare ogni occorrenza dopo l’integrazione; se una destinazione non è previs
 | LinkedIn | Header e footer di tutte le pagine | URL del profilo tramite `Layout` (`linkedinUrl`). |
 | Certificazioni | Utility del footer | Destinazione da confermare. |
 | FAQ | Menu del footer | Confermare destinazione e rapporto con le FAQ della Library; manca una pagina dedicata nel file degli slug. |
-| Galvani e Argos / Newsletter | Sottomenu dell’header | Confermare destinazioni e presenza al lancio, come nei punti P03 e P20 sopra. |
+| Newsletter | Sottomenu dell’header | Confermare destinazione e presenza al lancio, come nel punto P20 sopra. |
 
 Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dalle esigenze patrimoniali nella Home.
 
 ## Integrazioni e contenuti comuni
 
-- **Strapi:** servono dati definitivi, relazioni e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
+- **Strapi:** profili e descrizioni del Team, articoli e documenti correlati saranno caricati dinamicamente; non estrarre ora questi contenuti dai fogli. Servono dati definitivi, relazioni e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
 - **FAQ:** Servizi, Trust, Patrimonio e Contatti hanno tre coppie definitive. Confermare se i gruppi ricevuti sono completi rispetto alle 4–5 domande citate nelle note del foglio.
 - **Servizi esterni:** configurazione di moduli contatti, newsletter e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
 - **Ricerca e Knowledge Library:** scegliere con Vito la fonte dei risultati (filtri di Strapi o motore dedicato) e stimare il numero di documenti. Valutare i filtri della Library sul server in base al volume dei dati e alle prestazioni.
@@ -49,17 +48,16 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | --- | --- |
 | Chi siamo | A6 mantenuto come da commento, da ricontrollare con il cliente. Confermare A12/B12, A23/B23, A25/B24:B25 e A34/B34: l’inglese riprende A23, A25 e A34. Restano presentazione a due punti, competenze a un paragrafo e collocazione della CTA A44. |
 | Visione e metodologia | Mancano introduzione dei principi e testi della fascia “Come nasce AG Trustees”. La fase “Definire” (A44:A46) richiede una quarta card nella griglia attuale a tre; confermare anche la CTA interna all’elenco dei principi. |
-| Patrimonio | Restano in revisione introduzione, esigenze e chiusura del metodo (A7, A18, A22, A28, A32, A52, A79) e approfondimenti A89:A95. Conservati i paragrafi ripetuti finché non saranno confermati i testi; da confermare anche le icone ripetute nelle ultime cinque voci. |
+| Patrimonio | A52 coincide già con il sito ma manca la conferma nel foglio. Restano da confermare titoli e introduzione fissi degli approfondimenti A89:A95; articoli e documenti saranno dinamici. Da confermare le icone ripetute nelle ultime cinque voci. |
 | Contatti | Il testo di ringraziamento in A36 è disponibile; schermata e comportamento dopo l’invio restano da concordare con designer e backend. Manca la destinazione di “Leggi l’ultima newsletter”, come nella tabella sopra. |
 | Home | Manca il testo introduttivo della sezione Patrimonio; definire la collocazione della CTA del foglio Home!A56. Evento e articoli attendono dati e link da Strapi. La versione inglese del foglio non è ancora integrata. |
-| Trust | Confermare la collocazione dei titoli e delle introduzioni degli approfondimenti (A84:A89); l’archivio correlati attuale non ha tutti i campi richiesti. |
-| Team | Servono il file AG_Trustees_team_master.xlsm richiamato in B4, i sommari dei gruppi e gli articoli collegati. Il blocco contatti A20:A24 non corrisponde alla newsletter attuale: confermare la collocazione. Profili individuali: percorsi predisposti, design e contenuti mancanti. |
+| Trust | Articoli e documenti correlati saranno dinamici. Confermare solo la collocazione dei testi fissi A84/A86 e delle CTA A88/A89 nel design. |
+| Team | Descrizioni, profili e articoli collegati saranno gestiti tramite Strapi. Il blocco contatti A20:A24 non corrisponde alla newsletter attuale: confermare la collocazione. Profili individuali: percorsi predisposti, design mancante. |
 | AG Informa | Articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
 | Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
 | Eventi | Date, luoghi e contenuti degli eventi provvisori; servono criteri di selezione dei due elenchi. |
 | Dettaglio evento | Testo, orario, categoria, documenti, correlati e piccolo invito ai contatti provvisori; il primo correlato ripete l’evento corrente. |
-| Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. I Link utili attendono l’indicazione grafica del designer. |
-| 404 | Mantenere il segnaposto: la pagina completa attende le indicazioni grafiche del designer. |
+| Knowledge Library | PDF, categorie e metadati definitivi; alcuni metadati differiscono dagli stessi esempi in articolo ed evento. I Link utili A8:A11 attendono l’indicazione grafica del designer. Correggere il collegamento di Milano Finanza, che nel foglio punta a Italia Oggi. |
 
 ## Mobile: confronto con la prossima release
 
