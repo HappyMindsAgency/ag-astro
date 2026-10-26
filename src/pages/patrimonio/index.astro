@@ -10,11 +10,11 @@ import '../../styles/pages/patrimonio.scss';
 
 const needs = [
   {
-    title: 'Protezione del patrimonio',
+    title: 'Custodia del patrimonio',
     icon: 'patrimonio-protezione.svg',
     description: [
       'Individuare i rischi e organizzare determinati beni all’interno di un progetto definito, attraverso regole chiare e responsabilità precise.',
-      'Pianificare per tempo permette di chiarire ruoli, tempi e modalità, riducendo le incertezze che possono emergere nel passaggio tra generazioni.',
+      'La gestione patrimoniale richiede una pianificazione legittima e coerente con la situazione personale, familiare e professionale.',
     ],
   },
   {
@@ -22,14 +22,14 @@ const needs = [
     icon: 'patrimonio-generazioni.svg',
     description: [
       'Organizzare la trasmissione del patrimonio nel rispetto delle volontà familiari e degli equilibri tra le persone coinvolte.',
-      'Pianificare per tempo permette di chiarire ruoli, tempi e modalità, riducendo le incertezze che possono emergere nel passaggio tra generazioni.',
+      'Pianificare permette di chiarire ruoli, tempi e modalità, riducendo le incertezze che possono emergere nel passaggio tra generazioni.',
     ],
   },
   {
     title: 'Continuità dell’impresa familiare',
     icon: 'patrimonio-impresa.svg',
     description: [
-      'Definire modalità di gestione delle partecipazioni, ruoli e criteri decisionali per accompagnare l’impresa nel futuro.',
+      'Definire modalità di gestione delle partecipazioni societarie, ruoli e criteri decisionali per accompagnare l’impresa nel futuro.',
       'L’obiettivo è mantenere coerenza tra proprietà, governo dell’azienda e responsabilità delle nuove generazioni.',
     ],
   },
@@ -68,11 +68,10 @@ const needs = [
   },
 ];
 
-const faqAnswer = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus.';
 const faqs = [
   { question: 'Che cosa significa pianificare il patrimonio?', answer: 'Significa organizzare beni, responsabilità e obiettivi secondo una visione di lungo periodo, chiarendo come il patrimonio dovrà essere amministrato e trasmesso.' },
-  { question: 'Lorem ipsum dolor sit amet?', answer: faqAnswer },
-  { question: 'Lorem ipsum dolor sit amet?', answer: faqAnswer },
+  { question: 'In quali situazioni il trust può essere utile?', answer: 'Il trust può essere valutato per accompagnare il passaggio generazionale, garantire continuità a un’impresa, tutelare persone fragili o amministrare patrimoni complessi secondo finalità e regole definite.' },
+  { question: 'Come si valuta la soluzione più adatta per un patrimonio?', answer: 'La valutazione parte dagli obiettivi, dalla composizione del patrimonio e dalle relazioni tra le persone coinvolte.' },
 ];
 
 // TODO Strapi: sostituire questi correlati provvisori con i dati di Strapi ed eliminare questo commento.
@@ -111,7 +110,7 @@ const relatedDocumentsPlaceholder: ComponentProps<typeof RelatedContent>['docume
       <span class="d-block">Gestire il</span>
       <span class="d-block text-secondary">patrimonio.</span>
     </Fragment>
-    Un patrimonio non è soltanto un insieme di beni. Comprende persone, relazioni, imprese, responsabilità e progetti destinati a evolvere nel tempo.<br />Dargli una struttura significa chiarire gli obiettivi, individuare le responsabilità e costruire regole capaci di accompagnarne l’amministrazione e la trasmissione.
+    Un patrimonio non è soltanto un insieme di beni. Comprende persone, relazioni, imprese, responsabilità e progetti destinati a evolvere nel tempo.<br />Dargli una struttura significa chiarire gli obiettivi, individuare le responsabilità e costruire regole capaci di accompagnarne l’amministrazione e la gestione nel tempo del patrimonio.
   </PageIntro>
 
   <OverviewBanner id="patrimonio-overview" eyebrow="Una visione del patrimonio" class="patrimonio-overview">
@@ -183,7 +182,8 @@ const relatedDocumentsPlaceholder: ComponentProps<typeof RelatedContent>['docume
         </div>
         <div class="col-lg-5 type-section-lead patrimonio-method-copy">
           <p>La pianificazione patrimoniale richiede una comprensione approfondita delle persone e degli interessi coinvolti.</p>
-          <p class="mb-0">Il percorso parte dall’ascolto e dall’analisi della situazione. Insieme ai professionisti incaricati vengono valutati patrimonio, relazioni familiari, possibili rischi, obiettivi e orizzonte temporale.</p>
+          <p>Il percorso parte dall’ascolto e dall’analisi della situazione. Insieme ai professionisti incaricati vengono valutati patrimonio, relazioni familiari, possibili rischi, obiettivi e orizzonte temporale.</p>
+          <p class="mb-0">Solo dopo questa fase è possibile individuare una struttura adeguata e definire obiettivi realizzabili nel tempo.</p>
           <a class="btn site-button site-button--light site-button--small patrimonio-method-action d-lg-none" href="/trust/#come-funziona">Scopri come funziona il trust <span aria-hidden="true">→</span></a>
         </div>
       </div>

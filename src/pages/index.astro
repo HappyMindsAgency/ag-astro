@@ -8,27 +8,39 @@ import ServiceOverview from '../components/ServiceOverview.astro';
 import FeaturedEvent from '../components/FeaturedEvent.astro';
 import NewsFeed from '../components/NewsFeed.astro';
 import NewsletterSection from '../components/NewsletterSection.astro';
-import { newsletterText } from '../data/newsletter';
 import '../styles/pages/home.scss';
 
-const companyDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula.';
-const servicesIntroduction = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula augue, id ultrices turpis ullamcorper in. In porttitor quam ultricies elementum commodo.';
-const services = ['Amministrazione', 'Family Office', 'Servizio numero 3', 'Servizio numero 4'].map((title) => ({ title, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }));
+const companyDescription = 'Assume incarichi di trustee, co-trustee e guardiano e amministra i beni conferiti nel rispetto delle finalità stabilite.\n\nLa società riunisce in un’unica identità competenze giuridiche, fiscali, amministrative e contabili, insieme a una lunga esperienza nell’attività di trustee professionale.\n\nUn patrimonio di conoscenze oggi al servizio di una visione condivisa: amministrare ogni incarico con responsabilità, equilibrio e attenzione alle persone.';
+const servicesIntroduction = 'AG Trustees interviene dalla definizione del progetto alla sua amministrazione nel tempo.';
+const services = [
+  { title: 'Assistenza nell’istituzione del trust', description: 'Contribuiamo alla definizione delle finalità, dei soggetti, dei ruoli e delle regole di amministrazione, insieme ai consulenti del disponente.' },
+  { title: 'Trustee professionale', description: 'Assumiamo l’incarico di trustee e amministriamo i beni conferiti secondo l’atto istitutivo e la legge regolatrice.' },
+  { title: 'Co-trustee', description: 'Condividiamo l’incarico con uno o più trustee, secondo la distribuzione di poteri e responsabilità prevista dal trust.' },
+  { title: 'Guardiano', description: 'Vigiliamo sull’operato del trustee ed esercitiamo i poteri attribuiti dall’atto istitutivo.' },
+  { title: 'Amministrazione e adempimenti', description: 'Curiamo la gestione operativa, la documentazione, la contabilità, la fiscalità e la rendicontazione del trust.' },
+];
 const needs = [
-  'Proteggere il patrimonio',
+  'Custodire il patrimonio',
   'Pianificare il passaggio generazionale',
   'Organizzare il patrimonio familiare',
   'Tutelare persone fragili',
-  'Gestire imprese e partecipazioni',
-  'Amministrare immobili, investimenti e beni esteri',
+  'Garantire continuità dell\'impresa familiare',
+  'Amministrare immobili, beni mobili o beni esteri',
 ];
 const trustPoints = [
-  'Il disponente definisce obiettivi e regole.',
-  'Il trustee amministra il patrimonio affidato.',
-  'I beneficiari sono tutelati nel tempo.',
-  'Il trustee professionale assicura competenza e continuità.',
+  'Definire il progetto',
+  'Stabilire le regole',
+  'Conferire i beni',
+  'Amministrare e dare attuazione',
 ];
-const values = ['Esperienza specialistica', 'Indipendenza', 'Multidisciplinarità', 'Relazione personale', 'Continuità', 'Aggiornamento costante'];
+const values = [
+  { title: 'Esperienza consolidata', description: 'Un patrimonio di competenze maturato nell’amministrazione professionale di trust.' },
+  { title: 'Specializzazione', description: 'Conoscenze giuridiche, fiscali, amministrative dedicate alla gestione del trust.' },
+  { title: 'Responsabilità', description: 'Ogni incarico viene valutato e amministrato con consapevolezza delle responsabilità che comporta.' },
+  { title: 'Relazione', description: 'Manteniamo un dialogo chiaro e continuativo con le persone e i professionisti coinvolti.' },
+  { title: 'Continuità', description: 'Seguiamo il trust durante il suo ciclo di vita, accompagnandone le decisioni e l’evoluzione.' },
+  { title: 'Aggiornamento costante', description: 'Seguiamo l’evoluzione normativa, fiscale e giurisprudenziale per amministrare ogni incarico con competenza e consapevolezza.' },
+];
 // TODO Strapi: sostituire evento e articoli provvisori con i dati di Strapi ed eliminare questo commento.
 const featuredEventPlaceholder: ComponentProps<typeof FeaturedEvent>['event'] = {
   title: 'Il Trust in Italia:\nXI Congresso Nazionale e Domenica Specialistica',
@@ -77,31 +89,31 @@ const articlePlaceholders: ArticlePreview[] = [
         <span class="d-block">Dare forma al patrimonio.</span>
         <span class="d-block type-section-title-accent">Custodirne il futuro.</span>
       </h1>
-      <p class="home-hero-copy mb-0">Affianchiamo persone, famiglie e imprese nella protezione, nell’amministrazione e nella trasmissione del patrimonio.</p>
+      <p class="home-hero-copy mb-0">AG Trustees è una società specializzata nei servizi di trust con sede a Milano, Bologna e Forlì. Affianchiamo persone, famiglie, imprenditori e professionisti nei progetti che riguardano patrimoni, imprese, relazioni e responsabilità destinate a proseguire nel tempo.</p>
       <div class="home-hero-actions d-flex flex-wrap">
-        <a class="btn site-button" href="/contatti/">Contattaci <span aria-hidden="true">→</span></a>
-        <a class="btn site-button site-button--light" href="#servizi">Scopri i servizi <span aria-hidden="true">↓</span></a>
+        <a class="btn site-button" href="/chi-siamo/">Conosci AG Trustees <span aria-hidden="true">→</span></a>
+        <a class="btn site-button site-button--light" href="/contatti/">Prenota una consulenza <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
 
-  <ImageOverview id="home-company" eyebrow="AG Trustees" class="home-overview" plainImage image={{ src: '/assets/immagini/home-palazzo.webp', alt: 'Facciata vetrata di un edificio contemporaneo', width: 878, height: 666 }}>
+  <ImageOverview id="home-company" eyebrow="Chi è AG Trustees" class="home-overview" plainImage image={{ src: '/assets/immagini/home-palazzo.webp', alt: 'Facciata vetrata di un edificio contemporaneo', width: 878, height: 666 }}>
     <img slot="decoration" class="home-brand-mark" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" />
-    <Fragment slot="title">Una trust company, fondata su <span class="type-section-title-accent">esperienza</span> e <span class="type-section-title-accent">competenze consolidate</span></Fragment>
-    {companyDescription}
+    <Fragment slot="title">Responsabilità nel presente, <span class="type-section-title-accent">continuità nel futuro</span></Fragment>
+    {companyDescription.split('\n\n').map((paragraph, index) => <Fragment>{index > 0 && <Fragment><br /><br /></Fragment>}{paragraph}</Fragment>)}
     <a slot="action" class="btn site-button" href="/chi-siamo/">Conosci AG Trustees <span aria-hidden="true">→</span></a>
   </ImageOverview>
 
   <FeaturedEvent event={featuredEventPlaceholder} />
 
-  <ServiceOverview id="servizi" services={services} introduction={servicesIntroduction} />
+  <ServiceOverview id="servizi" services={services} introduction={servicesIntroduction} eyebrow="Servizi professionali" title="Al fianco delle persone, nel tempo" actionLabel="Vai a tutti i servizi" />
 
   <section class="home-wealth home-contained section-spacing" aria-labelledby="home-wealth-title">
     <div class="container section-container px-lg-0">
       <div class="row gx-4 gy-4">
         <div class="col-lg-5"><p class="type-eyebrow type-eyebrow--section home-section-label">Patrimonio</p></div>
         <div class="col-lg-7">
-          <h2 id="home-wealth-title" class="type-section-title type-section-title--compact"><span class="d-xxl-block">Ogni patrimonio</span>{' '}<span class="d-xxl-block">racchiude equilibri, decisioni e</span>{' '}<span class="type-section-title-accent d-xxl-block">storie da tutelare.</span></h2>
+          <h2 id="home-wealth-title" class="type-section-title type-section-title--compact">Il futuro si amministra <span class="type-section-title-accent d-xxl-block">con responsabilità</span></h2>
           <p class="type-section-lead type-section-lead--relaxed home-section-copy mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan magna vitae vestibulum efficitur.</p>
         </div>
       </div>
@@ -121,15 +133,15 @@ const articlePlaceholders: ArticlePreview[] = [
       <div class="row gx-4 gy-4 align-items-center">
         <div class="col-lg-6"><EditorialImage src="/assets/immagini/ufficio-panorama.jpg" width={1024} height={1024} alt="Sala riunioni con vista sulla città" plain /></div>
         <div class="col-lg-5 offset-lg-1">
-          <p class="type-eyebrow type-eyebrow--section home-section-label">Trust</p>
-          <h2 id="home-trust-title" class="type-section-title type-section-title--compact">Che cos’è il trust?</h2>
-          <p class="type-section-lead type-section-lead--relaxed home-section-copy">{companyDescription}</p>
+          <p class="type-eyebrow type-eyebrow--section home-section-label">Che cos’è il trust?</p>
+          <h2 id="home-trust-title" class="type-section-title type-section-title--compact">Uno strumento flessibile, regolato da finalità precise</h2>
+          <p class="type-section-lead type-section-lead--relaxed home-section-copy">Il trust è un rapporto giuridico attraverso il quale determinati beni vengono affidati a un trustee, che ha il compito di amministrarli nell’interesse di uno o più beneficiari oppure per uno scopo definito.</p>
           <ol class="home-trust-points list-unstyled mb-0">
             {trustPoints.map((text, index) => (
               <li class="d-flex gap-3"><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><p class="mb-0">{text}</p></li>
             ))}
           </ol>
-          <a class="btn site-button mt-4" href="/trust/">Scopri il trust <span aria-hidden="true">→</span></a>
+          <a class="btn site-button mt-4" href="/trust/">Scopri come funziona il trust <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>
@@ -140,15 +152,15 @@ const articlePlaceholders: ArticlePreview[] = [
       <div class="row gx-4 gy-4">
         <div class="col-lg-5 home-method-heading">
           <img class="home-brand-mark" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" loading="lazy" />
-          <p class="type-eyebrow type-eyebrow--section home-section-label">Il nostro metodo</p>
-          <h2 id="home-method-title" class="type-section-title type-section-title--compact mb-0">Perché <span class="d-lg-block">AG Trustees.</span></h2>
+          <p class="type-eyebrow type-eyebrow--section home-section-label">Perché AG Trustees</p>
+          <h2 id="home-method-title" class="type-section-title type-section-title--compact mb-0">Competenza e responsabilità <span class="d-lg-block">nel tempo</span></h2>
         </div>
         <div class="col-lg-7">
           <div class="row g-0 home-values">
-            {values.map((title) => (
+            {values.map(({ title, description }) => (
               <div class="col-md-6 home-value">
                 <h3>{title}</h3>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="mb-0">{description}</p>
               </div>
             ))}
           </div>
@@ -157,10 +169,9 @@ const articlePlaceholders: ArticlePreview[] = [
     </div>
   </section>
 
-  <NewsFeed articles={articlePlaceholders} />
-  <NewsletterSection title={newsletterText.title}>
-    {newsletterText.introduction}<br />
-    {newsletterText.description}
+  <NewsFeed articles={articlePlaceholders} eyebrow="Notizie e approfondimenti" />
+  <NewsletterSection title="AG informa - Ricevi notizie e aggiornamenti">
+    Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.
   </NewsletterSection>
 </Layout>
 

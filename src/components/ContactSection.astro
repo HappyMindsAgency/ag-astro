@@ -46,6 +46,10 @@ const { eyebrow = 'Contatti' } = Astro.props;
               <textarea class="form-control" id="contact-message" name="message" rows="3"></textarea>
             </div>
           </div>
+          <div class="form-check mt-3">
+            <input class="form-check-input" id="contact-privacy" name="privacy" type="checkbox" />
+            <label class="form-check-label" for="contact-privacy">Ho letto l’<a href="/privacy-policy/">informativa privacy</a>.</label>
+          </div>
           <button class="btn site-button contact-form-submit" type="submit" disabled>Invia la richiesta <span aria-hidden="true">→</span></button>
         </form>
       </div>

@@ -26,11 +26,11 @@ const trustDeed = [
 ];
 
 const trustParticipants = [
-  { title: 'Disponente', description: 'Istituisce il trust, individua i beni da conferire e li trasferisce' },
+  { title: 'Disponente', description: 'Istituisce il trust, individua i beni da conferire e li trasferisce al trustee' },
   { title: 'Trustee', description: 'Assume la titolarità dei beni e la responsabilità di amministrarli secondo l’atto, nell’interesse dei beneficiari o per uno scopo specifico' },
-  { title: 'Beneficiari', description: 'Sono le persone o gli enti nel cui interesse il patrimonio viene amministrato e ai quali possono essere effettuate le attribuzioni previste.' },
+  { title: 'Beneficiari', description: 'Sono i soggetti nel cui interesse il patrimonio viene amministrato e ai quali possono essere effettuate le attribuzioni previste.' },
   { title: 'Guardiano', description: 'Vigila sull’attività del trustee ed esercita i poteri di controllo, intervento o autorizzazione attribuiti dall’atto.' },
-  { title: 'Co-trustee', description: 'Condivide con uno o più trustee l’incarico e le relative responsabilità, secondo le regole decisionali definite.' },
+  { title: 'Co-trustee', description: 'Condivide con uno o più trustee l’incarico e le relative responsabilità, secondo le regole definite.' },
 ];
 
 const segregationPrinciples = [
@@ -66,11 +66,10 @@ const trusteeResponsibilities = [
   'Ogni attività deve essere documentata e rendicontata. Per questo il ruolo richiede competenza giuridica, capacità amministrativa, indipendenza e continuità nel tempo.',
 ];
 
-const faqAnswer = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus.';
 const faqs = [
-  { question: 'Che cos’è un trust?', answer: faqAnswer },
-  { question: 'Lorem ipsum dolor sit amet?', answer: faqAnswer },
-  { question: 'Lorem ipsum dolor sit amet?', answer: faqAnswer },
+  { question: 'Che cos’è un trust?', answer: 'È un rapporto giuridico nel quale determinati beni vengono posti sotto il controllo di un trustee, affinché li amministri nell’interesse di uno o più beneficiari o per uno scopo definito.' },
+  { question: 'Quali beni possono essere conferiti in trust?', answer: 'Possono essere conferiti beni immobili/mobili, disponibilità finanziarie, partecipazioni societarie, opere d’arte e altri beni o diritti. La possibilità e le modalità di conferimento devono essere valutate in relazione al singolo progetto e alla normativa applicabile.' },
+  { question: 'Quanto può durare un trust?', answer: 'La durata viene stabilita nell’atto istitutivo in relazione alle finalità da perseguire e nel rispetto della legge regolatrice. Il trust può concludersi alla scadenza prevista oppure al verificarsi di uno specifico evento indicato nell’atto.' },
 ];
 
 // TODO Strapi: sostituire questi correlati provvisori con i dati di Strapi ed eliminare questo commento.
@@ -106,8 +105,7 @@ const relatedDocumentsPlaceholder: ComponentProps<typeof RelatedContent>['docume
 <Layout>
   <PageIntro breadcrumb="Trust" eyebrow="Uno strumento flessibile. Regole chiare, responsabilità definite." mobileTitleLeading="relaxed">
     <Fragment slot="title">
-      <span class="d-block">Il trust</span>
-      <span class="d-block text-secondary">siamo noi.</span>
+      <span class="d-block">Trust.</span>
     </Fragment>
     Il trust è un rapporto giuridico attraverso il quale determinati beni vengono affidati a un trustee, che li amministra nell’interesse di uno o più beneficiari o per il perseguimento di una finalità specifica.
   </PageIntro>
@@ -186,7 +184,7 @@ const relatedDocumentsPlaceholder: ComponentProps<typeof RelatedContent>['docume
   <section class="trust-segregation section-spacing" aria-labelledby="trust-segregation-title">
     <div class="container section-container px-lg-0">
       <p class="type-eyebrow type-eyebrow--section trust-eyebrow">La segregazione patrimoniale</p>
-      <h2 id="trust-segregation-title" class="type-section-title type-section-title--compact trust-editorial-title">Un patrimonio distinto e destinato a <span class="type-section-title-accent">uno scopo.</span></h2>
+      <h2 id="trust-segregation-title" class="type-section-title type-section-title--compact trust-editorial-title">Un patrimonio distinto e destinato <span class="type-section-title-accent">ad una finalità</span></h2>
       <div class="type-section-lead type-section-lead--relaxed trust-copy">
         <div>
           <p class="mb-0">I beni conferiti in trust costituiscono un patrimonio distinto da quello personale del trustee.<br />Questo significa che:</p>
