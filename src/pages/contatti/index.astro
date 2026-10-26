@@ -2,7 +2,7 @@
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import ContactSection from '../../components/ContactSection.astro';
-import NewsletterSection from '../../components/NewsletterSection.astro';
+import NewsletterCallToAction from '../../components/NewsletterCallToAction.astro';
 import FaqSection from '../../components/FaqSection.astro';
 import { contacts, offices } from '../../data/contacts';
 import '../../styles/pages/contatti.scss';
@@ -79,9 +79,7 @@ const faqs = [
 
   <ContactSection eyebrow="Contattaci" />
 
-  <NewsletterSection title="AG informa - Ricevi notizie e aggiornamenti" secondaryAction={{ label: 'Leggi l’ultima newsletter' }}>
-    Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.
-  </NewsletterSection>
+  <NewsletterCallToAction contained={false} />
 
   <FaqSection id="faq-contatti" items={faqs} largeTitle twoColumns>
     <Fragment slot="title">Domande<br /><span class="type-section-title-accent">frequenti</span></Fragment>

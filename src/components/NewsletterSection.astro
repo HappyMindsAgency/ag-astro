@@ -3,10 +3,9 @@ import '../styles/components/newsletter-section.scss';
 
 interface Props {
   title: string;
-  secondaryAction?: { label: string; href?: string };
 }
 
-const { title, secondaryAction } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <section id="newsletter" class="newsletter-section" aria-labelledby="newsletter-title">
@@ -28,13 +27,6 @@ const { title, secondaryAction } = Astro.props;
             <label class="form-check-label" for="newsletter-privacy">Ho letto l’<a href="/privacy-policy/">informativa privacy</a>.</label>
           </div>
         </form>
-        {secondaryAction && <div class="mt-3">
-          {secondaryAction.href ? (
-            <a class="btn site-button site-button--outline-light site-button--small" href={secondaryAction.href}>{secondaryAction.label} <span aria-hidden="true">→</span></a>
-          ) : (
-            <button class="btn site-button site-button--outline-light site-button--small" type="button" disabled>{secondaryAction.label}</button>
-          )}
-        </div>}
       </div>
     </div>
   </div>

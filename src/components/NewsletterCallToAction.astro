@@ -2,14 +2,15 @@
 import CallToAction from './CallToAction.astro';
 
 interface Props {
+  contained?: boolean;
   latestNewsletterUrl?: string;
   plainBackground?: boolean;
 }
 
-const { latestNewsletterUrl, plainBackground = false } = Astro.props;
+const { contained = true, latestNewsletterUrl, plainBackground = false } = Astro.props;
 ---
 
-<CallToAction contained plainBackground={plainBackground} eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" href="/contatti/#newsletter" label="Iscriviti alla newsletter" secondaryAction={{ label: 'Leggi l’ultima newsletter', href: latestNewsletterUrl }}>
+<CallToAction contained={contained} plainBackground={plainBackground} eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" href="/newsletter/" label="Iscriviti alla newsletter" secondaryAction={{ label: 'Leggi l’ultima newsletter', href: latestNewsletterUrl }}>
   <Fragment slot="title">AG informa - Ricevi notizie e aggiornamenti</Fragment>
   Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.
 </CallToAction>

@@ -36,7 +36,7 @@ I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura de
 
 `.type-section-lead` usa 20/32.2 px sul desktop e 16/20 px sul mobile; `--relaxed` mantiene 25 px di interlinea mobile. Le descrizioni delle card del metodo hanno interlinea 23 px desktop e 20 px mobile. Sotto `lg`, `.type-section-title--compact` conserva `letter-spacing: normal`.
 
-`CallToAction` condivide sopratitolo da 16 px senza maiuscolo forzato, descrizione da 16 px bianco pieno (interlinea 26 px desktop, 20 px mobile) e titolo da 40 px desktop/32 px mobile, con interlinea 46 px e `text-wrap: balance`. `contained` mantiene il limite del frame desktop; `plainBackground` conserva il gradiente senza foto di Library e dettaglio articolo. `NewsletterCallToAction` mantiene la foto sia sul desktop sia sul mobile; nella Knowledge Library usa `plainBackground` per conservare il gradiente senza foto.
+`CallToAction` condivide sopratitolo da 16 px senza maiuscolo forzato, descrizione da 16 px bianco pieno (interlinea 26 px desktop, 20 px mobile) e titolo da 40 px desktop/32 px mobile, con interlinea 46 px e `text-wrap: balance`. `contained` mantiene il limite del frame desktop; `plainBackground` conserva il gradiente senza foto di Library e dettaglio articolo. `NewsletterCallToAction` riusa questo stile: iscrizione primaria verso `/newsletter/`, ultima newsletter secondaria. In Contatti usa `contained={false}`, nella Library `plainBackground`.
 
 `FaqSection` riceve un `id` univoco e le coppie domanda/risposta. Conserva i titoli desktop da 56 px o, con `largeTitle`, 68 px per Trust e Contatti; sul mobile usa 34 px. `twoColumns` dispone le domande in due colonne da `lg`; `embedded` mantiene la variante compatta dell’articolo. Una sola risposta aperta per gruppo.
 
@@ -46,7 +46,7 @@ I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura de
 | `ImageOverview`, `EditorialImage` | Foto e testo di Home/Visione; almeno 48 px tra le colonne da `lg`. `EditorialImage` condivide gli effetti; `plain` li omette. |
 | `ServiceOverview`, `OverviewBanner` | Panoramica servizi e fascia introduttiva di Trust/Patrimonio. |
 | `CompanyHistory`, `Certifications` | Storia e certificazioni condivise. |
-| `ContactSection`, `NewsletterSection` | Moduli e stile comune; recapiti e sedi in `src/data/contacts.ts`. |
+| `ContactSection`, `NewsletterSection` | Modulo contatti condiviso e modulo newsletter di Home/Team; recapiti e sedi in `src/data/contacts.ts`. |
 | `NewsArticleCard`, `NewsFeed` | Schede Home/archivio/hero; filtri e caricamento progressivo. `archive` mostra otto articoli da `lg`, quattro sotto. |
 | `EventCard`, `EventDate`, `EventList`, `FeaturedEvent` | Eventi e data condivisi; `compact` omette foto e descrizioni nell’elenco. |
 | `TeamMemberCard` | Schede `leadership`, `operational` e `counsel`, con gruppi di qualsiasi lunghezza. |
@@ -85,7 +85,6 @@ Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo
 - Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership; `brand-watermark` la filigrana del logo di Home e Team.
 - `$anchor-offset` (160 px) è lo `scroll-margin-top` delle ancore sotto l’header; lo ScrollSpy dell’articolo ne ricava la linea di lettura.
 - La linea superiore del footer sta dietro le sezioni e compare solo quando l’ultima non ha uno sfondo.
-- La firma HappyMinds nella fascia finale del footer sostituisce la pagina Credits.
 
 ## Dati, percorsi e integrazioni
 
@@ -93,7 +92,9 @@ Organizza le pagine in cartelle con `index.astro`, seguendo **Percorso IT** nel 
 
 I componenti ricevono dati tramite proprietà, senza API. Usa i tipi in `src/types/content.ts`; gruppi di correlati vuoti e relativo spazio non vengono renderizzati. I commenti `TODO Strapi` indicano gli esempi da sostituire: elimina anche il commento dopo l’integrazione. Non anticipare formato del corpo editoriale o chiamate API prima dell’accordo con Vito.
 
-Moduli e mappa hanno per ora struttura e stile. Senza destinazione, pulsanti e download restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL. Le singole voci dei servizi non hanno pagine dedicate; gli elenchi descrittivi senza collegamenti non mostrano frecce o simboli di apertura. Lo spazio video di Chi siamo resta nascosto al lancio. I metadati SEO arriveranno da Strapi: non definirli nelle pagine.
+I testi del foglio NL appartengono alla pagina `/newsletter/`, da realizzare; le fasce newsletter delle altre pagine hanno contenuti propri.
+
+Moduli e mappa hanno per ora struttura e stile. Senza destinazione, pulsanti e download restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL. Le singole voci dei servizi non hanno pagine dedicate; gli elenchi descrittivi senza collegamenti non mostrano frecce o simboli di apertura. Lo spazio video di Chi siamo resta nascosto al lancio. I metadati SEO arriveranno da Strapi, compreso `noindex, follow` della ricerca: non definirli nelle pagine.
 
 ## Prima di condividere
 
