@@ -48,7 +48,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Pagina | Punti da chiarire o sostituire |
 | --- | --- |
 | Chi siamo | A6 mantenuto come da commento, da ricontrollare con il cliente. Confermare A12/B12, A23/B23, A24:A25/B24:B25 e A34/B34; poi adattare presentazione a due punti e competenze a un paragrafo. La CTA A44 non ha una collocazione nel layout attuale. |
-| Visione e metodologia | “Titolo della sezione”, terzo e quarto servizio, descrizioni e paragrafi Lorem ipsum/Cras et lorem. La CTA parla di newsletter ma porta ai servizi: confermare testo e destinazione. |
+| Visione e metodologia | Mancano introduzione dei principi e testi della fascia “Come nasce AG Trustees”. La fase “Definire” (A44:A46) richiede una quarta card nella griglia attuale a tre; confermare anche la CTA interna all’elenco dei principi. |
 | Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
 | Contatti | FAQ definitive mancanti. Il design mantiene una sola CTA newsletter; confermare se aggiungere “Leggi l’ultima newsletter”. |
 | Home | Manca il testo introduttivo della sezione Patrimonio; definire la collocazione della CTA del foglio Home!A56. Evento e articoli attendono dati e link da Strapi. La colonna inglese del foglio è ancora parziale. |
