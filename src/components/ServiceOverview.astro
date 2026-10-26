@@ -5,16 +5,19 @@ interface Props {
   id: string;
   services: { title: string; description: string }[];
   introduction: string;
+  eyebrow?: string;
+  title?: string;
+  actionLabel?: string;
 }
 
-const { id, services, introduction } = Astro.props;
+const { id, services, introduction, eyebrow = 'Aree di attività', title = 'Servizi professionali', actionLabel = 'Tutti i servizi' } = Astro.props;
 ---
 
 <section id={id} class="service-overview section-spacing" aria-labelledby={`${id}-title`}>
   <div class="container section-container">
     <div class="service-overview-heading text-lg-center mx-auto">
-      <p class="type-eyebrow type-eyebrow--section service-overview-eyebrow">Aree di attività</p>
-      <h2 id={`${id}-title`} class="service-overview-title">Servizi professionali</h2>
+      <p class="type-eyebrow type-eyebrow--section service-overview-eyebrow">{eyebrow}</p>
+      <h2 id={`${id}-title`} class="service-overview-title">{title}</h2>
       <p class="service-overview-copy mb-0">{introduction}</p>
     </div>
     <ol class="service-overview-list list-unstyled mx-auto mb-0">
@@ -27,7 +30,7 @@ const { id, services, introduction } = Astro.props;
       ))}
     </ol>
     <div class="service-overview-action text-end mx-auto">
-      <a class="btn site-button site-button--outline-light" href="/servizi/">Tutti i servizi <span aria-hidden="true">→</span></a>
+      <a class="btn site-button site-button--outline-light" href="/servizi/">{actionLabel} <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
