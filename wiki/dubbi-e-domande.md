@@ -47,7 +47,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 
 | Pagina | Punti da chiarire o sostituire |
 | --- | --- |
-| Chi siamo | A6 mantenuto come da commento, da ricontrollare con il cliente. Confermare A12/B12, A23/B23, A24:A25/B24:B25 e A34/B34; poi adattare presentazione a due punti e competenze a un paragrafo. La CTA A44 non ha una collocazione nel layout attuale. |
+| Chi siamo | A6 mantenuto come da commento, da ricontrollare con il cliente. Confermare A12/B12, A23/B23, A25/B24:B25 e A34/B34: l’inglese riprende A23, A25 e A34. Restano presentazione a due punti, competenze a un paragrafo e collocazione della CTA A44. |
 | Visione e metodologia | Mancano introduzione dei principi e testi della fascia “Come nasce AG Trustees”. La fase “Definire” (A44:A46) richiede una quarta card nella griglia attuale a tre; confermare anche la CTA interna all’elenco dei principi. |
 | Patrimonio | Restano in revisione introduzione, esigenze e chiusura del metodo (A7, A18, A22, A28, A32, A52, A79) e approfondimenti A89:A95. Conservati i paragrafi ripetuti finché non saranno confermati i testi; da confermare anche le icone ripetute nelle ultime cinque voci. |
 | Contatti | Il testo di ringraziamento in A36 è disponibile; schermata e comportamento dopo l’invio restano da concordare con designer e backend. Manca la destinazione di “Leggi l’ultima newsletter”, come nella tabella sopra. |
