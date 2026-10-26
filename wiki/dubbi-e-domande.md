@@ -31,7 +31,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 ## Integrazioni e contenuti comuni
 
 - **Strapi:** servono dati definitivi, relazioni e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
-- **FAQ:** Servizi e Trust hanno tre coppie definitive. Restano da completare Patrimonio e Contatti.
+- **FAQ:** Servizi, Trust e Patrimonio hanno tre coppie definitive. Restano da completare Contatti.
 - **Servizi esterni:** configurazione di moduli contatti, newsletter e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
 - **Ricerca e Knowledge Library:** scegliere con Vito la fonte dei risultati (filtri di Strapi o motore dedicato) e stimare il numero di documenti. Valutare i filtri della Library sul server in base al volume dei dati e alle prestazioni.
 - **SEO della ricerca:** gestire `noindex, follow` di `/cerca/` tramite la SEO dinamica di Strapi.
@@ -49,7 +49,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | --- | --- |
 | Chi siamo | A6 mantenuto come da commento, da ricontrollare con il cliente. Confermare A12/B12, A23/B23, A24:A25/B24:B25 e A34/B34; poi adattare presentazione a due punti e competenze a un paragrafo. La CTA A44 non ha una collocazione nel layout attuale. |
 | Visione e metodologia | Mancano introduzione dei principi e testi della fascia “Come nasce AG Trustees”. La fase “Definire” (A44:A46) richiede una quarta card nella griglia attuale a tre; confermare anche la CTA interna all’elenco dei principi. |
-| Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
+| Patrimonio | Restano in revisione introduzione, esigenze e chiusura del metodo (A7, A18, A22, A28, A32, A52, A79) e approfondimenti A89:A95. Conservati i paragrafi ripetuti finché non saranno confermati i testi; da confermare anche le icone ripetute nelle ultime cinque voci. |
 | Contatti | FAQ definitive mancanti. Il design mantiene una sola CTA newsletter; confermare se aggiungere “Leggi l’ultima newsletter”. |
 | Home | Manca il testo introduttivo della sezione Patrimonio; definire la collocazione della CTA del foglio Home!A56. Evento e articoli attendono dati e link da Strapi. La colonna inglese del foglio è ancora parziale. |
 | Trust | Confermare la collocazione dei titoli e delle introduzioni degli approfondimenti (A84:A89); l’archivio correlati attuale non ha tutti i campi richiesti. |
