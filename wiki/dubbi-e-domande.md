@@ -47,7 +47,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 
 | Pagina | Punti da chiarire o sostituire |
 | --- | --- |
-| Chi siamo | Restano segnaposto le descrizioni di Progettazione e governance del trust e Patrimonio e continuità; confermare anche le voci rispetto al mobile. |
+| Chi siamo | A6 mantenuto come da commento, da ricontrollare con il cliente. Confermare A12/B12, A23/B23, A24:A25/B24:B25 e A34/B34; poi adattare presentazione a due punti e competenze a un paragrafo. La CTA A44 non ha una collocazione nel layout attuale. |
 | Visione e metodologia | “Titolo della sezione”, terzo e quarto servizio, descrizioni e paragrafi Lorem ipsum/Cras et lorem. La CTA parla di newsletter ma porta ai servizi: confermare testo e destinazione. |
 | Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
 | Contatti | FAQ definitive mancanti. Il design mantiene una sola CTA newsletter; confermare se aggiungere “Leggi l’ultima newsletter”. |
