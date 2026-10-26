@@ -8,12 +8,13 @@ interface Props {
   eyebrow?: string;
   title?: string;
   actionLabel?: string;
+  backgroundImage?: string;
 }
 
-const { id, services, introduction, eyebrow = 'Aree di attività', title = 'Servizi professionali', actionLabel = 'Tutti i servizi' } = Astro.props;
+const { id, services, introduction, eyebrow = 'Aree di attività', title = 'Servizi professionali', actionLabel = 'Tutti i servizi', backgroundImage } = Astro.props;
 ---
 
-<section id={id} class="service-overview section-spacing" aria-labelledby={`${id}-title`}>
+<section id={id} class="service-overview section-spacing" style={backgroundImage ? { '--section-background-image': `url("${backgroundImage}")` } : undefined} aria-labelledby={`${id}-title`}>
   <div class="container section-container">
     <div class="service-overview-heading text-lg-center mx-auto">
       <p class="type-eyebrow type-eyebrow--section service-overview-eyebrow">{eyebrow}</p>

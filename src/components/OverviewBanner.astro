@@ -6,12 +6,13 @@ interface Props {
   eyebrow: string;
   compactTitle?: boolean;
   class?: string;
+  backgroundImage?: string;
 }
 
-const { id, eyebrow, compactTitle = false, class: className } = Astro.props;
+const { id, eyebrow, compactTitle = false, class: className, backgroundImage } = Astro.props;
 ---
 
-<section id={id} class:list={['overview-banner d-flex align-items-center', className]} aria-labelledby={`${id}-title`}>
+<section id={id} class:list={['overview-banner d-flex align-items-center', className]} style={backgroundImage ? { '--overview-background-image': `url("${backgroundImage}")` } : undefined} aria-labelledby={`${id}-title`}>
   <div class="container section-container px-lg-0">
     <div class="row gx-4 gy-4 align-items-center">
       <div class="col-lg-6">

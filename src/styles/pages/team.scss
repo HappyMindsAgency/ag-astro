@@ -33,7 +33,7 @@
   --section-gradient-angle: 131deg;
   padding-inline: theme.$space-24;
   color: theme.$text-on-blue;
-  @include shared.architectural-gradient(var(--section-gradient-angle));
+  @include shared.architectural-gradient(var(--section-gradient-angle), '/assets/immagini/team/ag-trustees-team-cda.jpg');
 
   .team-section-header {
     border-bottom: 1px solid rgba(theme.$text-on-blue, 0.25);

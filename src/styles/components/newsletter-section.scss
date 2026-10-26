@@ -3,6 +3,7 @@
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .newsletter-section {
+  --cta-background-image: url('/assets/immagini/ag-trustees-servizi-professionali-newsletter.jpg');
   scroll-margin-top: theme.$anchor-offset;
   padding-block: 70px;
   color: white;

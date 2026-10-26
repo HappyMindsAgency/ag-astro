@@ -1,0 +1,12 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.newsletter-signup {
+  padding-block: theme.$space-80;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .newsletter-signup {
+    padding-block: theme.$space-64;
+  }
+}

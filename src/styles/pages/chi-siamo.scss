@@ -305,9 +305,9 @@
   padding-block: 144px;
   color: theme.$text-on-blue;
   background-color: theme.$brand-blue;
-  background-image: linear-gradient(133.17deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375) 100%), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
+  background-image: linear-gradient(133.17deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375) 100%), url('/assets/immagini/ag-trustees-metodo-responsabilita-fiduciaria.jpg');
   background-position: center;
-  background-size: cover, 100% 103.8%;
+  background-size: cover;
 }
 
 .about-method-heading {
@@ -361,7 +361,7 @@
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .about-method {
     padding-block: theme.$space-64;
-    background-image: linear-gradient(123.14deg, rgba(theme.$method-overlay-blue-mobile, 0.94), rgba(theme.$method-overlay-middle-mobile, 0.88) 55%, rgba(theme.$method-overlay-red-mobile, 0.85)), url('/assets/immagini/chi-siamo-sfondo-metodo.jpg');
+    background-image: linear-gradient(123.14deg, rgba(theme.$method-overlay-blue-mobile, 0.94), rgba(theme.$method-overlay-middle-mobile, 0.88) 55%, rgba(theme.$method-overlay-red-mobile, 0.85)), url('/assets/immagini/ag-trustees-metodo-responsabilita-fiduciaria.jpg');
     background-size: cover;
   }
 

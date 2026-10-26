@@ -30,7 +30,7 @@ La build usa l’adapter Node standalone; in ambiente Vercel seleziona l’adapt
 
 ## Stato delle pagine
 
-Realizzati header, footer, le 15 pagine del design e la ricerca:
+Realizzati header, footer, le 15 pagine del design, la ricerca e la pagina Newsletter:
 
 | Pagina | Anteprima locale |
 | --- | --- |
@@ -49,6 +49,7 @@ Realizzati header, footer, le 15 pagine del design e la ricerca:
 | Dettaglio evento | [Apri](http://localhost:4321/eventi-in-agenda/evento-provvisorio/) |
 | Knowledge Library | [Apri](http://localhost:4321/knowledge-library/) |
 | Ricerca | [Apri](http://localhost:4321/cerca/?q=trust) |
+| Newsletter | [Apri](http://localhost:4321/newsletter/) |
 | Pagina 404 | [Apri](http://localhost:4321/404/) |
 
 Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completare con Strapi e il team. I frame mobile incompleti o incoerenti, compreso Trust, attendono il confronto con il design definitivo; i punti aperti sono nella wiki.

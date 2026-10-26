@@ -83,6 +83,7 @@ Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo
 - `.contact-action-link` schiarisce testo e bordo; `.contact-action-arrow` avanza di 4 px anche al focus da tastiera.
 - Le transizioni usano `$interaction-duration` (150 ms) e `$interaction-easing`, rispettando il movimento ridotto. Gli effetti assenti dal prototipo si valutano separatamente.
 - Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership; `brand-watermark` la filigrana del logo di Home e Team.
+- `backgroundImage` cambia la foto di `CallToAction`, `ServiceOverview` e `OverviewBanner`, mantenendo lo stile comune. Gli sfondi usano `cover` per conservare le proporzioni. Le foto statiche sono quelle della cartella condivisa IMG PORTALE; articoli, eventi e correlati conservano gli esempi per Strapi.
 - `$anchor-offset` (160 px) è lo `scroll-margin-top` delle ancore sotto l’header; lo ScrollSpy dell’articolo ne ricava la linea di lettura.
 - La linea superiore del footer sta dietro le sezioni e compare solo quando l’ultima non ha uno sfondo.
 
@@ -92,7 +93,7 @@ Organizza le pagine in cartelle con `index.astro`, seguendo **Percorso IT** nel 
 
 I componenti ricevono dati tramite proprietà, senza API. Usa i tipi in `src/types/content.ts`; gruppi di correlati vuoti e relativo spazio non vengono renderizzati. I commenti `TODO Strapi` indicano gli esempi da sostituire: elimina anche il commento dopo l’integrazione. Non anticipare formato del corpo editoriale o chiamate API prima dell’accordo con Vito.
 
-I testi del foglio NL appartengono alla pagina `/newsletter/`, da realizzare; le fasce newsletter delle altre pagine hanno contenuti propri.
+I testi del foglio NL appartengono alla pagina `/newsletter/`; le fasce newsletter delle altre pagine hanno contenuti propri. Il modulo dedicato riusa `.contact-form`, con i campi del riferimento Galvani e la sola iscrizione ad AG Trustees.
 
 Moduli e mappa hanno per ora struttura e stile. Senza destinazione, pulsanti e download restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL. Le singole voci dei servizi non hanno pagine dedicate; gli elenchi descrittivi senza collegamenti non mostrano frecce o simboli di apertura. Lo spazio video di Chi siamo resta nascosto al lancio. I metadati SEO arriveranno da Strapi, compreso `noindex, follow` della ricerca: non definirli nelle pagine.
 

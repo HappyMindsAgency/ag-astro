@@ -7,13 +7,14 @@ interface Props {
   label: string;
   contained?: boolean;
   plainBackground?: boolean;
+  backgroundImage?: string;
   secondaryAction?: { label: string; href?: string };
 }
 
-const { eyebrow, href, label, contained = false, plainBackground = false, secondaryAction } = Astro.props;
+const { eyebrow, href, label, contained = false, plainBackground = false, backgroundImage, secondaryAction } = Astro.props;
 ---
 
-<section class:list={['call-to-action', { 'call-to-action--contained': contained, 'call-to-action--plain': plainBackground }]} aria-labelledby="cta-title">
+<section class:list={['call-to-action', { 'call-to-action--contained': contained, 'call-to-action--plain': plainBackground }]} style={backgroundImage ? { '--cta-background-image': `url("${backgroundImage}")` } : undefined} aria-labelledby="cta-title">
   <div class="row align-items-center justify-content-between g-0 gap-5 gap-lg-4">
     <div class="col-lg">
       <div class="call-to-action-content">

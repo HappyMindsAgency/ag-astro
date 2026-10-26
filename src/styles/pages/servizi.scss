@@ -6,7 +6,7 @@
   --section-gradient-angle: 116deg;
   padding-block: 110px;
   color: white;
-  @include shared.architectural-gradient(var(--section-gradient-angle));
+  @include shared.architectural-gradient(var(--section-gradient-angle), '/assets/immagini/servizi/ag-trustees-dettaglio-servizi-fiduciari.jpg');
 }
 
 .service-catalogue-eyebrow,

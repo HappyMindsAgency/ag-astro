@@ -24,6 +24,7 @@ const placeholderIndex: SearchResult[] = [
   { type: 'page', title: 'Eventi e formazione', href: '/eventi-in-agenda/', excerpt: 'Convegni, master e incontri formativi sul trust: i prossimi appuntamenti e l’archivio degli eventi organizzati o seguiti da AG Trustees.' },
   { type: 'page', title: 'Knowledge Library', href: '/knowledge-library/', excerpt: 'Norme, sentenze, prassi amministrativa e guide su trust, successioni e pianificazione patrimoniale, selezionate da AG Trustees.' },
   { type: 'page', title: 'Contatti', href: '/contatti/', excerpt: 'Recapiti, sedi e modulo per richiedere un confronto con un professionista su trust e patrimonio.' },
+  { type: 'page', title: 'Newsletter', href: '/newsletter/', excerpt: 'Iscriviti alla newsletter di AG Trustees per ricevere una selezione di notizie, approfondimenti e appuntamenti dedicati al trust, alla fiscalità e alle questioni patrimoniali.' },
   ...articlePlaceholders.map(({ title, href, excerpt, category, dateTime }): SearchResult => ({ type: 'article', title, href, excerpt, category, dateTime })),
   ...eventPlaceholders.map(({ title, href, description, format, date }): SearchResult => ({ type: 'event', title, href, excerpt: description, category: format, dateTime: date.dateTime })),
   ...libraryDocumentPlaceholders.map(({ title, downloadUrl, category, dateTime }): SearchResult => ({ type: 'document', title, href: downloadUrl, category, dateTime })),

@@ -36,7 +36,6 @@ Le competenze di Chi siamo e le esigenze patrimoniali della Home devono avere co
 
 ## Asset mancanti
 
-- **Home:** foto hero definitiva, in sostituzione dell’immagine Figma con watermark Unsplash+.
 - **Team:** foto di Sonia Franchini, Michela e Giuseppina Ranzenigo; manca anche il cognome di Michela.
 
 ## Contenuti specifici da completare
@@ -50,7 +49,7 @@ Le competenze di Chi siamo e le esigenze patrimoniali della Home devono avere co
 | Home | Servono l’introduzione della sezione Patrimonio e la collocazione della CTA A56. La versione inglese non è ancora integrata. |
 | Trust | Dove collocare i testi fissi A84/A86 e le CTA A88/A89? |
 | Team | Dove inserire il blocco contatti A20:A24? Mancano il testo definitivo della fascia newsletter e il design dei profili individuali. |
-| Newsletter | Definire il design della pagina e della conferma. Testi nel foglio NL: A3/A4/A6, modulo A8:A9, conferma A15/A17. |
+| Newsletter | Collegare l’invio e definire la conferma con Vito. Testi di ringraziamento nel foglio NL A15/A17. |
 | AG Informa | Confermare ordine e categorie degli articoli. |
 | Dettaglio articolo | Servono testi e dati definitivi. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: va prevista? |
 | Eventi | Quali criteri distinguono i due elenchi? |

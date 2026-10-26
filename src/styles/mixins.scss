@@ -21,10 +21,10 @@
 }
 
 @mixin brand-gradient($angle: 104deg) {
-  background: linear-gradient($angle, rgba(theme.$brand-blue, 0.94), rgba(theme.$cta-overlay-middle, 0.88) 58%, rgba(theme.$accent-red, 0.91)), url('/assets/immagini/sfondo-cta.jpg') center 46% / cover;
+  background: linear-gradient($angle, rgba(theme.$brand-blue, 0.94), rgba(theme.$cta-overlay-middle, 0.88) 58%, rgba(theme.$accent-red, 0.91)), var(--cta-background-image, url('/assets/immagini/ag-trustees-cta-servizi-professionali.jpg')) center 46% / cover;
 }
 
-@mixin architectural-gradient($angle: 131deg, $image: '/assets/immagini/sfondo-servizi.jpg') {
-  background: linear-gradient($angle, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), url($image) center;
-  background-size: cover, 110% 100%;
+@mixin architectural-gradient($angle: 131deg, $image: '/assets/immagini/home/ag-trustees-servizi-professionali.jpg') {
+  background: linear-gradient($angle, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.91375)), var(--section-background-image, url($image)) center;
+  background-size: cover;
 }

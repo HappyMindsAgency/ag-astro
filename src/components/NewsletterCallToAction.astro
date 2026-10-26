@@ -10,7 +10,7 @@ interface Props {
 const { contained = true, latestNewsletterUrl, plainBackground = false } = Astro.props;
 ---
 
-<CallToAction contained={contained} plainBackground={plainBackground} eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" href="/newsletter/" label="Iscriviti alla newsletter" secondaryAction={{ label: 'Leggi l’ultima newsletter', href: latestNewsletterUrl }}>
+<CallToAction contained={contained} plainBackground={plainBackground} backgroundImage="/assets/immagini/ag-trustees-servizi-professionali-newsletter.jpg" eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" href="/newsletter/" label="Iscriviti alla newsletter" secondaryAction={{ label: 'Leggi l’ultima newsletter', href: latestNewsletterUrl }}>
   <Fragment slot="title">AG informa - Ricevi notizie e aggiornamenti</Fragment>
   Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.
 </CallToAction>

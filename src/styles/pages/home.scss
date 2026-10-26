@@ -7,7 +7,7 @@
   min-height: 850px;
   padding: theme.$space-32 theme.$space-80 theme.$space-48;
   color: white;
-  background: linear-gradient(132.15deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.38)) top / 100% 900px no-repeat, url('/assets/immagini/home-hero-provvisoria.webp') center / cover, theme.$home-hero-background;
+  background: linear-gradient(132.15deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.38)) top / 100% 900px no-repeat, url('/assets/immagini/home/ag-trustees-gestione-patrimonio.jpg') center / cover, theme.$home-hero-background;
 }
 
 .home-hero-content {
@@ -204,7 +204,7 @@
   .home-hero {
     min-height: 680px;
     padding: 128px theme.$page-gutter-mobile 108px;
-    background: linear-gradient(103.68deg, rgba(theme.$brand-blue, 0.96 * 0.7) 8%, rgba(theme.$section-overlay-middle, 0.9 * 0.7) 56%, rgba(theme.$section-overlay-red, 0.380392 * 0.7)), url('/assets/immagini/home-hero-mobile-provvisoria.webp') center / cover, linear-gradient(103.68deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.380392)), theme.$home-hero-background;
+    background: linear-gradient(103.68deg, rgba(theme.$brand-blue, 0.96 * 0.7) 8%, rgba(theme.$section-overlay-middle, 0.9 * 0.7) 56%, rgba(theme.$section-overlay-red, 0.380392 * 0.7)), url('/assets/immagini/home/ag-trustees-gestione-patrimonio.jpg') center / cover, linear-gradient(103.68deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.380392)), theme.$home-hero-background;
   }
 
   .home-hero-content {
