@@ -31,7 +31,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 ## Integrazioni e contenuti comuni
 
 - **Strapi:** servono dati definitivi, relazioni e accordo con Vito sul formato del corpo editoriale. I commenti `TODO Strapi` identificano gli esempi da sostituire; i dettagli articolo ed evento mostrano per ora lo stesso esempio per ogni slug.
-- **FAQ:** Servizi ha tre coppie definitive. Restano da completare Trust, Patrimonio e Contatti.
+- **FAQ:** Servizi e Trust hanno tre coppie definitive. Restano da completare Patrimonio e Contatti.
 - **Servizi esterni:** configurazione di moduli contatti, newsletter e mappa; mancano le mappe delle altre sedi. Invii e selezione sedi restano disattivati; “Iscriviti” porta al modulo di Contatti.
 - **Ricerca e Knowledge Library:** scegliere con Vito la fonte dei risultati (filtri di Strapi o motore dedicato) e stimare il numero di documenti. Valutare i filtri della Library sul server in base al volume dei dati e alle prestazioni.
 - **SEO della ricerca:** gestire `noindex, follow` di `/cerca/` tramite la SEO dinamica di Strapi.
@@ -52,6 +52,7 @@ Restano da confermare eventuali collegamenti dalle competenze di Chi siamo e dal
 | Patrimonio | Protezione e Passaggio generazionale ripetono il secondo paragrafo; confermare testi e icone ripetute nelle ultime cinque voci. |
 | Contatti | FAQ definitive mancanti. Il design mantiene una sola CTA newsletter; confermare se aggiungere “Leggi l’ultima newsletter”. |
 | Home | Manca il testo introduttivo della sezione Patrimonio; definire la collocazione della CTA del foglio Home!A56. Evento e articoli attendono dati e link da Strapi. La colonna inglese del foglio è ancora parziale. |
+| Trust | Confermare la collocazione dei titoli e delle introduzioni degli approfondimenti (A84:A89); l’archivio correlati attuale non ha tutti i campi richiesti. |
 | Team | Servono il file AG_Trustees_team_master.xlsm richiamato in B4, i sommari dei gruppi e gli articoli collegati. Il blocco contatti A20:A24 non corrisponde alla newsletter attuale: confermare la collocazione. Profili individuali: percorsi predisposti, design e contenuti mancanti. |
 | AG Informa | Articoli, date e categorie provvisori; servono ordine e categorie definitivi. |
 | Dettaglio articolo | Testo, data, tempo di lettura, autore, nota sull’IA, correlati e CTA provvisori. Figma cita “In breve: le risposte chiave” senza mostrarne la sezione: voce omessa dall’indice. |
