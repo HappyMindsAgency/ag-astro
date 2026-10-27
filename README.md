@@ -52,7 +52,7 @@ Realizzati header, footer, le 15 pagine del design, la ricerca e la pagina Newsl
 | Newsletter | [Apri](http://localhost:4321/newsletter/) |
 | Pagina 404 | [Apri](http://localhost:4321/404/) |
 
-Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completare con Strapi e il team. I frame mobile incompleti o incoerenti, compreso Trust, attendono il confronto con il design definitivo; i punti aperti sono nella wiki.
+Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completare con Strapi e il team. Dove i frame mobile sono incompleti o incoerenti, le pagine adattano i contenuti desktop con le regole comuni. I punti aperti sono nella wiki.
 
 La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre si scrive e li elenca in `/cerca/`; per ora usa pagine e contenuti provvisori, in attesa della fonte concordata con il backend.
 

@@ -8,31 +8,23 @@ import '../../styles/pages/chi-siamo.scss';
 
 const identityCards = [
   {
-    title: 'Identità',
-    description: 'Una trust company italiana che unisce competenza specialistica, responsabilità fiduciaria e visione di lungo periodo.',
-  },
-  {
     title: 'Ambiti',
     description: 'Progetti dedicati alla continuità d’impresa, al passaggio generazionale, alla tutela delle persone e alla gestione di patrimoni complessi.',
   },
   {
-    title: 'Interlocutori',
-    description: 'Persone, famiglie e imprenditori, insieme ai professionisti che li affiancano nelle decisioni patrimoniali più delicate.',
-  },
-  {
     title: 'Ruolo',
-    description: 'Su incarico, AG Trustees opera come trustee, co-trustee o guardiano, amministrando i beni e dando continuità alle finalità definite nel trust.',
+    description: 'AG Trustees opera come trustee, co-trustee o guardiano, amministrando i beni e per il realizzo delle finalità del trust.',
   },
 ];
 
 const historySteps = [
   {
     title: 'Le origini',
-    description: 'Argos Trustees e Galvani Fiduciaria. Le due realtà condividono lo stesso modo di intendere la responsabilità fiduciaria: dietro ogni patrimonio ci sono persone, legami e progetti che devono essere accompagnati nel tempo.',
+    description: 'Argos Trustees e Galvani Fiduciaria condividono un\'esperienza pluriennale nello svolgimento dell\'attività di trustee professionale. Le due realtà condividono lo stesso modo di intendere la responsabilità fiduciaria: dietro ogni patrimonio ci sono persone, legami e progetti che devono essere accompagnati nel tempo.',
   },
   {
     title: 'L’incontro',
-    description: 'Dall’incontro tra esperienze complementari prende forma una visione comune, fondata su competenza, ascolto e continuità.',
+    description: 'Nel 2025, preso atto dell\'uniformità di intenti e delle reciproche competenze ed esperienze, prende forma il progetto di aggregazione tra le due realtà.',
   },
   {
     title: 'Nasce AG Trustees',
@@ -42,14 +34,6 @@ const historySteps = [
     title: 'Il futuro',
     description: 'AG Trustees con la propria competenza accompagna i propri clienti nella realizzazione dei progetti di lungo periodo, costruendo relazioni capaci di garantire stabilità e continuità tra generazioni.',
   },
-];
-
-const competencyDescription = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies.';
-
-const competencies = [
-  { title: 'Progettazione e governance del trust', description: competencyDescription },
-  { title: 'Patrimonio e continuità', description: competencyDescription },
-  { title: 'Amministrazione e adempimenti', description: 'Gestione amministrativa, contabile e fiscale, organizzazione della documentazione, rendicontazione e coordinamento con i professionisti coinvolti.' },
 ];
 
 const methodSteps = [
@@ -104,7 +88,7 @@ const methodSteps = [
       </div>
       <div class="row gx-0 about-identity-cards">
         {identityCards.map((card, index) => (
-          <article class="col-6 col-xxl-3 about-identity-card">
+          <article class="col-6 about-identity-card">
             <p class="about-identity-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
             <h3>{card.title}</h3>
             <p class="about-identity-card-copy mb-0">{card.description}</p>
@@ -147,19 +131,10 @@ const methodSteps = [
             Conoscenze diverse per <span class="type-section-title-accent">amministrare</span> progetti complessi.
           </h2>
         </div>
-        <div class="col-lg-5 col-xxl-4">
-          <p class="type-section-lead about-competencies-copy mb-0">La gestione di un trust richiede capacità di leggere aspetti giuridici, fiscali, patrimoniali e relazionali nel loro insieme.</p>
+        <div class="col-lg-5">
+          <p class="type-section-lead about-competencies-copy mb-0">La gestione di un trust richiede capacità di gestire aspetti giuridici, fiscali, patrimoniali e relazionali nel loro insieme. Gestione amministrativa, contabile e fiscale, organizzazione della documentazione, rendicontazione e coordinamento con i professionisti coinvolti.</p>
         </div>
       </div>
-      <ol class="about-competencies-list list-unstyled mb-0">
-        {competencies.map(({ title, description }, index) => (
-          <li class="row gx-0 align-items-center">
-            <span class="col-auto about-competency-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-            <h3 class="col about-competency-title mb-0">{title}</h3>
-            <p class="col-lg-5 col-xxl-6 about-competency-description mb-0">{description}</p>
-          </li>
-        ))}
-      </ol>
     </div>
   </section>
 
@@ -181,6 +156,9 @@ const methodSteps = [
           </li>
         ))}
       </ol>
+      <div class="text-center mt-4">
+        <a class="btn site-button site-button--light" href="/chi-siamo/visione-metodologia/">Scopri la nostra visione <span aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 

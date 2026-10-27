@@ -18,13 +18,6 @@
   color: theme.$brand-red;
 }
 
-.team-section-summary {
-  color: theme.$footer-text;
-  font-size: theme.$font-size-section-summary;
-  font-weight: theme.$font-weight-light;
-  line-height: theme.$line-height-section-summary;
-}
-
 .team-members > .col {
   min-width: 0;
 }
@@ -41,8 +34,7 @@
   }
 
   .team-section-eyebrow,
-  .team-section-title-accent,
-  .team-section-summary {
+  .team-section-title-accent {
     color: theme.$muted-on-gradient;
   }
 }
@@ -96,12 +88,6 @@
 
   .team-section-eyebrow {
     margin-bottom: theme.$space-28;
-  }
-
-  .team-section-summary {
-    font-size: theme.$font-size-body;
-    font-weight: theme.$font-weight-regular;
-    line-height: theme.$line-height-editorial-copy-mobile;
   }
 
   .team-section--leadership {

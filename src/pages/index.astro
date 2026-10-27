@@ -7,7 +7,7 @@ import EditorialImage from '../components/EditorialImage.astro';
 import ServiceOverview from '../components/ServiceOverview.astro';
 import FeaturedEvent from '../components/FeaturedEvent.astro';
 import NewsFeed from '../components/NewsFeed.astro';
-import NewsletterSection from '../components/NewsletterSection.astro';
+import NewsletterCallToAction from '../components/NewsletterCallToAction.astro';
 import '../styles/pages/home.scss';
 
 const companyDescription = 'Assume incarichi di trustee, co-trustee e guardiano e amministra i beni conferiti nel rispetto delle finalità stabilite.\n\nLa società riunisce in un’unica identità competenze giuridiche, fiscali, amministrative e contabili, insieme a una lunga esperienza nell’attività di trustee professionale.\n\nUn patrimonio di conoscenze oggi al servizio di una visione condivisa: amministrare ogni incarico con responsabilità, equilibrio e attenzione alle persone.';
@@ -114,7 +114,6 @@ const articlePlaceholders: ArticlePreview[] = [
         <div class="col-lg-5"><p class="type-eyebrow type-eyebrow--section home-section-label">Patrimonio</p></div>
         <div class="col-lg-7">
           <h2 id="home-wealth-title" class="type-section-title type-section-title--compact">Il futuro si amministra <span class="type-section-title-accent d-xxl-block">con responsabilità</span></h2>
-          <p class="type-section-lead type-section-lead--relaxed home-section-copy mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan magna vitae vestibulum efficitur.</p>
         </div>
       </div>
       <ol class="row g-0 home-wealth-grid list-unstyled mb-0">
@@ -125,6 +124,9 @@ const articlePlaceholders: ArticlePreview[] = [
           </li>
         ))}
       </ol>
+      <div class="text-center mt-4">
+        <a class="btn site-button" href="/patrimonio/">Esplora la pagina Patrimonio <span aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -170,8 +172,6 @@ const articlePlaceholders: ArticlePreview[] = [
   </section>
 
   <NewsFeed articles={articlePlaceholders} eyebrow="Notizie e approfondimenti" />
-  <NewsletterSection title="AG informa - Ricevi notizie e aggiornamenti">
-    Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.
-  </NewsletterSection>
+  <NewsletterCallToAction contained={false} />
 </Layout>
 

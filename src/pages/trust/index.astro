@@ -143,20 +143,18 @@ const relatedDocumentsPlaceholder: ComponentProps<typeof RelatedContent>['docume
   <section id="come-funziona" class="trust-editorial trust-editorial--process section-spacing" aria-labelledby="trust-process-title">
     <div class="container section-container">
       <div class="row gx-4 gy-4 align-items-start align-items-xxl-center">
-        <div class="col-lg-6 trust-process-content">
+        <div class="col-lg-6">
+          <EditorialImage src="/assets/immagini/trust/funzionamento-trust-ag-trustees_1.jpg" alt="Un professionista esamina la documentazione di un incarico" width={1170} height={780} />
+        </div>
+        <div class="col-lg-6 order-lg-first trust-process-content">
           <h2 id="trust-process-title" class="type-section-title type-section-title--compact trust-editorial-title">Come funziona il trust</h2>
           <div class="type-section-lead type-section-lead--relaxed trust-copy">
-            <p>Dall’intenzione alla sua realizzazione<br />Il trust nasce da un progetto preciso. Il disponente individua le finalità da perseguire, le persone coinvolte e i beni da destinare.</p>
+            <p>Dall’intenzione alla sua realizzazione. Il trust nasce da un progetto preciso. Il disponente individua le finalità da perseguire, le persone coinvolte e i beni da destinare.</p>
             <div>
               <p class="mb-0">Questi elementi vengono definiti nell’atto istitutivo, che stabilisce:</p>
               <ul class="mb-0">{trustDeed.map((item) => <li>{item}</li>)}</ul>
             </div>
-            <p>Con il conferimento, i beni e i diritti entrano nel fondo in trust e vengono affidati al trustee, che li amministra nell’interesse dei beneficiari o per lo scopo stabilito.</p>
-            <p>I beni costituiscono così un patrimonio distinto da quello personale del trustee e restano destinati alle finalità definite nell’atto istitutivo. È il principio della segregazione patrimoniale, che separa il fondo dalle vicende personali dei soggetti coinvolti, nei limiti e alle condizioni previsti dalla legge.</p>
           </div>
-        </div>
-        <div class="col-lg-6">
-          <EditorialImage src="/assets/immagini/trust/funzionamento-trust-ag-trustees_1.jpg" alt="Un professionista esamina la documentazione di un incarico" width={1170} height={780} />
         </div>
       </div>
     </div>
@@ -255,7 +253,13 @@ const relatedDocumentsPlaceholder: ComponentProps<typeof RelatedContent>['docume
     <Fragment slot="title">Domande frequenti <span class="type-section-title-accent text-nowrap d-xxl-block">sul trust</span></Fragment>
   </FaqSection>
 
-  <RelatedContent articles={relatedArticlesPlaceholder} documents={relatedDocumentsPlaceholder} />
+  <RelatedContent
+    title="Per comprendere il trust e seguirne l’evoluzione"
+    introduction="Normativa, giurisprudenza, guide e analisi selezionate da AG Trustees."
+    articles={relatedArticlesPlaceholder}
+    documents={relatedDocumentsPlaceholder}
+    showArticlesLink
+  />
 
   <CallToAction eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale" href="/contatti/" label="Parliamone">
     <Fragment slot="title">Valutiamo insieme il servizio <span class="d-lg-block">più adatto alle tue esigenze</span></Fragment>

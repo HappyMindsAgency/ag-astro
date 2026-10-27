@@ -2,6 +2,7 @@
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
 .certifications {
+  scroll-margin-top: theme.$anchor-offset;
   background: linear-gradient(90deg, theme.$surface-mist 50%, theme.$brand-blue 50%);
 
   > .row {

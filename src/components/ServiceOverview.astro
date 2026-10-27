@@ -4,7 +4,7 @@ import '../styles/components/service-overview.scss';
 interface Props {
   id: string;
   services: { title: string; description: string }[];
-  introduction: string;
+  introduction?: string;
   eyebrow?: string;
   title?: string;
   actionLabel?: string;
@@ -19,7 +19,7 @@ const { id, services, introduction, eyebrow = 'Aree di attività', title = 'Serv
     <div class="service-overview-heading text-lg-center mx-auto">
       <p class="type-eyebrow type-eyebrow--section service-overview-eyebrow">{eyebrow}</p>
       <h2 id={`${id}-title`} class="service-overview-title">{title}</h2>
-      <p class="service-overview-copy mb-0">{introduction}</p>
+      {introduction && <p class="service-overview-copy mb-0">{introduction}</p>}
     </div>
     <ol class="service-overview-list list-unstyled mx-auto mb-0">
       {services.map(({ title, description }, index) => (

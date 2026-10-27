@@ -10,12 +10,6 @@
   padding-bottom: clamp(0px, calc((100% - #{theme.$wide-layout-max-width}) / 2), theme.$space-80);
 }
 
-.vision-story {
-  min-height: 554px;
-  padding-block: 144px;
-  background: theme.$surface-mist;
-}
-
 .vision-editorial-copy {
   color: rgba(theme.$editorial-text, 0.75);
 }
@@ -63,18 +57,11 @@
   line-height: theme.$line-height-body;
 }
 
-@include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
-  .vision-story {
-    min-height: 0;
-  }
-}
-
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .vision-eyebrow {
     margin-bottom: theme.$space-28;
   }
 
-  .vision-story,
   .vision-method {
     padding-block: theme.$space-64;
   }

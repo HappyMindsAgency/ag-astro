@@ -7,21 +7,35 @@ interface Props {
   articles?: ArticlePreview[];
   documents?: DocumentPreview[];
   eyebrow?: string;
+  title?: string;
+  introduction?: string;
   showLibraryLink?: boolean;
+  showArticlesLink?: boolean;
 }
 
-const { articles = [], documents = [], eyebrow = 'Approfondimenti', showLibraryLink = true } = Astro.props;
+const { articles = [], documents = [], eyebrow = 'Approfondimenti', title, introduction, showLibraryLink = true, showArticlesLink = false } = Astro.props;
+const SectionHeading = title ? 'h3' : 'h2';
+const ArticleHeading = title ? 'h4' : 'h3';
 ---
 
 {(articles.length > 0 || documents.length > 0) && (
   <div class="related-content section-spacing">
     <div class="container section-container">
+      {title && (
+        <div class="row gx-4 gy-4 align-items-end mb-5">
+          <div class={introduction ? 'col-lg-7' : 'col-12'}>
+            <p class="type-eyebrow type-eyebrow--section related-eyebrow">{eyebrow}</p>
+            <h2 class="type-section-title type-section-title--compact mb-0">{title}</h2>
+          </div>
+          {introduction && <p class="col-lg-5 type-section-lead mb-0">{introduction}</p>}
+        </div>
+      )}
       {articles.length > 0 && (
         <section aria-labelledby="related-articles-title">
           <div class="related-articles-header d-flex flex-wrap align-items-end justify-content-between">
             <div>
-              <p class="type-eyebrow type-eyebrow--section related-eyebrow">{eyebrow}</p>
-              <h2 id="related-articles-title" class="related-title">Articoli correlati</h2>
+              {!title && <p class="type-eyebrow type-eyebrow--section related-eyebrow">{eyebrow}</p>}
+              <SectionHeading id="related-articles-title" class="related-title">Articoli correlati</SectionHeading>
             </div>
             <slot name="articles-action" />
           </div>
@@ -31,7 +45,7 @@ const { articles = [], documents = [], eyebrow = 'Approfondimenti', showLibraryL
                 <a class="related-article-link" href={href}>
                   <img class="related-article-image" src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" />
                   <p class="related-article-meta"><span>{category}</span> <span aria-hidden="true">|</span> <time datetime={dateTime}>{date}</time></p>
-                  <h3 class="related-article-title site-title-link">{title}</h3>
+                  <ArticleHeading class="related-article-title site-title-link">{title}</ArticleHeading>
                 </a>
                 <p class="related-article-excerpt mb-0">{excerpt}</p>
               </article>
@@ -41,12 +55,13 @@ const { articles = [], documents = [], eyebrow = 'Approfondimenti', showLibraryL
       )}
       {documents.length > 0 && (
         <section class:list={{ 'related-documents': articles.length > 0 }} aria-labelledby="related-documents-title">
-          <h2 id="related-documents-title" class="related-title">Documenti correlati</h2>
-          <DocumentList documents={documents} />
+          <SectionHeading id="related-documents-title" class="related-title">Documenti correlati</SectionHeading>
+          <DocumentList documents={documents} headingTag={title ? 'h4' : 'h3'} />
         </section>
       )}
-      {showLibraryLink && <div class="related-action text-center">
-        <a class="btn site-button site-button--blue site-button--small" href="/knowledge-library/">Consulta la Knowledge Library <span aria-hidden="true">→</span></a>
+      {(showLibraryLink || showArticlesLink) && <div class:list={['related-action text-center', { 'd-flex flex-wrap justify-content-center gap-3': showArticlesLink }]}>
+        {showLibraryLink && <a class="btn site-button site-button--blue site-button--small" href="/knowledge-library/">Consulta la Knowledge Library <span aria-hidden="true">→</span></a>}
+        {showArticlesLink && <a class="btn site-button site-button--outline-blue site-button--small" href="/ag-informa/">Leggi gli approfondimenti <span aria-hidden="true">→</span></a>}
       </div>}
     </div>
   </div>

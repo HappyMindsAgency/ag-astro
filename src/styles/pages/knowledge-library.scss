@@ -1,3 +1,16 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
 .library-page > .page-intro {
   border-bottom: 0;
+}
+
+.library-links {
+  padding-bottom: theme.$space-80;
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .library-links {
+    padding-bottom: theme.$space-64;
+  }
 }

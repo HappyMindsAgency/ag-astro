@@ -3,7 +3,8 @@ import type { TeamMember } from '../../../types/content';
 import Layout from '../../../components/Layout.astro';
 import PageIntro from '../../../components/PageIntro.astro';
 import TeamMemberCard from '../../../components/TeamMemberCard.astro';
-import NewsletterSection from '../../../components/NewsletterSection.astro';
+import ContactSection from '../../../components/ContactSection.astro';
+import NewsletterCallToAction from '../../../components/NewsletterCallToAction.astro';
 import '../../../styles/pages/team.scss';
 
 interface TeamSection {
@@ -11,7 +12,6 @@ interface TeamSection {
   eyebrow: string;
   title: string;
   accent: string;
-  summary: string;
   members: TeamMember[];
 }
 
@@ -53,11 +53,10 @@ const counselPlaceholder: TeamMember[] = [
   role: 'Ruolo',
   image: { src: `/assets/immagini/team/${portrait}.webp`, alt: member.firstName === 'Giuseppina' ? '' : `${member.firstName} ${member.lastName}`, width: 322, height: 513 },
 }));
-const sectionSummary = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan magna vitae vestibulum efficitur. Sed ligula enim, tincidunt ut blandit in, porta consectetur orci.';
 const sections: TeamSection[] = [
-  { id: 'leadership', eyebrow: 'Leadership', title: 'Guidare la crescita', accent: 'della società', summary: 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies.', members: leadershipPlaceholder },
-  { id: 'operational', eyebrow: 'Team', title: 'Gestire l’operatività', accent: 'di ogni incarico', summary: sectionSummary, members: operationalPlaceholder },
-  { id: 'counsel', eyebrow: 'Of counsel', title: 'Affiancare le decisioni', accent: 'più complesse', summary: sectionSummary, members: counselPlaceholder },
+  { id: 'leadership', eyebrow: 'Leadership', title: 'Guidare la crescita', accent: 'della società', members: leadershipPlaceholder },
+  { id: 'operational', eyebrow: 'Team', title: 'Gestire l’operatività', accent: 'di ogni incarico', members: operationalPlaceholder },
+  { id: 'counsel', eyebrow: 'Of counsel', title: 'Affiancare le decisioni', accent: 'più complesse', members: counselPlaceholder },
 ];
 ---
 
@@ -67,16 +66,15 @@ const sections: TeamSection[] = [
     Competenze diverse, una responsabilità condivisa: accompagnare ogni incarico con ascolto, rigore e continuità.
   </PageIntro>
 
-  {sections.filter(({ members }) => members.length > 0).map(({ id, eyebrow, title, accent, summary, members }) => (
+  {sections.filter(({ members }) => members.length > 0).map(({ id, eyebrow, title, accent, members }) => (
     <section class:list={['team-section section-spacing', `team-section--${id}`]} aria-labelledby={`team-${id}-title`}>
       {id === 'operational' && <img class="team-section-mark d-none d-lg-block" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" loading="lazy" />}
       <div class:list={['container section-container', { 'px-0': id === 'leadership' }]}>
         <div class="row gx-4 gy-4 align-items-end team-section-header">
-          <div class="col-lg-9">
+          <div class="col-12">
             <p class="type-eyebrow type-eyebrow--section team-section-eyebrow">{eyebrow}</p>
             <h2 id={`team-${id}-title`} class="type-section-title mb-0">{title}{' '}<span class="type-section-title-accent team-section-title-accent d-lg-block">{accent}</span></h2>
           </div>
-          <div class="col-lg-3"><p class="team-section-summary mb-0">{summary}</p></div>
         </div>
         <div class:list={[
           'row team-members',
@@ -92,7 +90,7 @@ const sections: TeamSection[] = [
     </section>
   ))}
 
-  <NewsletterSection title="Ag Informa - Iscrizione alla newsletter">
-    Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum
-  </NewsletterSection>
+  <ContactSection eyebrow="Contattaci" />
+
+  <NewsletterCallToAction contained={false} />
 </Layout>

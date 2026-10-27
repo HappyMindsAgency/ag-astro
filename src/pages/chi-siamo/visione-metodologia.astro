@@ -14,12 +14,11 @@ const services = [
   { title: 'Equilibrio', description: 'Valutiamo ogni decisione considerando le persone, le relazioni, il patrimonio e le finalità da perseguire.' },
 ];
 
-const servicesIntroduction = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ipsum quis risus varius laoreet eu non libero. Phasellus vehicula diam et turpis ultricies, nec pulvinar eros faucibus. Suspendisse sodales vehicula augue, id ultrices turpis ullamcorper in. In porttitor quam ultricies elementum commodo.';
-const storyDescription = 'Cras et lorem tempor, vehicula dolor quis, ultrices nibh. Quisque nec dui ut nisl volutpat ultricies. Nam nec felis in sapien volutpat tincidunt et at elit. Nullam nec bibendum dolor. Vivamus ac augue odio. Sed cursus lorem in maximus ornare. Nullam interdum leo vitae sem gravida imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.';
 const methodIntroduction = 'Ogni incarico segue un percorso costruito sulle esigenze delle persone e le finalità del trust.';
 
 const methodSteps = [
   { title: 'Comprendere', description: 'Ascoltiamo le persone e analizziamo il contesto: gli obiettivi, la composizione del patrimonio, le relazioni coinvolte e le finalità da perseguire.' },
+  { title: 'Definire', description: 'Vengono definiti ruoli, responsabilità, poteri, processi decisionali e modalità di amministrazione, nel rispetto della normativa e delle finalità individuate.' },
   { title: 'Amministrare', description: 'Diamo attuazione alle disposizioni dell’atto istitutivo, amministriamo i beni conferiti e curiamo gli adempimenti contabili, fiscali e amministrativi connessi all’incarico.' },
   { title: 'Accompagnare', description: 'Il trust evolve insieme alle persone, ai beni e alle circostanze. Manteniamo una relazione continuativa con beneficiari, guardiani, consulenti e altri soggetti coinvolti, accompagnando il progetto nel tempo.' },
 ];
@@ -44,23 +43,7 @@ const methodSteps = [
     Per noi un patrimonio non è soltanto un insieme di beni. È una storia fatta di persone, legami, lavoro, decisioni e progetti destinati a proseguire nel tempo.
   </ImageOverview>
 
-  <ServiceOverview id="services" services={services} introduction={servicesIntroduction} eyebrow="I principi che ci guidano" title="I valori che orientano ogni incarico" backgroundImage="/assets/immagini/visione/ag-trustees-servizi-professionali.jpg" />
-
-  <section class="vision-story section-spacing d-flex align-items-center" aria-labelledby="vision-story-title">
-    <div class="container section-container px-lg-0">
-      <div class="row gx-4 gy-4 align-items-center">
-        <div class="col-xxl-7">
-          <p class="type-eyebrow type-eyebrow--section vision-eyebrow">Come nasce AG Trustees</p>
-          <h2 id="vision-story-title" class="type-section-title mb-0">
-            <span class="d-xxl-block">Lorem ipsum</span>{' '}dolor{' '}<span class="type-section-title-accent">sit amet.</span>
-          </h2>
-        </div>
-        <div class="col-xxl-5">
-          <p class="type-section-lead vision-editorial-copy mb-0">{storyDescription}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ServiceOverview id="services" services={services} eyebrow="I principi che ci guidano" title="I valori che orientano ogni incarico" backgroundImage="/assets/immagini/visione/ag-trustees-servizi-professionali.jpg" />
 
   <section class="vision-method section-spacing" aria-labelledby="vision-method-title">
     <div class="container section-container px-lg-0">
@@ -77,7 +60,7 @@ const methodSteps = [
       </div>
       <ol class="row g-0 vision-method-steps list-unstyled mb-0">
         {methodSteps.map((step, index) => (
-          <li class="col-12 col-lg-4 vision-method-step">
+          <li class="col-12 col-lg-6 col-xxl-3 vision-method-step">
             <p class="vision-method-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
             <h3>{step.title}</h3>
             <p class="vision-method-copy mb-0">{step.description}</p>

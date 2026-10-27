@@ -56,12 +56,6 @@
   line-height: theme.$line-height-body;
 }
 
-@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
-  .about-identity-card:first-child .about-identity-card-copy {
-    color: rgba(white, 0.5);
-  }
-}
-
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .about-identity {
     padding-block: 42px theme.$space-32;
@@ -213,42 +207,6 @@
   color: rgba(theme.$ink-deep, 0.75);
 }
 
-.about-competencies-list {
-  margin-top: theme.$space-80;
-  border-top: 1px solid rgba(theme.$ink, 0.3);
-
-  .row {
-    min-height: 100px;
-    border-bottom: 1px solid rgba(theme.$ink, 0.2);
-  }
-}
-
-.about-competencies-list .about-competency-index {
-  width: 104px;
-  color: theme.$brand-red;
-  font-size: theme.$font-size-body;
-  line-height: theme.$line-height-body;
-}
-
-.about-competency-title {
-  font-size: theme.$font-size-list-title;
-  font-weight: theme.$font-weight-regular;
-  line-height: theme.$line-height-list-title;
-}
-
-.about-competencies-list .about-competency-description {
-  color: rgba(theme.$editorial-text, 0.6);
-  font-size: theme.$font-size-body;
-  font-weight: theme.$font-weight-light;
-  line-height: theme.$line-height-body;
-}
-
-@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
-  .about-competencies-list .about-competency-description {
-    padding-left: theme.$space-24;
-  }
-}
-
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .about-competencies {
     padding-block: theme.$space-64;
@@ -266,38 +224,6 @@
 
   .about-competencies-copy {
     color: theme.$footer-text;
-  }
-
-  .about-competencies-list {
-    margin-top: theme.$space-28;
-    border-color: theme.$border-soft;
-
-    .row {
-      min-height: 71px;
-      border-color: theme.$border-soft;
-      padding-block: theme.$space-20;
-    }
-  }
-
-  .about-competencies-list .about-competency-index {
-    width: 32px;
-    color: theme.$red-mobile;
-    font-size: theme.$font-size-card-index-mobile;
-    line-height: theme.$line-height-card-index-mobile;
-  }
-
-  .about-competency-title {
-    color: theme.$ink-mobile;
-    font-size: theme.$font-size-competency-title-mobile;
-    line-height: theme.$line-height-competency-title-mobile;
-  }
-
-  .about-competencies-list .about-competency-description {
-    margin-top: theme.$space-12;
-    padding-left: theme.$space-32;
-    color: theme.$footer-text;
-    font-size: theme.$font-size-card-copy-mobile;
-    line-height: theme.$line-height-compact-copy;
   }
 }
 
