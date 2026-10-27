@@ -1,5 +1,8 @@
 ---
 import '../styles/components/breadcrumb.scss';
+import customLabel from '../lib/utility-customlabel';
+import customSlug from '../lib/utility-customslug';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 
 interface Props {
   current: string;
@@ -8,12 +11,13 @@ interface Props {
 }
 
 const { current, parents = [], light = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<nav aria-label="Percorso di navigazione">
+<nav aria-label={customLabel('Percorso di navigazione', lang)}>
   <ol class:list={['breadcrumb site-breadcrumb', { 'site-breadcrumb--light': light }]}>
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
-    {parents.map(({ label, href }) => <li class="breadcrumb-item"><a href={href}>{label}</a></li>)}
+    <li class="breadcrumb-item"><a href={customSlug('home', lang)}>Home</a></li>
+    {parents.map(({ label, href }) => <li class="breadcrumb-item"><a href={localizeHref(href, lang)}>{customLabel(label, lang)}</a></li>)}
     <li class="breadcrumb-item active" aria-current="page">{current}</li>
   </ol>
 </nav>

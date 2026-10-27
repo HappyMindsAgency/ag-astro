@@ -1,16 +1,21 @@
 ---
 import { contacts, offices } from '../data/contacts';
+import customLabel from '../lib/utility-customlabel';
+import customSlug from '../lib/utility-customslug';
+import { getLangFromUrl, localizeHref, type Locale } from '../lib/lang-switch/route-map';
 
 interface Props {
   linkedinUrl?: string;
   privacyPolicyUrl?: string;
   cookiePolicyUrl?: string;
+  lang?: Locale;
 }
 
 const {
   linkedinUrl,
   privacyPolicyUrl = '/privacy-policy/',
   cookiePolicyUrl = '/cookie-policy/',
+  lang = getLangFromUrl(Astro.url),
 } = Astro.props;
 const menu = [
   { label: 'Chi siamo', href: '/chi-siamo/' },
@@ -31,61 +36,61 @@ const legalLinks = [
   <div class="container-fluid">
     <div class="footer-columns row gx-0 gy-4 gy-md-5 justify-content-between">
       <div class="col-12 col-lg-auto">
-        <a href="/" aria-label="AG Trustees — Homepage">
+        <a href={customSlug('home', lang)} aria-label="AG Trustees — Homepage">
           <img class="footer-logo d-block h-auto" src="/assets/brand/ag-logo-footer.png" alt="Across Galvani Trustees" width="1118" height="380" loading="lazy" />
         </a>
         <div class="d-flex flex-column gap-2 mt-4">
           <p class="footer-company mb-0">AG TRUSTEES S.R.L.</p>
-          <p class="mb-0">P.IVA 14402230966</p>
-          <p class="mb-0">Capitale sociale <span class="text-nowrap">€ 10.000,00 i.v.</span></p>
+          <p class="mb-0">{lang === 'en' ? 'VAT No.' : 'P.IVA'} 14402230966</p>
+          <p class="mb-0">{customLabel('Capitale sociale', lang)} <span class="text-nowrap">€ 10.000,00 {lang === 'en' ? 'fully paid' : 'i.v.'}</span></p>
           {linkedinUrl ? (
-            <a href={linkedinUrl} aria-label="AG Trustees su LinkedIn"><img class="d-block" src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
+            <a href={linkedinUrl} aria-label={customLabel('AG Trustees su LinkedIn', lang)}><img class="d-block" src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
           ) : (
             <span role="img" aria-label="LinkedIn"><img class="d-block" src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></span>
           )}
         </div>
       </div>
 
-      <nav class="col-7 col-md-auto" aria-label="Navigazione nel footer">
+      <nav class="col-7 col-md-auto" aria-label={customLabel('Navigazione nel footer', lang)}>
         <h2 class="footer-heading">Menu</h2>
         <ul class="footer-nav list-unstyled mb-0">
-          {menu.map(({ label, href }) => <li>{href ? <a href={href}>{label}</a> : <span>{label}</span>}</li>)}
+          {menu.map(({ label, href }) => <li>{href ? <a href={localizeHref(href, lang)}>{customLabel(label, lang)}</a> : <span>{customLabel(label, lang)}</span>}</li>)}
         </ul>
       </nav>
 
       <div class="col-5 col-md-auto">
         <h2 class="footer-heading">Utility</h2>
         <ul class="footer-nav list-unstyled mb-0">
-          <li><a href="/cerca/">Cerca nel sito</a></li>
-          <li><a href="/chi-siamo/#certificazioni">Certificazioni</a></li>
+          <li><a href={customSlug('search', lang)}>{customLabel('Cerca nel sito', lang)}</a></li>
+          <li><a href={`${customSlug('about', lang)}#certificazioni`}>{customLabel('Certificazioni', lang)}</a></li>
         </ul>
       </div>
 
       <div class="col-12 col-md-auto">
-        <h2 class="footer-heading">Sedi &amp; contatti</h2>
+        <h2 class="footer-heading">{customLabel('Sedi & contatti', lang)}</h2>
         <address class="d-grid gap-3 mb-0">
           {offices.map(({ city, street, postalCode }) => (
             <div>
-              <h3 class="footer-office">{city}</h3>
+              <h3 class="footer-office">{customLabel(city, lang)}</h3>
               <p class="mb-0">{street} - {postalCode}</p>
             </div>
           ))}
         </address>
         <div class="footer-contact-links">
           <p class="mb-0">Email: <a href={`mailto:${contacts.email}`}>{contacts.email}</a></p>
-          <p class="mb-0">Tel: <a href={`tel:${contacts.phone.replaceAll(' ', '')}`}>{contacts.phone}</a></p>
+          <p class="mb-0">{customLabel('Tel', lang)}: <a href={`tel:${contacts.phone.replaceAll(' ', '')}`}>{contacts.phone}</a></p>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between">
-      <p class="mb-0">© {new Date().getFullYear()} AG TRUSTEES S.R.L. - Tutti i diritti riservati</p>
+      <p class="mb-0">© {new Date().getFullYear()} AG TRUSTEES S.R.L. - {customLabel('Tutti i diritti riservati', lang)}</p>
       <ul class="footer-legal d-flex flex-wrap list-unstyled mb-0">
-        {legalLinks.map(({ label, href }) => <li>{href ? <a href={href}>{label}</a> : <span>{label}</span>}</li>)}
+        {legalLinks.map(({ label, href }) => <li>{href ? <a href={localizeHref(href, lang)}>{customLabel(label, lang)}</a> : <span>{customLabel(label, lang)}</span>}</li>)}
       </ul>
     </div>
   </div>
   <div class="footer-agency text-center">
-    <p class="mb-0">Prodotto originale frutto delle menti creative e felici di&nbsp;<a href="https://happyminds.it/">HappyMinds</a></p>
+    <p class="mb-0">{customLabel('Prodotto originale frutto delle menti creative e felici di', lang)}&nbsp;<a href="https://happyminds.it/">HappyMinds</a></p>
   </div>
 </footer>

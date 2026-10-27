@@ -1,16 +1,20 @@
 ---
 import CallToAction from './CallToAction.astro';
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
 
 interface Props {
   contained?: boolean;
   latestNewsletterUrl?: string;
   plainBackground?: boolean;
+  title?: string;
 }
 
-const { contained = true, latestNewsletterUrl, plainBackground = false } = Astro.props;
+const { contained = true, latestNewsletterUrl, plainBackground = false, title } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <CallToAction contained={contained} plainBackground={plainBackground} backgroundImage="/assets/immagini/ag-trustees-servizi-professionali-newsletter.jpg" eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" href="/newsletter/" label="Iscriviti alla newsletter" secondaryAction={{ label: 'Leggi l’ultima newsletter', href: latestNewsletterUrl }}>
-  <Fragment slot="title">AG informa - Ricevi notizie e aggiornamenti</Fragment>
-  Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.
+  <Fragment slot="title">{title ?? customLabel('AG informa - Ricevi notizie e aggiornamenti', lang)}</Fragment>
+  <slot>{customLabel('Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.', lang)}</slot>
 </CallToAction>

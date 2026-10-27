@@ -1,0 +1,74 @@
+---
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import LibraryArchive from '../../../components/LibraryArchive.astro';
+import NewsletterCallToAction from '../../../components/NewsletterCallToAction.astro';
+import { libraryDocumentPlaceholders, libraryCategories } from '../../../data/library-placeholders';
+import '../../../styles/pages/knowledge-library.scss';
+
+const lang = 'en';
+
+const usefulLinks = [
+  {
+    title: 'Trust',
+    links: [
+      { label: 'Assofiduciaria', href: 'https://www.assofiduciaria.org/' },
+      { label: 'Hague Conference on Private International Law', href: 'https://www.hcch.net/index.cfm?oldlang=en' },
+      { label: 'Il Trust in Italia', href: 'http://www.il-trust-in-italia.it/' },
+      { label: 'Trust e Trustees', href: 'https://academic.oup.com/tandt' },
+      { label: 'STEP', href: 'https://www.step.org/' },
+    ],
+  },
+  {
+    title: 'Economics and finance',
+    links: [
+      { label: 'Finanza e Fisco', href: 'http://www.finanzaefisco.it/' },
+      { label: 'Il Fisco', href: 'https://onefiscale.wolterskluwer.it/' },
+      { label: 'Il Sole 24 Ore', href: 'https://www.ilsole24ore.com/' },
+      { label: 'Italia Oggi', href: 'https://www.italiaoggi.it/' },
+      { label: 'Milano Finanza', href: 'https://www.milanofinanza.it/' },
+    ],
+  },
+  {
+    title: 'Other useful websites',
+    links: [
+      { label: "Bank of Italy (Banca d'Italia)", href: 'https://www.bancaditalia.it/' },
+      { label: "CONSOB – Italian Companies and Exchange Commission", href: 'https://www.consob.it/' },
+      { label: "ISTAT – Italian National Institute of Statistics", href: 'https://www.istat.it/' },
+      { label: "Italian Ministry of Economy and Finance", href: 'https://www.finanze.gov.it/it/' },
+      { label: "Italian Ministry of Justice", href: 'https://www.giustizia.it/giustizia/' },
+    ],
+  },
+];
+---
+
+<Layout lang={lang}>
+  <div class="library-page">
+    <PageIntro breadcrumb="Knowledge Library" eyebrow="A curated resource library" wideTitle>
+      <Fragment slot="title"><span class="d-block">Knowledge</span>{' '}<span class="d-block text-secondary">Library</span></Fragment>
+      Explore a carefully selected and organised collection of documents and resources compiled by AG Trustees to support research and provide further insight into trusts and related matters.
+    </PageIntro>
+
+    <LibraryArchive documents={libraryDocumentPlaceholders} categories={libraryCategories} />
+
+    <section class="library-links section-spacing" aria-labelledby="library-links-title">
+      <div class="container frame-container">
+        <h2 id="library-links-title" class="type-section-title type-section-title--compact mb-5">Useful links</h2>
+        <div class="row gx-5 gy-5">
+          {usefulLinks.map(({ title, links }) => (
+            <div class="col-lg-4">
+              <h3 class="type-section-lead fw-medium mb-4">{title}</h3>
+              <ul class="list-unstyled type-section-copy d-grid gap-3 mb-0">
+                {links.map(({ label, href }) => <li><a class="site-title-link text-decoration-underline" href={href}>{label}</a></li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <NewsletterCallToAction plainBackground title="AG Informa – News and updates">
+      Receive a curated selection of news, expert insights and upcoming events to stay informed about developments in trusts and wealth-related matters.
+    </NewsletterCallToAction>
+  </div>
+</Layout>

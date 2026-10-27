@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 import type { EventPreview } from '../types/content';
 import EventCard from './EventCard.astro';
 import '../styles/components/event-list.scss';
@@ -14,16 +16,18 @@ interface Props {
 }
 
 const { id, title, eyebrow, events = [], compact = false, compactTitle = compact, calendarHref } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
 ---
 
 {events.length > 0 && <section id={id} class:list={['event-list section-spacing', { 'event-list--compact': compact }]} aria-labelledby={`${id}-title`}>
   <div class="container frame-container">
     <div class="event-list-header d-flex flex-wrap justify-content-between align-items-end">
       <div>
-        {eyebrow && <p class="type-eyebrow type-eyebrow--section event-list-eyebrow">{eyebrow}</p>}
+        {eyebrow && <p class="type-eyebrow type-eyebrow--section event-list-eyebrow">{t(eyebrow)}</p>}
         <h2 id={`${id}-title`} class:list={['type-editorial-list-title mb-0', { 'type-editorial-list-title--compact': compactTitle }]}>{title}</h2>
       </div>
-      <a class="site-text-link" href={calendarHref} aria-disabled={calendarHref ? undefined : 'true'}>Calendario completo {calendarHref && <span aria-hidden="true">→</span>}</a>
+      <a class="site-text-link" href={localizeHref(calendarHref, lang)} aria-disabled={calendarHref ? undefined : 'true'}>{t('Calendario completo')} {calendarHref && <span aria-hidden="true">→</span>}</a>
     </div>
     <div class="row gx-4 gy-5">
       {events.map(event => <div class="col-md-6 col-xl-4"><EventCard event={event} compact={compact} /></div>)}

@@ -1,0 +1,98 @@
+---
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import ContactSection from '../../../components/ContactSection.astro';
+import NewsletterCallToAction from '../../../components/NewsletterCallToAction.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import { contacts, offices } from '../../../data/contacts';
+import customLabel from '../../../lib/utility-customlabel';
+import '../../../styles/pages/contatti.scss';
+
+const faqs = [
+  {
+    "question": "How can I arrange an initial meeting?",
+    "answer": "You can contact us using the online form, by telephone or by email. An initial conversation allows us to understand your needs and identify the professionals best placed to assist you."
+  },
+  {
+    "question": "What information do I need to provide to be contacted?",
+    "answer": "Simply provide your contact details and a brief description of your enquiry. Any supporting documents or more detailed information can be shared at a later stage, with due regard for confidentiality."
+  },
+  {
+    "question": "Can I contact AG Trustees if I haven't established a trust yet?",
+    "answer": "Yes. We can be involved from the initial planning stage, working alongside your appointed professional advisers to help assess the trust's objectives, the roles involved and the arrangements for its administration."
+  }
+];
+const lang = 'en';
+---
+
+<Layout lang={lang}>
+  <PageIntro breadcrumb="Contact us" eyebrow="Every project begins with a conversation" mobileTitleLeading="tight" wideTitle>
+    <Fragment slot="title">Contact <span class="type-section-title-accent">AG Trustees</span></Fragment>
+    Tell us about your needs or get in touch to find out more about our services.
+  </PageIntro>
+
+  <section class="contact-offices section-spacing" aria-labelledby="contact-offices-title">
+    <div class="container section-container px-lg-0">
+      <div class="row align-items-end gy-4">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section contact-offices-eyebrow">Contact details</p>
+          <h2 id="contact-offices-title" class="type-section-title contact-offices-title mb-0">We're here to <span>answer your questions</span></h2>
+        </div>
+        <div class="col-lg-5">
+          <div class="contact-offices-links">
+            <a class="contact-action-link" href={`mailto:${contacts.email}`}>
+              <img src="/assets/icone/email.svg" width="29" height="24" alt="" />
+              <span>{contacts.email}</span><span class="contact-action-arrow ms-auto" aria-hidden="true">→</span>
+            </a>
+            <a class="contact-action-link" href={`tel:${contacts.phone.replaceAll(' ', '')}`}>
+              <img src="/assets/icone/telefono.svg" width="24" height="24" alt="" />
+              <span>{contacts.phone}</span><span class="contact-action-arrow ms-auto" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row g-0 contact-office-list">
+        {offices.map(({ city, street, postalCode }, index) => (
+          <div class="col-md-4 contact-office">
+            <p class="contact-office-index">{String(index + 1).padStart(2, '0')}</p>
+            <h3 class="contact-office-title">{customLabel(city, lang)}</h3>
+            <address class="mb-0">{street}<br />{postalCode} - {city}</address>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="office-location" aria-labelledby="office-location-title">
+    <div class="office-location-heading section-spacing">
+      <div class="container section-container px-lg-0">
+        <div class="row align-items-end gy-4">
+          <div class="col-lg-7">
+            <p class="type-eyebrow type-eyebrow--section office-location-eyebrow">Where to find us</p>
+            <h2 id="office-location-title" class="type-section-title type-section-title--compact mb-0">Our <span class="type-section-title-accent">offices</span></h2>
+          </div>
+          <div class="col-lg-5">
+            <div class="office-location-options" aria-label="Office locations on the map">
+              {offices.map(({ city }, index) => (
+                <button class:list={['office-location-option', { active: index === 0 }]} type="button" aria-pressed={index === 0} disabled>
+                  <span class="office-location-pin" aria-hidden="true"></span>{customLabel(city, lang)}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="office-location-map">
+      <img src="/assets/immagini/mappa-milano.webp" alt="Map of the Milan office at Corso Giacomo Matteotti, 1" width="1920" height="550" loading="lazy" />
+    </div>
+  </section>
+
+  <ContactSection eyebrow="Contact us" title="Speak to one of our advisors">At AG Trustees, we offer specialist expertise, long-term commitment and professional relationships built on trust.</ContactSection>
+
+  <NewsletterCallToAction contained={false} title="AG Informa – News and updates">Receive a curated selection of news, expert insights and upcoming events to stay informed about developments in trusts and wealth-related matters.</NewsletterCallToAction>
+
+  <FaqSection id="faq-contatti" items={faqs} largeTitle twoColumns>
+    <Fragment slot="title">Frequently asked <span class="type-section-title-accent">questions</span></Fragment>
+  </FaqSection>
+</Layout>

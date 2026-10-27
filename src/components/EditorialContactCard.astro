@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 import '../styles/components/editorial-contact-card.scss';
 
 interface Props {
@@ -7,12 +9,13 @@ interface Props {
   eyebrow?: string;
 }
 
+const lang = getLangFromUrl(Astro.url);
 const { title, description, eyebrow = 'Consulenza' } = Astro.props;
 ---
 
 <div class="editorial-contact-card">
-  <p class="editorial-contact-label">{eyebrow}</p>
+  <p class="editorial-contact-label">{customLabel(eyebrow, lang)}</p>
   <h2>{title}</h2>
   <p>{description}</p>
-  <a class="btn site-button site-button--light site-button--small" href="/contatti/">Contattaci <span aria-hidden="true">→</span></a>
+  <a class="btn site-button site-button--light site-button--small" href={localizeHref("/contatti/", lang)}>{customLabel("Contattaci", lang)} <span aria-hidden="true">→</span></a>
 </div>

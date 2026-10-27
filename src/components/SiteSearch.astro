@@ -1,17 +1,21 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 import closeIcon from 'bootstrap-icons/icons/x-lg.svg?raw';
 import '../styles/components/site-search.scss';
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
 ---
 
-<button class="header-icon site-search-toggle" type="button" aria-controls="site-search" aria-expanded="false" aria-label="Apri o chiudi la ricerca">
+<button class="header-icon site-search-toggle" type="button" aria-controls="site-search" aria-expanded="false" aria-label={t('Apri o chiudi la ricerca')}>
   <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" />
   <span class="site-search-close" aria-hidden="true" set:html={closeIcon} />
 </button>
-<div id="site-search" class="site-search" hidden data-site-search>
-  <form class="site-search-form d-flex align-items-center" action="/cerca/" method="get" role="search" aria-label="Cerca nel sito">
-    <label class="visually-hidden" for="site-search-query">Cerca nel sito</label>
-    <input id="site-search-query" class="site-search-input flex-grow-1" name="q" type="search" placeholder="Cerca nel sito" autocomplete="off" enterkeyhint="search" />
-    <button class="site-search-submit" type="submit" aria-label="Mostra tutti i risultati">→</button>
+<div id="site-search" class="site-search" hidden data-site-search data-suggestions-url={localizeHref("/cerca/suggerimenti/", lang)}>
+  <form class="site-search-form d-flex align-items-center" action={localizeHref("/cerca/", lang)} method="get" role="search" aria-label={t('Cerca nel sito')}>
+    <label class="visually-hidden" for="site-search-query">{t('Cerca nel sito')}</label>
+    <input id="site-search-query" class="site-search-input flex-grow-1" name="q" type="search" placeholder={t('Cerca nel sito')} autocomplete="off" enterkeyhint="search" />
+    <button class="site-search-submit" type="submit" aria-label={t('Mostra tutti i risultati')}>→</button>
   </form>
   <div class="site-search-suggestions" data-site-search-suggestions></div>
   <p class="visually-hidden" role="status" data-site-search-status></p>
@@ -51,7 +55,7 @@ import '../styles/components/site-search.scss';
       request?.abort();
       request = new AbortController();
       try {
-        const response = await fetch(`/cerca/suggerimenti/?q=${encodeURIComponent(query)}`, { signal: request.signal });
+        const response = await fetch(`${search.dataset.suggestionsUrl}?q=${encodeURIComponent(query)}`, { signal: request.signal });
         if (!response.ok) return;
         const html = await response.text();
         if (query !== input.value.trim()) return;

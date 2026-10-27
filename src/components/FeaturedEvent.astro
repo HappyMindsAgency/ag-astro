@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 import type { EventPreview } from '../types/content';
 import '../styles/components/featured-event.scss';
 
@@ -7,13 +9,15 @@ interface Props {
 }
 
 const { event } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
 ---
 
 {event && (
   <section class="featured-event section-spacing" aria-labelledby="featured-event-title">
     <div class="container section-container">
       <div class="featured-event-all text-end">
-        <a class="site-text-link" href="/eventi-in-agenda/">Scopri tutti gli eventi <span aria-hidden="true">→</span></a>
+        <a class="site-text-link" href={localizeHref("/eventi-in-agenda/", lang)}>{t('Scopri tutti gli eventi')} <span aria-hidden="true">→</span></a>
       </div>
       <div class="featured-event-card">
         {event.image && <img class="featured-event-image" src={event.image.src} alt={event.image.alt} width={event.image.width} height={event.image.height} loading="lazy" />}
@@ -21,7 +25,7 @@ const { event } = Astro.props;
           <div class="col-auto">
             <div class="featured-event-date">
               <span class="featured-event-days">{event.date.days}</span>
-              <span class="featured-event-month">{event.date.month}</span>
+              <span class="featured-event-month">{t(event.date.month)}</span>
               <span class="featured-event-year">{event.date.year}</span>
             </div>
           </div>
@@ -31,7 +35,7 @@ const { event } = Astro.props;
               <p class="featured-event-location mb-0"><span class="featured-event-pin" aria-hidden="true"></span>{event.location}</p>
             </div>
             <h2 id="featured-event-title" class="featured-event-title">{event.title}</h2>
-            <a class="btn site-button site-button--light" href={event.href} aria-disabled={event.href ? undefined : 'true'}>Scopri l’evento {event.href && <span aria-hidden="true">↓</span>}</a>
+            <a class="btn site-button site-button--light" href={localizeHref(event.href, lang)} aria-disabled={event.href ? undefined : 'true'}>{t('Scopri l’evento')} {event.href && <span aria-hidden="true">↓</span>}</a>
           </div>
         </div>
       </div>

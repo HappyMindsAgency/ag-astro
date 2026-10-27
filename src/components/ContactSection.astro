@@ -1,56 +1,61 @@
 ---
 import '../styles/components/contact-section.scss';
+import customLabel from '../lib/utility-customlabel';
+import customSlug from '../lib/utility-customslug';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
 
 interface Props {
   eyebrow?: string;
+  title?: string;
 }
 
-const { eyebrow = 'Contatti' } = Astro.props;
+const { eyebrow = 'Contatti', title } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <section id="richiesta-contatto" class="contact-section section-spacing" aria-labelledby="contact-title">
   <div class="container section-container px-lg-0">
     <div class="row gx-0 contact-section-layout">
       <div class="col-lg-5">
-        <p class="type-eyebrow type-eyebrow--section contact-section-eyebrow">{eyebrow}</p>
-        <h2 id="contact-title" class="contact-section-title">Parla con un <span>professionista.</span></h2>
+        <p class="type-eyebrow type-eyebrow--section contact-section-eyebrow">{customLabel(eyebrow, lang)}</p>
+        <h2 id="contact-title" class="contact-section-title">{title ?? (lang === 'en' ? customLabel('Parla con un professionista.', lang) : <Fragment>Parla con un <span>professionista.</span></Fragment>)}</h2>
         <p class="type-section-lead contact-section-copy mb-0">
           <slot>
-            <span class="d-xxl-block">AG Trustees mette a disposizione competenza,</span>{' '}
+            {lang === 'en' ? customLabel('AG Trustees mette a disposizione competenza, continuità e una relazione professionale fondata sulla fiducia.', lang) : <Fragment><span class="d-xxl-block">AG Trustees mette a disposizione competenza,</span>{' '}
             <span class="d-xxl-block">continuità e una relazione professionale fondata sulla</span>{' '}
-            fiducia.
+            fiducia.</Fragment>}
           </slot>
         </p>
       </div>
       <div class="col-lg-6 offset-lg-1">
-        <form class="contact-form" method="post" aria-label="Richiesta di contatto">
+        <form class="contact-form" method="post" aria-label={customLabel('Richiesta di contatto', lang)}>
           <div class="row g-4">
             <div class="col-md-6">
-              <label class="form-label" for="contact-name">Nome e cognome</label>
+              <label class="form-label" for="contact-name">{customLabel('Nome e cognome', lang)}</label>
               <input class="form-control" id="contact-name" name="name" type="text" autocomplete="name" />
             </div>
             <div class="col-md-6">
-              <label class="form-label" for="contact-email">Email</label>
+              <label class="form-label" for="contact-email">{customLabel('Email', lang)}</label>
               <input class="form-control" id="contact-email" name="email" type="email" autocomplete="email" />
             </div>
             <div class="col-md-6">
-              <label class="form-label" for="contact-phone">Telefono</label>
+              <label class="form-label" for="contact-phone">{customLabel('Telefono', lang)}</label>
               <input class="form-control" id="contact-phone" name="phone" type="tel" autocomplete="tel" />
             </div>
             <div class="col-md-6">
-              <label class="form-label" for="contact-profile">Profilo</label>
-              <input class="form-control" id="contact-profile" name="profile" type="text" placeholder="Privato, professionista, impresa" />
+              <label class="form-label" for="contact-profile">{customLabel('Profilo', lang)}</label>
+              <input class="form-control" id="contact-profile" name="profile" type="text" placeholder={customLabel('Privato, professionista, impresa', lang)} />
             </div>
             <div class="col-12">
-              <label class="form-label" for="contact-message">Messaggio</label>
+              <label class="form-label" for="contact-message">{customLabel('Messaggio', lang)}</label>
               <textarea class="form-control" id="contact-message" name="message" rows="3"></textarea>
             </div>
           </div>
           <div class="form-check mt-3">
             <input class="form-check-input" id="contact-privacy" name="privacy" type="checkbox" />
-            <label class="form-check-label" for="contact-privacy">Ho letto l’<a href="/privacy-policy/">informativa privacy</a>.</label>
+            <label class="form-check-label" for="contact-privacy">{customLabel('Ho letto l’', lang)}<a href={customSlug('privacy', lang)}>{customLabel('informativa privacy', lang)}</a>.</label>
           </div>
-          <button class="btn site-button contact-form-submit" type="submit" disabled>Invia la richiesta <span aria-hidden="true">→</span></button>
+          <button class="btn site-button contact-form-submit" type="submit" disabled>{customLabel('Invia la richiesta', lang)} <span aria-hidden="true">→</span></button>
         </form>
       </div>
     </div>

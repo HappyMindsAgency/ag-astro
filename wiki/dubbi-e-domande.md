@@ -41,3 +41,7 @@ Servono le destinazioni dei seguenti inviti. Se non previste al lancio, decidere
 ## Contrasto dei testi
 
 Il copyright nel footer non raggiunge il contrasto minimo previsto dalle linee guida di accessibilità. Accettiamo il contrasto attuale e lo manteniamo così?
+
+## Traduzioni da rivedere
+
+Integrate le traduzioni mancanti in Servizi F25, Trust E31 e nelle righe attive di Patrimonio E71:E102. Sono nel sito e nel foglio condiviso, disponibili per la revisione della traduttrice.

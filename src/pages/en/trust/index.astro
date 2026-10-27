@@ -1,0 +1,267 @@
+---
+import { relatedArticlesPlaceholder, relatedDocumentsPlaceholder } from '../../../data/trust-placeholders';
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import EditorialImage from '../../../components/EditorialImage.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import CallToAction from '../../../components/CallToAction.astro';
+import RelatedContent from '../../../components/RelatedContent.astro';
+import OverviewBanner from '../../../components/OverviewBanner.astro';
+import '../../../styles/pages/trust.scss';
+
+const lang = 'en';
+
+const trustPrinciples = [
+  "Assets placed in trust form a separate fund and do not become part of the trustee's personal estate.",
+  "Legal title to the assets is held in the name of the trustee or another person acting on the trustee's behalf.",
+  "The trustee has the power and duty to administer, manage or dispose of the assets in accordance with the trust deed and the applicable law.",
+  "The trustee must keep records of decisions and account for the administration of the trust."
+];
+
+const trustDeed = [
+  "The purpose and duration of the trust;",
+  "The trustee and their duties;",
+  "The beneficiaries;",
+  "The appointment of a trust protector, where applicable;",
+  "The governing law;",
+  "The rules for administering and distributing the trust assets."
+];
+
+const trustParticipants = [
+  {
+    "title": "Settlor",
+    "description": "The person who establishes the trust, identifies the assets to be placed in it and transfers them to the trustee"
+  },
+  {
+    "title": "Trustee",
+    "description": "Holds legal title to the assets and is responsible for administering them in accordance with the trust deed, in the interests of the beneficiaries or for a specific purpose"
+  },
+  {
+    "title": "Beneficiaries",
+    "description": "The individuals or entities for whose benefit the trust assets are administered and who may receive distributions in accordance with the trust's terms"
+  },
+  {
+    "title": "Trust protector",
+    "description": "A person or organisation appointed to oversee certain aspects of the trustee's activities and exercise the supervisory, intervention or approval powers granted under the trust deed"
+  },
+  {
+    "title": "Co-trustee",
+    "description": "A trustee who shares the appointment and its associated responsibilities with one or more other trustees, in accordance with the trust's provisions"
+  }
+];
+
+const segregationPrinciples = [
+  "They are administered in accordance with the purposes and rules established in the trust deed.",
+  "They remain separate from the trustee's personal assets.",
+  "They do not form part of the beneficiaries' personal estates until distributed to them in accordance with the trust's terms.",
+  "They must be identified, administered and accounted for separately.",
+  "The trustee has both the power and the duty to administer them for the benefit of the beneficiaries or to fulfil the trust's stated purpose."
+];
+
+const assetTypes = [
+  "shares and other interests in companies",
+  "movable and immovable property",
+  "cash and financial instruments",
+  "receivables and other legal rights",
+  "works of art and collections"
+];
+
+const trustBenefits = [
+  "support succession planning and the transfer of wealth between generations;",
+  "provide continuity for family businesses;",
+  "administer financial assets, property and company interests;",
+  "protect the interests of vulnerable individuals;",
+  "preserve and manage art collections;",
+  "support charitable projects and purposes;",
+  "establish arrangements for specific security purposes;",
+  "address particular needs arising in insolvency proceedings."
+];
+
+const trusteeResponsibilities = [
+  "The trustee is responsible for giving effect to the arrangements established in the trust deed.",
+  "This involves administering the assets, making decisions within the scope of the trustee's powers, keeping trust assets separate and acting for the benefit of the beneficiaries or to fulfil the trust's stated purpose.",
+  "All activities must be properly documented and accounted for. The role therefore requires legal expertise, administrative competence, independence and a commitment to continuity over time."
+];
+
+const faqs = [
+  {
+    "question": "What is a trust?",
+    "answer": "A trust is a legal arrangement in which assets are placed under the control of a trustee, who administers them for the benefit of one or more beneficiaries or to fulfil a defined purpose."
+  },
+  {
+    "question": "What assets can be placed in trust?",
+    "answer": "A trust may hold property, movable assets, financial assets, company shareholdings, works of art and other assets or rights. Whether and how particular assets can be transferred into trust must be assessed in light of the specific arrangement and the applicable law."
+  },
+  {
+    "question": "How long can a trust last?",
+    "answer": "The duration of a trust is established in the trust deed, taking into account its intended purposes and the requirements of the governing law. A trust may come to an end on a specified date or when a particular event defined in the trust deed occurs."
+  }
+];
+
+
+---
+
+<Layout lang={lang}>
+  <PageIntro breadcrumb="Trust" eyebrow="A flexible structure. Clear rules, defined responsibilities." mobileTitleLeading="relaxed">
+    <Fragment slot="title">
+      <span>TRUST</span>
+    </Fragment>
+    A trust is a legal arrangement in which assets are entrusted to a trustee, who administers them for the benefit of one or more beneficiaries or to fulfil a specific purpose.
+  </PageIntro>
+
+  <OverviewBanner id="trust-overview" eyebrow="What Is a trust?" compactTitle class="trust-overview" backgroundImage="/assets/immagini/servizi/ag-trustees-come-funziona-trust.jpg">
+    <Fragment slot="title">Separating assets, managing them responsibly, <span class="overview-banner-accent">fulfilling a purpose</span></Fragment>
+    <a slot="action" class="btn site-button site-button--light site-button--small trust-action" href="#come-funziona">How a trust works <span aria-hidden="true">→</span></a>
+    <p>Through a trust, a person known as the settlor sets aside certain assets for a defined purpose and entrusts their administration to a trustee.</p>
+    <p>The trustee takes legal ownership of the assets but cannot use or dispose of them for personal purposes. Instead, the trustee must administer them in accordance with the rules established in the trust deed, for the benefit of the beneficiaries or to fulfil the trust's stated purpose.</p>
+    <p>The assets therefore form a separate trust fund, subject to clearly defined rules, responsibilities and administrative arrangements.</p>
+  </OverviewBanner>
+
+  <section class="trust-editorial trust-editorial--italy section-spacing" aria-labelledby="trust-italy-title">
+    <div class="container section-container">
+      <div class="row gx-4 gy-4 align-items-start align-items-xxl-center">
+        <div class="col-lg-6">
+          <EditorialImage src="/assets/immagini/trust/trust-in-italia-ag-trustees.jpg" alt="Professionals in discussion at the AG Trustees offices" width={1170} height={780} />
+        </div>
+        <div class="col-lg-6">
+          <h2 id="trust-italy-title" class="type-section-title type-section-title--compact trust-editorial-title">Trusts in Italy</h2>
+          <div class="type-section-lead type-section-lead--relaxed trust-copy">
+            <p>Trusts have their origins in the common law tradition and have been recognised in Italy through the Hague Convention of 1 July 1985, ratified by Italy under Law No. 364 of 16 October 1989, which entered into force on 1 January 1992.</p>
+            <p>The Convention does not establish a separate body of Italian trust law. Instead, it sets out the rules for determining the law applicable to trusts and recognising their effects within the Italian legal system. A trust is a legal arrangement established by a person, known as the settlor, either during their lifetime or upon death. Under this arrangement, certain assets or rights are placed under the control of a trustee, who administers them for the benefit of one or more beneficiaries or to fulfil a specific purpose.</p>
+            <div>
+              <p class="mb-0">The arrangement is based on several essential principles:</p>
+              <ul class="mb-0">{trustPrinciples.map((principle) => <li>{principle}</li>)}</ul>
+            </div>
+            <p>Legal ownership of the assets therefore carries clearly defined responsibilities. The trustee does not administer the assets for personal benefit, but to fulfil the purposes established by the trust.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="come-funziona" class="trust-editorial trust-editorial--process section-spacing" aria-labelledby="trust-process-title">
+    <div class="container section-container">
+      <div class="row gx-4 gy-4 align-items-start align-items-xxl-center">
+        <div class="col-lg-6">
+          <EditorialImage src="/assets/immagini/trust/funzionamento-trust-ag-trustees_1.jpg" alt="A professional reviews appointment documentation" width={1170} height={780} />
+        </div>
+        <div class="col-lg-6 order-lg-first trust-process-content">
+          <h2 id="trust-process-title" class="type-section-title type-section-title--compact trust-editorial-title">How does a trust work?</h2>
+          <div class="type-section-lead type-section-lead--relaxed trust-copy">
+            <p>From intention to implementation. A trust begins with a clearly defined plan. The settlor identifies the objectives, the people involved and the assets to be placed in trust.</p>
+            <div>
+              <p class="mb-0">These elements are set out in the trust deed, which establishes:</p>
+              <ul class="mb-0">{trustDeed.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-participants section-spacing" aria-labelledby="trust-participants-title">
+    <div class="container section-container px-lg-0">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-6">
+          <h2 id="trust-participants-title" class="type-section-title mb-0">The parties involved</h2>
+        </div>
+      </div>
+      <ol class="trust-participants-list list-unstyled mb-0">
+        {trustParticipants.map(({ title, description }, index) => (
+          <li class="row g-0 align-items-center trust-participant">
+            <span class="col-1 trust-participant-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="col-11 col-md-5 trust-participant-title mb-0">{title}</h3>
+            {description && <p class="col-11 offset-1 col-md-6 offset-md-0 trust-participant-copy mb-0">{description}</p>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="trust-segregation section-spacing" aria-labelledby="trust-segregation-title">
+    <div class="container section-container px-lg-0">
+      <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Segregation of trust assets</p>
+      <h2 id="trust-segregation-title" class="type-section-title type-section-title--compact trust-editorial-title">A separate fund <span class="type-section-title-accent">dedicated to a specific purpose.</span></h2>
+      <div class="type-section-lead type-section-lead--relaxed trust-copy">
+        <div>
+          <p class="mb-0">Assets placed in trust form a separate fund, distinct from the trustee's personal assets. This means that:</p>
+          <ul class="mb-0">{segregationPrinciples.map((principle) => <li>{principle}</li>)}</ul>
+          <p class="mb-0">The segregation of trust assets does not automatically guarantee their protection. The validity and legal effects of a trust depend on its proper establishment, the transfer of assets, its intended purposes and the applicable legal framework.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-assets section-spacing" aria-labelledby="trust-assets-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-6">
+          <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Asset types</p>
+          <h2 id="trust-assets-title" class="type-section-title type-section-title--compact mb-0">What assets can be <span class="type-section-title-accent">placed in trust?</span></h2>
+        </div>
+        <div class="col-lg-6 type-section-lead type-section-lead--relaxed trust-copy">
+          <p class="mb-0">A trust may hold different types of assets and rights, including:</p>
+          <ul class="mb-0">{assetTypes.map((type) => <li>{type}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-benefits" aria-labelledby="trust-benefits-title">
+    <div class="row g-0 align-items-start align-items-xxl-center">
+      <div class="col-lg-6 pe-xxl-5">
+        <EditorialImage src="/assets/immagini/trust/ag-trustees-versatilita-trust.jpg" alt="A meeting of AG Trustees professionals" width={1170} height={780} />
+      </div>
+      <div class="col-lg-6 trust-benefits-content">
+        <p class="type-eyebrow type-eyebrow--section trust-eyebrow">Benefits</p>
+        <h2 id="trust-benefits-title" class="type-section-title trust-benefits-title">The versatility of trusts</h2>
+        <div class="type-section-lead type-section-lead--relaxed trust-copy">
+          <div>
+            <p class="mb-0">Trusts can be structured to address a wide range of personal, family and business needs. They may be used to:</p>
+            <ul class="trust-benefits-list mb-0">{trustBenefits.map((benefit) => <li>{benefit}</li>)}</ul>
+            <p class="mb-0">Their flexibility allows the purposes, rules and duration of a trust to be tailored to the circumstances, while keeping the people involved and the intended objectives at the centre of each arrangement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-professional section-spacing d-flex align-items-center" aria-labelledby="trust-professional-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section trust-eyebrow">The professional trustee</p>
+          <h2 id="trust-professional-title" class="type-section-title mb-0">Administration comes with responsibility</h2>
+          <a class="btn site-button site-button--light site-button--small trust-action" href="/en/services/">Explore AG Trustees' services <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="col-lg-5">
+          <ol class="trust-responsibilities list-unstyled mb-0">
+            {trusteeResponsibilities.map((responsibility, index) => (
+              <li class="d-flex align-items-baseline gap-4">
+                <span class="trust-responsibility-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <p class="mb-0">{responsibility}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FaqSection id="trust-faq" items={faqs} largeTitle>
+    <Fragment slot="title">FAQ <span class="type-section-title-accent">about trusts</span></Fragment>
+  </FaqSection>
+
+  <RelatedContent
+    title="Understanding trusts and keeping up with developments"
+    introduction="Legislation, case law, guides and expert analysis selected by AG Trustees."
+    articles={relatedArticlesPlaceholder}
+    documents={relatedDocumentsPlaceholder}
+    showArticlesLink
+  />
+
+  <CallToAction eyebrow="AG Trustees — Experts in trusts and wealth planning" href="/en/contact-us/" label="Contact us">
+    <Fragment slot="title">Finding the right approach begins with understanding your circumstances</Fragment>
+    Every situation requires careful consideration of the people, assets, objectives and responsibilities involved.
+  </CallToAction>
+</Layout>

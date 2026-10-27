@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 import type { DocumentPreview } from '../types/content';
 import downloadIcon from 'bootstrap-icons/icons/download.svg?raw';
 import '../styles/components/document-list.scss';
@@ -11,6 +13,8 @@ interface Props {
 
 const { documents = [], compact = false, headingTag = 'h3' } = Astro.props;
 const Heading = headingTag;
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
 ---
 
 {documents.length > 0 && (
@@ -23,8 +27,8 @@ const Heading = headingTag;
             <Heading class="related-document-title">{title}</Heading>
             <p class="related-document-meta mb-0"><span>{category}</span>{' | '}{metadata}</p>
           </div>
-          <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download={downloadUrl ? true : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={`Scarica PDF: ${title}`}>
-            <span class="d-inline-flex" aria-hidden="true" set:html={downloadIcon} /> Scarica PDF
+          <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download={downloadUrl ? true : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={customLabel("Scarica PDF: {title}", lang, { title })}>
+            <span class="d-inline-flex" aria-hidden="true" set:html={downloadIcon} /> {t("Scarica PDF")}
           </a>
         </div>
       </li>

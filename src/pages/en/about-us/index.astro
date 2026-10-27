@@ -1,0 +1,182 @@
+---
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import CompanyHistory from '../../../components/CompanyHistory.astro';
+import Certifications from '../../../components/Certifications.astro';
+import ContactSection from '../../../components/ContactSection.astro';
+import '../../../styles/pages/chi-siamo.scss';
+
+const identityCards = [
+  {
+    title: "Our expertise",
+    description: "We are involved in projects relating to business continuity, succession planning, the protection of vulnerable individuals and the management of complex assets.",
+  },
+  {
+    title: "Our role",
+    description: "AG Trustees acts as trustee, co-trustee or trust protector, administering assets in accordance with the purposes and terms of each trust.",
+  },
+];
+
+const historySteps = [
+  {
+    "title": "Our origins",
+    "description": "Argos Trustees and Galvani Fiduciaria both have many years of experience acting as professional trustees. They share the same understanding of fiduciary responsibility: behind every asset are people, relationships and long-term plans that require care and attention."
+  },
+  {
+    "title": "Coming together",
+    "description": "In 2025, recognising their shared objectives and complementary expertise and experience, the two companies began developing a joint project that would bring their strengths together."
+  },
+  {
+    "title": "Establishing AG Trustees",
+    "description": "A new company dedicated to professional trusteeship was established, combining extensive experience under a distinct identity. AG Trustees commenced operations on 1 January 2026."
+  },
+  {
+    "title": "Looking ahead",
+    "description": "AG Trustees draws on its expertise to help clients achieve their long-term objectives, building lasting relationships that support stability and continuity across generations."
+  }
+];
+
+const methodSteps = [
+  {
+    "title": "Listen",
+    "description": "We begin by listening to the people involved, understanding their needs and the circumstances behind each trust.",
+    "icon": "/assets/icone/metodo-ascoltare.svg"
+  },
+  {
+    "title": "Understand",
+    "description": "We consider the objectives, the nature and composition of the assets, the relationships involved and the purposes the trust is intended to fulfil.",
+    "icon": "/assets/icone/metodo-comprendere.svg"
+  },
+  {
+    "title": "Define",
+    "description": "Working alongside the relevant professional advisers, we help establish a clear, coherent structure designed to meet its objectives over time.",
+    "icon": "/assets/icone/metodo-definire.svg"
+  },
+  {
+    "title": "Administer and Support",
+    "description": "We administer each trust with care and precision, keep clear records of decisions and maintain ongoing communication with all parties involved.",
+    "icon": "/assets/icone/metodo-amministrare.svg"
+  }
+];
+const lang = 'en';
+---
+
+<Layout lang={lang}>
+  <PageIntro
+    breadcrumb="About us"
+    eyebrow="Managing assets today with a shared vision for the future"
+    mobileTitleLeading="tight"
+  >
+    <Fragment slot="title">
+      <span class="d-block">About</span>
+      <span class="d-block text-secondary">us</span>
+    </Fragment>
+    AG Trustees is an Italian trust company specialising in the professional administration of trusts. We bring our knowledge and experience to individuals, families and businesses, supporting them in managing their assets, plans and responsibilities over time. We have offices in Milan, Bologna and Forlì, Italy.
+  </PageIntro>
+
+  <section class="about-identity section-spacing" aria-labelledby="identity-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4">
+        <div class="col-lg-5">
+          <p class="type-eyebrow about-identity-eyebrow mb-lg-0">Who we are</p>
+        </div>
+        <div class="col-lg-7">
+          <h2 id="identity-title" class="type-section-title about-identity-title">
+            An Italian <span class="d-block">trust company</span>
+          </h2>
+          <p class="type-section-copy about-identity-copy mb-0">We work alongside families, business owners and professional advisers in establishing and administering trusts, combining legal expertise, sound judgement and a long-term perspective. Behind every asset and every trust are people, relationships, businesses and plans that change and evolve over time. AG Trustees administers assets held in trust, fulfils the associated legal and administrative obligations, and works closely with the professional advisers involved.</p>
+        </div>
+      </div>
+      <div class="row gx-0 about-identity-cards">
+        {identityCards.map((card, index) => (
+          <article class="col-6 about-identity-card">
+            <p class="about-identity-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+            <h3>{card.title}</h3>
+            <p class="about-identity-card-copy mb-0">{card.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="about-video" hidden aria-hidden="true">
+    <div class="about-video-space"></div>
+  </div>
+
+  <section class="about-origin section-spacing" aria-labelledby="origin-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 align-items-end">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section about-origin-eyebrow">How AG Trustees came together</p>
+          <h2 id="origin-title" class="type-section-title type-section-title--compact about-origin-title mb-0">
+            <span class="about-origin-title-line">Two established firms,</span>{' '}
+            <span class="about-origin-title-line">a shared commitment to</span>{' '}
+            <span class="type-section-title-accent">responsibility</span>
+          </h2>
+        </div>
+        <div class="col-lg-5">
+          <p class="type-section-lead about-origin-copy mb-0">AG Trustees brings together the expertise of Argos Trustees and Galvani Fiduciaria, two established companies with extensive experience in professional trusteeship and wealth management. Our work is guided by attentive listening, clarity, expertise and a strong sense of responsibility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CompanyHistory steps={historySteps} />
+
+  <section class="about-competencies section-spacing" aria-labelledby="competencies-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 align-items-end justify-content-between about-competencies-heading">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section about-competencies-eyebrow">Our expertise</p>
+          <h2 id="competencies-title" class="type-section-title type-section-title--compact mb-0">
+            Combining specialist knowledge to <span class="type-section-title-accent">manage</span> complex trusts
+          </h2>
+        </div>
+        <div class="col-lg-5">
+          <p class="type-section-lead about-competencies-copy mb-0">Administering a trust requires a comprehensive understanding of legal, tax, financial and personal considerations. It also calls for careful management of administrative and accounting matters, documentation, reporting and coordination with the professional advisers involved. Our expertise covers trust administration, accounting and tax matters, document management, reporting and ongoing coordination with the relevant professional advisers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-method section-spacing" aria-labelledby="method-title">
+    <div class="container section-container px-lg-0">
+      <div class="about-method-heading text-center mx-auto">
+        <p class="type-eyebrow type-eyebrow--section">Our approach</p>
+        <h2 id="method-title" class="type-section-title mb-0">Thoughtful in our approach, <span class="d-block">responsible in our <span class="text-secondary">actions</span></span></h2>
+      </div>
+      <ol class="row g-0 about-method-cards list-unstyled mb-0">
+        {methodSteps.map((step, index) => (
+          <li class="col-6 col-xxl-3 about-method-card">
+            <div class="d-flex align-items-center justify-content-between">
+              <img class="about-method-icon" src={step.icon} alt="" width="24" height="24" loading="lazy" />
+              <span class="about-method-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            </div>
+            <h3>{step.title}</h3>
+            <p class="about-method-copy mb-0">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="text-center mt-4">
+        <a class="btn site-button site-button--light" href="/en/about-us/vision-and-approach/">Discover our approach <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-team section-spacing" aria-labelledby="team-title">
+    <img class="about-team-mark" src="/assets/brand/ag-logo-verticale-nero.png" alt="" width="1200" height="1145" loading="lazy" />
+    <div class="container section-container px-lg-0 position-relative">
+      <div class="row">
+        <div class="col-lg-9 col-xxl-7">
+          <p class="type-eyebrow type-eyebrow--section about-team-eyebrow">Our team</p>
+          <h2 id="team-title" class="about-team-title">Trust begins <span class="d-block">with people</span></h2>
+          <p class="type-section-lead about-team-copy">Meet the professionals who bring expertise, responsibility and continuity to the management and administration of trusts at AG Trustees.</p>
+          <a class="btn site-button about-team-link" href="/en/about-us/team/">Meet our team <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Certifications />
+  <ContactSection eyebrow="Contact us" title="Speak to one of our professionals">At AG Trustees, we offer specialist expertise, long-term commitment and professional relationships built on trust.</ContactSection>
+</Layout>

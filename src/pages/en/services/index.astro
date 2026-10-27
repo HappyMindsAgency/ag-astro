@@ -1,0 +1,126 @@
+---
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import CallToAction from '../../../components/CallToAction.astro';
+import ContactSection from '../../../components/ContactSection.astro';
+import '../../../styles/pages/servizi.scss';
+
+const lang = 'en';
+
+const services = [
+  {
+    "title": "Trust establishment",
+    "description": "AG Trustees works alongside settlors and their professional advisers to help develop trust arrangements that reflect their intended purposes."
+  },
+  {
+    "title": "Wealth and asset structuring",
+    "description": "Where wealth comprises different types of assets, company shareholdings, property or family interests, a clear structure may be needed to ensure effective organisation and continuity. A trust can help establish a framework for administering those assets in accordance with the settlor's objectives.\nEach arrangement must be considered in the context of the individual's personal, family, business and financial circumstances.",
+    "link": {
+      "href": "/en/wealth-and-assets/",
+      "label": "Explore Wealth and assets"
+    }
+  },
+  {
+    "title": "Tailored advice",
+    "description": "AG Trustees supports the development and review of the rules governing how a trust operates. This includes defining roles and responsibilities, decision-making processes, the relationship between trustees, trust protectors and beneficiaries, and how the trust arrangement may adapt to changing circumstances over time. Our support is available both when establishing a new trust and when reviewing an existing one."
+  },
+  {
+    "title": "Professional trustee",
+    "description": "A trustee is the person or organisation responsible for administering assets held in trust in accordance with the trust deed. When appointed as trustee, AG Trustees takes legal ownership of the trust assets and administers them independently, prudently and responsibly, in accordance with the trust's purposes and the interests of its beneficiaries."
+  },
+  {
+    "title": "Co-trustee",
+    "description": "AG Trustees may be appointed alongside one or more other trustees, sharing responsibilities and decision-making powers as provided for in the trust deed."
+  },
+  {
+    "title": "Trust protector",
+    "description": "AG Trustees may act as trust protector, overseeing the trustee's activities and exercising the powers granted under the trust deed, within the limits established by its provisions."
+  },
+  {
+    "title": "Trust administration",
+    "description": "Administering a trust requires continuity and careful attention to documentation, accounting and tax matters. AG Trustees handles the ongoing administrative activities needed to give effect to the trust's purposes over time."
+  },
+  {
+    "title": "Compliance",
+    "description": "AG Trustees manages the obligations associated with each appointment and, where necessary, coordinates with the legal and tax advisers involved."
+  }
+];
+
+const responsibilityParagraphs = [
+  "Acting as trustee means taking responsibility for the people, assets and purposes entrusted to our care.",
+  "AG Trustees approaches every appointment with expertise, independence and sound judgement. This means acting in accordance with the trust deed, administering assets prudently, keeping clear records of decisions and providing appropriate accounts and reports.",
+  "Fiduciary responsibility also requires continuity. We remain involved throughout the life of the trust, maintaining clear and ongoing communication with beneficiaries, trust protectors and professional advisers."
+];
+
+const faqs = [
+  {
+    "question": "What is the difference between a trustee and a trust protector?",
+    "answer": "A trustee administers the assets held in trust and makes decisions in accordance with the trust deed.\nA trust protector oversees certain aspects of the trustee's activities and exercises any supervisory or approval powers granted under the trust deed."
+  },
+  {
+    "question": "What roles can AG Trustees undertake?",
+    "answer": "AG Trustees may act as trustee, co-trustee or trust protector. We also work alongside settlors and their professional advisers in establishing trusts and can handle the associated administrative, accounting, tax and documentation requirements."
+  },
+  {
+    "question": "Can AG Trustees be appointed to an existing trust?",
+    "answer": "Yes, subject to a review of the trust deed, the assets involved and the activities undertaken to date. We assess each potential appointment, considering the trust's purposes, the responsibilities involved and the practical requirements of taking on the role."
+  }
+];
+---
+
+<Layout lang={lang}>
+  <PageIntro breadcrumb="Services" eyebrow="Experience. Expertise. Professionalism" mobileTitleLeading="relaxed">
+    <Fragment slot="title">
+      OUR <span class="text-secondary">SERVICES</span>
+    </Fragment>
+    AG Trustees provides support in establishing trusts and accepts appointments as trustee, co-trustee or trust protector. We administer trusts in accordance with their trust deeds, stated purposes and the interests of their beneficiaries.
+  </PageIntro>
+
+  <section class="service-catalogue section-spacing" aria-labelledby="services-title">
+    <div class="container section-container px-lg-0">
+      <p class="type-eyebrow type-eyebrow--section service-catalogue-eyebrow">How we can help</p>
+      <h2 id="services-title" class="type-section-title type-section-title--compact service-catalogue-title">
+        Professional support <span>at every stage of a trust</span>
+      </h2>
+      <p class="type-section-lead type-section-lead--relaxed service-catalogue-introduction mb-0">Every trust is established to meet specific needs, circumstances and objectives. That's why our approach begins with understanding the wider context and continues through the establishment of clear rules, the acceptance of professional appointments and ongoing trust administration.</p>
+      <ol class="service-catalogue-list list-unstyled mb-0">
+        {services.map(({ title, description, link }, index) => (
+          <li class="service-catalogue-item service-list-row row g-0">
+            <span class="col-1 service-catalogue-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="col-11 col-lg-5 service-catalogue-item-title mb-0">{title}</h3>
+            <div class="col-11 offset-1 col-lg-6 offset-lg-0 service-catalogue-details">
+              <p class="service-catalogue-copy mb-0">{description}</p>
+              {link && <a class="btn site-button site-button--light site-button--small mt-3" href={link.href}>{link.label} <span aria-hidden="true">→</span></a>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="services-responsibility section-spacing" aria-labelledby="responsibility-title">
+    <div class="container section-container px-lg-0">
+      <p class="type-eyebrow type-eyebrow--section services-responsibility-eyebrow">The professional Trustee's role</p>
+      <h2 id="responsibility-title" class="type-section-title type-section-title--compact services-responsibility-title">
+        The effectiveness of a trust also depends on <span class="type-section-title-accent">those responsible for administering it</span>
+      </h2>
+      <div class="type-section-lead services-responsibility-copy">
+        {responsibilityParagraphs.map((paragraph) => <p class="mb-0">{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <FaqSection id="servizi-faq" items={faqs}>
+    <Fragment slot="title">Frequently <span class="type-section-title-accent">asked questions</span></Fragment>
+  </FaqSection>
+
+  <CallToAction eyebrow="AG Trustees — Experts in trusts and wealth planning" href="/en/trust/" label="Discover how a trust works" backgroundImage="/assets/immagini/servizi/ag-trustees-come-funziona-trust.jpg">
+    <Fragment slot="title">Would you like to learn more about trusts?</Fragment>
+    A trust's purposes, assets, relationships and responsibilities need to be considered together. An initial discussion can help clarify your objectives and assess the requirements for establishing a suitable trust arrangement.
+  </CallToAction>
+
+  <ContactSection eyebrow="Contact us" title="Speak to one of our advisors">
+    At AG Trustees, we offer specialist expertise, long-term commitment and professional relationships built on trust.
+  </ContactSection>
+</Layout>

@@ -1,16 +1,21 @@
 ---
 import SiteSearch from './SiteSearch.astro';
+import LanguageSwitch from './LanguageSwitch.astro';
+import customLabel from '../lib/utility-customlabel';
+import customSlug from '../lib/utility-customslug';
+import { getLangFromUrl, localizeHref, type Locale } from '../lib/lang-switch/route-map';
 
 interface Props {
   linkedinUrl?: string;
   heroId?: string;
+  lang?: Locale;
 }
 
-const { linkedinUrl, heroId } = Astro.props;
+const { linkedinUrl, heroId, lang = getLangFromUrl(Astro.url) } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
-const contactIsCurrent = currentPath === '/contatti';
+const contactIsCurrent = currentPath === customSlug('contact', lang).replace(/\/$/, '');
 const LinkedIn = linkedinUrl ? 'a' : 'span';
-const linkedinAttributes = linkedinUrl ? { href: linkedinUrl, 'aria-label': 'AG Trustees su LinkedIn' } : { role: 'img', 'aria-label': 'LinkedIn' };
+const linkedinAttributes = linkedinUrl ? { href: linkedinUrl, 'aria-label': customLabel('AG Trustees su LinkedIn', lang) } : { role: 'img', 'aria-label': 'LinkedIn' };
 interface NavigationItem {
   label: string;
   href: string;
@@ -45,15 +50,15 @@ const navigation: NavigationItem[] = [
 ---
 
 <header class:list={['site-header sticky-top', { 'bg-white': !heroId, 'site-header--hero is-over-hero': heroId }]} data-header-hero={heroId}>
-  <nav class="navbar navbar-expand-xl site-navbar" aria-label="Navigazione principale">
+  <nav class="navbar navbar-expand-xl site-navbar" aria-label={customLabel('Navigazione principale', lang)}>
     <div class="container-fluid flex-nowrap p-0">
-      <a class="navbar-brand m-0" href="/" aria-label="AG Trustees — Homepage">
+      <a class="navbar-brand m-0" href={customSlug('home', lang)} aria-label="AG Trustees — Homepage">
         <img class="d-block w-100 h-auto" src="/assets/brand/ag-logo-orizzontale.png" alt="Across Galvani Trustees" width="1086" height="126" fetchpriority="high" />
       </a>
 
       <div class="d-flex d-xl-none align-items-center gap-2">
-        <a class:list={['header-contact header-contact-mobile', { active: contactIsCurrent }]} href="/contatti/" data-label="Contatti →" aria-current={contactIsCurrent ? 'page' : undefined}><span>Contatti <span aria-hidden="true">→</span></span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label="Apri o chiudi il menu">
+        <a class:list={['header-contact header-contact-mobile', { active: contactIsCurrent }]} href={customSlug('contact', lang)} data-label={`${customLabel('Contatti', lang)} →`} aria-current={contactIsCurrent ? 'page' : undefined}><span>{customLabel('Contatti', lang)} <span aria-hidden="true">→</span></span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navigation" aria-controls="site-navigation" aria-expanded="false" aria-label={customLabel('Apri o chiudi il menu', lang)}>
           <span class="navbar-toggler-icon" aria-hidden="true"></span>
         </button>
       </div>
@@ -61,13 +66,15 @@ const navigation: NavigationItem[] = [
       <div class="collapse navbar-collapse align-items-xl-baseline" id="site-navigation">
         <ul class="navbar-nav">
           {navigation.map(({ label, href, children }) => {
-            const isCurrent = currentPath === href.replace(/\/$/, '');
-            const isActive = isCurrent || currentPath.startsWith(href);
+            const localizedHref = localizeHref(href, lang)!;
+            const localizedLabel = customLabel(label, lang);
+            const isCurrent = currentPath === localizedHref.replace(/\/$/, '');
+            const isActive = isCurrent || currentPath.startsWith(localizedHref);
             const submenuId = `submenu-${href.split('/')[1]}`;
             return (
               <li class:list={['nav-item', { dropdown: children }]}>
                 <div class="header-nav-row d-flex flex-wrap flex-xl-nowrap align-items-center">
-                  <a class:list={['nav-link', { active: isActive }]} href={href} data-label={label} aria-current={isCurrent ? 'page' : undefined}>{label}</a>
+                  <a class:list={['nav-link', { active: isActive }]} href={localizedHref} data-label={localizedLabel} aria-current={isCurrent ? 'page' : undefined}>{localizedLabel}</a>
                   {children && (
                     <button
                       class="header-submenu-toggle dropdown-toggle dropdown-toggle-split"
@@ -76,18 +83,19 @@ const navigation: NavigationItem[] = [
                       data-bs-display="static"
                       aria-controls={submenuId}
                       aria-expanded="false"
-                      aria-label={`Apri o chiudi il sottomenu ${label}`}
+                      aria-label={customLabel('Apri o chiudi il sottomenu {label}', lang, { label: localizedLabel })}
                     ></button>
                   )}
                   {children && (
-                    <ul class="dropdown-menu header-submenu" id={submenuId} aria-label={`Sottomenu ${label}`}>
+                    <ul class="dropdown-menu header-submenu" id={submenuId} aria-label={customLabel('Sottomenu {label}', lang, { label: localizedLabel })}>
                       {children.map(({ label: childLabel, href: childHref }) => {
-                        const childIsCurrent = childHref && currentPath === childHref.replace(/\/$/, '');
+                        const localizedChildHref = localizeHref(childHref, lang);
+                        const childIsCurrent = localizedChildHref && currentPath === localizedChildHref.replace(/\/$/, '');
                         return (
                           <li>{childHref ? (
-                            <a class:list={['dropdown-item text-wrap', { active: childIsCurrent }]} href={childHref} aria-current={childIsCurrent ? 'page' : undefined}>{childLabel}</a>
+                            <a class:list={['dropdown-item text-wrap', { active: childIsCurrent }]} href={localizedChildHref} aria-current={childIsCurrent ? 'page' : undefined}>{customLabel(childLabel, lang)}</a>
                           ) : (
-                            <span class="dropdown-item text-wrap disabled" aria-disabled="true">{childLabel}</span>
+                            <span class="dropdown-item text-wrap disabled" aria-disabled="true">{customLabel(childLabel, lang)}</span>
                           )}</li>
                         );
                       })}
@@ -99,10 +107,10 @@ const navigation: NavigationItem[] = [
           })}
         </ul>
 
-        <a class="btn site-button header-menu-cta w-100 d-xl-none" href="/contatti/">Contatti <span aria-hidden="true">→</span></a>
+        <a class="btn site-button header-menu-cta w-100 d-xl-none" href={customSlug('contact', lang)}>{customLabel('Contatti', lang)} <span aria-hidden="true">→</span></a>
 
         <div class="header-tools d-flex align-items-baseline">
-          <a class:list={['header-contact d-none d-xl-inline-flex', { active: contactIsCurrent }]} href="/contatti/" data-label="Contatti" aria-current={contactIsCurrent ? 'page' : undefined}>Contatti</a>
+          <a class:list={['header-contact d-none d-xl-inline-flex', { active: contactIsCurrent }]} href={customSlug('contact', lang)} data-label={customLabel('Contatti', lang)} aria-current={contactIsCurrent ? 'page' : undefined}>{customLabel('Contatti', lang)}</a>
           <span class="vr d-none d-xl-inline-block"></span>
           {/* LinkedIn precede la lente solo nel menu compatto: due copie mantengono l’ordine del Tab uguale a quello visivo. */}
           <LinkedIn class="header-icon d-xl-none" {...linkedinAttributes}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></LinkedIn>
@@ -110,7 +118,7 @@ const navigation: NavigationItem[] = [
           <span class="vr d-none d-xl-inline-block"></span>
           <LinkedIn class="header-icon d-none d-xl-inline-flex" {...linkedinAttributes}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></LinkedIn>
           <span class="vr d-none d-xl-inline-block"></span>
-          <span class="header-language ms-auto" lang="it" aria-label="Lingua attuale: italiano">ITA</span>
+          <LanguageSwitch lang={lang} />
         </div>
       </div>
     </div>
@@ -171,6 +179,7 @@ const navigation: NavigationItem[] = [
 
       navbar.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape' || desktop.matches || !panel.classList.contains('show')) return;
+        if (event.target instanceof Element && event.target.closest('.header-language-picker')?.querySelector('.dropdown-menu.show')) return;
         menu.hide();
         toggler.focus();
       });

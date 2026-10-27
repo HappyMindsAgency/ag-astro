@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
 import '../styles/components/company-history.scss';
 
 interface Props {
@@ -7,17 +9,18 @@ interface Props {
 
 const { steps } = Astro.props;
 const highlightedIndex = 2;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <section class="company-history section-spacing" aria-labelledby="history-title">
   <div class="container history-frame">
     <div class="row gx-0 history-heading">
       <div class="col-lg-6 history-heading-label">
-        <p class="type-eyebrow type-eyebrow--section history-eyebrow mb-lg-0">La nostra storia</p>
+        <p class="type-eyebrow type-eyebrow--section history-eyebrow mb-lg-0">{customLabel('La nostra storia', lang)}</p>
       </div>
       <div class="col-lg-6 history-heading-copy">
         <h2 id="history-title" class="type-section-title type-section-title--compact mb-0">
-          Una storia di <span class="type-section-title-accent d-block">fiducia e longevità</span>
+          {customLabel('Una storia di', lang)} <span class="type-section-title-accent d-block">{customLabel('fiducia e longevità', lang)}</span>
         </h2>
       </div>
     </div>
@@ -34,7 +37,7 @@ const highlightedIndex = 2;
     </ol>
 
     <div class="history-mobile d-lg-none">
-      <div class="nav row gx-0 flex-nowrap history-tabs" role="tablist" aria-label="Tappe della storia">
+      <div class="nav row gx-0 flex-nowrap history-tabs" role="tablist" aria-label={customLabel('Tappe della storia', lang)}>
         {steps.map((step, index) => (
           <button
             class:list={['nav-link col-3 history-tab', { active: index === highlightedIndex }]}

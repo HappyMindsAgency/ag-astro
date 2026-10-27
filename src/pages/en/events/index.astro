@@ -1,0 +1,26 @@
+---
+import { eventPlaceholders } from '../../../data/event-placeholders';
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import EventList from '../../../components/EventList.astro';
+import NewsletterCallToAction from '../../../components/NewsletterCallToAction.astro';
+import '../../../styles/pages/eventi.scss';
+
+const lang = 'en';
+---
+
+<Layout lang={lang}>
+  <div class="events-page">
+    <PageIntro breadcrumb="Upcoming events" eyebrow="Events calendar" wideTitle>
+      <Fragment slot="title">Upcoming <span class="text-secondary">events</span></Fragment>
+      Conferences, seminars and professional development events exploring trusts, taxation and long-term wealth planning.
+    </PageIntro>
+
+    <EventList id="prossimi-eventi" title="Upcoming events" eyebrow="Events calendar" events={eventPlaceholders} />
+    <EventList id="eventi-da-non-perdere" title="Events not to be missed" eyebrow="Events calendar" events={eventPlaceholders} compact />
+
+    <NewsletterCallToAction title="AG Informa – News and updates">
+      Receive a curated selection of news, expert insights and upcoming events to stay informed about developments in trusts and wealth-related matters.
+    </NewsletterCallToAction>
+  </div>
+</Layout>

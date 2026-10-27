@@ -1,5 +1,7 @@
 ---
 import '../styles/components/call-to-action.scss';
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 
 interface Props {
   eyebrow: string;
@@ -12,13 +14,14 @@ interface Props {
 }
 
 const { eyebrow, href, label, contained = false, plainBackground = false, backgroundImage, secondaryAction } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <section class:list={['call-to-action', { 'call-to-action--contained': contained, 'call-to-action--plain': plainBackground }]} style={backgroundImage ? { '--cta-background-image': `url("${backgroundImage}")` } : undefined} aria-labelledby="cta-title">
   <div class="row align-items-center justify-content-between g-0 gap-5 gap-lg-4">
     <div class="col-lg">
       <div class="call-to-action-content">
-        <p class="call-to-action-eyebrow">{eyebrow}</p>
+        <p class="call-to-action-eyebrow">{customLabel(eyebrow, lang)}</p>
         <h2 id="cta-title" class="call-to-action-title"><slot name="title" /></h2>
         <p class="call-to-action-copy mb-0"><slot /></p>
       </div>
@@ -26,14 +29,14 @@ const { eyebrow, href, label, contained = false, plainBackground = false, backgr
     <div class="col-lg-auto">
       <div class="call-to-action-actions d-flex flex-column gap-3 mt-3 mt-lg-0">
         {href ? (
-          <a class="btn site-button site-button--light site-button--small" href={href}>{label} <span aria-hidden="true">→</span></a>
+          <a class="btn site-button site-button--light site-button--small" href={localizeHref(href, lang)}>{customLabel(label, lang)} <span aria-hidden="true">→</span></a>
         ) : (
-          <button class="btn site-button site-button--light site-button--small" type="button" disabled>{label}</button>
+          <button class="btn site-button site-button--light site-button--small" type="button" disabled>{customLabel(label, lang)}</button>
         )}
         {secondaryAction && (secondaryAction.href ? (
-          <a class="btn site-button site-button--outline-light site-button--small" href={secondaryAction.href}>{secondaryAction.label} <span aria-hidden="true">→</span></a>
+          <a class="btn site-button site-button--outline-light site-button--small" href={localizeHref(secondaryAction.href, lang)}>{customLabel(secondaryAction.label, lang)} <span aria-hidden="true">→</span></a>
         ) : (
-          <button class="btn site-button site-button--outline-light site-button--small" type="button" disabled>{secondaryAction.label}</button>
+          <button class="btn site-button site-button--outline-light site-button--small" type="button" disabled>{customLabel(secondaryAction.label, lang)}</button>
         ))}
       </div>
     </div>

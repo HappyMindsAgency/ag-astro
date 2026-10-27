@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 import type { TeamMember } from '../types/content';
 import '../styles/components/team-member-card.scss';
 
@@ -9,6 +11,7 @@ interface Props {
 
 const { member, variant = 'operational' } = Astro.props;
 const { firstName, lastName, role, biography, expertise, email, image, relatedArticle } = member;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <article class:list={['team-member-card row g-0 h-100', `team-member-card--${variant}`]}>
@@ -23,10 +26,10 @@ const { firstName, lastName, role, biography, expertise, email, image, relatedAr
     {email && <a class="team-member-email" href={`mailto:${email}`}>{email}</a>}
     {relatedArticle && (
       <div class="team-member-article">
-        <a class="team-member-article-link" href={relatedArticle.href}>
+        <a class="team-member-article-link" href={localizeHref(relatedArticle.href, lang)}>
           <img class="team-member-article-icon" src="/assets/icone/documento.svg" alt="" width="16" height="16" loading="lazy" />
           <span>
-            <span class="team-member-article-label">Articolo</span>
+            <span class="team-member-article-label">{customLabel('Articolo', lang)}</span>
             <span class="team-member-article-title">{relatedArticle.title}</span>
           </span>
           <span class="team-member-article-arrow" aria-hidden="true">→</span>

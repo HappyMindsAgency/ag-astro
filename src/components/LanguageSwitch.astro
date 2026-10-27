@@ -1,0 +1,17 @@
+---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, languageSwitchUrl, type Locale } from '../lib/lang-switch/route-map';
+
+interface Props { lang?: Locale; }
+const { lang = getLangFromUrl(Astro.url) } = Astro.props;
+---
+
+<div class="dropdown header-language-picker ms-auto">
+  <button class="header-language dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label={customLabel('Seleziona la lingua', lang)}>
+    {lang === 'it' ? 'ITA' : 'ENG'}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><a class:list={['dropdown-item', { active: lang === 'it' }]} href={languageSwitchUrl(Astro.url.pathname, 'it')} lang="it" hreflang="it" aria-current={lang === 'it' ? 'true' : undefined}>Italiano</a></li>
+    <li><a class:list={['dropdown-item', { active: lang === 'en' }]} href={languageSwitchUrl(Astro.url.pathname, 'en')} lang="en" hreflang="en" aria-current={lang === 'en' ? 'true' : undefined}>English</a></li>
+  </ul>
+</div>

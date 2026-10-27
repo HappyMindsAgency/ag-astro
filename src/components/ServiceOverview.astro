@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 import '../styles/components/service-overview.scss';
 
 interface Props {
@@ -12,13 +14,14 @@ interface Props {
 }
 
 const { id, services, introduction, eyebrow = 'Aree di attività', title = 'Servizi professionali', actionLabel = 'Tutti i servizi', backgroundImage } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <section id={id} class="service-overview section-spacing" style={backgroundImage ? { '--section-background-image': `url("${backgroundImage}")` } : undefined} aria-labelledby={`${id}-title`}>
   <div class="container section-container">
     <div class="service-overview-heading text-lg-center mx-auto">
-      <p class="type-eyebrow type-eyebrow--section service-overview-eyebrow">{eyebrow}</p>
-      <h2 id={`${id}-title`} class="service-overview-title">{title}</h2>
+      <p class="type-eyebrow type-eyebrow--section service-overview-eyebrow">{customLabel(eyebrow, lang)}</p>
+      <h2 id={`${id}-title`} class="service-overview-title">{customLabel(title, lang)}</h2>
       {introduction && <p class="service-overview-copy mb-0">{introduction}</p>}
     </div>
     <ol class="service-overview-list list-unstyled mx-auto mb-0">
@@ -31,7 +34,7 @@ const { id, services, introduction, eyebrow = 'Aree di attività', title = 'Serv
       ))}
     </ol>
     <div class="service-overview-action text-end mx-auto">
-      <a class="btn site-button site-button--outline-light" href="/servizi/">{actionLabel} <span aria-hidden="true">→</span></a>
+      <a class="btn site-button site-button--outline-light" href={localizeHref('/servizi/', lang)}>{customLabel(actionLabel, lang)} <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>

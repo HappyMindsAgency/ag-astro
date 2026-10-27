@@ -1,0 +1,110 @@
+---
+import Layout from '../../../../components/Layout.astro';
+import PageIntro from '../../../../components/PageIntro.astro';
+import ImageOverview from '../../../../components/ImageOverview.astro';
+import CallToAction from '../../../../components/CallToAction.astro';
+import ServiceOverview from '../../../../components/ServiceOverview.astro';
+import '../../../../styles/pages/visione-e-metodologia.scss';
+
+const services = [
+  {
+    "title": "Expertise",
+    "description": "We combine specialist knowledge, experience and ongoing professional development to approach every appointment with care and sound judgement."
+  },
+  {
+    "title": "Trust",
+    "description": "We build relationships based on attentive listening, clarity and discretion. Trust develops over time and is sustained through consistency in our actions."
+  },
+  {
+    "title": "Responsibility",
+    "description": "Accepting an appointment means taking responsibility for the decisions we make and administering assets in accordance with the trust deed, the trust's purposes and the interests of those involved."
+  },
+  {
+    "title": "Continuity",
+    "description": "We support trusts throughout their lifecycle, providing a consistent professional presence and maintaining a long-term perspective that connects the present with the future."
+  },
+  {
+    "title": "Balance",
+    "description": "We consider every decision in the context of the people, relationships, assets and objectives involved."
+  }
+];
+
+const methodIntroduction = "Every appointment follows a carefully considered process, shaped by the needs of the people involved and the purposes of the trust.";
+
+const methodSteps = [
+  {
+    "title": "Understand",
+    "description": "We listen to the people involved and consider the wider context: their objectives, the nature and composition of the assets, the relationships involved and the purposes to be fulfilled."
+  },
+  {
+    "title": "Define",
+    "description": "Roles, responsibilities, powers, decision-making processes and administrative arrangements are established in accordance with the applicable legal framework and the agreed objectives."
+  },
+  {
+    "title": "Administer",
+    "description": "We give effect to the provisions of the trust deed, administer the assets held in trust and fulfil the associated accounting, tax and administrative obligations."
+  },
+  {
+    "title": "Provide ongoing support",
+    "description": "A trust evolves alongside the people, assets and circumstances connected with it. We maintain ongoing relationships with beneficiaries, trust protectors, advisers and other parties involved, providing continuity and support over time."
+  }
+];
+const lang = 'en';
+---
+
+<Layout lang={lang}>
+  <PageIntro breadcrumb="Vision and approach" parents={[{ label: 'About us', href: '/en/about-us/' }]} eyebrow="A long-term perspective, grounded in responsibility" mobileTitleLeading="relaxed" wideTitle>
+    <Fragment slot="title">
+      <span class="d-block">Vision and</span>
+      <span class="d-block text-secondary">approach</span>
+    </Fragment>
+    At AG Trustees, our approach brings together established expertise and a shared understanding of fiduciary responsibility, with people at the heart of everything we do.
+  </PageIntro>
+
+  <ImageOverview
+    id="vision"
+    class="vision-overview"
+    eyebrow="Our vision"
+    image={{ src: '/assets/immagini/visione/ag-trustees-visione-responsabilita-fiduciaria.jpg', alt: 'A professional discussion at the AG Trustees offices', width: 1170, height: 780 }}
+  >
+    <Fragment slot="title">Every appointment begins <span class="type-section-title-accent d-block">with listening</span></Fragment>
+    We believe that wealth is more than a collection of assets. It represents a story of people, relationships, hard work, decisions and plans that extend well into the future.
+  </ImageOverview>
+
+  <ServiceOverview id="services" services={services} eyebrow="Our guiding principles" title="The values behind every appointment" backgroundImage="/assets/immagini/visione/ag-trustees-servizi-professionali.jpg" />
+
+  <section class="vision-method section-spacing" aria-labelledby="vision-method-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-xxl-7">
+          <p class="type-eyebrow type-eyebrow--section vision-eyebrow">Our approach</p>
+          <h2 id="vision-method-title" class="type-section-title mb-0">
+            From understanding <span class="type-section-title-accent d-xxl-block">to administration</span>
+          </h2>
+        </div>
+        <div class="col-xxl-5">
+          <p class="vision-editorial-copy vision-method-introduction mb-0">{methodIntroduction}</p>
+        </div>
+      </div>
+      <ol class="row g-0 vision-method-steps list-unstyled mb-0">
+        {methodSteps.map((step, index) => (
+          <li class="col-12 col-lg-6 col-xxl-3 vision-method-step">
+            <p class="vision-method-index mb-0" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+            <h3>{step.title}</h3>
+            <p class="vision-method-copy mb-0">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CallToAction
+    eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale"
+    href="/en/services/"
+    label="Explore our services"
+    secondaryAction={{ label: "Request a consultation", href: '/en/contact-us/' }}
+  >
+    <Fragment slot="title">Long-term continuity begins with responsible administration</Fragment>
+    Every appointment calls for careful listening, specialist expertise and a commitment to providing consistent support over time.
+  </CallToAction>
+</Layout>

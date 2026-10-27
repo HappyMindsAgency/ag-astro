@@ -1,0 +1,91 @@
+---
+import Layout from '../../../../components/Layout.astro';
+import PageIntro from '../../../../components/PageIntro.astro';
+import ImageOverview from '../../../../components/ImageOverview.astro';
+import OverviewBanner from '../../../../components/OverviewBanner.astro';
+import '../../../../styles/pages/galvani-argos.scss';
+
+const companies = [
+  {
+    "name": "Argos Trustees",
+    "subtitle": "Specialist expertise in trusts",
+    "paragraphs": [
+      "Argos Trustees developed particular expertise in acting as a professional trustee and managing arrangements designed to protect assets and provide long-term continuity.",
+      "Its approach has been shaped by a thorough understanding of trusts, the establishment of clear governance structures and close coordination with the professional advisers involved."
+    ]
+  },
+  {
+    "name": "Galvani Fiduciaria",
+    "subtitle": "Among the pioneers of professional trusteeship in Italy",
+    "paragraphs": [
+      "Galvani Fiduciaria was among the first Italian companies to undertake professional trustee appointments. Over the years, it developed extensive knowledge of wealth management and fiduciary services, building lasting relationships with families, business owners and professional advisers.",
+      "The breadth of its appointments helped establish an approach grounded in expertise, diligence and responsibility."
+    ]
+  }
+];
+const lang = 'en';
+---
+
+<Layout lang={lang}>
+  <PageIntro breadcrumb="Galvani Fiduciaria and Argos Trustees" parents={[{ label: 'About us', href: '/en/about-us/' }]} eyebrow="Two established practices, one new company." titleSize="compact" wideTitle>
+    <Fragment slot="title">Galvani Fiduciaria and <span class="d-block type-section-title-accent">Argos Trustees</span></Fragment>
+    AG Trustees brings together extensive experience in trust administration and fiduciary services. Expertise developed over many years now comes together within one company, with a shared vision for the future.
+  </PageIntro>
+
+  <ImageOverview id="esperienze" class="heritage-overview" plainImage image={{ src: '/assets/immagini/ag-trustees-esperienza-fiduciaria.jpg', alt: 'Two professionals at the AG Trustees offices', width: 1170, height: 780 }}>
+    <Fragment slot="title">Distinct expertise, <span class="type-section-title-accent">shared values</span></Fragment>
+    <Fragment slot="copy">
+      <p>The journey towards AG Trustees began with two companies, each bringing its own expertise and professional relationships. Argos Trustees and Galvani Fiduciaria developed complementary experience, united by the same commitment to the people, assets and responsibilities entrusted to them.</p>
+      <p class="mb-0">Bringing their expertise together represents more than a collaboration between two companies. It marks the beginning of a new identity dedicated to professional trust administration.</p>
+    </Fragment>
+  </ImageOverview>
+
+  <section class="heritage-companies section-spacing" aria-labelledby="heritage-companies-title">
+    <img class="heritage-watermark" src="/assets/brand/ag-logo-verticale-nero.png" alt="" width="1200" height="1145" loading="lazy" aria-hidden="true" />
+    <div class="container section-container px-lg-0">
+      <h2 id="heritage-companies-title" class="type-section-title type-section-title--compact mb-0">The expertise behind <span class="type-section-title-accent">AG Trustees</span></h2>
+      <div class="row g-0 heritage-company-grid">
+        {companies.map(({ name, subtitle, paragraphs }, index) => (
+          <article class="col-lg-6 heritage-company-card">
+            <p class="heritage-company-index">{String(index + 1).padStart(2, '0')}</p>
+            <h3 class="type-section-title type-section-title--compact heritage-company-name">{name}</h3>
+            <p class="heritage-company-subtitle">{subtitle}</p>
+            <div class="type-section-lead heritage-company-copy">
+              {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <OverviewBanner id="incontro" eyebrow="Coming together" class="heritage-meeting section-spacing">
+    <Fragment slot="title">Bringing expertise together around <span class="overview-banner-accent">a shared vision</span></Fragment>
+    <p>The two companies' experience is united by a common understanding: administering a trust means accepting real responsibility for the people, purposes and assets involved.</p>
+    <p>This shared understanding led to the decision to bring together specialist expertise, administrative capabilities and a long-term perspective within a new company.</p>
+  </OverviewBanner>
+
+  <section class="heritage-today section-spacing" aria-labelledby="heritage-today-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-6">
+          <p class="type-eyebrow type-eyebrow--section heritage-today-eyebrow">AG Trustees today</p>
+          <h2 id="heritage-today-title" class="type-section-title type-section-title--compact mb-0">One company, <span class="type-section-title-accent">a wealth of experience</span></h2>
+        </div>
+        <div class="col-lg-6 type-section-lead heritage-today-copy">
+          <p>Today, AG Trustees is an Italian trust company specialising in the professional administration of trusts.</p>
+          <p>We act as trustee, co-trustee or trust protector, administering assets held in trust, fulfilling the associated obligations and working closely with professional advisers. Our approach combines legal expertise, fiduciary responsibility and genuine consideration for the people involved.</p>
+          <a class="btn site-button" href="/en/about-us/">About us <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="heritage-future section-spacing text-center" aria-labelledby="heritage-future-title">
+    <div class="container section-container px-lg-0">
+      <p class="type-eyebrow type-eyebrow--section heritage-future-eyebrow">Looking ahead</p>
+      <h2 id="heritage-future-title" class="type-section-title type-section-title--compact">Managing assets today with <span class="type-section-title-accent">a shared vision for the future</span></h2>
+      <p class="type-section-lead mb-0">Our combined experience gives us the perspective to look ahead with confidence and sound judgement. We aim to contribute to a culture of responsible wealth management, supporting individuals, families and businesses as they make decisions that will shape their future and that of generations to come.</p>
+    </div>
+  </section>
+</Layout>

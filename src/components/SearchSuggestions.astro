@@ -1,0 +1,31 @@
+---
+import SearchHighlight from './SearchHighlight.astro';
+import { searchResultTypes, searchSite } from '../data/search';
+
+import customLabel, { resultCount } from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
+const lang = getLangFromUrl(Astro.url);
+
+const query = Astro.url.searchParams.get('q')?.trim() ?? '';
+const results = query.length >= 2 ? await searchSite(query, lang) : [];
+const suggestions = results.filter(({ href }) => href).slice(0, 5);
+const summary = results.length ? resultCount(results.length, lang) : customLabel('Nessun risultato', lang);
+---
+
+<div data-summary={summary}>
+  {suggestions.length > 0 && (
+    <ul class="site-search-list list-unstyled mb-0">
+      {suggestions.map(({ type, title, href }) => (
+        <li>
+          <a class="site-search-suggestion d-flex align-items-baseline" href={href}>
+            <span class="site-search-type">{customLabel(searchResultTypes[type].label, lang)}</span>
+            <span class="site-search-title site-title-link"><SearchHighlight text={title} query={query} /></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+  {results.length > 0
+    ? <a class="site-text-link site-search-all" href={localizeHref(`/cerca/?q=${encodeURIComponent(query)}`, lang)}>{customLabel("Tutti i risultati ({count})", lang, { count: results.length })} <span aria-hidden="true">→</span></a>
+    : <p class="site-search-empty mb-0">{customLabel("Nessun risultato per “{query}”.", lang, { query })}</p>}
+</div>

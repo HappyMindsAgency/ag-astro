@@ -1,4 +1,7 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
+import { formatDate } from '../lib/utility-function';
 import type { ArticlePreview } from '../types/content';
 import '../styles/components/news-article-card.scss';
 
@@ -12,6 +15,8 @@ const { title, href, image, category, date, dateTime, excerpt, featured } = arti
 const Heading = variant === 'hero' ? 'h2' : 'h3';
 const imageColumn = variant === 'hero' ? 'col-12 col-lg-auto' : variant === 'compact' ? 'col-5 col-md-4' : 'col-md-4';
 const textColumn = variant === 'hero' ? 'col-12 col-lg' : variant === 'compact' ? 'col-7 col-md-8' : 'col-md-8';
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
 ---
 
 <article
@@ -29,13 +34,13 @@ const textColumn = variant === 'hero' ? 'col-12 col-lg' : variant === 'compact' 
 >
   <div class={variant === 'hero' ? 'row gx-5 gy-4' : 'row gx-4 gy-4'}>
     <div class:list={['news-article-image-column', imageColumn]}>
-      <a href={href} tabindex="-1" aria-hidden="true"><img class="news-main-image" src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" /></a>
+      <a href={localizeHref(href, lang)} tabindex="-1" aria-hidden="true"><img class="news-main-image" src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" /></a>
     </div>
     <div class={textColumn}>
-      <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{featured ? 'In evidenza' : category}</span><time datetime={dateTime}>{date}</time></p>
-      <Heading class="news-main-title"><a class="site-title-link" href={href}>{title}</a></Heading>
+      <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{featured ? t('In evidenza') : category}</span><time datetime={dateTime}>{lang === 'en' ? formatDate(dateTime, lang) : date}</time></p>
+      <Heading class="news-main-title"><a class="site-title-link" href={localizeHref(href, lang)}>{title}</a></Heading>
       <p class="news-main-excerpt">{excerpt}</p>
-      <a class="news-read-more" href={href} aria-label={`Leggi: ${title}`}>Leggi <span aria-hidden="true">→</span></a>
+      <a class="news-read-more" href={localizeHref(href, lang)} aria-label={customLabel("Leggi: {title}", lang, { title })}>{t('Leggi')} <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </article>

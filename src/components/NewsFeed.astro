@@ -1,4 +1,7 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
+import { formatDate } from '../lib/utility-function';
 import type { ArticlePreview } from '../types/content';
 import NewsArticleCard from './NewsArticleCard.astro';
 import '../styles/components/content-filter.scss';
@@ -19,6 +22,8 @@ const filters = [
 ];
 const mainArticles = archive ? articles : articles.slice(0, 2);
 const otherArticles = archive ? [] : articles.slice(2);
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
 ---
 
 {articles.length > 0 && (
@@ -26,16 +31,16 @@ const otherArticles = archive ? [] : articles.slice(2);
     <div class="container section-container">
       <div class="d-flex flex-wrap justify-content-between align-items-end news-feed-header">
         <div>
-          {!archive && <p class="type-eyebrow type-eyebrow--section news-feed-eyebrow">{eyebrow}</p>}
-          <h2 id="news-feed-title" class:list={['mb-0', archive ? 'type-editorial-list-title' : 'type-section-title']}>{archive ? 'Notizie' : 'AG Informa'}</h2>
+          {!archive && <p class="type-eyebrow type-eyebrow--section news-feed-eyebrow">{t(eyebrow)}</p>}
+          <h2 id="news-feed-title" class:list={['mb-0', archive ? 'type-editorial-list-title' : 'type-section-title']}>{archive ? t('Notizie') : 'AG Informa'}</h2>
         </div>
         {archive
-          ? <button class="site-text-link news-feed-reset" type="button" data-news-reset>Tutti gli articoli <span aria-hidden="true">→</span></button>
-          : <a class="site-text-link" href="/ag-informa/">Vai ad AG Informa <span aria-hidden="true">→</span></a>}
+          ? <button class="site-text-link news-feed-reset" type="button" data-news-reset>{t('Tutti gli articoli')} <span aria-hidden="true">→</span></button>
+          : <a class="site-text-link" href={localizeHref("/ag-informa/", lang)}>{t('Vai ad AG Informa')} <span aria-hidden="true">→</span></a>}
       </div>
-      <div class="d-flex flex-wrap news-feed-filters" role="group" aria-label="Filtra gli articoli">
+      <div class="d-flex flex-wrap news-feed-filters" role="group" aria-label={t('Filtra gli articoli')}>
         {filters.map(({ value, label }, index) => (
-          <button class="content-filter" type="button" data-news-filter={value} aria-pressed={index === 0 ? 'true' : 'false'}>{label}</button>
+          <button class="content-filter" type="button" data-news-filter={value} aria-pressed={index === 0 ? 'true' : 'false'}>{t(label)}</button>
         ))}
       </div>
       <div class="row news-feed-layout">
@@ -48,13 +53,13 @@ const otherArticles = archive ? [] : articles.slice(2);
         </div>
         {otherArticles.length > 0 && (
           <div class="col-xl-5" data-news-group>
-            <h3 class="news-other-heading">Altri articoli</h3>
+            <h3 class="news-other-heading">{t('Altri articoli')}</h3>
             <ul class="list-unstyled mb-0">
               {otherArticles.map(({ title, href, category, date, dateTime, featured }) => (
                 <li class:list={['news-other-article', { 'news-other-article--featured': featured }]} data-news-article data-news-category={category} data-news-featured={featured ? 'true' : 'false'}>
                   <div class="news-other-content">
-                    <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{category}</span><time datetime={dateTime}>{date}</time></p>
-                    <h4 class="news-other-title mb-0"><a href={href}>{title}</a></h4>
+                    <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{category}</span><time datetime={dateTime}>{lang === 'en' ? formatDate(dateTime, lang) : date}</time></p>
+                    <h4 class="news-other-title mb-0"><a href={localizeHref(href, lang)}>{title}</a></h4>
                   </div>
                 </li>
               ))}
@@ -62,7 +67,7 @@ const otherArticles = archive ? [] : articles.slice(2);
           </div>
         )}
       </div>
-      {archive && <div class="news-feed-more text-center"><button class="btn site-button" type="button" data-news-more>Carica altri articoli <span aria-hidden="true">↓</span></button></div>}
+      {archive && <div class="news-feed-more text-center"><button class="btn site-button" type="button" data-news-more>{t('Carica altri articoli')} <span aria-hidden="true">↓</span></button></div>}
     </div>
   </section>
 )}

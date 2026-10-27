@@ -1,0 +1,28 @@
+---
+import { articleCategories, articlePlaceholders } from '../../../data/article-placeholders';
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import NewsArticleCard from '../../../components/NewsArticleCard.astro';
+import NewsFeed from '../../../components/NewsFeed.astro';
+import NewsletterCallToAction from '../../../components/NewsletterCallToAction.astro';
+import '../../../styles/pages/ag-informa.scss';
+
+const lang = 'en';
+---
+
+<Layout lang={lang}>
+  <PageIntro breadcrumb="AG Informa" eyebrow="News and insights">
+    <Fragment slot="title">AG <span class="text-secondary">Informa</span></Fragment>
+    A dedicated space for news and expert insights, helping you stay informed about developments in legislation and explore topics relating to trusts, wealth management, succession planning and business.
+  </PageIntro>
+
+  <section class="ag-informa-featured section-spacing" aria-label="Featured article">
+    <div class="container frame-container"><NewsArticleCard article={articlePlaceholders[0]} variant="hero" /></div>
+  </section>
+
+  <NewsFeed archive articles={articlePlaceholders} categories={articleCategories} />
+
+  <NewsletterCallToAction title="AG informa - News and updates">
+    Receive a curated selection of news, expert insights and upcoming events to stay informed about developments in trusts and wealth-related matters.
+  </NewsletterCallToAction>
+</Layout>

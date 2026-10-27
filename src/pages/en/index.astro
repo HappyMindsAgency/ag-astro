@@ -1,0 +1,172 @@
+---
+import { featuredEventPlaceholder, articlePlaceholders } from '../../data/home-placeholders';
+import Layout from '../../components/Layout.astro';
+import ImageOverview from '../../components/ImageOverview.astro';
+import EditorialImage from '../../components/EditorialImage.astro';
+import ServiceOverview from '../../components/ServiceOverview.astro';
+import FeaturedEvent from '../../components/FeaturedEvent.astro';
+import NewsFeed from '../../components/NewsFeed.astro';
+import NewsletterCallToAction from '../../components/NewsletterCallToAction.astro';
+import '../../styles/pages/home.scss';
+
+const companyDescription = "AG Trustees acts as trustee, co-trustee or trust protector, administering assets in accordance with the purposes and terms of each trust.\n\nThe company brings together legal, tax, administrative and accounting expertise, supported by extensive experience in professional trusteeship.\n\nThis combined expertise is guided by a shared commitment: to fulfil every appointment with responsibility, sound judgement and genuine consideration for the people involved.";
+const servicesIntroduction = "AG Trustees provides support from the initial planning and establishment of a trust through to its ongoing administration.";
+const services = [
+  {
+    "title": "Trust establishment",
+    "description": "We work with the settlor's professional advisers to help define the trust's objectives, identify the parties involved, establish their respective roles and agree the rules governing its administration."
+  },
+  {
+    "title": "Professional trustee",
+    "description": "We act as professional trustee, administering the assets held in trust in accordance with the trust deed and its governing law."
+  },
+  {
+    "title": "Co-trustee",
+    "description": "We share trustee responsibilities with one or more fellow trustees, in accordance with the allocation of powers and duties set out in the trust deed."
+  },
+  {
+    "title": "Trust protector",
+    "description": "We oversee the trustee's activities and exercise the powers granted to us under the trust deed."
+  },
+  {
+    "title": "Trust administration and compliance",
+    "description": "We handle the day-to-day administration of trusts, including documentation, accounting, tax compliance and financial reporting."
+  }
+];
+const needs = [
+  "Protecting and preserving wealth",
+  "Planning for the next generation",
+  "Structuring family wealth",
+  "Protecting vulnerable individuals",
+  "Ensuring continuity in family businesses",
+  "Managing property, other assets and overseas holdings"
+];
+const trustPoints = [
+  "Define the objectives",
+  "Establish the rules",
+  "Transfer the assets into trust",
+  "Administer the trust and fulfil its purposes"
+];
+const values = [
+  {
+    "title": "Established experience",
+    "description": "Extensive knowledge and experience gained through the professional administration of trusts."
+  },
+  {
+    "title": "Specialist expertise",
+    "description": "Dedicated legal, tax and administrative expertise in trust management and administration."
+  },
+  {
+    "title": "Responsibility",
+    "description": "We approach every appointment with a clear understanding of the duties and responsibilities it entails."
+  },
+  {
+    "title": "Personal relationships",
+    "description": "We maintain clear, ongoing communication with the individuals and professional advisers involved."
+  },
+  {
+    "title": "Continuity",
+    "description": "We administer trusts throughout their lifecycle, helping to guide decisions and respond to changing circumstances."
+  },
+  {
+    "title": "Keeping pace with change",
+    "description": "We stay abreast of developments in legislation, taxation and case law to ensure that every appointment is managed with care, expertise and sound judgement."
+  }
+];
+
+const lang = 'en';
+---
+
+<Layout lang={lang} headerHeroId="home-hero">
+  <section id="home-hero" class="home-hero d-flex align-items-center" aria-labelledby="page-title">
+    <div class="home-hero-content d-flex flex-column">
+      <p class="home-hero-eyebrow d-flex align-items-center mb-0">AG Trustees</p>
+      <h1 id="page-title" class="home-hero-title mb-0">
+        <span class="d-block">Giving structure to your wealth.</span>
+        <span class="d-block type-section-title-accent">Protecting its future.</span>
+      </h1>
+      <p class="home-hero-copy mb-0">AG Trustees is a specialist trust company with offices in Milan, Bologna and Forlì. We work alongside individuals, families, business owners and professional advisers, supporting them in managing their assets and planning for the future.</p>
+      <div class="home-hero-actions d-flex flex-wrap">
+        <a class="btn site-button" href="/en/about-us/">Discover AG Trustees <span aria-hidden="true">→</span></a>
+        <a class="btn site-button site-button--light" href="/en/contact-us/">Book a consultation <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <ImageOverview id="home-company" eyebrow="About AG Trustees" class="home-overview" plainImage image={{ src: '/assets/immagini/home/ag-trustees-trust-company.jpg', alt: 'Three professionals at the AG Trustees offices', width: 878, height: 669 }}>
+    <img slot="decoration" class="home-brand-mark" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" />
+    <Fragment slot="title">Responsibility today, <span class="type-section-title-accent">continuity tomorrow</span></Fragment>
+    {companyDescription.split('\n\n').map((paragraph, index) => <Fragment>{index > 0 && <Fragment><br /><br /></Fragment>}{paragraph}</Fragment>)}
+    <a slot="action" class="btn site-button" href="/en/about-us/">Discover AG Trustees <span aria-hidden="true">→</span></a>
+  </ImageOverview>
+
+  <FeaturedEvent event={featuredEventPlaceholder} />
+
+  <ServiceOverview id="servizi" services={services} introduction={servicesIntroduction} eyebrow="Professional Services" title="Supporting people, today and for the future" actionLabel="Explore our services" />
+
+  <section class="home-wealth home-contained section-spacing" aria-labelledby="home-wealth-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4">
+        <div class="col-lg-5"><p class="type-eyebrow type-eyebrow--section home-section-label">Wealth and assets</p></div>
+        <div class="col-lg-7">
+          <h2 id="home-wealth-title" class="type-section-title type-section-title--compact">Managing today with <span class="type-section-title-accent d-xxl-block">responsibility for tomorrow</span></h2>
+        </div>
+      </div>
+      <ol class="row g-0 home-wealth-grid list-unstyled mb-0">
+        {needs.map((title, index) => (
+          <li class="col-12 col-md-6 col-xxl-4 d-flex flex-column justify-content-between home-wealth-card">
+            <span class="home-card-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="home-wealth-card-title mb-0">{title}</h3>
+          </li>
+        ))}
+      </ol>
+      <div class="text-center mt-4">
+        <a class="btn site-button" href="/en/wealth-and-assets/">Explore Wealth and assets <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-trust home-contained section-spacing" aria-labelledby="home-trust-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-6"><EditorialImage src="/assets/immagini/home/ag-trustees-consulenza-trust.jpg" width={1024} height={1024} alt="A discussion of trust appointment documents" plain /></div>
+        <div class="col-lg-5 offset-lg-1">
+          <p class="type-eyebrow type-eyebrow--section home-section-label">What is a trust?</p>
+          <h2 id="home-trust-title" class="type-section-title type-section-title--compact">A flexible structure with a clear purpose.</h2>
+          <p class="type-section-lead type-section-lead--relaxed home-section-copy">A trust is a legal arrangement in which assets are entrusted to a trustee, who is responsible for administering them for the benefit of one or more beneficiaries or for a specific purpose.</p>
+          <ol class="home-trust-points list-unstyled mb-0">
+            {trustPoints.map((text, index) => (
+              <li class="d-flex gap-3"><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><p class="mb-0">{text}</p></li>
+            ))}
+          </ol>
+          <a class="btn site-button mt-4" href="/en/trust/">Discover how a trust works <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-method home-contained section-spacing" aria-labelledby="home-method-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4">
+        <div class="col-lg-5 home-method-heading">
+          <img class="home-brand-mark" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" loading="lazy" />
+          <p class="type-eyebrow type-eyebrow--section home-section-label">Why Choose AG Trustees?</p>
+          <h2 id="home-method-title" class="type-section-title type-section-title--compact mb-0">Expertise and responsibility <span class="d-lg-block">for the long term</span></h2>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-0 home-values">
+            {values.map(({ title, description }) => (
+              <div class="col-md-6 home-value">
+                <h3>{title}</h3>
+                <p class="mb-0">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <NewsFeed articles={articlePlaceholders} eyebrow="News and insights" />
+  <NewsletterCallToAction contained={false} title="AG Informa – News and updates">Receive a curated selection of news, expert insights and upcoming events to stay informed about developments in trusts, wealth management and related legal matters.</NewsletterCallToAction>
+</Layout>

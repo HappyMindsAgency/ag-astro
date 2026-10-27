@@ -1,29 +1,9 @@
 ---
-import SearchHighlight from '../../components/SearchHighlight.astro';
-import { searchResultTypes, searchSite } from '../../data/search';
+import SearchSuggestions from '../../components/SearchSuggestions.astro';
+
 
 export const partial = true;
 
-const query = Astro.url.searchParams.get('q')?.trim() ?? '';
-const results = query.length >= 2 ? await searchSite(query) : [];
-const suggestions = results.filter(({ href }) => href).slice(0, 5);
-const summary = results.length ? `${results.length} ${results.length === 1 ? 'risultato' : 'risultati'}` : 'Nessun risultato';
 ---
 
-<div data-summary={summary}>
-  {suggestions.length > 0 && (
-    <ul class="site-search-list list-unstyled mb-0">
-      {suggestions.map(({ type, title, href }) => (
-        <li>
-          <a class="site-search-suggestion d-flex align-items-baseline" href={href}>
-            <span class="site-search-type">{searchResultTypes[type].label}</span>
-            <span class="site-search-title site-title-link"><SearchHighlight text={title} query={query} /></span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  )}
-  {results.length > 0
-    ? <a class="site-text-link site-search-all" href={`/cerca/?q=${encodeURIComponent(query)}`}>Tutti i risultati ({results.length}) <span aria-hidden="true">→</span></a>
-    : <p class="site-search-empty mb-0">Nessun risultato per “{query}”.</p>}
-</div>
+<SearchSuggestions />

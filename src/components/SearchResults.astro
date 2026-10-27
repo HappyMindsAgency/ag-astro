@@ -1,4 +1,7 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
+import { resultCount } from '../lib/utility-customlabel';
 import type { SearchResult } from '../types/content';
 import { searchResultTypes } from '../data/search';
 import SearchHighlight from './SearchHighlight.astro';
@@ -12,34 +15,36 @@ interface Props {
 }
 
 const { query, results } = Astro.props;
-const dateFormat = new Intl.DateTimeFormat('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const dateFormat = new Intl.DateTimeFormat(getLangFromUrl(Astro.url) === 'en' ? 'en-GB' : 'it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const filters = Object.entries(searchResultTypes)
-  .map(([value, { plural }]) => ({ value, label: plural, count: results.filter(({ type }) => type === value).length }))
+  .map(([value, { plural }]) => ({ value, label: customLabel(plural, getLangFromUrl(Astro.url)), count: results.filter(({ type }) => type === value).length }))
   .filter(({ count }) => count > 0);
-const countLabel = (count: number) => `${count} ${count === 1 ? 'risultato' : 'risultati'}`;
+const countLabel = (count: number) => resultCount(count, getLangFromUrl(Astro.url));
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
 ---
 
 <section class="search-results section-spacing" aria-labelledby="search-results-title" data-search-results>
   <div class="container section-container">
-    <h2 id="search-results-title" class="visually-hidden">Risultati della ricerca</h2>
-    <form class="library-search d-flex flex-column flex-md-row align-items-md-end gap-3" action="/cerca/" method="get" role="search" aria-label="Cerca nel sito">
+    <h2 id="search-results-title" class="visually-hidden">{t('Risultati della ricerca')}</h2>
+    <form class="library-search d-flex flex-column flex-md-row align-items-md-end gap-3" action={localizeHref("/cerca/", lang)} method="get" role="search" aria-label={t('Cerca nel sito')}>
       <div class="flex-grow-1">
-        <label class="form-label" for="search-results-query">Cerca per titolo o per parola chiave</label>
+        <label class="form-label" for="search-results-query">{t('Cerca per titolo o per parola chiave')}</label>
         <div class="library-query">
           <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" />
-          <input id="search-results-query" class="form-control" name="q" type="search" value={query} placeholder="Cerca nel sito…" enterkeyhint="search" />
+          <input id="search-results-query" class="form-control" name="q" type="search" value={query} placeholder={t('Cerca nel sito…')} enterkeyhint="search" />
         </div>
       </div>
       <div>
-        <button class="btn site-button site-button--blue site-button--small library-submit justify-content-center" type="submit">Cerca <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+        <button class="btn site-button site-button--blue site-button--small library-submit justify-content-center" type="submit">{t('Cerca')} <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
       </div>
     </form>
 
     {results.length > 0 && (
       <Fragment>
         {filters.length > 1 && (
-          <div class="search-results-filters d-flex flex-wrap gap-2" role="group" aria-label="Filtra per tipo">
-            <button class="content-filter content-filter--compact" type="button" data-search-filter="" aria-pressed="true">Tutti ({results.length})</button>
+          <div class="search-results-filters d-flex flex-wrap gap-2" role="group" aria-label={t('Filtra per tipo')}>
+            <button class="content-filter content-filter--compact" type="button" data-search-filter="" aria-pressed="true">{t('Tutti')} ({results.length})</button>
             {filters.map(({ value, label, count }) => <button class="content-filter content-filter--compact" type="button" data-search-filter={value} aria-pressed="false">{label} ({count})</button>)}
           </div>
         )}
@@ -48,30 +53,33 @@ const countLabel = (count: number) => `${count} ${count === 1 ? 'risultato' : 'r
           {results.map(({ type, title, href, excerpt, category, dateTime }) => (
             <li class="search-result" data-search-result data-search-type={type}>
               <p class="search-result-meta">
-                <span>{searchResultTypes[type].label}</span>
+                <span>{t(searchResultTypes[type].label)}</span>
                 {category && <span>{category}</span>}
                 {dateTime && <time datetime={dateTime}>{dateFormat.format(new Date(dateTime))}</time>}
               </p>
               <h3 class="search-result-title">
-                {href ? <a class="site-title-link" href={href}><SearchHighlight text={title} query={query} /></a> : <SearchHighlight text={title} query={query} />}
+                {href ? <a class="site-title-link" href={localizeHref(href, lang)}><SearchHighlight text={title} query={query} /></a> : <SearchHighlight text={title} query={query} />}
               </h3>
               {excerpt && <p class="search-result-excerpt mb-0"><SearchHighlight text={excerpt} query={query} /></p>}
             </li>
           ))}
         </ol>
-        <div class="library-more text-center d-none" data-search-more-wrapper><button class="btn site-button" type="button" data-search-more>Carica altri risultati <span aria-hidden="true">↓</span></button></div>
+        <div class="library-more text-center d-none" data-search-more-wrapper><button class="btn site-button" type="button" data-search-more>{t('Carica altri risultati')} <span aria-hidden="true">↓</span></button></div>
       </Fragment>
     )}
     {query && results.length === 0 && (
       <Fragment>
-        <p class="library-count">Nessun risultato</p>
-        <p class="mb-0">Controlli l’ortografia o provi con un termine più generico.</p>
+        <p class="library-count">{t('Nessun risultato')}</p>
+        <p class="mb-0">{t('Controlli l’ortografia o provi con un termine più generico.')}</p>
       </Fragment>
     )}
   </div>
 </section>
 
 <script>
+  import { resultCount } from '../lib/utility-customlabel';
+  import { getLangFromUrl } from '../lib/lang-switch/route-map';
+  const lang = getLangFromUrl(new URL(location.href));
   document.querySelectorAll<HTMLElement>('[data-search-results]').forEach((section) => {
     const buttons = section.querySelectorAll<HTMLButtonElement>('[data-search-filter]');
     const items = [...section.querySelectorAll<HTMLElement>('[data-search-result]')];
@@ -88,7 +96,7 @@ const countLabel = (count: number) => `${count} ${count === 1 ? 'risultato' : 'r
       items.forEach((item) => item.classList.add('d-none'));
       visible.forEach((item, index) => item.classList.toggle('d-none', index >= limit));
       buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.searchFilter === type)));
-      if (count) count.textContent = `${visible.length} ${visible.length === 1 ? 'risultato' : 'risultati'}`;
+      if (count) count.textContent = resultCount(visible.length, lang);
       moreWrapper?.classList.toggle('d-none', visible.length <= limit);
     };
 

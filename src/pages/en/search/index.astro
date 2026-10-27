@@ -1,0 +1,19 @@
+---
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import SearchResults from '../../../components/SearchResults.astro';
+import { searchSite } from '../../../data/search';
+import customLabel from '../../../lib/utility-customlabel';
+
+const lang = 'en';
+const query = Astro.url.searchParams.get('q')?.trim() ?? '';
+const results = query ? await searchSite(query, lang) : [];
+---
+
+<Layout lang={lang}>
+  <PageIntro breadcrumb="Search" eyebrow="Search" compact>
+    <Fragment slot="title"><span class="d-block">Search</span>{' '}<span class="d-block text-secondary">the site.</span></Fragment>
+    {query ? customLabel(results.length ? 'Risultati per “{query}”.' : 'Nessun risultato per “{query}”.', lang, { query }) : customLabel('Pagine, notizie, eventi e documenti della Knowledge Library.', lang)}
+  </PageIntro>
+  <SearchResults query={query} results={results} />
+</Layout>

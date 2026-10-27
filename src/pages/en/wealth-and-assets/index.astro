@@ -1,0 +1,198 @@
+---
+import customLabel from '../../../lib/utility-customlabel';
+import Layout from '../../../components/Layout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import OverviewBanner from '../../../components/OverviewBanner.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import RelatedContent from '../../../components/RelatedContent.astro';
+import CallToAction from '../../../components/CallToAction.astro';
+import { relatedArticlesPlaceholder, relatedDocumentsPlaceholder } from '../../../data/wealth-placeholders';
+import '../../../styles/pages/patrimonio.scss';
+
+const lang = 'en';
+
+const needs = [
+  {
+    "title": "Asset protection and preservation",
+    "icon": "patrimonio-protezione.svg",
+    "description": [
+      "Identifying potential risks and organising specific assets within a clearly defined arrangement, supported by clear rules and responsibilities.",
+      "Effective asset management requires lawful planning that reflects the individual's personal, family and professional circumstances."
+    ]
+  },
+  {
+    "title": "Succession planning",
+    "icon": "patrimonio-generazioni.svg",
+    "description": [
+      "Planning the transfer of wealth in accordance with family wishes and the interests of those involved.",
+      "Careful planning helps clarify roles, timescales and arrangements, reducing uncertainty as assets pass from one generation to the next."
+    ]
+  },
+  {
+    "title": "Family business continuity",
+    "icon": "patrimonio-impresa.svg",
+    "description": [
+      "Establishing arrangements for managing company shareholdings, defining responsibilities and setting decision-making principles to support the business into the future.",
+      "The aim is to maintain alignment between ownership, corporate governance and the responsibilities of future generations."
+    ]
+  },
+  {
+    "title": "Supporting vulnerable individuals and long-term care",
+    "icon": "patrimonio-persone.svg",
+    "description": [
+      "Setting aside assets and resources to provide for the care, support and long-term wellbeing of a vulnerable individual.",
+      "Planning must take account of current and future needs, the people responsible for providing support, how resources will be used and the continuity of care."
+    ]
+  },
+  {
+    "title": "Property portfolios",
+    "icon": "patrimonio-beni.svg",
+    "description": [
+      "Coordinating the administration of properties with different characteristics and uses, establishing clear principles for their management, preservation and eventual transfer."
+    ]
+  },
+  {
+    "title": "Investments and overseas assets",
+    "icon": "patrimonio-beni.svg",
+    "description": [
+      "Bringing investments, financial holdings and assets located in different countries within a coordinated framework, taking account of applicable laws and compliance obligations."
+    ]
+  },
+  {
+    "title": "Art and collections",
+    "icon": "patrimonio-beni.svg",
+    "description": [
+      "Preserving the integrity and cultural value of artworks and collections through appropriate arrangements for their conservation, administration, stewardship and transfer."
+    ]
+  },
+  {
+    "title": "Philanthropy and the third sector",
+    "icon": "patrimonio-beni.svg",
+    "description": [
+      "Allocating resources to social, cultural or public-benefit purposes, with clearly defined objectives, responsibilities and administrative arrangements."
+    ]
+  },
+  {
+    "title": "Complex asset structures",
+    "icon": "patrimonio-beni.svg",
+    "description": [
+      "Bringing together different assets, interests and responsibilities within a coherent structure aligned with the intended objectives."
+    ]
+  }
+];
+
+const faqs = [
+  {
+    "question": "What does wealth planning involve?",
+    "answer": "It means organising assets, responsibilities and objectives within a long-term framework, clarifying how the assets are to be administered and passed on."
+  },
+  {
+    "question": "When can a trust be useful?",
+    "answer": "A trust may be considered to support succession planning, ensure business continuity, protect vulnerable individuals or administer complex assets in accordance with defined purposes and rules."
+  },
+  {
+    "question": "How is the most appropriate wealth planning solution assessed?",
+    "answer": "The assessment starts with the objectives, the composition of the assets and the relationships between the people involved."
+  }
+];
+---
+
+<Layout lang={lang}>
+  <PageIntro breadcrumb="Wealth and assets" eyebrow="Behind every asset are people, relationships and decisions." mobileTitleLeading="relaxed" fitMobileTitle>
+    <Fragment slot="title"><span class="text-secondary">Wealth and assets</span></Fragment>
+    Wealth is more than a collection of assets. It encompasses people, relationships, businesses, responsibilities and plans that evolve over time. Giving wealth a clear structure means identifying objectives, defining responsibilities and establishing rules to guide the administration and management of assets over the long term.
+  </PageIntro>
+
+  <OverviewBanner id="patrimonio-overview" eyebrow="Understanding wealth" class="patrimonio-overview" backgroundImage="/assets/immagini/patrimonio/ag-trustees-gestione-patrimonio.jpg">
+    <Fragment slot="title">Value, relationships and <span class="overview-banner-accent">the future</span></Fragment>
+    <p>Every estate is different, both in its composition and in the story behind it. It may include company shareholdings, property, financial assets, works of art, rights and other forms of ownership.</p>
+    <p>Beyond their financial value, assets are connected to family needs, responsibilities towards others, business plans and long-term objectives.</p>
+    <p>For this reason, we begin not with a particular legal structure, but with an understanding of what the assets represent and the purposes they are intended to serve.</p>
+  </OverviewBanner>
+
+  <section class="patrimonio-needs section-spacing" aria-labelledby="patrimonio-needs-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4">
+        <div class="col-lg-6">
+          <p class="type-eyebrow type-eyebrow--section patrimonio-eyebrow mb-0">Wealth planning needs</p>
+        </div>
+        <div class="col-lg-6">
+          <h2 id="patrimonio-needs-title" class="type-section-title type-section-title--compact mb-0">Creating a framework for <span class="type-section-title-accent">long-term continuity</span></h2>
+        </div>
+      </div>
+
+      <ol id="patrimonio-needs-list" class="patrimonio-needs-list list-unstyled mb-0">
+        {needs.map(({ title, icon, description }, index) => {
+          const headingId = `patrimonio-need-heading-${index}`;
+          const contentId = `patrimonio-need-content-${index}`;
+          const number = String(index + 1).padStart(2, '0');
+
+          return (
+            <li class="row g-0 align-items-center patrimonio-need">
+              <h3 id={headingId} class="col-lg-6 patrimonio-need-heading mb-0">
+                <span class="d-none d-lg-flex align-items-center patrimonio-need-label">
+                  <span class="patrimonio-need-index" aria-hidden="true">{number}</span>
+                  <img src={`/assets/icone/${icon}`} alt="" width="26" height="26" loading="lazy" />
+                  <span>{title}</span>
+                </span>
+                <button
+                  class="d-flex d-lg-none align-items-center w-100 text-start patrimonio-need-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#${contentId}`}
+                  aria-expanded="false"
+                  aria-controls={contentId}
+                >
+                  <span class="patrimonio-need-index" aria-hidden="true">{number}</span>
+                  <img src={`/assets/icone/${icon}`} alt="" width="26" height="26" loading="lazy" />
+                  <span class="flex-grow-1">{title}</span>
+                  <span class="collapse-toggle" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div id={contentId} class="col-lg-6 ps-lg-3 collapse d-lg-block patrimonio-need-content" aria-labelledby={headingId} data-bs-parent="#patrimonio-needs-list">
+                {description.map((paragraph) => <p class="mb-0">{paragraph}</p>)}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </section>
+
+  <section class="patrimonio-method section-spacing" aria-labelledby="patrimonio-method-title">
+    <div class="container section-container px-lg-0">
+      <div class="row gx-4 gy-4 align-items-center">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section patrimonio-eyebrow">A plan shaped by individual circumstances</p>
+          <h2 id="patrimonio-method-title" class="type-section-title mb-0">
+            Objectives first, then the right <span class="patrimonio-method-accent">structures</span>
+          </h2>
+          <a class="btn site-button site-button--light site-button--small patrimonio-method-action d-none d-lg-inline-flex" href="/en/trust/#come-funziona">Discover how a trust works <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="col-lg-5 type-section-lead patrimonio-method-copy">
+          <p>Wealth planning requires an in-depth understanding of the people and interests involved.</p>
+          <p>The process begins with listening and analysing the circumstances. Working with the appointed professional advisers, we assess the assets, family relationships, potential risks, objectives and timescale.</p>
+          <p class="mb-0">Only then can an appropriate structure be identified and objectives set that can be achieved over time.</p>
+          <a class="btn site-button site-button--light site-button--small patrimonio-method-action d-lg-none" href="/en/trust/#come-funziona">Discover how a trust works <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FaqSection id="patrimonio-faq" items={faqs}>
+    <Fragment slot="title">Wealth planning <span class="type-section-title-accent">FAQs</span></Fragment>
+  </FaqSection>
+
+  <RelatedContent
+    eyebrow="Insights"
+    title="Resources and knowledge to guide decisions"
+    introduction="Articles, guides, legislation and insights on protecting, administering and passing on wealth."
+    articles={relatedArticlesPlaceholder}
+    documents={relatedDocumentsPlaceholder}
+  />
+
+  <CallToAction eyebrow="AG Trustees — Experts in trusts and wealth planning" href="/en/contact-us/" label="Contact us" backgroundImage="/assets/immagini/patrimonio/ag-trustees-cta-contatti.jpg">
+    <Fragment slot="title">{customLabel('Dare continuità al valore richiede una visione chiara', lang)}</Fragment>
+    {customLabel('Ogni progetto patrimoniale nasce da una storia diversa. Comprenderla è il primo passo per costruire regole coerenti con le persone, gli obiettivi e il futuro.', lang)}
+  </CallToAction>
+</Layout>

@@ -1,3 +1,5 @@
+import customLabel from '../lib/utility-customlabel';
+import { localizeHref, type Locale } from '../lib/lang-switch/route-map';
 import type { SearchResult } from '../types/content';
 import { articlePlaceholders } from './article-placeholders';
 import { eventPlaceholders } from './event-placeholders';
@@ -30,13 +32,14 @@ const placeholderIndex: SearchResult[] = [
   ...libraryDocumentPlaceholders.map(({ title, downloadUrl, category, dateTime }): SearchResult => ({ type: 'document', title, href: downloadUrl, category, dateTime })),
 ];
 
-export async function searchSite(query: string): Promise<SearchResult[]> {
+export async function searchSite(query: string, lang: Locale = 'it'): Promise<SearchResult[]> {
   const terms = searchTerms(query);
   return placeholderIndex
+    .map(result => ({ ...result, title: result.type === 'page' ? customLabel(result.title, lang) : result.title, href: localizeHref(result.href, lang) }))
     .map((result) => {
       const title = normalizeSearchText(result.title);
       const { label, plural } = searchResultTypes[result.type];
-      const text = normalizeSearchText([result.title, result.excerpt, result.category, label, plural].join(' '));
+      const text = normalizeSearchText([result.title, result.excerpt, result.category, customLabel(label, lang), customLabel(plural, lang)].join(' '));
       const score = terms.length && terms.every((term) => text.includes(term)) ? 1 + terms.filter((term) => title.includes(term)).length : 0;
       return { result, score };
     })

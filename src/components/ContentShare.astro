@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
 import '../styles/components/content-share.scss';
 
 interface Props {
@@ -8,20 +10,24 @@ interface Props {
 
 const { title, url } = Astro.props;
 const shareUrl = url ?? `${Astro.url.origin}${Astro.url.pathname}`;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <div class="content-share" data-content-share data-share-title={title} data-share-url={url}>
-  <p class="content-share-label">Condividi</p>
+  <p class="content-share-label">{customLabel('Condividi', lang)}</p>
   <div class="d-flex align-items-center">
-    <a class="content-share-control" data-share-linkedin href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="Condividi su LinkedIn"><img src="/assets/icone/condividi-linkedin.svg" width="44" height="34" alt="" /></a>
-    <a class="content-share-control" data-share-email href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}`} aria-label="Condividi via email"><img src="/assets/icone/condividi-email.svg" width="44" height="34" alt="" /></a>
-    <button class="content-share-control" type="button" data-copy-link aria-label="Copia il link"><img src="/assets/icone/copia-link.svg" width="40" height="34" alt="" /></button>
+    <a class="content-share-control" data-share-linkedin href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer" aria-label={customLabel('Condividi su LinkedIn', lang)}><img src="/assets/icone/condividi-linkedin.svg" width="44" height="34" alt="" /></a>
+    <a class="content-share-control" data-share-email href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}`} aria-label={customLabel('Condividi via email', lang)}><img src="/assets/icone/condividi-email.svg" width="44" height="34" alt="" /></a>
+    <button class="content-share-control" type="button" data-copy-link aria-label={customLabel('Copia il link', lang)}><img src="/assets/icone/copia-link.svg" width="40" height="34" alt="" /></button>
   </div>
   <span class="visually-hidden" role="status" data-copy-status></span>
 </div>
 
 <script>
   import Tooltip from 'bootstrap/js/dist/tooltip';
+  import customLabel from '../lib/utility-customlabel';
+
+  const lang = document.documentElement.lang === 'en' ? 'en' : 'it';
 
   document.querySelectorAll<HTMLElement>('[data-content-share]').forEach((share) => {
     const shareUrl = share.dataset.shareUrl ?? `${window.location.origin}${window.location.pathname}`;
@@ -33,7 +39,7 @@ const shareUrl = url ?? `${Astro.url.origin}${Astro.url.pathname}`;
     const status = share.querySelector<HTMLElement>('[data-copy-status]');
     if (!copyButton) return;
     const feedback = Tooltip.getOrCreateInstance(copyButton, {
-      title: 'Link copiato.',
+      title: customLabel('Link copiato.', lang),
       animation: false,
       trigger: 'manual',
       placement: 'top',
@@ -53,9 +59,9 @@ const shareUrl = url ?? `${Astro.url.origin}${Astro.url.pathname}`;
       let message: string;
       try {
         await navigator.clipboard.writeText(shareUrl);
-        message = 'Link copiato.';
+        message = customLabel('Link copiato.', lang);
       } catch {
-        message = 'Non è stato possibile copiare il link.';
+        message = customLabel('Non è stato possibile copiare il link.', lang);
       }
       if (status) status.textContent = message;
       window.clearTimeout(feedbackTimeout);

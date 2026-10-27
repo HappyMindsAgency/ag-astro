@@ -1,0 +1,186 @@
+---
+import type { ArticleDetail, ArticlePreview, DocumentPreview } from '../../types/content';
+import Layout from '../Layout.astro';
+import Breadcrumb from '../Breadcrumb.astro';
+import ArticleAuthor from '../ArticleAuthor.astro';
+import EditorialContactCard from '../EditorialContactCard.astro';
+import ContentShare from '../ContentShare.astro';
+import FaqSection from '../FaqSection.astro';
+import DocumentList from '../DocumentList.astro';
+import RelatedContent from '../RelatedContent.astro';
+import CallToAction from '../CallToAction.astro';
+import '../../styles/pages/articolo.scss';
+import '../../styles/components/editorial-prose.scss';
+
+import customLabel from '../../lib/utility-customlabel';
+import { localizeHref, type Locale } from '../../lib/lang-switch/route-map';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'it' } = Astro.props;
+
+// TODO Strapi: recuperare l’articolo tramite slugArt e sostituire questi dati provvisori, poi eliminare il commento.
+const article: ArticleDetail = {
+  title: 'Riforma fiscale 2025: le novità per i trust nella legge delega',
+  href: Astro.url.pathname,
+  category: 'Fisco e normativa',
+  date: '18 settembre 2026',
+  dateTime: '2026-09-18',
+  readingTime: '12 min di lettura',
+  image: { src: '/assets/immagini/articolo/copertina-riforma-fiscale.webp', alt: 'Statua della giustizia con bilancia e spada', width: 1536, height: 864 },
+  excerpt: 'Il decreto attuativo della legge delega fiscale introduce importanti chiarimenti sulla tassazione dei trust opachi e trasparenti. Analizziamo le disposizioni principali e i loro impatti sulla pianificazione patrimoniale.',
+  author: {
+    firstName: 'Marco', lastName: 'Montefameglio', role: 'Amministratore Delegato',
+    image: { src: '/assets/immagini/articolo/autore-provvisorio.webp', alt: 'Marco Montefameglio', width: 160, height: 160 },
+    biography: 'Duis id diam non nulla consequat tempor. Aliquam ex nisl, dapibus id rutrum id, pellentesque quis risus. Pellentesque in arcu et risus aliquam lobortis. Aenean ornare id felis sed dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra, enim pharetra venenatis facilisis, sem odio consectetur nisi, sit amet consectetur neque velit a nunc. Fusce in cursus mi.',
+  },
+  editorialNote: 'Contenuto realizzato con il supporto dell’intelligenza artificiale e sottoposto a controllo editoriale umano.',
+};
+const sections = [
+  { id: 'quadro-normativo', title: 'Il quadro normativo di riferimento' },
+  { id: 'trust-opachi', title: 'Trust opachi: nuove aliquote e base imponibile' },
+  { id: 'trust-trasparenti', title: 'Trust trasparenti e imposizione diretta' },
+  { id: 'impatti-pratici', title: 'Impatti pratici per i professionisti' },
+  { id: 'faq-articolo', title: customLabel('Domande frequenti', lang) },
+];
+const faqItems = [
+  'Il trust autodichiarato rientra nelle nuove disposizioni?',
+  'Quando entra in vigore la nuova disciplina?',
+  'Come cambia la base imponibile per i trust opachi?',
+  'I trust esteri sono soggetti alle stesse regole?',
+].map((question) => ({ question, answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan magna vitae vestibulum efficitur. Sed ligula enim, tincidunt ut blandit in, porta consectetur orci.' }));
+const documents: DocumentPreview[] = [
+  { title: 'Cassazione Civile, Sez. I, sent. n. 4321/2024 — Trust e separazione patrimoniale', category: 'Giurisprudenza e sentenze', abbreviation: 'GIU', metadata: '14 novembre 2024 | 8 pagine · 340 KB' },
+  { title: 'Tribunale di Milano, decreto n. 1892/2024 — Opponibilità del trust ai creditori', category: 'Giurisprudenza e sentenze', abbreviation: 'GIU', metadata: '03 settembre 2024 | 12 pagine · 278 KB' },
+];
+const relatedArticles: ArticlePreview[] = [
+  { title: 'Trust e successione: la Cassazione consolida il principio di separazione patrimoniale', category: 'Trust', date: '10 settembre 2026', dateTime: '2026-09-10', imageName: 'trust-successione', alt: 'Scaffali di una biblioteca', excerpt: 'Con la sentenza n. 18421/2026 la Suprema Corte ribadisce l’efficacia del trust nelle procedure concorsuali.' },
+  { title: 'Patti di famiglia e passaggio generazionale: aggiornamento alla luce della prassi notarile', category: 'Patrimonio', date: '28 agosto 2026', dateTime: '2026-08-28', imageName: 'patti-famiglia', alt: 'Documenti e prospetti per la gestione del patrimonio', excerpt: 'Il Consiglio Nazionale del Notariato ha pubblicato nuove linee guida sui patti di famiglia.' },
+  { title: 'Holding di famiglia: strutture societarie e pianificazione fiscale integrata', category: 'Impresa', date: '20 agosto 2026', dateTime: '2026-08-20', imageName: 'holding-famiglia', alt: 'Sala riunioni con vista sulla città', excerpt: 'Come ottimizzare la governance familiare attraverso strutture holding che combinano trust e fondazioni.' },
+].map(({ imageName, alt, ...item }) => ({ ...item, href: localizeHref('/ag-informa/articolo-provvisorio/', lang)!, image: { src: `/assets/immagini/articolo/${imageName}.webp`, alt, width: 1086, height: 612 } }));
+const consultation = { title: 'Il tuo trust è conforme alla nuova normativa?', description: 'I nostri esperti possono analizzare la tua struttura e guidarti nell’adeguamento.' };
+---
+
+<Layout lang={lang}>
+  <div class="article-page" data-article>
+    <header class="article-hero">
+      <div class="container frame-container">
+        <Breadcrumb current={article.category} parents={[{ label: 'AG Informa', href: localizeHref('/ag-informa/', lang)! }]} light />
+        <div class="row gx-5 gy-4 align-items-center article-hero-layout">
+          <div class="col-lg">
+            <p class="article-category">{article.category}</p>
+            <h1 id="page-title" class="article-title">{article.title}</h1>
+            <p class="article-introduction">{article.excerpt}</p>
+            <div class="article-meta d-flex flex-wrap align-items-center">
+              {article.author && <ArticleAuthor author={article.author} compact />}
+              <p class="mb-0">{customLabel('Pubblicato il', lang)} <time datetime={article.dateTime}>{article.date}</time></p>
+              {article.readingTime && <p class="mb-0">{article.readingTime}</p>}
+            </div>
+          </div>
+          <div class="col-lg-auto article-hero-media"><img class="d-block w-100 h-auto" src={article.image.src} alt={article.image.alt} width={article.image.width} height={article.image.height} /></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-main section-spacing">
+      <div class="container frame-container">
+        <div class="row gx-lg-5 gy-5">
+          <aside class="col-lg-3 order-lg-2 article-sidebar" aria-label={customLabel('Strumenti dell’articolo', lang)}>
+            <nav class="article-index article-sidebar-box" aria-label={customLabel('Indice dell’articolo', lang)}>
+              <p class="article-sidebar-label d-none d-lg-block">{customLabel('Indice', lang)}</p>
+              <button class="article-index-toggle d-flex d-lg-none align-items-center justify-content-between w-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#article-index-panel" aria-expanded="false" aria-controls="article-index-panel">{customLabel('Indice dell’articolo', lang)} <span class="collapse-toggle" aria-hidden="true"></span></button>
+              <div id="article-index-panel" class="collapse d-lg-block">
+                <div id="article-index-links" class="nav flex-column">
+                  {sections.map(({ id, title }) => <a class="nav-link" href={`#${id}`}>{title}</a>)}
+                </div>
+              </div>
+            </nav>
+            <ContentShare title={article.title} />
+            <div class="d-none d-lg-block"><EditorialContactCard {...consultation} /></div>
+          </aside>
+
+          <div class="col-lg-9 order-lg-1 article-content">
+            <!-- TODO Strapi: sostituire il corpo provvisorio con il contenuto editoriale, mantenendo lo stile editorial-prose, poi eliminare il commento. -->
+            <article class="editorial-prose" aria-label={article.title}>
+              <section id="quadro-normativo" aria-labelledby="quadro-normativo-title">
+                <h2 id="quadro-normativo-title">Il quadro normativo di riferimento</h2>
+                <p>Il decreto legislativo n. 87/2025, in attuazione della legge delega per la riforma fiscale (l. n. 111/2023), ha introdotto una disciplina organica e sistematica per la tassazione dei trust. Si tratta del primo intervento normativo di rango primario specificamente dedicato a questo strumento nel sistema tributario italiano, dopo anni di riferimento esclusivo a circolari e risoluzioni dell’Agenzia delle Entrate.</p>
+                <p>Le nuove disposizioni, contenute negli articoli da 44 a 61 del decreto, ridisegnano il perimetro soggettivo e oggettivo dell’imposizione, stabilendo una distinzione chiara e vincolante tra due categorie fondamentali: i <strong>trust opachi</strong> e i <strong>trust trasparenti</strong>.</p>
+                <blockquote>“Per la prima volta il legislatore italiano distingue esplicitamente tra trust opachi e trasparenti, attribuendo a ciascuna categoria un autonomo regime impositivo a livello primario.”</blockquote>
+                <p>Il provvedimento recepisce, in larga parte, gli orientamenti già espressi nella circolare n. 34/E del 2022, elevandoli a norma di legge e attribuendo loro la certezza giuridica necessaria per una pianificazione patrimoniale stabile e difendibile in sede di contenzioso.</p>
+              </section>
+              <section id="trust-opachi" aria-labelledby="trust-opachi-title">
+                <h2 id="trust-opachi-title">Trust opachi: nuove aliquote e base imponibile</h2>
+                <p>I trust opachi — quelli nei quali i beneficiari non sono identificati o non vantano un diritto soggettivo certo alla distribuzione — sono ora soggetti a un regime di imposizione autonoma. Il trust è trattato come soggetto IRES a tutti gli effetti, con un’aliquota ordinaria del 24%.</p>
+                <h3>Le principali novità in materia di base imponibile</h3>
+                <p>La determinazione del reddito imponibile del trust opaco segue le regole IRES con alcune specificità:</p>
+                <ul>
+                  <li>I <strong>redditi fondiari</strong> degli immobili intestati al trust concorrono alla base imponibile secondo le regole catastali, salvo opzione per il regime analitico.</li>
+                  <li>I <strong>dividendi</strong> percepiti dal trust sono esclusi dal reddito imponibile nella misura del 95%, analogamente a quanto previsto per le società di capitali.</li>
+                  <li>Le <strong>plusvalenze da cessione di partecipazioni qualificate</strong> beneficiano del regime PEX (95% di esenzione) alle condizioni ordinarie.</li>
+                  <li>Le <strong>spese di gestione e amministrazione</strong> del trust sono integralmente deducibili se documentate e inerenti all’attività svolta.</li>
+                </ul>
+                <h3>Il trattamento delle distribuzioni ai beneficiari</h3>
+                <p>Le somme distribuite dal trust opaco ai beneficiari costituiscono redditi di capitale per questi ultimi, assoggettati a ritenuta a titolo d’imposta del 26%. La ritenuta è operata dal trustee in qualità di sostituto d’imposta, con obbligo di versamento entro il 16 del mese successivo alla distribuzione.</p>
+              </section>
+              <section id="trust-trasparenti" aria-labelledby="trust-trasparenti-title">
+                <h2 id="trust-trasparenti-title">Trust trasparenti e imposizione diretta</h2>
+                <p>Per i trust trasparenti — quelli con beneficiari individuati titolari di un diritto attuale al godimento — il principio cardine rimane quello della imputazione per trasparenza. Il reddito è attribuito pro quota ai beneficiari residenti in Italia, prescindendo dalla distribuzione effettiva.</p>
+                <p>La novità di maggiore impatto riguarda i <strong>criteri di determinazione della quota imputabile</strong>: in assenza di disposizioni specifiche nell’atto istitutivo, si presume una ripartizione uguale tra tutti i beneficiari identificati. Il trustee è tenuto a comunicare annualmente all’Agenzia delle Entrate l’elenco dei beneficiari e le rispettive quote.</p>
+              </section>
+              <section id="impatti-pratici" aria-labelledby="impatti-pratici-title">
+                <h2 id="impatti-pratici-title">Impatti pratici per i professionisti</h2>
+                <p>La riforma impone una revisione strutturata degli assetti esistenti. I professionisti che gestiscono trust attivi devono procedere a una ricognizione della tipologia di ciascuno strumento alla luce della nuova tassonomia normativa.</p>
+                <h3>Cosa fare nei prossimi mesi</h3>
+                <ul>
+                  <li><strong>Classificazione</strong> — Ricondurre ogni trust esistente alla categoria “opaco” o “trasparente” ai sensi del d.lgs. 87/2025.</li>
+                  <li><strong>Adeguamento dell’atto istitutivo</strong> — Verificare se le clausole esistenti sono coerenti con il nuovo quadro e valutare modifiche in sede notarile.</li>
+                  <li><strong>Obblighi dichiarativi</strong> — Predisporre le comunicazioni annuali all’Agenzia delle Entrate per i trust trasparenti (nuovo modello F/TR).</li>
+                  <li><strong>Pianificazione delle distribuzioni</strong> — Per i trust opachi, valutare la convenienza di anticipare o posticipare le distribuzioni ai beneficiari in funzione dell’ottimizzazione del carico fiscale complessivo.</li>
+                </ul>
+              </section>
+            </article>
+
+            <FaqSection id="faq-articolo" items={faqItems} embedded><Fragment slot="title">{customLabel('Domande frequenti', lang)}</Fragment></FaqSection>
+
+            {documents.length > 0 && <section class="editorial-documents" aria-labelledby="article-documents-title"><h2 id="article-documents-title">{customLabel('Documenti correlati', lang)}</h2><DocumentList documents={documents} compact /></section>}
+            {article.editorialNote && <div class="article-editorial-note d-flex align-items-center"><img src="/assets/immagini/articolo/contrassegno-ai.webp" width="81" height="81" alt="" loading="lazy" /><p class="mb-0">{article.editorialNote}</p></div>}
+            {article.author && <ArticleAuthor author={article.author} />}
+            <div class="article-mobile-contact d-lg-none"><EditorialContactCard {...consultation} /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <RelatedContent articles={relatedArticles} eyebrow={customLabel('Continua a leggere', lang)} showLibraryLink={false}>
+      <a slot="articles-action" class="site-text-link" href={localizeHref('/ag-informa/', lang)}>{customLabel('Tutti gli articoli', lang)} <span aria-hidden="true">→</span></a>
+    </RelatedContent>
+
+    <CallToAction contained plainBackground eyebrow="AG Trustees" href={localizeHref('/contatti/', lang)} label={customLabel('Richiedi una consulenza', lang)} secondaryAction={{ label: customLabel('Iscriviti alla newsletter', lang), href: localizeHref('/newsletter/', lang) }}>
+      <Fragment slot="title">Lorem ipsum dolor sit amet.<br /><em class="fw-normal">Lorem ipsum.</em></Fragment>
+      Nam justo orci, vehicula in lobortis mollis, condimentum non metus. Aenean non erat ut nunc sollicitudin bibendum ut non lorem. Phasellus malesuada tempor augue, vel pulvinar est porttitor a.
+    </CallToAction>
+  </div>
+</Layout>
+
+<script>
+  import ScrollSpy from 'bootstrap/js/dist/scrollspy';
+
+  const article = document.querySelector<HTMLElement>('[data-article]');
+  if (article) {
+    const readingLine = parseFloat(getComputedStyle(article.querySelector('.editorial-prose section')!).scrollMarginTop);
+    const readingBand = 48;
+    const createIndexSpy = () => new ScrollSpy(document.body, {
+      target: '#article-index-links',
+      rootMargin: `-${readingLine}px 0px -${Math.max(0, window.innerHeight - readingLine - readingBand)}px`,
+      threshold: [0],
+    });
+    let indexSpy = createIndexSpy();
+    window.addEventListener('resize', () => {
+      indexSpy.dispose();
+      indexSpy = createIndexSpy();
+    });
+  }
+</script>

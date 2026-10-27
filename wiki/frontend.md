@@ -111,6 +111,14 @@ Il modulo di iscrizione è solo in `/newsletter/`: usa il foglio NL, `.contact-f
 - Il video di Chi siamo resta nascosto al lancio.
 - La SEO arriverà da Strapi, compreso `noindex, follow` della ricerca: non definirla nelle pagine.
 
+## Versione inglese
+
+L’italiano resta alla radice; le pagine inglesi sono in `src/pages/en/`, con URL tradotti. Ogni pagina imposta `lang`; layout, componenti e SCSS sono condivisi, come nel riferimento `cesenatico-astro`.
+
+`src/lib/utility-customlabel.ts` contiene le etichette riutilizzate (menu, pulsanti, moduli e messaggi); i testi delle singole pagine restano nelle pagine. `utility-customslug.ts` definisce i percorsi; `lang-switch/route-map.ts` collega le versioni del selettore. Per i futuri dettagli Strapi servirà la corrispondenza tra contenuti localizzati; i modelli e i dati provvisori sono condivisi.
+
+Le traduzioni arrivano dalla colonna inglese del foglio, che cambia posizione tra le schede. I contenuti dinamici conservano gli esempi esistenti fino all’integrazione Strapi: non mantenere una seconda serie di mock tradotti.
+
 ## Prima di condividere
 
 Esegui `npm run build` e `git diff --check`. Controlla i cambiamenti visivi su mobile, desktop, larghezze intermedie e ultrawide, comprese le interazioni di Figma **Present**. Se il server dev è attivo, isola la cache Vite della build di verifica. Controlla la produzione quando cambiano import o stili condivisi.

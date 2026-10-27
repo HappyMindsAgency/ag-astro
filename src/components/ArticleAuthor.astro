@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
 import type { TeamMember } from '../types/content';
 import '../styles/components/article-author.scss';
 
@@ -8,12 +10,13 @@ interface Props {
 }
 
 const { author, compact = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <div class:list={['article-author', { 'article-author--compact': compact, 'article-author--no-image': !author.image }]}>
   {author.image && <img class="article-author-image" src={author.image.src} alt={author.image.alt} width={author.image.width} height={author.image.height} loading="lazy" />}
   <div>
-    {!compact && <p class="article-author-label">L’autore</p>}
+    {!compact && <p class="article-author-label">{customLabel('L’autore', lang)}</p>}
     <p class="article-author-name">{author.firstName}{' '}{author.lastName}</p>
     {author.role && <p class="article-author-role">{author.role}</p>}
   </div>

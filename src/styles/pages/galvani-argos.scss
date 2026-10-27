@@ -27,7 +27,7 @@
   top: 0;
 }
 
-.heritage-company-grid {
+.heritage-companies .heritage-company-grid {
   margin-top: theme.$space-64;
   border-top: 1px solid theme.$ink;
   border-left: 1px solid theme.$ink;
@@ -115,7 +115,7 @@
     padding-block: theme.$space-64;
   }
 
-  .heritage-company-grid {
+  .heritage-companies .heritage-company-grid {
     margin-top: theme.$space-40;
   }
 

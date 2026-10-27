@@ -1,4 +1,6 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
 import '../styles/components/certifications.scss';
 
 const logos = [
@@ -7,19 +9,20 @@ const logos = [
   { src: '/assets/associazioni/tpe.png', alt: 'Trustee Protector Expert', width: 1444, height: 1531, className: 'certifications-logo--badge' },
   { src: '/assets/associazioni/cte.png', alt: 'Chartered Trust Expert', width: 1504, height: 1495, className: 'certifications-logo--badge' },
 ];
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <section id="certificazioni" class="certifications" aria-labelledby="certifications-title">
   <div class="row g-0">
     <div class="col-lg-6 col-xxl-5 order-lg-2 d-flex flex-column certifications-heading">
-      <p class="type-eyebrow type-eyebrow--section mb-0">Trasparenza e aggiornamento professionale</p>
-      <h2 id="certifications-title" class="type-section-title mb-0">Certificazioni e associazioni.</h2>
+      <p class="type-eyebrow type-eyebrow--section mb-0">{customLabel('Trasparenza e aggiornamento professionale', lang)}</p>
+      <h2 id="certifications-title" class="type-section-title mb-0">{customLabel('Certificazioni e associazioni.', lang)}</h2>
       <a class="btn site-button site-button--light d-lg-none" href="#certifications-logos">
-        Scopri di più <span aria-hidden="true">↓</span>
+        {customLabel('Scopri di più', lang)} <span aria-hidden="true">↓</span>
       </a>
     </div>
     <div id="certifications-logos" class="col-lg-6 col-xxl-7 order-lg-1 d-lg-flex align-items-center certifications-logos">
-      <ul class="row g-4 g-lg-0 align-items-center justify-content-between flex-grow-1 flex-xxl-nowrap list-unstyled mb-0" aria-label="Associazioni e certificazioni">
+      <ul class="row g-4 g-lg-0 align-items-center justify-content-between flex-grow-1 flex-xxl-nowrap list-unstyled mb-0" aria-label={customLabel('Associazioni e certificazioni', lang)}>
         {logos.map((logo) => (
           <li class="col-6 col-xxl-auto flex-shrink-1 certifications-logo">
             <img class={logo.className} src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} loading="lazy" />

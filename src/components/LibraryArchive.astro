@@ -1,4 +1,7 @@
 ---
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
+import { documentCount } from '../lib/utility-customlabel';
 import type { DocumentPreview } from '../types/content';
 import DocumentList from './DocumentList.astro';
 import '../styles/components/content-filter.scss';
@@ -11,58 +14,63 @@ interface Props {
 }
 
 const { id = 'library-archive', documents = [], categories = [...new Set(documents.map(({ category }) => category))].map(category => ({ label: category, value: category })) } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
 ---
 
 <section id={id} class="library-archive section-spacing" aria-labelledby={`${id}-title`} data-library-archive>
   <div class="container frame-container">
-    <h2 id={`${id}-title`} class="visually-hidden">Documenti della Knowledge Library</h2>
-    <form role="search" aria-label="Cerca nella Knowledge Library" data-library-form>
+    <h2 id={`${id}-title`} class="visually-hidden">{t('Documenti della Knowledge Library')}</h2>
+    <form role="search" aria-label={t('Cerca nella Knowledge Library')} data-library-form>
       <fieldset class="library-categories">
-        <legend class="visually-hidden">Filtra per categoria</legend>
+        <legend class="visually-hidden">{t('Filtra per categoria')}</legend>
         <div class="library-category-heading d-flex justify-content-between align-items-center gap-3">
-          <p class="library-filter-title mb-0" aria-hidden="true">Filtra per categoria</p>
-          <button class="library-reset d-xl-none" type="reset"><span aria-hidden="true">×</span> Cancella filtri</button>
+          <p class="library-filter-title mb-0" aria-hidden="true">{t('Filtra per categoria')}</p>
+          <button class="library-reset d-xl-none" type="reset"><span aria-hidden="true">×</span> {t("Cancella filtri")}</button>
         </div>
         <div class="d-flex flex-wrap gap-2">
-          {categories.map(({ label, value }) => <button class="content-filter content-filter--compact" type="button" data-library-category={value} aria-pressed="false">{label}</button>)}
+          {categories.map(({ label, value }) => <button class="content-filter content-filter--compact" type="button" data-library-category={value} aria-pressed="false">{t(label)}</button>)}
         </div>
       </fieldset>
 
       <div class="row gx-3 align-items-end library-search">
         <div class="col-12 col-xl-3">
-          <label class="form-label" for={`${id}-query`}>Cerca per titolo o per parola chiave</label>
+          <label class="form-label" for={`${id}-query`}>{t('Cerca per titolo o per parola chiave')}</label>
           <div class="library-query">
             <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" />
-            <input id={`${id}-query`} class="form-control" name="query" type="search" placeholder="Cerca per titolo o categoria…" />
+            <input id={`${id}-query`} class="form-control" name="query" type="search" placeholder={t('Cerca per titolo o categoria…')} />
           </div>
         </div>
         <div class="col-6 col-md-3 col-xl-auto">
-          <label class="form-label" for={`${id}-from`}>Dal</label>
+          <label class="form-label" for={`${id}-from`}>{t('Dal')}</label>
           <input id={`${id}-from`} class="form-control" name="from" type="date" />
         </div>
         <div class="col-6 col-md-3 col-xl-auto">
-          <label class="form-label" for={`${id}-to`}>Al</label>
+          <label class="form-label" for={`${id}-to`}>{t('Al')}</label>
           <input id={`${id}-to`} class="form-control" name="to" type="date" />
         </div>
         <div class="col-12 col-md-3 col-xl-auto">
-          <label class="form-label" for={`${id}-order`}>Ordina per</label>
-          <select id={`${id}-order`} class="form-select" name="order"><option value="recent">Più recenti</option><option value="oldest">Meno recenti</option></select>
+          <label class="form-label" for={`${id}-order`}>{t('Ordina per')}</label>
+          <select id={`${id}-order`} class="form-select" name="order"><option value="recent">{t('Più recenti')}</option><option value="oldest">{t('Meno recenti')}</option></select>
         </div>
         <div class="col-12 col-md-3 col-xl-auto">
-          <button class="btn site-button site-button--blue site-button--small library-submit justify-content-center" type="submit">Cerca <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+          <button class="btn site-button site-button--blue site-button--small library-submit justify-content-center" type="submit">{t('Cerca')} <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
         </div>
-        <div class="col-auto d-none d-xl-block"><button class="library-reset" type="reset"><span aria-hidden="true">×</span> Cancella filtri</button></div>
+        <div class="col-auto d-none d-xl-block"><button class="library-reset" type="reset"><span aria-hidden="true">×</span> {t("Cancella filtri")}</button></div>
       </div>
     </form>
 
-    <p class="library-count" role="status" data-library-count>{documents.length} {documents.length === 1 ? 'documento' : 'documenti'}</p>
+    <p class="library-count" role="status" data-library-count>{documentCount(documents.length, lang)}</p>
     <DocumentList documents={documents} />
-    <p class="library-empty d-none" data-library-empty>Nessun documento corrisponde ai filtri selezionati.</p>
-    <div class="library-more text-center d-none" data-library-more-wrapper><button class="btn site-button" type="button" data-library-more>Carica altri documenti <span aria-hidden="true">↓</span></button></div>
+    <p class="library-empty d-none" data-library-empty>{t('Nessun documento corrisponde ai filtri selezionati.')}</p>
+    <div class="library-more text-center d-none" data-library-more-wrapper><button class="btn site-button" type="button" data-library-more>{t('Carica altri documenti')} <span aria-hidden="true">↓</span></button></div>
   </div>
 </section>
 
 <script>
+  import customLabel, { documentCount } from '../lib/utility-customlabel';
+  import { getLangFromUrl } from '../lib/lang-switch/route-map';
+  const lang = getLangFromUrl(new URL(location.href));
   import { normalizeSearchText, searchTerms } from '../data/search-text';
 
   document.querySelectorAll<HTMLElement>('[data-library-archive]').forEach((archive) => {
@@ -101,13 +109,13 @@ const { id = 'library-archive', documents = [], categories = [...new Set(documen
       items.forEach(item => item.classList.add('d-none'));
       matching.forEach((item, index) => { list?.append(item); item.classList.toggle('d-none', index >= limit); });
       categoryButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.libraryCategory === category)));
-      if (count) count.textContent = `${matching.length} ${matching.length === 1 ? 'documento' : 'documenti'}`;
+      if (count) count.textContent = documentCount(matching.length, lang);
       empty?.classList.toggle('d-none', matching.length > 0);
       moreWrapper?.classList.toggle('d-none', matching.length <= limit);
     };
 
     const apply = (nextCategory = category) => {
-      to.setCustomValidity(from.value && to.value && from.value > to.value ? 'La data finale deve essere uguale o successiva a quella iniziale.' : '');
+      to.setCustomValidity(from.value && to.value && from.value > to.value ? customLabel('La data finale deve essere uguale o successiva a quella iniziale.', lang) : '');
       if (!form.reportValidity()) return;
       category = nextCategory;
       criteria = { terms: searchTerms(query.value), from: from.value, to: to.value, order: order.value };
