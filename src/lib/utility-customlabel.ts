@@ -149,7 +149,7 @@ const english: Record<string, string> = {
   'fiducia e longevità': 'trust and lasting relationships',
   'Tappe della storia': 'Our story',
   'Trasparenza e aggiornamento professionale': 'Transparency and continued professional development',
-  'Certificazioni e associazioni.': 'Certifications and professional associations',
+  'Certificazioni e associazioni.': 'Certifications & associations',
   'Associazioni e certificazioni': 'Professional associations and certifications',
   'Scopri di più': 'Find out more',
   'Aree di attività': 'Areas of activity',

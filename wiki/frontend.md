@@ -117,7 +117,7 @@ L’italiano resta alla radice; le pagine inglesi sono in `src/pages/en/`, con U
 
 `src/lib/utility-customlabel.ts` contiene le etichette riutilizzate (menu, pulsanti, moduli e messaggi); i testi delle singole pagine restano nelle pagine. `utility-customslug.ts` definisce i percorsi; `lang-switch/route-map.ts` collega le versioni del selettore. Per i futuri dettagli Strapi servirà la corrispondenza tra contenuti localizzati; i modelli e i dati provvisori sono condivisi.
 
-Le traduzioni arrivano dalla colonna inglese del foglio, che cambia posizione tra le schede. I contenuti dinamici conservano gli esempi esistenti fino all’integrazione Strapi: non mantenere una seconda serie di mock tradotti.
+Le traduzioni arrivano dalla colonna inglese del foglio, che cambia posizione tra le schede. Per le revisioni concordate, conserva l’originale nel foglio e affianca la proposta nella cella a destra, senza aggiungere intestazioni. I contenuti dinamici conservano gli esempi esistenti fino all’integrazione Strapi: non mantenere una seconda serie di mock tradotti.
 
 ## Prima di condividere
 
