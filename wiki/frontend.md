@@ -35,6 +35,8 @@ I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura de
 
 `PageIntro` include breadcrumb, titolo e introduzione. Usa `wideTitle` per ampliare la colonna da `xxl`, `fitMobileTitle` per adattare i titoli lunghi sotto `lg` e `compact` prima di un modulo. `mobileTitleLeading` e `titleSize` conservano le varianti del design; misure e interlinee sono in `variables.scss`.
 
+Nei titoli iniziali IT/EN, lo slot `title` contiene la parte blu e `titleAccent` la parte finale rossa, senza punto. `PageIntro` aggiunge il punto rosso anche quando il titolo è solo blu. L’accento inizia su una nuova riga; `inlineTitleAccent` conserva la composizione continua. Le parole evidenziate restano le stesse a tutte le larghezze.
+
 Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo il ruolo. Le varianti `--compact` e `--relaxed` mantengono gli adattamenti condivisi, senza correzioni nei fogli pagina.
 
 `CallToAction` mantiene lo stesso stile su tutte le pagine, con titolo bilanciato, sopratitolo senza maiuscolo forzato e descrizione bianca. `contained` limita il frame; `plainBackground` usa il gradiente senza foto. `NewsletterCallToAction` riusa il componente: in Home, Team e Contatti usa `contained={false}`, nella Library `plainBackground`.

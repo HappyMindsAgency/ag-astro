@@ -9,8 +9,8 @@ const results = query ? await searchSite(query) : [];
 ---
 
 <Layout>
-  <PageIntro breadcrumb="Ricerca" eyebrow="Ricerca" compact>
-    <Fragment slot="title"><span class="d-block">Cerca</span>{' '}<span class="d-block text-secondary">nel sito.</span></Fragment>
+  <PageIntro titleAccent="nel sito" breadcrumb="Ricerca" eyebrow="Ricerca" compact>
+    <Fragment slot="title">Cerca</Fragment>
     {query ? `${results.length ? 'Risultati' : 'Nessun risultato'} per “${query}”.` : 'Pagine, notizie, eventi e documenti della Knowledge Library.'}
   </PageIntro>
 

@@ -6,6 +6,8 @@ interface Props {
   breadcrumb: string;
   parents?: { label: string; href: string }[];
   eyebrow: string;
+  titleAccent?: string;
+  inlineTitleAccent?: boolean;
   mobileTitleLeading?: 'tight' | 'regular' | 'relaxed';
   wideTitle?: boolean;
   fitMobileTitle?: boolean;
@@ -13,7 +15,18 @@ interface Props {
   titleSize?: 'default' | 'compact';
 }
 
-const { breadcrumb, parents = [], eyebrow, mobileTitleLeading = 'regular', wideTitle = false, fitMobileTitle = wideTitle, compact = false, titleSize = 'default' } = Astro.props;
+const {
+  breadcrumb,
+  parents = [],
+  eyebrow,
+  titleAccent,
+  inlineTitleAccent = false,
+  mobileTitleLeading = 'regular',
+  wideTitle = false,
+  fitMobileTitle = wideTitle,
+  compact = false,
+  titleSize = 'default',
+} = Astro.props;
 const headingColumnClass = wideTitle ? 'col-md-6 col-xxl' : 'col-md-6';
 const copyColumnClass = wideTitle ? 'col-md-6 col-xxl-auto' : 'col-md-6';
 ---
@@ -30,7 +43,7 @@ const copyColumnClass = wideTitle ? 'col-md-6 col-xxl-auto' : 'col-md-6';
           'type-page-title--relaxed': mobileTitleLeading === 'relaxed',
           'type-page-title--compact': titleSize === 'compact',
         }]}>
-          <slot name="title" />
+          <slot name="title" />{titleAccent && ' '}<span class:list={['text-secondary', { 'd-block': titleAccent && !inlineTitleAccent }]}>{titleAccent}.</span>
         </h1>
       </div>
       <div class:list={[copyColumnClass, 'page-intro-copy-column']}>
