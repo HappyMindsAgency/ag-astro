@@ -278,7 +278,7 @@
 }
 
 .about-method-copy {
-  color: rgba(white, 0.5);
+  color: rgba(white, 0.59);
   font-size: theme.$font-size-body;
   font-weight: theme.$font-weight-light;
   line-height: theme.$line-height-body;
@@ -333,7 +333,7 @@
   }
 
   .about-method-copy {
-    color: theme.$muted-on-blue-mobile;
+    color: theme.$method-copy-mobile;
     font-size: theme.$font-size-card-copy-mobile;
     font-weight: theme.$font-weight-regular;
     line-height: theme.$line-height-compact-copy;

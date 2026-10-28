@@ -18,30 +18,9 @@ Servono le destinazioni dei seguenti inviti. Se non previste al lancio, decidere
 | Leggi l’ultima newsletter | Manca il link all’ultima newsletter pubblicata, da collegare al pulsante nei banner newsletter. |
 | Calendario completo | Da chiarire dove deve portare il collegamento negli elenchi e nel dettaglio evento. |
 | LinkedIn | Manca il link al profilo LinkedIn, da collegare alle icone in header e footer. |
-| FAQ | Da chiarire dove deve portare la voce “FAQ” nel footer. |
 
 ## Integrazioni e contenuti comuni
 
 - **Mappe:** da definire la mappa delle sedi nella pagina Contatti.
 - **Conferma dopo l’invio di Contatti e Newsletter:** i testi sono in Contatti A36 e NL A15/A17. Messaggio nella pagina o pagina di ringraziamento dedicata?
 - **Pagine legali:** mancano i testi definitivi di Privacy e Cookie.
-
-## Asset mancanti
-
-- **Team:** foto di Sonia Franchini, Michela e Giuseppina Ranzenigo; manca anche il cognome di Michela.
-
-## Contenuti specifici da completare
-
-| Pagina | Punti da chiarire o sostituire |
-| --- | --- |
-| Team | Manca il design dei profili individuali. |
-| Dettaglio articolo | Mancano i contenuti definitivi. |
-| Dettaglio evento | Mancano i contenuti definitivi. |
-
-## Contrasto dei testi
-
-Il copyright nel footer non raggiunge il contrasto minimo previsto dalle linee guida di accessibilità. Accettiamo il contrasto attuale e lo manteniamo così?
-
-## Traduzioni da rivedere
-
-Integrate le traduzioni mancanti in Servizi F25, Trust E31 e nelle righe attive di Patrimonio E71:E102. Sono nel sito e nel foglio condiviso, disponibili per la revisione della traduttrice.

@@ -24,7 +24,6 @@ const menu = [
   { label: 'Patrimonio', href: '/patrimonio/' },
   { label: 'AG Informa', href: '/ag-informa/' },
   { label: 'Knowledge library', href: '/knowledge-library/' },
-  { label: 'FAQ' },
 ];
 const legalLinks = [
   { label: 'Privacy Policy', href: privacyPolicyUrl },
@@ -54,7 +53,7 @@ const legalLinks = [
       <nav class="col-7 col-md-auto" aria-label={customLabel('Navigazione nel footer', lang)}>
         <h2 class="footer-heading">Menu</h2>
         <ul class="footer-nav list-unstyled mb-0">
-          {menu.map(({ label, href }) => <li>{href ? <a href={localizeHref(href, lang)}>{customLabel(label, lang)}</a> : <span>{customLabel(label, lang)}</span>}</li>)}
+          {menu.map(({ label, href }) => <li><a href={localizeHref(href, lang)}>{customLabel(label, lang)}</a></li>)}
         </ul>
       </nav>
 

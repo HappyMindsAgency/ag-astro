@@ -27,7 +27,7 @@
 }
 
 .related-document-meta {
-  color: theme.$editorial-border;
+  color: theme.$editorial-muted;
   font-size: theme.$font-size-content-meta;
   line-height: theme.$line-height-content-meta;
 
@@ -70,14 +70,18 @@
   }
 }
 
-@each $tone, $color in ('jurisprudence': theme.$brand-red, 'international': theme.$document-international, 'study': theme.$document-study) {
+@each $tone, $badge-color, $text-color in (
+  'jurisprudence' theme.$brand-red theme.$brand-red,
+  'international' theme.$document-international theme.$document-international-text,
+  'study' theme.$document-study theme.$document-study-text
+) {
   .related-document--#{$tone} {
     .related-document-badge {
-      background: $color;
+      background: $badge-color;
     }
 
     .related-document-meta > span:first-child {
-      color: $color;
+      color: $text-color;
     }
   }
 }

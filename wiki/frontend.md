@@ -24,6 +24,7 @@ Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/des
 - Mantieni lo stesso stile per lo stesso ruolo sulle diverse pagine. Confronta le occorrenze Figma prima di introdurre varianti; evita correzioni locali di elementi condivisi nei fogli pagina.
 - Preferisci griglia, breakpoint e utilità Bootstrap quando lo scostamento da Figma è trascurabile. Normalizza differenze minime se migliora la coerenza o riduce il codice, verificando la resa nel browser.
 - Rispetta colori e proporzioni degli asset. Verifica le proprietà dei livelli Figma, comprese unità e bordi sui singoli lati; non importare valori anomali senza confrontarli con la grafica.
+- Le correzioni di contrasto approvate riguardano bianchi e grigi; i titoli rossi sui fondi scuri mantengono i colori del design.
 - Mantieni le varianti concordate, comprese le interlinee 121, 37.8 e 25.5 px. Per i frame mobile incoerenti già segnalati, usa Jost e contenuti desktop con gli adattamenti approvati.
 - Estrai struttura e stile quando una sezione viene riutilizzata, passando i contenuti tramite proprietà o slot. Evita componenti vuoti o astrazioni preventive.
 - Compila Bootstrap **solo in `globals.scss`**. Le personalizzazioni dei figli di `.row` e delle varianti `.site-button` devono prevalere sui reset Bootstrap senza dipendere dall’ordine dei fogli CSS.

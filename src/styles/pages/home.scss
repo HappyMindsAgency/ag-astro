@@ -204,6 +204,7 @@
   .home-hero {
     min-height: 680px;
     padding: 128px theme.$page-gutter-mobile 108px;
+    box-shadow: inset 0 0 0 100vmax rgba(black, 0.12);
     background: linear-gradient(103.68deg, rgba(theme.$brand-blue, 0.96 * 0.7) 8%, rgba(theme.$section-overlay-middle, 0.9 * 0.7) 56%, rgba(theme.$section-overlay-red, 0.380392 * 0.7)), url('/assets/immagini/home/ag-trustees-gestione-patrimonio.jpg') center / cover, linear-gradient(103.68deg, rgba(theme.$brand-blue, 0.96) 8%, rgba(theme.$section-overlay-middle, 0.9) 56%, rgba(theme.$section-overlay-red, 0.380392)), theme.$home-hero-background;
   }
 
