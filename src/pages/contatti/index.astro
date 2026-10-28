@@ -4,6 +4,7 @@ import PageIntro from '../../components/PageIntro.astro';
 import ContactSection from '../../components/ContactSection.astro';
 import NewsletterCallToAction from '../../components/NewsletterCallToAction.astro';
 import FaqSection from '../../components/FaqSection.astro';
+import OfficeMap from '../../components/OfficeMap.astro';
 import { contacts, offices } from '../../data/contacts';
 import '../../styles/pages/contatti.scss';
 
@@ -52,30 +53,10 @@ const faqs = [
     </div>
   </section>
 
-  <section class="office-location" aria-labelledby="office-location-title">
-    <div class="office-location-heading section-spacing">
-      <div class="container section-container px-lg-0">
-        <div class="row align-items-end gy-4">
-          <div class="col-lg-7">
-            <p class="type-eyebrow type-eyebrow--section office-location-eyebrow">Dove siamo</p>
-            <h2 id="office-location-title" class="type-section-title type-section-title--compact mb-0">Le nostre <span class="type-section-title-accent">sedi.</span></h2>
-          </div>
-          <div class="col-lg-5">
-            <div class="office-location-options" aria-label="Sedi sulla mappa">
-              {offices.map(({ city }, index) => (
-                <button class:list={['office-location-option', { active: index === 0 }]} type="button" aria-pressed={index === 0} disabled>
-                  <span class="office-location-pin" aria-hidden="true"></span>{city}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="office-location-map">
-      <img src="/assets/immagini/mappa-milano.webp" alt="Mappa della sede di Milano in Corso Giacomo Matteotti, 1" width="1920" height="550" loading="lazy" />
-    </div>
-  </section>
+  <OfficeMap>
+    <Fragment slot="eyebrow">Dove siamo</Fragment>
+    <Fragment slot="title">Le nostre <span class="type-section-title-accent">sedi.</span></Fragment>
+  </OfficeMap>
 
   <ContactSection eyebrow="Contattaci" />
 

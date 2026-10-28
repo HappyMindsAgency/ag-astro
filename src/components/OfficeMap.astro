@@ -1,0 +1,63 @@
+---
+import { offices } from '../data/contacts';
+import customLabel from '../lib/utility-customlabel';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
+import '../styles/components/office-map.scss';
+
+const lang = getLangFromUrl(Astro.url);
+const locations = offices.map(({ city, mapEmbedUrl }) => ({
+  city: customLabel(city, lang),
+  src: mapEmbedUrl[lang],
+  title: customLabel('Mappa della sede di {city}', lang, { city: customLabel(city, lang) }),
+}));
+const [initialLocation] = locations;
+---
+
+<section class="office-location" aria-labelledby="office-location-title" data-office-map>
+  <div class="office-location-heading section-spacing">
+    <div class="container section-container px-lg-0">
+      <div class="row align-items-end gy-4">
+        <div class="col-lg-7">
+          <p class="type-eyebrow type-eyebrow--section office-location-eyebrow"><slot name="eyebrow" /></p>
+          <h2 id="office-location-title" class="type-section-title type-section-title--compact mb-0"><slot name="title" /></h2>
+        </div>
+        <div class="col-lg-5">
+          <div class="office-location-options" role="group" aria-label={customLabel('Sedi sulla mappa', lang)}>
+            {locations.map(({ city, src, title }, index) => (
+              <button class:list={['office-location-option', { active: index === 0 }]} type="button" aria-pressed={index === 0} aria-controls="office-map-frame" data-map-src={src} data-map-title={title}>
+                <span class="office-location-pin" aria-hidden="true"></span>{city}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="office-location-map">
+    <iframe id="office-map-frame" src={initialLocation.src} title={initialLocation.title} width="1920" height="550" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-office-map]').forEach((section) => {
+    const frame = section.querySelector<HTMLIFrameElement>('iframe');
+    const buttons = section.querySelectorAll<HTMLButtonElement>('[data-map-src]');
+    if (!frame) return;
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        if (button.getAttribute('aria-pressed') === 'true') return;
+        const { mapSrc, mapTitle } = button.dataset;
+        if (!mapSrc || !mapTitle) return;
+
+        frame.src = mapSrc;
+        frame.title = mapTitle;
+        buttons.forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle('active', selected);
+          item.setAttribute('aria-pressed', String(selected));
+        });
+      });
+    });
+  });
+</script>

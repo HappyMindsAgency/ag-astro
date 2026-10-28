@@ -163,6 +163,8 @@ const english: Record<string, string> = {
   'Tutti i servizi': 'All services',
   'Vai a tutti i servizi': 'Explore all our services',
   'Milano': 'Milan',
+  'Sedi sulla mappa': 'Office locations on the map',
+  'Mappa della sede di {city}': 'Map of the {city} office',
   'Pubblicato il': 'Published on',
   '{minutes} min di lettura': '{minutes} min read',
   'Contenuto realizzato con il supporto dell’intelligenza artificiale e sottoposto a controllo editoriale umano.': 'Content produced with the support of artificial intelligence and reviewed by human editors.',
