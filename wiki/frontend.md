@@ -107,7 +107,11 @@ I componenti ricevono dati tramite proprietà, senza API. Usa i tipi in `src/typ
 
 Il modulo di iscrizione è solo in `/newsletter/`: usa il foglio NL, `.contact-form` e i campi del riferimento Galvani per la sola iscrizione ad AG Trustees. Le altre pagine usano il banner comune: iscrizione primaria verso `/newsletter/`, ultima newsletter secondaria.
 
-- Moduli e mappa hanno per ora struttura e stile. Pulsanti e download senza destinazione restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL.
+L’iscrizione Newsletter sarà gestita da Brevo. Le pagine `/grazie-newsletter/` e `/en/thank-you-newsletter/` sono le destinazioni dopo l’iscrizione confermata; con doppia conferma, vanno collegate dopo la validazione via email. `ThankYou` condivide struttura e stile delle conferme di Contatti e Newsletter.
+
+Il modulo contatti usa `POST /api/contatti`, comune a Chi siamo, Team, Servizi e Contatti, anche in inglese. Registra pagina e lingua della richiesta; apre `/grazie-contatti/` o `/en/thank-you-contacts/` solo dopo la conferma del salvataggio. Configurazione e sorgente Google Apps Script sono in [integrations/google-apps-script](../integrations/google-apps-script/README.md).
+
+- Il modulo Newsletter e la mappa hanno per ora struttura e stile. Pulsanti e download senza destinazione restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL.
 - Gli elenchi descrittivi senza link non mostrano frecce o simboli di apertura; i singoli servizi non hanno pagine dedicate.
 - Il video di Chi siamo resta nascosto al lancio.
 - La SEO arriverà da Strapi, compreso `noindex, follow` della ricerca: non definirla nelle pagine.

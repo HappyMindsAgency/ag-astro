@@ -22,5 +22,5 @@ Servono le destinazioni dei seguenti inviti. Se non previste al lancio, decidere
 ## Integrazioni e contenuti comuni
 
 - **Mappe:** da definire la mappa delle sedi nella pagina Contatti.
-- **Conferma dopo l’invio di Contatti e Newsletter:** i testi sono in Contatti A36 e NL A15/A17. Messaggio nella pagina o pagina di ringraziamento dedicata?
+- **Email dei contatti:** mancano credenziali SMTP e casella destinataria; l’invio delle email è ancora da implementare e configurare.
 - **Pagine legali:** mancano i testi definitivi di Privacy e Cookie.

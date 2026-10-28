@@ -30,7 +30,7 @@ La build usa l’adapter Node standalone; in ambiente Vercel seleziona l’adapt
 
 ## Stato delle pagine
 
-Realizzati header, footer, le 15 pagine del design, la ricerca e la pagina Newsletter:
+Realizzati header, footer, le 15 pagine del design, la ricerca, la pagina Newsletter e le conferme di Contatti e Newsletter:
 
 | Pagina | Anteprima locale |
 | --- | --- |
@@ -42,6 +42,7 @@ Realizzati header, footer, le 15 pagine del design, la ricerca e la pagina Newsl
 | Trust | [Apri](http://localhost:4321/trust/) |
 | Patrimonio | [Apri](http://localhost:4321/patrimonio/) |
 | Contatti | [Apri](http://localhost:4321/contatti/) |
+| Ringraziamento contatti | [Apri](http://localhost:4321/grazie-contatti/) |
 | Team | [Apri](http://localhost:4321/chi-siamo/team/) |
 | AG Informa | [Apri](http://localhost:4321/ag-informa/) |
 | Dettaglio articolo | [Apri](http://localhost:4321/ag-informa/articolo-provvisorio/) |
@@ -50,6 +51,7 @@ Realizzati header, footer, le 15 pagine del design, la ricerca e la pagina Newsl
 | Knowledge Library | [Apri](http://localhost:4321/knowledge-library/) |
 | Ricerca | [Apri](http://localhost:4321/cerca/?q=trust) |
 | Newsletter | [Apri](http://localhost:4321/newsletter/) |
+| Ringraziamento Newsletter | [Apri](http://localhost:4321/grazie-newsletter/) |
 | Pagina 404 | [Apri](http://localhost:4321/404/) |
 
 Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completare con Strapi e il team. Dove i frame mobile sono incompleti o incoerenti, le pagine adattano i contenuti desktop con le regole comuni. I punti aperti sono nella wiki.

@@ -1,0 +1,21 @@
+@use '../variables' as theme;
+@use 'bootstrap/scss/mixins/breakpoints' as bs;
+
+.thank-you {
+  padding-block: theme.$space-80 theme.$space-100;
+  color: theme.$brand-blue;
+
+  h1 {
+    text-wrap: balance;
+  }
+
+  p {
+    color: theme.$editorial-text;
+  }
+}
+
+@include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
+  .thank-you {
+    padding-block: theme.$space-48 theme.$space-64;
+  }
+}
