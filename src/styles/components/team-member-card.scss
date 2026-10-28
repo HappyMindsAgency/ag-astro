@@ -135,7 +135,7 @@
   line-height: theme.$line-height-button;
 }
 
-.team-member-card--leadership {
+.team-member-card--Direttivo {
   min-height: 624px;
   border: 0;
   color: theme.$text-on-blue;
@@ -173,7 +173,7 @@
   }
 }
 
-.team-member-card--counsel {
+.team-member-card--Consulente {
   min-height: 0;
   flex-direction: column;
   background: white;
@@ -196,7 +196,7 @@
 }
 
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
-  .team-member-card--leadership > .team-member-content {
+  .team-member-card--Direttivo > .team-member-content {
     padding-inline: clamp(theme.$space-16, math.div(theme.$space-24, theme.$wide-layout-max-width) * 100vw, theme.$space-24);
   }
 }
@@ -243,7 +243,7 @@
     padding-top: theme.$space-12;
   }
 
-  .team-member-card--leadership {
+  .team-member-card--Direttivo {
     min-height: 366px;
     color: theme.$text-on-blue;
 
@@ -273,7 +273,7 @@
     }
   }
 
-  .team-member-card--counsel {
+  .team-member-card--Consulente {
     min-height: 0;
 
     > .team-member-photo {
@@ -296,7 +296,7 @@
 }
 
 @include bs.media-breakpoint-between(md, xxl, theme.$grid-breakpoints) {
-  .team-member-card--leadership {
+  .team-member-card--Direttivo {
     min-height: 400px;
 
     > .team-member-photo {

@@ -50,7 +50,7 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 | `ContactSection` | Modulo contatti; `.contact-form` condivide lo stile con il modulo Newsletter. Recapiti e sedi in `src/data/contacts.ts`. |
 | `NewsArticleCard`, `NewsFeed` | Schede Home/archivio/hero; filtri e caricamento progressivo. `archive` mostra otto articoli da `lg`, quattro sotto. |
 | `EventCard`, `EventDate`, `EventList`, `FeaturedEvent` | Eventi e data condivisi; `compact` omette foto e descrizioni nell’elenco. |
-| `TeamMemberCard` | Schede `leadership`, `operational` e `counsel`, con gruppi di qualsiasi lunghezza. |
+| `TeamMemberCard` | Schede `Direttivo`, `Operativo` e `Consulente` (valori di `ruolo` in Strapi), con gruppi di qualsiasi lunghezza. |
 | `RelatedContent`, `DocumentList` | Titoli comuni “Articoli correlati” e “Documenti correlati”, anche dove il foglio indica “in evidenza”. Intestazione opzionale per Trust e Patrimonio. `DocumentList` usa due colonne da `xl`, una con `compact`; `tone` distingue le categorie. |
 | `LibraryArchive`, `.content-filter` | Ricerca, categorie, date ISO inclusive, ordinamento e caricamento progressivo: 12 documenti da `lg`, quattro sotto. Filtri condivisi con AG Informa. |
 | `SiteSearch`, `SearchResults`, `SearchHighlight` | Lente dell’header e pagina `/cerca/`; suggerimenti da `xl`, sotto l’invio porta a `/cerca/`. La fonte è `searchSite()`; `search-text.ts` condivide con la Library il confronto senza maiuscole e accenti. I profili del team restano fuori dall’indice finché non pronti. |
@@ -103,7 +103,7 @@ In Chi siamo, “Le origini” e “L’incontro” seguono A23 e A25. Il blocco
 
 Nei Link utili della Library, il gruppo di A11 usa il titolo “Altri siti di interesse” del riferimento Galvani in A26. Il link di Milano Finanza in A10 è corretto in `https://www.milanofinanza.it/`.
 
-I componenti ricevono dati tramite proprietà, senza API. Usa i tipi in `src/types/content.ts`; i correlati vuoti non occupano spazio. I commenti `TODO Strapi` indicano gli esempi da sostituire e vanno rimossi dopo l’integrazione. Concorda con il backend formato editoriale e chiamate API.
+I componenti ricevono dati tramite proprietà, senza API: le pagine leggono Strapi con `src/lib/strapi-client.ts` e passano i dati ai componenti. Usa i tipi in `src/types/content.ts`; i correlati vuoti non occupano spazio. I commenti `TODO Strapi` indicano gli esempi da sostituire e vanno rimossi dopo l’integrazione. Concorda con il backend formato editoriale e chiamate API.
 
 Il modulo di iscrizione è solo in `/newsletter/`: usa il foglio NL, `.contact-form` e i campi del riferimento Galvani per la sola iscrizione ad AG Trustees. Le altre pagine usano il banner comune: iscrizione primaria verso `/newsletter/`, ultima newsletter secondaria.
 

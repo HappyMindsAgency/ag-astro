@@ -6,19 +6,19 @@ import '../styles/components/team-member-card.scss';
 
 interface Props {
   member: TeamMember;
-  variant?: 'leadership' | 'operational' | 'counsel';
+  variant?: 'Direttivo' | 'Operativo' | 'Consulente';
 }
 
-const { member, variant = 'operational' } = Astro.props;
+const { member, variant = 'Operativo' } = Astro.props;
 const { firstName, lastName, role, biography, expertise, email, image, relatedArticle } = member;
 const lang = getLangFromUrl(Astro.url);
 ---
 
 <article class:list={['team-member-card row g-0 h-100', `team-member-card--${variant}`]}>
-  <div class:list={['team-member-photo', { 'col-auto': variant === 'leadership', 'col-5': variant === 'operational', 'col-12': variant === 'counsel' }]}>
+  <div class:list={['team-member-photo', { 'col-auto': variant === 'Direttivo', 'col-5': variant === 'Operativo', 'col-12': variant === 'Consulente' }]}>
     {image && <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" />}
   </div>
-  <div class:list={['team-member-content d-flex flex-column', variant === 'counsel' ? 'col-12' : 'col']}>
+  <div class:list={['team-member-content d-flex flex-column', variant === 'Consulente' ? 'col-12' : 'col']}>
     <h3 class="team-member-name"><span>{firstName}</span>{lastName && <Fragment>{' '}<span>{lastName}</span></Fragment>}</h3>
     {role && <p class="team-member-role">{role}</p>}
     {biography && <p class="team-member-biography">{biography}</p>}

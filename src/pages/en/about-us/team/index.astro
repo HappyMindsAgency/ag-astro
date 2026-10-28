@@ -1,6 +1,6 @@
 ---
-import { leadershipPlaceholder, operationalPlaceholder, counselPlaceholder } from '../../../../data/team-placeholders';
 import type { TeamMember } from '../../../../types/content';
+import { getTeamByRuolo, type Ruolo } from '../../../../lib/team';
 import Layout from '../../../../components/Layout.astro';
 import PageIntro from '../../../../components/PageIntro.astro';
 import TeamMemberCard from '../../../../components/TeamMemberCard.astro';
@@ -9,17 +9,19 @@ import NewsletterCallToAction from '../../../../components/NewsletterCallToActio
 import '../../../../styles/pages/team.scss';
 
 interface TeamSection {
-  id: 'leadership' | 'operational' | 'counsel';
+  id: Ruolo;
   eyebrow: string;
   title: string;
   accent: string;
   members: TeamMember[];
 }
 
+const team = await getTeamByRuolo('en');
+
 const sections: TeamSection[] = [
-  { id: 'leadership', eyebrow: "Leadership", title: "Guiding the company's", accent: 'growth', members: leadershipPlaceholder },
-  { id: 'operational', eyebrow: "Team", title: 'Managing the day-to-day', accent: 'responsibilities', members: operationalPlaceholder },
-  { id: 'counsel', eyebrow: "Of counsel", title: 'Supporting complex', accent: 'decisions', members: counselPlaceholder },
+  { id: 'Direttivo', eyebrow: "Leadership", title: "Guiding the company's", accent: 'growth', members: team.Direttivo },
+  { id: 'Operativo', eyebrow: "Team", title: 'Managing the day-to-day', accent: 'responsibilities', members: team.Operativo },
+  { id: 'Consulente', eyebrow: "Of counsel", title: 'Supporting complex', accent: 'decisions', members: team.Consulente },
 ];
 const lang = 'en';
 ---
@@ -32,8 +34,8 @@ const lang = 'en';
 
   {sections.filter(({ members }) => members.length > 0).map(({ id, eyebrow, title, accent, members }) => (
     <section class:list={['team-section section-spacing', `team-section--${id}`]} aria-labelledby={`team-${id}-title`}>
-      {id === 'operational' && <img class="team-section-mark d-none d-lg-block" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" loading="lazy" />}
-      <div class:list={['container section-container', { 'px-0': id === 'leadership' }]}>
+      {id === 'Operativo' && <img class="team-section-mark d-none d-lg-block" src="/assets/brand/ag-logo-verticale-nero.png" width="1200" height="1145" alt="" aria-hidden="true" loading="lazy" />}
+      <div class:list={['container section-container', { 'px-0': id === 'Direttivo' }]}>
         <div class="row gx-4 gy-4 align-items-end team-section-header">
           <div class="col-12">
             <p class="type-eyebrow type-eyebrow--section team-section-eyebrow">{eyebrow}</p>
@@ -43,9 +45,9 @@ const lang = 'en';
         <div class:list={[
           'row team-members',
           {
-            'gx-0 gy-4 gy-xxl-0 row-cols-1 row-cols-xxl-3 justify-content-center': id === 'leadership',
-            'gx-0 gy-4 row-cols-1 row-cols-xl-2': id === 'operational',
-            'g-3 g-lg-4 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xxl-5': id === 'counsel',
+            'gx-0 gy-4 gy-xxl-0 row-cols-1 row-cols-xxl-3 justify-content-center': id === 'Direttivo',
+            'gx-0 gy-4 row-cols-1 row-cols-xl-2': id === 'Operativo',
+            'g-3 g-lg-4 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xxl-5': id === 'Consulente',
           },
         ]}>
           {members.map((member) => <div class="col"><TeamMemberCard member={member} variant={id} /></div>)}

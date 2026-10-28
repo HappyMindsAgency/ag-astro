@@ -4,7 +4,7 @@ Frontend Astro con Bootstrap e SCSS. Riferimento visivo: **3° Release Figma**. 
 
 ## Avvio
 
-È richiesto Node.js >= 22.22.0; sviluppo verificato con Node 24. Dalla cartella del repository:
+Usa Node.js 24 LTS. È supportato anche Node.js 22 da 22.22.0; il client Strapi richiede una versione precedente a 25. Dalla cartella del repository:
 
 ```sh
 npm ci
@@ -57,5 +57,7 @@ Realizzati header, footer, le 15 pagine del design, la ricerca, la pagina Newsle
 Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completare con Strapi e il team. Dove i frame mobile sono incompleti o incoerenti, le pagine adattano i contenuti desktop con le regole comuni. I punti aperti sono nella wiki.
 
 La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre si scrive e li elenca in `/cerca/`; per ora usa pagine e contenuti provvisori, in attesa della fonte concordata con il backend.
+
+Il Team italiano e inglese legge i contenuti da Strapi. Configura `STRAPI_URL`, `STRAPI_API_URL` e `AUTH_READONLY` nel `.env.local` o nell’hosting, seguendo `.env.example`. Il token resta sul server e non va inserito in Git.
 
 Privacy e Cookie hanno layout e Lorem ipsum. Profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.

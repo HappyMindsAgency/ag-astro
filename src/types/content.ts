@@ -60,6 +60,16 @@ export interface TeamMember {
   relatedArticle?: { title: string; href: string };
 }
 
+export interface MembroTeam {
+  nome: string;
+  titolo: string;
+  ruolo: string;
+  immagine?: string;
+  descrizione?: string;
+  ambito?: string;
+  email?: string;
+}
+
 export interface SearchResult {
   type: 'page' | 'article' | 'event' | 'document';
   title: string;

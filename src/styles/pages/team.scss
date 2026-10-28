@@ -22,7 +22,7 @@
   min-width: 0;
 }
 
-.team-section--leadership {
+.team-section--Direttivo {
   --section-gradient-angle: 131deg;
   padding-inline: theme.$space-24;
   color: theme.$text-on-blue;
@@ -40,36 +40,36 @@
 }
 
 @include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
-  .team-section--leadership > .container {
+  .team-section--Direttivo > .container {
     max-width: theme.$frame-max-width - theme.$space-24;
   }
 }
 
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
-  .team-section--leadership {
+  .team-section--Direttivo {
     padding-inline: theme.$space-48;
   }
 }
 
 @include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
-  .team-section--leadership .team-members {
+  .team-section--Direttivo .team-members {
     max-width: 640px;
     margin-inline: auto;
   }
 }
 
 @include bs.media-breakpoint-between(md, xxl, theme.$grid-breakpoints) {
-  .team-section--leadership .team-members {
+  .team-section--Direttivo .team-members {
     max-width: 960px;
   }
 }
 
-.team-section--operational,
-.team-section--counsel {
+.team-section--Operativo,
+.team-section--Consulente {
   background: theme.$surface-sand;
 }
 
-.team-section--operational {
+.team-section--Operativo {
   padding-bottom: theme.$space-64;
 }
 
@@ -90,7 +90,7 @@
     margin-bottom: theme.$space-28;
   }
 
-  .team-section--leadership {
+  .team-section--Direttivo {
     --section-gradient-angle: 99deg;
 
     .team-section-header {
@@ -103,13 +103,13 @@
     }
   }
 
-  .team-section--operational,
-  .team-section--counsel {
+  .team-section--Operativo,
+  .team-section--Consulente {
     background: white;
   }
 
-  .team-section--leadership .team-members,
-  .team-section--operational .team-members {
+  .team-section--Direttivo .team-members,
+  .team-section--Operativo .team-members {
     --bs-gutter-y: #{theme.$space-28};
   }
 }
