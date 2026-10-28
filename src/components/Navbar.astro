@@ -179,7 +179,6 @@ const navigation: NavigationItem[] = [
 
       navbar.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape' || desktop.matches || !panel.classList.contains('show')) return;
-        if (event.target instanceof Element && event.target.closest('.header-language-picker')?.querySelector('.dropdown-menu.show')) return;
         menu.hide();
         toggler.focus();
       });

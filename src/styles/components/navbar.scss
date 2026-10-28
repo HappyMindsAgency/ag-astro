@@ -195,7 +195,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 }
 
-.site-navbar .header-submenu {
+.site-navbar :is(.header-submenu, .header-language-menu) {
   --bs-dropdown-spacer: 0;
   --bs-dropdown-padding-y: #{theme.$space-8};
   --bs-dropdown-border-width: 0;
@@ -226,33 +226,26 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
   font-size: calc(var(--header-nav-font-size) + 2px);
 }
 
-.header-language-picker {
-  .header-language {
-    display: inline-flex;
-    align-items: center;
-    gap: theme.$space-4;
-    border: 0;
-    padding: 0;
-    background: transparent;
+.header-language-picker .header-language {
+  align-items: center;
+  gap: theme.$space-4;
+  border: 0;
+  padding: 0;
+  background: transparent;
 
-    &:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 4px;
-    }
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
   }
 
-  .dropdown-menu {
-    --bs-dropdown-border-radius: 0;
-    --bs-dropdown-link-active-bg: #{theme.$brand-blue};
-    --bs-dropdown-link-color: #{theme.$brand-blue};
+  &.show::after {
+    transform: rotate(180deg);
   }
 }
 
-@include bs.media-breakpoint-down(xl, theme.$grid-breakpoints) {
-  .header-language-picker .dropdown-menu {
-    top: auto;
-    bottom: 100%;
-  }
+.site-navbar .header-language-menu {
+  --bs-dropdown-min-width: 0;
+  --bs-dropdown-font-size: calc(var(--header-nav-font-size) + 2px);
 }
 
 .header-contact {
@@ -342,6 +335,27 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
       }
     }
 
+    .header-language-menu {
+      box-shadow: 0 16px 24px -12px rgba(theme.$ink, 0.25);
+
+      // Il pannello parte dal bordo della barra e riserva la larghezza del selettore, freccia compresa: le sigle si allineano a quella in alto.
+      &::before {
+        display: block;
+        height: 0;
+        border-inline: theme.$caret-width solid transparent;
+        padding-inline: theme.$space-24 calc(var(--bs-navbar-padding-x) + #{theme.$space-4} + #{theme.$caret-spacing});
+        overflow: hidden;
+        visibility: hidden;
+        font-weight: theme.$font-weight-medium;
+        content: attr(data-label);
+        content: #{'attr(data-label) / ""'};
+      }
+
+      .dropdown-item {
+        padding-right: 0;
+      }
+    }
+
     .header-tools {
       gap: fluid(10px, theme.$space-16);
 
@@ -417,7 +431,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
     }
 
     .nav-link.active,
-    .header-submenu .active {
+    :is(.header-submenu, .header-language-menu) .active {
       text-decoration: underline 2px theme.$brand-red;
       text-underline-offset: 6px;
     }
@@ -470,6 +484,31 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
     .header-icon {
       width: 44px;
       height: 44px;
+    }
+
+    .header-language-menu {
+      --bs-dropdown-padding-y: 0;
+      --bs-dropdown-bg: transparent;
+      --bs-dropdown-link-hover-color: #{theme.$brand-red};
+      --bs-dropdown-link-hover-bg: transparent;
+      --bs-dropdown-item-padding-x: 10px;
+      --bs-dropdown-item-padding-y: 0;
+      position: static;
+      display: flex;
+      margin-right: -10px;
+
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+      }
+    }
+
+    // Durante la ricerca le lingue restano nel flusso, senza larghezza: la riga non cambia altezza.
+    .header-tools:has(#{$search-open}) .header-language-picker {
+      width: 0;
+      overflow: hidden;
+      visibility: hidden;
     }
   }
 
@@ -543,13 +582,14 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
   .site-navbar .nav-link::after,
   .header-contact::after,
   .header-submenu-toggle::after,
+  .header-language::after,
   .site-navbar .navbar-toggler-icon,
   .site-navbar .navbar-toggler-icon::before,
   .site-navbar .navbar-toggler-icon::after {
     transition: transform $menu-duration $menu-easing, background-size $menu-duration $menu-easing;
   }
 
-  .header-submenu.show {
+  :is(.header-submenu, .header-language-menu).show {
     animation: header-submenu-in theme.$interaction-duration theme.$interaction-easing;
   }
 
