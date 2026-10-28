@@ -14,7 +14,7 @@ interface Props {
   categories?: string[];
 }
 
-const { articles = [], archive = false, eyebrow = 'Conoscenza condivisa', categories = [...new Set(articles.map(({ category }) => category))] } = Astro.props;
+const { articles = [], archive = false, eyebrow = 'Conoscenza condivisa', categories = [...new Set(articles.map(({ category }) => category).filter(Boolean))] } = Astro.props;
 const filters = [
   { value: 'all', label: 'Tutte' },
   ...(articles.some(({ featured }) => featured) ? [{ value: 'featured', label: 'In evidenza' }] : []),

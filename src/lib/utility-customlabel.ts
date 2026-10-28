@@ -164,6 +164,8 @@ const english: Record<string, string> = {
   'Vai a tutti i servizi': 'Explore all our services',
   'Milano': 'Milan',
   'Pubblicato il': 'Published on',
+  '{minutes} min di lettura': '{minutes} min read',
+  'Contenuto realizzato con il supporto dell’intelligenza artificiale e sottoposto a controllo editoriale umano.': 'Content produced with the support of artificial intelligence and reviewed by human editors.',
   'Indice': 'Contents',
   'Indice dell’articolo': 'Article contents',
   'Strumenti dell’articolo': 'Article tools',

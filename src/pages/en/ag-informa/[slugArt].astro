@@ -1,5 +1,9 @@
 ---
 import ArticleDetail from '../../../components/pages/ArticleDetail.astro';
+import { getArticolo } from '../../../lib/articoli';
+
+const articolo = await getArticolo(Astro.params.slugArt!, 'en');
+if (!articolo) return Astro.rewrite('/404/');
 ---
 
-<ArticleDetail lang="en" />
+<ArticleDetail lang="en" {...articolo} />

@@ -1,11 +1,14 @@
 ---
-import { articleCategories, articlePlaceholders } from '../../data/article-placeholders';
+import { getArticoli } from '../../lib/articoli';
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import NewsArticleCard from '../../components/NewsArticleCard.astro';
 import NewsFeed from '../../components/NewsFeed.astro';
 import NewsletterCallToAction from '../../components/NewsletterCallToAction.astro';
 import '../../styles/pages/ag-informa.scss';
+
+const articles = await getArticoli('it');
+const heroArticle = articles.find(({ featured }) => featured) ?? articles[0];
 ---
 
 <Layout>
@@ -14,11 +17,13 @@ import '../../styles/pages/ag-informa.scss';
     Uno spazio dedicato a notizie, approfondimenti per seguire l’evoluzione della normativa e approfondire i temi legati a trust, gestione patrimoniale, passaggio generazionale, impresa.
   </PageIntro>
 
-  <section class="ag-informa-featured section-spacing" aria-label="Articolo in evidenza">
-    <div class="container frame-container"><NewsArticleCard article={articlePlaceholders[0]} variant="hero" /></div>
-  </section>
+  {heroArticle && (
+    <section class="ag-informa-featured section-spacing" aria-label="Articolo in evidenza">
+      <div class="container frame-container"><NewsArticleCard article={heroArticle} variant="hero" /></div>
+    </section>
+  )}
 
-  <NewsFeed archive articles={articlePlaceholders} categories={articleCategories} />
+  <NewsFeed archive articles={articles} />
 
   <NewsletterCallToAction />
 </Layout>

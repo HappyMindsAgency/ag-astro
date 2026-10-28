@@ -43,7 +43,8 @@ export interface EventDetail extends EventPreview {
   cover?: ContentImage;
 }
 
-export interface ArticleDetail extends ArticlePreview {
+export interface ArticleDetail extends Omit<ArticlePreview, 'image'> {
+  image?: ContentImage;
   author?: TeamMember;
   readingTime?: string;
   editorialNote?: string;
