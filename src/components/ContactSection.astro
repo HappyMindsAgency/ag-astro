@@ -3,6 +3,7 @@ import '../styles/components/contact-section.scss';
 import customLabel from '../lib/utility-customlabel';
 import customSlug from '../lib/utility-customslug';
 import { getLangFromUrl } from '../lib/lang-switch/route-map';
+import { contactFieldLimits } from '../lib/contact-leads';
 
 interface Props {
   eyebrow?: string;
@@ -28,36 +29,120 @@ const lang = getLangFromUrl(Astro.url);
         </p>
       </div>
       <div class="col-lg-6 offset-lg-1">
-        <form class="contact-form" method="post" aria-label={customLabel('Richiesta di contatto', lang)}>
+        <form class="contact-form" action="/api/contatti" method="post" data-contact-form data-started-at={Date.now()} data-success-url={customSlug('contactThanks', lang)} aria-label={customLabel('Richiesta di contatto', lang)}>
+          <input type="hidden" name="sourcePage" value={Astro.url.pathname} />
+          <input type="hidden" name="lang" value={lang} />
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="contact-website">Website</label>
+            <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
           <div class="row g-4">
             <div class="col-md-6">
               <label class="form-label" for="contact-name">{customLabel('Nome e cognome', lang)}</label>
-              <input class="form-control" id="contact-name" name="name" type="text" autocomplete="name" />
+              <input class="form-control" id="contact-name" name="name" type="text" autocomplete="name" maxlength={contactFieldLimits.name} required />
             </div>
             <div class="col-md-6">
               <label class="form-label" for="contact-email">{customLabel('Email', lang)}</label>
-              <input class="form-control" id="contact-email" name="email" type="email" autocomplete="email" />
+              <input class="form-control" id="contact-email" name="email" type="email" autocomplete="email" maxlength={contactFieldLimits.email} required />
             </div>
             <div class="col-md-6">
               <label class="form-label" for="contact-phone">{customLabel('Telefono', lang)}</label>
-              <input class="form-control" id="contact-phone" name="phone" type="tel" autocomplete="tel" />
+              <input class="form-control" id="contact-phone" name="phone" type="tel" autocomplete="tel" maxlength={contactFieldLimits.phone} />
             </div>
             <div class="col-md-6">
               <label class="form-label" for="contact-profile">{customLabel('Profilo', lang)}</label>
-              <input class="form-control" id="contact-profile" name="profile" type="text" placeholder={customLabel('Privato, professionista, impresa', lang)} />
+              <input class="form-control" id="contact-profile" name="profile" type="text" maxlength={contactFieldLimits.profile} placeholder={customLabel('Privato, professionista, impresa', lang)} />
             </div>
             <div class="col-12">
               <label class="form-label" for="contact-message">{customLabel('Messaggio', lang)}</label>
-              <textarea class="form-control" id="contact-message" name="message" rows="3"></textarea>
+              <textarea class="form-control" id="contact-message" name="message" rows="3" maxlength={contactFieldLimits.message}></textarea>
             </div>
           </div>
           <div class="form-check mt-3">
-            <input class="form-check-input" id="contact-privacy" name="privacy" type="checkbox" />
+            <input class="form-check-input" id="contact-privacy" name="privacy" type="checkbox" required />
             <label class="form-check-label" for="contact-privacy">{customLabel('Ho letto l’', lang)}<a href={customSlug('privacy', lang)}>{customLabel('informativa privacy', lang)}</a>.</label>
           </div>
-          <button class="btn site-button contact-form-submit" type="submit" disabled>{customLabel('Invia la richiesta', lang)} <span aria-hidden="true">→</span></button>
+          <button class="btn site-button contact-form-submit" type="submit" disabled><span data-contact-submit-label>{customLabel('Invia la richiesta', lang)}</span> <span aria-hidden="true">→</span></button>
+          <p class="alert alert-danger mt-3 mb-0" data-contact-status role="alert" tabindex="-1" hidden></p>
         </form>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import customLabel from '../lib/utility-customlabel';
+
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const label = button.querySelector<HTMLElement>('[data-contact-submit-label]')!;
+    const status = form.querySelector<HTMLElement>('[data-contact-status]')!;
+    const lang = new FormData(form).get('lang') === 'en' ? 'en' : 'it';
+    const startedAt = Number(form.dataset.startedAt);
+    let pending = false;
+    let previousData = '';
+    let requestId = '';
+
+    const ready = () => {
+      pending = false;
+      button.disabled = false;
+      form.removeAttribute('aria-busy');
+      label.textContent = customLabel('Invia la richiesta', lang);
+    };
+    ready();
+    window.addEventListener('pageshow', ready);
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (pending || !form.reportValidity()) return;
+
+      const fields = new FormData(form);
+      const data = {
+        name: String(fields.get('name') ?? ''),
+        email: String(fields.get('email') ?? ''),
+        phone: String(fields.get('phone') ?? ''),
+        profile: String(fields.get('profile') ?? ''),
+        message: String(fields.get('message') ?? ''),
+        privacy: fields.has('privacy'),
+        website: String(fields.get('website') ?? ''),
+        sourcePage: String(fields.get('sourcePage') ?? ''),
+        lang,
+      };
+      const signature = JSON.stringify(data);
+      // Riutilizziamo l'ID quando si ritenta lo stesso invio dopo un errore di rete.
+      if (signature !== previousData) {
+        requestId = crypto.randomUUID();
+        previousData = signature;
+      }
+      pending = true;
+      button.disabled = true;
+      form.setAttribute('aria-busy', 'true');
+      label.textContent = customLabel('Invio in corso…', lang);
+      status.hidden = true;
+
+      let error = 'Non è stato possibile confermare il salvataggio. I dati sono ancora nel modulo: riprova tra poco.';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, id: requestId, startedAt }),
+          signal: AbortSignal.timeout(20000),
+        });
+        const receipt = await response.json();
+        if (response.ok && receipt.ok === true && receipt.id === requestId) {
+          window.location.assign(form.dataset.successUrl!);
+          return;
+        }
+        if (receipt.code === 'too_fast') error = 'Attendi qualche secondo prima di inviare la richiesta.';
+        if (receipt.code === 'invalid_data') error = 'Controlla i campi e il consenso privacy prima di riprovare.';
+        if (response.status === 429) error = 'Hai inviato diverse richieste in poco tempo. Attendi qualche minuto prima di riprovare.';
+      } catch {
+        // Manteniamo campi e ID: il salvataggio potrebbe essere riuscito prima dell'interruzione.
+      }
+      ready();
+      status.textContent = customLabel(error, lang);
+      status.hidden = false;
+      status.focus();
+    });
+  });
+</script>
