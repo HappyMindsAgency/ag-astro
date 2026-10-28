@@ -50,6 +50,7 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 | `ServiceOverview`, `OverviewBanner` | Panoramica servizi e fascia introduttiva di Trust/Patrimonio. |
 | `CompanyHistory`, `Certifications` | Storia e certificazioni condivise. |
 | `ContactSection` | Modulo contatti; `.contact-form` condivide lo stile con il modulo Newsletter. Recapiti e sedi in `src/data/contacts.ts`. |
+| `OfficeMap` | Mappa Google attiva in vista satellitare nelle pagine Contatti IT/EN; i pulsanti cambiano sede nello stesso riquadro. Indirizzi e URL delle mappe sono in `src/data/contacts.ts`. |
 | `NewsArticleCard`, `NewsFeed` | Schede Home/archivio/hero; filtri e caricamento progressivo. `archive` mostra otto articoli da `lg`, quattro sotto. |
 | `EventCard`, `EventDate`, `EventList`, `FeaturedEvent` | Eventi e data condivisi; `compact` omette foto e descrizioni nell’elenco. |
 | `TeamMemberCard` | Schede `Direttivo`, `Operativo` e `Consulente` (valori di `ruolo` in Strapi), con gruppi di qualsiasi lunghezza. |
@@ -113,7 +114,7 @@ L’iscrizione Newsletter sarà gestita da Brevo. Le pagine `/grazie-newsletter/
 
 Il modulo contatti usa `POST /api/contatti`, comune a Chi siamo, Team, Servizi e Contatti, anche in inglese. Registra pagina e lingua della richiesta; apre `/grazie-contatti/` o `/en/thank-you-contacts/` solo dopo la conferma del salvataggio. Configurazione e sorgente Google Apps Script sono in [integrations/google-apps-script](../integrations/google-apps-script/README.md).
 
-- Il modulo Newsletter e la mappa hanno per ora struttura e stile. Pulsanti e download senza destinazione restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL.
+- Il modulo Newsletter ha per ora struttura e stile. Pulsanti e download senza destinazione restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL.
 - Gli elenchi descrittivi senza link non mostrano frecce o simboli di apertura; i singoli servizi non hanno pagine dedicate.
 - Il video di Chi siamo resta nascosto al lancio.
 - La SEO arriverà da Strapi, compreso `noindex, follow` della ricerca: non definirla nelle pagine.

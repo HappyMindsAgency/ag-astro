@@ -163,6 +163,8 @@ const english: Record<string, string> = {
   'Tutti i servizi': 'All services',
   'Vai a tutti i servizi': 'Explore all our services',
   'Milano': 'Milan',
+  'Sedi sulla mappa': 'Office locations on the map',
+  'Mappa della sede di {city}': 'Map of the {city} office',
   'Pubblicato il': 'Published on',
   'Indice': 'Contents',
   'Indice dell’articolo': 'Article contents',

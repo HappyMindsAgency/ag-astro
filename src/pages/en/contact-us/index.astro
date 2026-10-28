@@ -4,6 +4,7 @@ import PageIntro from '../../../components/PageIntro.astro';
 import ContactSection from '../../../components/ContactSection.astro';
 import NewsletterCallToAction from '../../../components/NewsletterCallToAction.astro';
 import FaqSection from '../../../components/FaqSection.astro';
+import OfficeMap from '../../../components/OfficeMap.astro';
 import { contacts, offices } from '../../../data/contacts';
 import customLabel from '../../../lib/utility-customlabel';
 import '../../../styles/pages/contatti.scss';
@@ -63,30 +64,10 @@ const lang = 'en';
     </div>
   </section>
 
-  <section class="office-location" aria-labelledby="office-location-title">
-    <div class="office-location-heading section-spacing">
-      <div class="container section-container px-lg-0">
-        <div class="row align-items-end gy-4">
-          <div class="col-lg-7">
-            <p class="type-eyebrow type-eyebrow--section office-location-eyebrow">Where to find us</p>
-            <h2 id="office-location-title" class="type-section-title type-section-title--compact mb-0">Our <span class="type-section-title-accent">offices</span></h2>
-          </div>
-          <div class="col-lg-5">
-            <div class="office-location-options" aria-label="Office locations on the map">
-              {offices.map(({ city }, index) => (
-                <button class:list={['office-location-option', { active: index === 0 }]} type="button" aria-pressed={index === 0} disabled>
-                  <span class="office-location-pin" aria-hidden="true"></span>{customLabel(city, lang)}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="office-location-map">
-      <img src="/assets/immagini/mappa-milano.webp" alt="Map of the Milan office at Corso Giacomo Matteotti, 1" width="1920" height="550" loading="lazy" />
-    </div>
-  </section>
+  <OfficeMap>
+    <Fragment slot="eyebrow">Where to find us</Fragment>
+    <Fragment slot="title">Our <span class="type-section-title-accent">offices</span></Fragment>
+  </OfficeMap>
 
   <ContactSection eyebrow="Contact us" title="Speak to one of our advisors">At AG Trustees, we offer specialist expertise, long-term commitment and professional relationships built on trust.</ContactSection>
 
