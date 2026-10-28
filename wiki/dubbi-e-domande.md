@@ -21,6 +21,7 @@ Servono le destinazioni dei seguenti inviti. Se non previste al lancio, decidere
 
 ## Integrazioni e contenuti comuni
 
+- **Favicon:** in attesa dell’immagine del designer.
 - **Mappe:** da definire la mappa delle sedi nella pagina Contatti.
 - **Email dei contatti:** mancano credenziali SMTP e casella destinataria; l’invio delle email è ancora da implementare e configurare.
 - **Pagine legali:** mancano i testi definitivi di Privacy e Cookie.
