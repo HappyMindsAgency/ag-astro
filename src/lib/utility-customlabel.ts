@@ -179,6 +179,7 @@ const english: Record<string, string> = {
   'Continua a leggere': 'Keep reading',
   'Potrebbero interessarti': 'You may also be interested in',
   'Richiedi una consulenza': 'Request advice',
+  'Richiedi un confronto': 'Request a consultation',
 };
 
 export default function customLabel(label: string, lang: Locale = 'it', values: Record<string, string | number> = {}): string {

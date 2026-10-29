@@ -91,9 +91,9 @@ const consultation = { title: 'Il tuo trust è conforme alla nuova normativa?', 
       <a slot="articles-action" class="site-text-link" href={localizeHref('/ag-informa/', lang)}>{customLabel('Tutti gli articoli', lang)} <span aria-hidden="true">→</span></a>
     </RelatedContent>}
 
-    <CallToAction contained plainBackground eyebrow="AG Trustees" href={localizeHref('/contatti/', lang)} label={customLabel('Richiedi una consulenza', lang)} secondaryAction={{ label: customLabel('Iscriviti alla newsletter', lang), href: localizeHref('/newsletter/', lang) }}>
-      <Fragment slot="title">Lorem ipsum dolor sit amet.<br /><em class="fw-normal">Lorem ipsum.</em></Fragment>
-      Nam justo orci, vehicula in lobortis mollis, condimentum non metus. Aenean non erat ut nunc sollicitudin bibendum ut non lorem. Phasellus malesuada tempor augue, vel pulvinar est porttitor a.
+    <CallToAction contained plainBackground eyebrow="AG Trustees" href={localizeHref('/contatti/', lang)} label={customLabel('Richiedi un confronto', lang)} secondaryAction={{ label: customLabel('Vai ad AG Informa', lang), href: localizeHref('/ag-informa/', lang) }}>
+      <Fragment slot="title">{lang === 'en' ? 'Find out more about this topic' : "Scopri di più sull'argomento"}</Fragment>
+      {lang === 'en' ? 'Would you like to explore the topics covered in this article or discuss a specific need?' : 'Desideri approfondire i temi trattati nell’articolo o vuoi confrontarti su una specifica esigenza?'}
     </CallToAction>
   </div>
 </Layout>
