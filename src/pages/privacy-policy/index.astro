@@ -1,24 +1,21 @@
 ---
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import Layout from '../../components/Layout.astro';
+import { getSingleDocument } from '../../lib/strapi-client';
+import { blocksToHtml } from '../../lib/strapi-blocks';
+import '../../styles/components/editorial-prose.scss';
+
+const { data } = await getSingleDocument('privacy-policy', {
+  locale: 'it-IT',
+  fields: ['titolo', 'contenuto'],
+});
+const content = blocksToHtml(data?.contenuto ?? []);
 ---
 
-<PagePlaceholder title="Privacy policy">
-  <div class="row mt-4">
-    <div class="col-lg-8">
-      <h2 class="h4 mb-3">Lorem ipsum dolor sit amet</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      <h2 class="h4 mt-5 mb-3">Consectetur adipiscing elit</h2>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur.</p>
-      <ul>
-        <li>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</li>
-        <li>Nullam quis risus eget urna mollis ornare vel eu leo.</li>
-        <li>Cras mattis consectetur purus sit amet fermentum.</li>
-      </ul>
-
-      <h2 class="h4 mt-5 mb-3">Donec ullamcorper nulla</h2>
-      <p class="mb-0">Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-    </div>
-  </div>
-</PagePlaceholder>
+<Layout>
+  <section class="container section-container py-5" aria-labelledby="page-title">
+    <h1 id="page-title" class="type-section-title mb-0">{data?.titolo ?? 'Privacy policy'}</h1>
+    {content && <div class="row">
+      <div class="col-lg-8 editorial-prose editorial-prose--legal" set:html={content} />
+    </div>}
+  </section>
+</Layout>

@@ -60,4 +60,4 @@ La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre 
 
 Team, archivio e dettaglio di AG Informa e Knowledge Library leggono i contenuti da Strapi. Configura `STRAPI_URL`, `STRAPI_API_URL` e `AUTH_READONLY` nel `.env.local` o nell’hosting, seguendo `.env.example`. Il token resta sul server e non va inserito in Git. Home e correlati di Trust e Patrimonio mantengono gli esempi ancora da collegare.
 
-Privacy e Cookie hanno layout e Lorem ipsum. Profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.
+La Privacy italiana legge titolo e contenuto da Strapi. Privacy inglese e Cookie mantengono il Lorem ipsum. Profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.

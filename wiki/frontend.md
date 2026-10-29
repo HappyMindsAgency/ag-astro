@@ -110,6 +110,8 @@ I componenti ricevono dati tramite proprietà, senza API: le pagine leggono Stra
 
 `src/lib/downloads.ts` condivide la lettura dei download e la conversione per Library e allegati degli articoli. Esclude i documenti disattivati o senza file valido; categorie, date e dimensioni arrivano da Strapi. I filtri considerano tutte le categorie associate a ciascun documento. I PDF si aprono in una nuova scheda, anche dalla ricerca. Senza contenuti inglesi pubblicati, la Library EN resta vuota.
 
+La Privacy italiana legge titolo e contenuto dal Single Type `privacy-policy`. `src/lib/strapi-blocks.ts` condivide la conversione del testo formattato con gli articoli; `.editorial-prose--legal` usa corpo 16 px, interlinea 25 px e titoli compatti. Il contenitore comune mantiene i margini di 24 px sotto `lg`.
+
 Il modulo di iscrizione è solo in `/newsletter/`: usa il foglio NL, `.contact-form` e i campi del riferimento Galvani per la sola iscrizione ad AG Trustees. Le altre pagine usano il banner comune: iscrizione primaria verso `/newsletter/`, ultima newsletter secondaria.
 
 L’iscrizione Newsletter sarà gestita da Brevo. Le pagine `/grazie-newsletter/` e `/en/thank-you-newsletter/` sono le destinazioni dopo l’iscrizione confermata; con doppia conferma, vanno collegate dopo la validazione via email. `ThankYou` condivide struttura e stile delle conferme di Contatti e Newsletter.

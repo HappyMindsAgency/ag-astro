@@ -27,4 +27,4 @@ Servono le destinazioni dei seguenti inviti. Se non previste al lancio, decidere
 - **Favicon:** in attesa dell’immagine del designer.
 - **Cookie e mappe:** Google Maps è attiva; resta da collegare il blocco e il comando per dare il consenso al futuro sistema dei cookie.
 - **Email dei contatti:** mancano credenziali SMTP e casella destinataria; l’invio delle email è ancora da implementare e configurare.
-- **Pagine legali:** mancano i testi definitivi di Privacy e Cookie.
+- **Pagine legali:** restano da ricevere la Cookie policy e le indicazioni per la Privacy inglese.
