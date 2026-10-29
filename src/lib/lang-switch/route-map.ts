@@ -37,5 +37,8 @@ export function languageSwitchUrl(pathname: string, target: Locale): string {
   if (getLangFromUrl(new URL(pathname, 'https://agtrustees.invalid')) === target) return pathname;
   const localized = localizeHref(pathname, target);
   if (localized !== pathname) return localized!;
+  if ((['it', 'en'] as const).some(locale => pathname.startsWith(routes.news[locale]))) {
+    return customSlug('news', target);
+  }
   return customSlug('home', target);
 }
