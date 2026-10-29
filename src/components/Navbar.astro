@@ -132,15 +132,12 @@ const navigation: NavigationItem[] = [
 
     const hero = header?.dataset.headerHero ? document.getElementById(header.dataset.headerHero) : null;
     if (header && hero) {
-      let observer: IntersectionObserver | undefined;
-      const observeHero = () => {
-        observer?.disconnect();
-        observer = new IntersectionObserver(([entry]) => {
-          header.classList.toggle('is-over-hero', entry.isIntersecting);
-        }, { rootMargin: `-${header.offsetHeight}px 0px 0px` });
-        observer.observe(hero);
+      const updateHeroHeader = () => {
+        header.classList.toggle('is-over-hero', window.scrollY <= 8);
       };
-      new ResizeObserver(observeHero).observe(header);
+      updateHeroHeader();
+      window.addEventListener('scroll', updateHeroHeader, { passive: true });
+      window.addEventListener('pageshow', updateHeroHeader);
     }
 
     if (header && panel && toggler) {

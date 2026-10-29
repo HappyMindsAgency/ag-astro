@@ -568,6 +568,26 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .site-header--hero {
+    transition: background-color theme.$interaction-duration theme.$interaction-easing;
+
+    .site-navbar {
+      transition: background-color theme.$interaction-duration theme.$interaction-easing,
+        color theme.$interaction-duration theme.$interaction-easing;
+    }
+
+    .navbar-brand img,
+    .header-icon img {
+      transition: filter theme.$interaction-duration theme.$interaction-easing;
+    }
+
+    .header-language,
+    .header-submenu-toggle,
+    .navbar-toggler {
+      transition: color theme.$interaction-duration theme.$interaction-easing;
+    }
+  }
+
   .site-navbar .nav-link,
   .site-navbar .dropdown-item,
   .header-contact,
