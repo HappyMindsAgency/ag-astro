@@ -2,10 +2,6 @@
 @use '../variables' as theme;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
-.event-detail-hero {
-  background: radial-gradient(ellipse at top right, rgba(theme.$brand-red, 0.08), transparent 75%);
-}
-
 .event-detail-heading {
   display: grid;
   grid-template-columns: 84px minmax(0, 1fr);

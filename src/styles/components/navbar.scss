@@ -49,7 +49,7 @@ $menu-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .site-header {
-  padding: 25px theme.$space-24 45px;
+  padding: 25px theme.$space-24 theme.$space-24;
 
   &::before {
     position: fixed;
