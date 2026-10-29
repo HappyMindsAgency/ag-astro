@@ -56,7 +56,7 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 | `TeamMemberCard` | Schede `Direttivo`, `Operativo` e `Consulente` (valori di `ruolo` in Strapi), con gruppi di qualsiasi lunghezza. |
 | `RelatedContent`, `DocumentList` | Titoli comuni “Articoli correlati” e “Documenti correlati”, anche dove il foglio indica “in evidenza”. Intestazione opzionale per Trust e Patrimonio. `DocumentList` usa due colonne da `xl`, una con `compact`; `tone` distingue le categorie. |
 | `LibraryArchive`, `.content-filter` | Ricerca, categorie, date ISO inclusive, ordinamento e caricamento progressivo: 12 documenti da `lg`, quattro sotto. Filtri condivisi con AG Informa. |
-| `SiteSearch`, `SearchResults`, `SearchHighlight` | Lente dell’header e pagina `/cerca/`; suggerimenti da `xl`, sotto l’invio porta a `/cerca/`. La fonte è `searchSite()`; `search-text.ts` condivide con la Library il confronto senza maiuscole e accenti. I profili del team restano fuori dall’indice finché non pronti. |
+| `SiteSearch`, `SearchResults`, `SearchHighlight` | Lente dell’header e pagina `/cerca/`; suggerimenti da `xl`, sotto l’invio porta a `/cerca/`. `searchSite()` legge articoli e download da Strapi; `search-text.ts` condivide con la Library il confronto senza maiuscole e accenti. I profili del team restano fuori dall’indice finché non pronti. |
 | `.editorial-prose`, `ContentShare`, `EditorialContactCard`, `ArticleAuthor` | Stile e blocchi editoriali condivisi; l’indice dell’articolo usa Bootstrap Collapse e Scrollspy. |
 | `.type-editorial-list-title`, `.collapse-toggle`, `.site-button--small` | Titoli Notizie/Eventi, segno più/meno degli accordion e pulsanti con etichetta da 11 px. |
 
@@ -107,6 +107,8 @@ In Chi siamo, “Le origini” e “L’incontro” seguono A23 e A25. Il blocco
 Nei Link utili della Library, il gruppo di A11 usa il titolo “Altri siti di interesse” del riferimento Galvani in A26. Il link di Milano Finanza in A10 è corretto in `https://www.milanofinanza.it/`.
 
 I componenti ricevono dati tramite proprietà, senza API: le pagine leggono Strapi con `src/lib/strapi-client.ts` e passano i dati ai componenti. Usa i tipi in `src/types/content.ts`; i correlati vuoti non occupano spazio. I commenti `TODO Strapi` indicano gli esempi da sostituire e vanno rimossi dopo l’integrazione. Concorda con il backend formato editoriale e chiamate API.
+
+`src/lib/downloads.ts` condivide la lettura dei download e la conversione per Library e allegati degli articoli. Esclude i documenti disattivati o senza file valido; categorie, date e dimensioni arrivano da Strapi. I filtri considerano tutte le categorie associate a ciascun documento. I PDF si aprono in una nuova scheda, anche dalla ricerca. Senza contenuti inglesi pubblicati, la Library EN resta vuota.
 
 Il modulo di iscrizione è solo in `/newsletter/`: usa il foglio NL, `.contact-form` e i campi del riferimento Galvani per la sola iscrizione ad AG Trustees. Le altre pagine usano il banner comune: iscrizione primaria verso `/newsletter/`, ultima newsletter secondaria.
 

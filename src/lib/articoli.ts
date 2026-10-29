@@ -1,9 +1,10 @@
-import type { ArticleDetail, ArticlePreview, ContentImage, DocumentPreview } from '../types/content';
+import type { ArticleDetail, ArticlePreview, ContentImage } from '../types/content';
 import type { Locale } from './utility-customslug';
 import { getCollectionDocuments } from './strapi-client';
 import { localizeHref } from './lang-switch/route-map';
 import { formatDate } from './utility-function';
 import customLabel from './utility-customlabel';
+import { toDocumentPreview } from './downloads';
 
 const escape = (text: string) => text.replace(/[&<>"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char]!);
 // Accetta solo link relativi, http(s), mailto e tel: niente `javascript:` dal CMS.
@@ -140,14 +141,10 @@ export async function getArticolo(slug: string, lang: Locale) {
 
   const faqItems = (item.domande ?? []).map(({ domanda, risposta }: any) => ({ question: domanda, answer: blocksToText(risposta) }));
 
-  const documents: DocumentPreview[] = (item.downloads ?? []).filter((download: any) => download.attivo !== false).map((download: any) => ({
-    title: download.titolo,
-    downloadUrl: download.file?.url,
-    category: download.categoria_downloads?.[0]?.titolo ?? customLabel('Documento', lang),
-    abbreviation: download.file?.ext?.slice(1).toUpperCase() ?? 'DOC',
-    metadata: [formatDate(download.publishedAt, lang), download.file?.size && `${Math.round(download.file.size)} KB`].filter(Boolean).join(' | '),
-    dateTime: download.publishedAt?.slice(0, 10),
-  }));
+  const documents = (item.downloads ?? []).flatMap((download: Parameters<typeof toDocumentPreview>[0]) => {
+    const document = toDocumentPreview(download, lang);
+    return document ? [document] : [];
+  });
 
   // `correlato` e `correlati` sono i due lati della stessa relazione: li unisco senza duplicati.
   const related = new Map([...(item.correlato ?? []), ...(item.correlati ?? [])].map((entry: any) => [entry.documentId, entry]));

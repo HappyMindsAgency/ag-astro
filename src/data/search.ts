@@ -1,9 +1,9 @@
 import customLabel from '../lib/utility-customlabel';
 import { localizeHref, type Locale } from '../lib/lang-switch/route-map';
 import type { SearchResult } from '../types/content';
-import { articlePlaceholders } from './article-placeholders';
+import { getArticoli } from '../lib/articoli';
+import { getDownloads } from '../lib/downloads';
 import { eventPlaceholders } from './event-placeholders';
-import { libraryDocumentPlaceholders } from './library-placeholders';
 import { normalizeSearchText, searchTerms } from './search-text';
 
 export const searchResultTypes: Record<SearchResult['type'], { label: string; plural: string }> = {
@@ -13,8 +13,8 @@ export const searchResultTypes: Record<SearchResult['type'], { label: string; pl
   document: { label: 'Documento', plural: 'Documenti' },
 };
 
-// TODO Strapi: sostituire pagine e contenuti provvisori con la fonte concordata per la ricerca ed eliminare questo commento.
-const placeholderIndex: SearchResult[] = [
+// TODO Strapi: sostituire gli eventi provvisori con i dati del CMS ed eliminare questo commento.
+const baseIndex: SearchResult[] = [
   { type: 'page', title: 'Chi siamo', href: '/chi-siamo/', excerpt: 'AG Trustees è una trust company italiana nata dall’integrazione di Galvani Fiduciaria e Argos Trustees, dedicata all’amministrazione di trust.' },
   { type: 'page', title: 'Galvani Fiduciaria e Argos Trustees', href: '/chi-siamo/galvani-fiduciaria-argos-trustees/', excerpt: 'Le esperienze di Galvani Fiduciaria e Argos Trustees da cui nasce AG Trustees, una trust company italiana dedicata all’amministrazione professionale di trust.' },
   { type: 'page', title: 'Visione e metodologia', href: '/chi-siamo/visione-metodologia/', excerpt: 'Comprendere, amministrare, accompagnare: i principi e il metodo con cui AG Trustees assume e gestisce ogni incarico di trustee.' },
@@ -27,14 +27,19 @@ const placeholderIndex: SearchResult[] = [
   { type: 'page', title: 'Knowledge Library', href: '/knowledge-library/', excerpt: 'Norme, sentenze, prassi amministrativa e guide su trust, successioni e pianificazione patrimoniale, selezionate da AG Trustees.' },
   { type: 'page', title: 'Contatti', href: '/contatti/', excerpt: 'Recapiti, sedi e modulo per richiedere un confronto con un professionista su trust e patrimonio.' },
   { type: 'page', title: 'Newsletter', href: '/newsletter/', excerpt: 'Iscriviti alla newsletter di AG Trustees per ricevere una selezione di notizie, approfondimenti e appuntamenti dedicati al trust, alla fiscalità e alle questioni patrimoniali.' },
-  ...articlePlaceholders.map(({ title, href, excerpt, category, dateTime }): SearchResult => ({ type: 'article', title, href, excerpt, category, dateTime })),
   ...eventPlaceholders.map(({ title, href, description, format, date }): SearchResult => ({ type: 'event', title, href, excerpt: description, category: format, dateTime: date.dateTime })),
-  ...libraryDocumentPlaceholders.map(({ title, downloadUrl, category, dateTime }): SearchResult => ({ type: 'document', title, href: downloadUrl, category, dateTime })),
 ];
 
 export async function searchSite(query: string, lang: Locale = 'it'): Promise<SearchResult[]> {
   const terms = searchTerms(query);
-  return placeholderIndex
+  if (!terms.length) return [];
+  const [articles, documents] = await Promise.all([getArticoli(lang), getDownloads(lang)]);
+  const index: SearchResult[] = [
+    ...baseIndex,
+    ...articles.map(({ title, href, excerpt, category, dateTime }): SearchResult => ({ type: 'article', title, href, excerpt, category, dateTime })),
+    ...documents.map(({ title, downloadUrl, category, categories, metadata, dateTime }): SearchResult => ({ type: 'document', title, href: downloadUrl, excerpt: metadata, category: categories?.join(', ') || category, dateTime })),
+  ];
+  return index
     .map(result => ({ ...result, title: result.type === 'page' ? customLabel(result.title, lang) : result.title, href: localizeHref(result.href, lang) }))
     .map((result) => {
       const title = normalizeSearchText(result.title);

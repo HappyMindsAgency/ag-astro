@@ -54,10 +54,10 @@ Realizzati header, footer, le 15 pagine del design, la ricerca, la pagina Newsle
 | Ringraziamento Newsletter | [Apri](http://localhost:4321/grazie-newsletter/) |
 | Pagina 404 | [Apri](http://localhost:4321/404/) |
 
-Contenuti di esempio, asset mancanti, PDF e servizi esterni restano da completare con Strapi e il team. Dove i frame mobile sono incompleti o incoerenti, le pagine adattano i contenuti desktop con le regole comuni. I punti aperti sono nella wiki.
+Alcuni contenuti dinamici e servizi esterni restano da collegare. Dove i frame mobile sono incompleti o incoerenti, le pagine adattano i contenuti desktop con le regole comuni. I punti aperti sono nella wiki.
 
-La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre si scrive e li elenca in `/cerca/`; per ora usa pagine e contenuti provvisori, in attesa della fonte concordata con il backend.
+La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre si scrive e li elenca in `/cerca/`. Articoli e download arrivano da Strapi; gli eventi conservano gli esempi provvisori.
 
-Il Team italiano e inglese legge i contenuti da Strapi. Configura `STRAPI_URL`, `STRAPI_API_URL` e `AUTH_READONLY` nel `.env.local` o nell’hosting, seguendo `.env.example`. Il token resta sul server e non va inserito in Git.
+Team, archivio e dettaglio di AG Informa e Knowledge Library leggono i contenuti da Strapi. Configura `STRAPI_URL`, `STRAPI_API_URL` e `AUTH_READONLY` nel `.env.local` o nell’hosting, seguendo `.env.example`. Il token resta sul server e non va inserito in Git. Home e correlati di Trust e Patrimonio mantengono gli esempi ancora da collegare.
 
 Privacy e Cookie hanno layout e Lorem ipsum. Profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.

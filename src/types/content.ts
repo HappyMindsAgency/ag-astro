@@ -31,6 +31,7 @@ export interface DocumentPreview {
   title: string;
   downloadUrl?: string;
   category: string;
+  categories?: string[];
   abbreviation: string;
   metadata: string;
   dateTime?: string;

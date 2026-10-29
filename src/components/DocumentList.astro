@@ -1,6 +1,6 @@
 ---
 import customLabel from '../lib/utility-customlabel';
-import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
 import type { DocumentPreview } from '../types/content';
 import downloadIcon from 'bootstrap-icons/icons/download.svg?raw';
 import '../styles/components/document-list.scss';
@@ -19,15 +19,15 @@ const t = (label: string) => customLabel(label, lang);
 
 {documents.length > 0 && (
   <ul class:list={['document-list row gx-5 gy-0 list-unstyled mb-0', { 'document-list--compact': compact }]}>
-    {documents.map(({ title, downloadUrl, category, abbreviation, metadata, dateTime, tone }) => (
-      <li class={compact ? 'col-12' : 'col-xl-6'} data-document data-document-category={category} data-document-date={dateTime}>
+    {documents.map(({ title, downloadUrl, category, categories, abbreviation, metadata, dateTime, tone }) => (
+      <li class={compact ? 'col-12' : 'col-xl-6'} data-document data-document-category={category} data-document-categories={JSON.stringify(categories ?? [category])} data-document-date={dateTime}>
         <div class:list={['related-document d-flex align-items-center gap-3', tone && `related-document--${tone}`]}>
           <span class="related-document-badge" aria-hidden="true">{abbreviation}</span>
           <div class="flex-grow-1">
             <Heading class="related-document-title">{title}</Heading>
             <p class="related-document-meta mb-0"><span>{category}</span>{' | '}{metadata}</p>
           </div>
-          <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download={downloadUrl ? true : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={customLabel("Scarica PDF: {title}", lang, { title })}>
+          <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} target={downloadUrl ? '_blank' : undefined} rel={downloadUrl ? 'noopener' : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={`${customLabel('Scarica PDF: {title}', lang, { title })}${downloadUrl ? ` (${t('Si apre in una nuova scheda')})` : ''}`}>
             <span class="d-inline-flex" aria-hidden="true" set:html={downloadIcon} /> {t("Scarica PDF")}
           </a>
         </div>

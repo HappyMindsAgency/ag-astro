@@ -17,7 +17,7 @@ const summary = results.length ? resultCount(results.length, lang) : customLabel
     <ul class="site-search-list list-unstyled mb-0">
       {suggestions.map(({ type, title, href }) => (
         <li>
-          <a class="site-search-suggestion d-flex align-items-baseline" href={href}>
+          <a class="site-search-suggestion d-flex align-items-baseline" href={href} target={type === 'document' ? '_blank' : undefined} rel={type === 'document' ? 'noopener' : undefined} aria-label={type === 'document' ? `${title} (${customLabel('Si apre in una nuova scheda', lang)})` : undefined}>
             <span class="site-search-type">{customLabel(searchResultTypes[type].label, lang)}</span>
             <span class="site-search-title site-title-link"><SearchHighlight text={title} query={query} /></span>
           </a>

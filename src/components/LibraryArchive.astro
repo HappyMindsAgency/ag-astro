@@ -22,7 +22,7 @@ const t = (label: string) => customLabel(label, lang);
   <div class="container frame-container">
     <h2 id={`${id}-title`} class="visually-hidden">{t('Documenti della Knowledge Library')}</h2>
     <form role="search" aria-label={t('Cerca nella Knowledge Library')} data-library-form>
-      <fieldset class="library-categories">
+      {categories.length > 0 && <fieldset class="library-categories">
         <legend class="visually-hidden">{t('Filtra per categoria')}</legend>
         <div class="library-category-heading d-flex justify-content-between align-items-center gap-3">
           <p class="library-filter-title mb-0" aria-hidden="true">{t('Filtra per categoria')}</p>
@@ -31,7 +31,7 @@ const t = (label: string) => customLabel(label, lang);
         <div class="d-flex flex-wrap gap-2">
           {categories.map(({ label, value }) => <button class="content-filter content-filter--compact" type="button" data-library-category={value} aria-pressed="false">{t(label)}</button>)}
         </div>
-      </fieldset>
+      </fieldset>}
 
       <div class="row gx-3 align-items-end library-search">
         <div class="col-12 col-xl-3">
@@ -96,10 +96,11 @@ const t = (label: string) => customLabel(label, lang);
     const render = () => {
       const matching = items.filter((item) => {
         const itemCategory = item.dataset.documentCategory ?? '';
+        const itemCategories: string[] = JSON.parse(item.dataset.documentCategories ?? '[]');
         const date = item.dataset.documentDate ?? '';
         const title = item.querySelector('.related-document-title')?.textContent ?? '';
-        return (!category || itemCategory === category)
-          && criteria.terms.every((term) => normalizeSearchText(`${title} ${itemCategory}`).includes(term))
+        return (!category || itemCategories.includes(category))
+          && criteria.terms.every((term) => normalizeSearchText(`${title} ${itemCategory} ${itemCategories.join(' ')}`).includes(term))
           && (!criteria.from || date >= criteria.from)
           && (!criteria.to || (date !== '' && date <= criteria.to));
       }).sort((a, b) => {

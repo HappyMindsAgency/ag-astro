@@ -3,10 +3,11 @@ import Layout from '../../../components/Layout.astro';
 import PageIntro from '../../../components/PageIntro.astro';
 import LibraryArchive from '../../../components/LibraryArchive.astro';
 import NewsletterCallToAction from '../../../components/NewsletterCallToAction.astro';
-import { libraryDocumentPlaceholders, libraryCategories } from '../../../data/library-placeholders';
+import { getDownloads, getDownloadCategories } from '../../../lib/downloads';
 import '../../../styles/pages/knowledge-library.scss';
 
 const lang = 'en';
+const [documents, categories] = await Promise.all([getDownloads(lang), getDownloadCategories(lang)]);
 
 const usefulLinks = [
   {
@@ -49,7 +50,7 @@ const usefulLinks = [
       Explore a carefully selected and organised collection of documents and resources compiled by AG Trustees to support research and provide further insight into trusts and related matters.
     </PageIntro>
 
-    <LibraryArchive documents={libraryDocumentPlaceholders} categories={libraryCategories} />
+    <LibraryArchive documents={documents} categories={categories} />
 
     <section class="library-links section-spacing" aria-labelledby="library-links-title">
       <div class="container frame-container">

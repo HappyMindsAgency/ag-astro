@@ -136,6 +136,7 @@ const english: Record<string, string> = {
   'Leggi gli approfondimenti': 'Explore our insights',
   'Scarica PDF': 'Download PDF',
   'Scarica PDF: {title}': 'Download PDF: {title}',
+  'Si apre in una nuova scheda': 'Opens in a new tab',
   'Calendario completo': 'Full calendar',
   'Dettagli': 'Details',
   'Dettagli: {title}': 'Details: {title}',

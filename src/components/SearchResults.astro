@@ -58,7 +58,7 @@ const t = (label: string) => customLabel(label, lang);
                 {dateTime && <time datetime={dateTime}>{dateFormat.format(new Date(dateTime))}</time>}
               </p>
               <h3 class="search-result-title">
-                {href ? <a class="site-title-link" href={localizeHref(href, lang)}><SearchHighlight text={title} query={query} /></a> : <SearchHighlight text={title} query={query} />}
+                {href ? <a class="site-title-link" href={localizeHref(href, lang)} target={type === 'document' ? '_blank' : undefined} rel={type === 'document' ? 'noopener' : undefined} aria-label={type === 'document' ? `${title} (${t('Si apre in una nuova scheda')})` : undefined}><SearchHighlight text={title} query={query} /></a> : <SearchHighlight text={title} query={query} />}
               </h3>
               {excerpt && <p class="search-result-excerpt mb-0"><SearchHighlight text={excerpt} query={query} /></p>}
             </li>
