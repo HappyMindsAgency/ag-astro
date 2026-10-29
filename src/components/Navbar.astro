@@ -15,8 +15,6 @@ interface Props {
 const { linkedinUrl, heroId, lang = getLangFromUrl(Astro.url), languageUrls } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const contactIsCurrent = currentPath === customSlug('contact', lang).replace(/\/$/, '');
-const LinkedIn = linkedinUrl ? 'a' : 'span';
-const linkedinAttributes = linkedinUrl ? { href: linkedinUrl, 'aria-label': customLabel('AG Trustees su LinkedIn', lang) } : { role: 'img', 'aria-label': 'LinkedIn' };
 interface NavigationItem {
   label: string;
   href: string;
@@ -106,11 +104,13 @@ const navigation: NavigationItem[] = [
           <a class:list={['header-contact d-none d-xl-inline-flex', { active: contactIsCurrent }]} href={customSlug('contact', lang)} data-label={customLabel('Contatti', lang)} aria-current={contactIsCurrent ? 'page' : undefined}>{customLabel('Contatti', lang)}</a>
           <span class="vr d-none d-xl-inline-block"></span>
           {/* LinkedIn precede la lente solo nel menu compatto: due copie mantengono l’ordine del Tab uguale a quello visivo. */}
-          <LinkedIn class="header-icon d-xl-none" {...linkedinAttributes}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></LinkedIn>
+          {linkedinUrl && <a class="header-icon d-xl-none" href={linkedinUrl} aria-label={customLabel('AG Trustees su LinkedIn', lang)}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>}
           <SiteSearch />
           <span class="vr d-none d-xl-inline-block"></span>
-          <LinkedIn class="header-icon d-none d-xl-inline-flex" {...linkedinAttributes}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></LinkedIn>
-          <span class="vr d-none d-xl-inline-block"></span>
+          {linkedinUrl && <>
+            <a class="header-icon d-none d-xl-inline-flex" href={linkedinUrl} aria-label={customLabel('AG Trustees su LinkedIn', lang)}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
+            <span class="vr d-none d-xl-inline-block"></span>
+          </>}
           <LanguageSwitch lang={lang} urls={languageUrls} />
         </div>
       </div>

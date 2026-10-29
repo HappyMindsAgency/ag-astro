@@ -42,10 +42,8 @@ const legalLinks = [
           <p class="footer-company mb-0">AG TRUSTEES S.R.L.</p>
           <p class="mb-0">{lang === 'en' ? 'VAT No.' : 'P.IVA'} 14402230966</p>
           <p class="mb-0">{customLabel('Capitale sociale', lang)} <span class="text-nowrap">€ 10.000,00 {lang === 'en' ? 'fully paid' : 'i.v.'}</span></p>
-          {linkedinUrl ? (
+          {linkedinUrl && (
             <a href={linkedinUrl} aria-label={customLabel('AG Trustees su LinkedIn', lang)}><img class="d-block" src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></a>
-          ) : (
-            <span role="img" aria-label="LinkedIn"><img class="d-block" src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></span>
           )}
         </div>
       </div>
