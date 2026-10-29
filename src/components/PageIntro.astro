@@ -11,6 +11,7 @@ interface Props {
   mobileTitleLeading?: 'tight' | 'regular' | 'relaxed';
   wideTitle?: boolean;
   fitMobileTitle?: boolean;
+  alignHeadingTop?: boolean;
   compact?: boolean;
   titleSize?: 'default' | 'compact';
 }
@@ -24,6 +25,7 @@ const {
   mobileTitleLeading = 'regular',
   wideTitle = false,
   fitMobileTitle = wideTitle,
+  alignHeadingTop = false,
   compact = false,
   titleSize = 'default',
 } = Astro.props;
@@ -36,7 +38,7 @@ const copyColumnClass = wideTitle ? 'col-md-6 col-xxl-auto' : 'col-md-6';
     <Breadcrumb current={breadcrumb} parents={parents} />
 
     <div class="row gx-0 align-items-end">
-      <div class:list={[headingColumnClass, 'page-intro-heading']}>
+      <div class:list={[headingColumnClass, 'page-intro-heading', { 'align-self-start': alignHeadingTop }]}>
         <p class="type-eyebrow page-intro-eyebrow">{eyebrow}</p>
         <h1 id="page-title" class:list={['type-page-title mb-0', {
           'type-page-title--tight': mobileTitleLeading === 'tight',
