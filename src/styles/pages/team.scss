@@ -30,7 +30,7 @@
 
   .team-section-header {
     border-bottom: 1px solid rgba(theme.$text-on-blue, 0.25);
-    padding-block: theme.$space-64 theme.$space-40;
+    padding-block: 0 theme.$space-40;
   }
 
   .team-section-eyebrow,
@@ -47,6 +47,7 @@
 
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
   .team-section--Direttivo {
+    padding-top: theme.$space-100;
     padding-inline: theme.$space-48;
   }
 }

@@ -10,3 +10,9 @@
     padding-block: theme.$space-64;
   }
 }
+
+@include bs.media-breakpoint-up(md, theme.$grid-breakpoints) {
+  .newsletter-signup.section-spacing {
+    padding-top: 0;
+  }
+}
