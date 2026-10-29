@@ -21,7 +21,7 @@ const t = (label: string) => customLabel(label, lang);
     <EventDate date={event.date} variant={compact ? 'compact' : 'card'} />
     <div class="event-card-content d-flex flex-column align-self-stretch">
       <div class="event-card-meta d-flex flex-wrap align-items-center">
-        {event.format && <span class:list={['event-card-format', { 'event-card-format--webinar': event.format === 'Webinar', 'event-card-format--seminar': event.format === 'Seminario' }]}>{event.format}</span>}
+        {event.format && <span class:list={['event-card-format', { 'event-card-format--webinar': event.formatTone === 'webinar', 'event-card-format--seminar': event.formatTone === 'seminar' }]}>{event.format}</span>}
         <span class="event-card-location d-inline-flex align-items-center"><span class="event-card-pin" aria-hidden="true"></span>{event.location}</span>
       </div>
       <h3 class="event-card-title">{event.href ? <a class="site-title-link" href={localizeHref(event.href, lang)}>{event.title}</a> : event.title}</h3>

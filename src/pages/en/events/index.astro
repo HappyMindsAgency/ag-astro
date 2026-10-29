@@ -1,10 +1,14 @@
 ---
-import { eventPlaceholders } from '../../../data/event-placeholders';
+import { getEventi, getProssimiEventi } from '../../../lib/eventi';
 import Layout from '../../../components/Layout.astro';
 import PageIntro from '../../../components/PageIntro.astro';
 import EventList from '../../../components/EventList.astro';
 import NewsletterCallToAction from '../../../components/NewsletterCallToAction.astro';
 import '../../../styles/pages/eventi.scss';
+
+const events = await getEventi('en');
+const upcomingEvents = getProssimiEventi(events);
+const highlightedEvents = events.filter(event => event.notToMiss);
 
 const lang = 'en';
 ---
@@ -16,8 +20,8 @@ const lang = 'en';
       Conferences, seminars and professional development events exploring trusts, taxation and long-term wealth planning.
     </PageIntro>
 
-    <EventList id="prossimi-eventi" title="Upcoming events" eyebrow="Events calendar" events={eventPlaceholders} />
-    <EventList id="eventi-da-non-perdere" title="Events not to be missed" eyebrow="Events calendar" events={eventPlaceholders} compact />
+    <EventList id="prossimi-eventi" title="Upcoming events" eyebrow="Events calendar" events={upcomingEvents} />
+    <EventList id="eventi-da-non-perdere" title="Events not to be missed" eyebrow="Events calendar" events={highlightedEvents} compact />
 
     <NewsletterCallToAction title="AG Informa – News and updates">
       Receive a curated selection of news, expert insights and upcoming events to stay informed about developments in trusts and wealth-related matters.

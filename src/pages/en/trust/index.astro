@@ -1,5 +1,6 @@
 ---
-import { relatedArticlesPlaceholder, relatedDocumentsPlaceholder } from '../../../data/trust-placeholders';
+import { getArticoliRecenti } from '../../../lib/articoli';
+import { getDownloadsRecenti } from '../../../lib/downloads';
 import Layout from '../../../components/Layout.astro';
 import PageIntro from '../../../components/PageIntro.astro';
 import EditorialImage from '../../../components/EditorialImage.astro';
@@ -10,6 +11,7 @@ import OverviewBanner from '../../../components/OverviewBanner.astro';
 import '../../../styles/pages/trust.scss';
 
 const lang = 'en';
+const [relatedArticles, relatedDocuments] = await Promise.all([getArticoliRecenti(lang), getDownloadsRecenti(lang)]);
 
 const trustPrinciples = [
   "Assets placed in trust form a separate fund and do not become part of the trustee's personal estate.",
@@ -253,8 +255,8 @@ const faqs = [
   <RelatedContent
     title="Understanding trusts and keeping up with developments"
     introduction="Legislation, case law, guides and expert analysis selected by AG Trustees."
-    articles={relatedArticlesPlaceholder}
-    documents={relatedDocumentsPlaceholder}
+    articles={relatedArticles}
+    documents={relatedDocuments}
     showArticlesLink
   />
 

@@ -22,9 +22,12 @@ export interface EventPreview {
   image?: ContentImage;
   organizer?: string;
   location: string;
-  format?: 'Convegno' | 'Webinar' | 'Seminario';
+  format?: string;
+  formatTone?: 'webinar' | 'seminar';
+  inHome?: boolean;
+  notToMiss?: boolean;
   description?: string;
-  date: { days: string; month: string; year: string; dateTime?: string };
+  date: { days: string; month: string; monthShort?: string; year: string; dateTime?: string; endDateTime?: string; label?: string };
 }
 
 export interface DocumentPreview {

@@ -1,6 +1,6 @@
 # Dubbi e domande
 
-Questioni da chiarire con designer e team. Le scelte già approvate sono nelle [regole frontend](frontend.md).
+Questioni da chiarire con designer e team. Le scelte già approvate sono nelle [regole frontend](frontend.md); i contenuti provvisori nella [checklist](contenuti-da-completare.md).
 
 ## Architettura e destinazioni
 
@@ -23,8 +23,6 @@ Servono le destinazioni dei seguenti inviti. Se non previste al lancio, decidere
 
 - **Download:** le categorie esistono in Strapi, ma non sono ancora associate ai PDF. Le date mostrate sono quelle di pubblicazione in Strapi, coincidenti con l’importazione: vanno confermate?
 - **Disponibilità Strapi:** verificare i timeout al caricamento; in assenza di risposta la Library risulta vuota.
-- **Correlati di Trust e Patrimonio:** mantenuti gli esempi provvisori; mancano indicazioni sulle associazioni ai contenuti Strapi.
 - **Favicon:** in attesa dell’immagine del designer.
 - **Cookie e mappe:** Google Maps è attiva; resta da collegare il blocco e il comando per dare il consenso al futuro sistema dei cookie.
 - **Email dei contatti:** mancano credenziali SMTP e casella destinataria; l’invio delle email è ancora da implementare e configurare.
-- **Pagine legali:** restano da ricevere la Cookie policy e le indicazioni per la Privacy inglese.

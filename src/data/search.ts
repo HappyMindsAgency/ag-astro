@@ -3,7 +3,7 @@ import { localizeHref, type Locale } from '../lib/lang-switch/route-map';
 import type { SearchResult } from '../types/content';
 import { getArticoli } from '../lib/articoli';
 import { getDownloads } from '../lib/downloads';
-import { eventPlaceholders } from './event-placeholders';
+import { getEventi } from '../lib/eventi';
 import { normalizeSearchText, searchTerms } from './search-text';
 
 export const searchResultTypes: Record<SearchResult['type'], { label: string; plural: string }> = {
@@ -13,7 +13,6 @@ export const searchResultTypes: Record<SearchResult['type'], { label: string; pl
   document: { label: 'Documento', plural: 'Documenti' },
 };
 
-// TODO Strapi: sostituire gli eventi provvisori con i dati del CMS ed eliminare questo commento.
 const baseIndex: SearchResult[] = [
   { type: 'page', title: 'Chi siamo', href: '/chi-siamo/', excerpt: 'AG Trustees è una trust company italiana nata dall’integrazione di Galvani Fiduciaria e Argos Trustees, dedicata all’amministrazione di trust.' },
   { type: 'page', title: 'Galvani Fiduciaria e Argos Trustees', href: '/chi-siamo/galvani-fiduciaria-argos-trustees/', excerpt: 'Le esperienze di Galvani Fiduciaria e Argos Trustees da cui nasce AG Trustees, una trust company italiana dedicata all’amministrazione professionale di trust.' },
@@ -27,15 +26,15 @@ const baseIndex: SearchResult[] = [
   { type: 'page', title: 'Knowledge Library', href: '/knowledge-library/', excerpt: 'Norme, sentenze, prassi amministrativa e guide su trust, successioni e pianificazione patrimoniale, selezionate da AG Trustees.' },
   { type: 'page', title: 'Contatti', href: '/contatti/', excerpt: 'Recapiti, sedi e modulo per richiedere un confronto con un professionista su trust e patrimonio.' },
   { type: 'page', title: 'Newsletter', href: '/newsletter/', excerpt: 'Iscriviti alla newsletter di AG Trustees per ricevere una selezione di notizie, approfondimenti e appuntamenti dedicati al trust, alla fiscalità e alle questioni patrimoniali.' },
-  ...eventPlaceholders.map(({ title, href, description, format, date }): SearchResult => ({ type: 'event', title, href, excerpt: description, category: format, dateTime: date.dateTime })),
 ];
 
 export async function searchSite(query: string, lang: Locale = 'it'): Promise<SearchResult[]> {
   const terms = searchTerms(query);
   if (!terms.length) return [];
-  const [articles, documents] = await Promise.all([getArticoli(lang), getDownloads(lang)]);
+  const [articles, documents, events] = await Promise.all([getArticoli(lang), getDownloads(lang), getEventi(lang)]);
   const index: SearchResult[] = [
     ...baseIndex,
+    ...events.map(({ title, href, description, format, date }): SearchResult => ({ type: 'event', title, href, excerpt: description, category: format, dateTime: date.dateTime })),
     ...articles.map(({ title, href, excerpt, category, dateTime }): SearchResult => ({ type: 'article', title, href, excerpt, category, dateTime })),
     ...documents.map(({ title, downloadUrl, category, categories, metadata, dateTime }): SearchResult => ({ type: 'document', title, href: downloadUrl, excerpt: metadata, category: categories?.join(', ') || category, dateTime })),
   ];

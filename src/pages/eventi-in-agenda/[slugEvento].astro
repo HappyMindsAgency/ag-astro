@@ -1,5 +1,9 @@
 ---
 import EventDetail from '../../components/pages/EventDetail.astro';
+import { getEvento } from '../../lib/eventi';
+
+const event = await getEvento(Astro.params.slugEvento!, 'it');
+if (!event) return Astro.rewrite('/404/');
 ---
 
-<EventDetail lang="it" />
+<EventDetail lang="it" {...event} />

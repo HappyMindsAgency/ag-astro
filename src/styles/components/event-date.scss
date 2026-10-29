@@ -10,7 +10,9 @@
 }
 
 .event-date-day {
-  font-size: theme.$font-size-event-date-day;
+  --event-date-day-size: #{theme.$font-size-event-date-day};
+  white-space: nowrap;
+  font-size: var(--event-date-day-size);
   font-weight: theme.$font-weight-light;
   line-height: theme.$line-height-event-date-day;
 }
@@ -38,7 +40,7 @@
   padding-right: theme.$space-24;
 
   .event-date-day {
-    font-size: theme.$font-size-event-date-day-compact;
+    --event-date-day-size: #{theme.$font-size-event-date-day-compact};
     line-height: 1;
   }
 
@@ -52,7 +54,7 @@
   padding-right: theme.$space-16;
 
   .event-date-day {
-    font-size: theme.$font-size-event-date-hero-day;
+    --event-date-day-size: #{theme.$font-size-event-date-hero-day};
     line-height: 1;
   }
 
@@ -73,7 +75,7 @@
   }
 
   .event-date-day {
-    font-size: theme.$font-size-event-date-day-mobile;
+    --event-date-day-size: #{theme.$font-size-event-date-day-mobile};
     line-height: 1;
   }
 
@@ -98,7 +100,7 @@
     padding-right: theme.$space-12;
 
     .event-date-day {
-      font-size: theme.$font-size-event-date-day-mobile;
+      --event-date-day-size: #{theme.$font-size-event-date-day-mobile};
     }
   }
 
@@ -107,7 +109,7 @@
     padding-right: theme.$space-12;
 
     .event-date-day {
-      font-size: theme.$font-size-event-date-day;
+      --event-date-day-size: #{theme.$font-size-event-date-day};
     }
 
     .event-date-month {
@@ -119,5 +121,14 @@
       font-size: theme.$font-size-event-date-label;
       line-height: theme.$line-height-content-meta;
     }
+  }
+}
+
+.event-date.event-date--range {
+  container-type: inline-size;
+
+  .event-date-day {
+    font-size: min(var(--event-date-day-size), calc(160cqi / var(--event-date-characters)));
+    line-height: 1;
   }
 }

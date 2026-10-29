@@ -1,5 +1,6 @@
 ---
-import { featuredEventPlaceholder, articlePlaceholders } from '../../data/home-placeholders';
+import { getArticoliHome } from '../../lib/articoli';
+import { getEventi } from '../../lib/eventi';
 import Layout from '../../components/Layout.astro';
 import ImageOverview from '../../components/ImageOverview.astro';
 import EditorialImage from '../../components/EditorialImage.astro';
@@ -8,6 +9,9 @@ import FeaturedEvent from '../../components/FeaturedEvent.astro';
 import NewsFeed from '../../components/NewsFeed.astro';
 import NewsletterCallToAction from '../../components/NewsletterCallToAction.astro';
 import '../../styles/pages/home.scss';
+
+const [articles, events] = await Promise.all([getArticoliHome('en'), getEventi('en')]);
+const featuredEvent = events.find(event => event.inHome);
 
 const companyDescription = "AG Trustees acts as trustee, co-trustee or trust protector, administering assets in accordance with the purposes and terms of each trust.\n\nThe company brings together legal, tax, administrative and accounting expertise, supported by extensive experience in professional trusteeship.\n\nThis combined expertise is guided by a shared commitment: to fulfil every appointment with responsibility, sound judgement and genuine consideration for the people involved.";
 const servicesIntroduction = "AG Trustees provides support from the initial planning and establishment of a trust through to its ongoing administration.";
@@ -100,7 +104,7 @@ const lang = 'en';
     <a slot="action" class="btn site-button" href="/en/about-us/">Discover AG Trustees <span aria-hidden="true">→</span></a>
   </ImageOverview>
 
-  <FeaturedEvent event={featuredEventPlaceholder} />
+  <FeaturedEvent event={featuredEvent} />
 
   <ServiceOverview id="servizi" services={services} introduction={servicesIntroduction} eyebrow="Professional Services" title="Supporting people, today and for the future" actionLabel="Explore our services" />
 
@@ -167,6 +171,6 @@ const lang = 'en';
     </div>
   </section>
 
-  <NewsFeed articles={articlePlaceholders} eyebrow="News and insights" />
+  <NewsFeed articles={articles} eyebrow="News and insights" />
   <NewsletterCallToAction contained={false} title="AG Informa – News and updates">Receive a curated selection of news, expert insights and upcoming events to stay informed about developments in trusts, wealth management and related legal matters.</NewsletterCallToAction>
 </Layout>

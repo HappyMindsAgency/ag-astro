@@ -6,10 +6,12 @@ import OverviewBanner from '../../../components/OverviewBanner.astro';
 import FaqSection from '../../../components/FaqSection.astro';
 import RelatedContent from '../../../components/RelatedContent.astro';
 import CallToAction from '../../../components/CallToAction.astro';
-import { relatedArticlesPlaceholder, relatedDocumentsPlaceholder } from '../../../data/wealth-placeholders';
+import { getArticoliRecenti } from '../../../lib/articoli';
+import { getDownloadsRecenti } from '../../../lib/downloads';
 import '../../../styles/pages/patrimonio.scss';
 
 const lang = 'en';
+const [relatedArticles, relatedDocuments] = await Promise.all([getArticoliRecenti(lang), getDownloadsRecenti(lang)]);
 
 const needs = [
   {
@@ -187,8 +189,8 @@ const faqs = [
     eyebrow="Insights"
     title="Resources and knowledge to guide decisions"
     introduction="Articles, guides, legislation and insights on protecting, administering and passing on wealth."
-    articles={relatedArticlesPlaceholder}
-    documents={relatedDocumentsPlaceholder}
+    articles={relatedArticles}
+    documents={relatedDocuments}
   />
 
   <CallToAction eyebrow="AG Trustees — Experts in trusts and wealth planning" href="/en/contact-us/" label="Contact us" backgroundImage="/assets/immagini/patrimonio/ag-trustees-cta-contatti.jpg">

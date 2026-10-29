@@ -1,5 +1,6 @@
 ---
-import { relatedArticlesPlaceholder, relatedDocumentsPlaceholder } from '../../data/wealth-placeholders';
+import { getArticoliRecenti } from '../../lib/articoli';
+import { getDownloadsRecenti } from '../../lib/downloads';
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import OverviewBanner from '../../components/OverviewBanner.astro';
@@ -7,6 +8,8 @@ import FaqSection from '../../components/FaqSection.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import CallToAction from '../../components/CallToAction.astro';
 import '../../styles/pages/patrimonio.scss';
+
+const [relatedArticles, relatedDocuments] = await Promise.all([getArticoliRecenti('it'), getDownloadsRecenti('it')]);
 
 const needs = [
   {
@@ -167,8 +170,8 @@ const faqs = [
   <RelatedContent
     title="Strumenti e conoscenze per orientare le decisioni"
     introduction="Articoli, guide, normativa e approfondimenti dedicati alla protezione, all’amministrazione e alla trasmissione del patrimonio."
-    articles={relatedArticlesPlaceholder}
-    documents={relatedDocumentsPlaceholder}
+    articles={relatedArticles}
+    documents={relatedDocuments}
   />
 
   <CallToAction eyebrow="AG Trustees — Esperti in trust e pianificazione patrimoniale" href="/contatti/" label="Parliamone" backgroundImage="/assets/immagini/patrimonio/ag-trustees-cta-contatti.jpg">

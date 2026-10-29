@@ -1,5 +1,6 @@
 ---
-import { featuredEventPlaceholder, articlePlaceholders } from '../data/home-placeholders';
+import { getArticoliHome } from '../lib/articoli';
+import { getEventi } from '../lib/eventi';
 import Layout from '../components/Layout.astro';
 import ImageOverview from '../components/ImageOverview.astro';
 import EditorialImage from '../components/EditorialImage.astro';
@@ -8,6 +9,9 @@ import FeaturedEvent from '../components/FeaturedEvent.astro';
 import NewsFeed from '../components/NewsFeed.astro';
 import NewsletterCallToAction from '../components/NewsletterCallToAction.astro';
 import '../styles/pages/home.scss';
+
+const [articles, events] = await Promise.all([getArticoliHome('it'), getEventi('it')]);
+const featuredEvent = events.find(event => event.inHome);
 
 const companyDescription = 'Assume incarichi di trustee, co-trustee e guardiano e amministra i beni conferiti nel rispetto delle finalità stabilite.\n\nLa società riunisce in un’unica identità competenze giuridiche, fiscali, amministrative e contabili, insieme a una lunga esperienza nell’attività di trustee professionale.\n\nUn patrimonio di conoscenze oggi al servizio di una visione condivisa: amministrare ogni incarico con responsabilità, equilibrio e attenzione alle persone.';
 const servicesIntroduction = 'AG Trustees interviene dalla definizione del progetto alla sua amministrazione nel tempo.';
@@ -66,7 +70,7 @@ const values = [
     <a slot="action" class="btn site-button" href="/chi-siamo/">Conosci AG Trustees <span aria-hidden="true">→</span></a>
   </ImageOverview>
 
-  <FeaturedEvent event={featuredEventPlaceholder} />
+  <FeaturedEvent event={featuredEvent} />
 
   <ServiceOverview id="servizi" services={services} introduction={servicesIntroduction} eyebrow="Servizi professionali" title="Al fianco delle persone, nel tempo" actionLabel="Vai a tutti i servizi" />
 
@@ -133,7 +137,7 @@ const values = [
     </div>
   </section>
 
-  <NewsFeed articles={articlePlaceholders} eyebrow="Notizie e approfondimenti" />
+  <NewsFeed articles={articles} eyebrow="Notizie e approfondimenti" />
   <NewsletterCallToAction contained={false} />
 </Layout>
 

@@ -1,5 +1,6 @@
 ---
-import { relatedArticlesPlaceholder, relatedDocumentsPlaceholder } from '../../data/trust-placeholders';
+import { getArticoliRecenti } from '../../lib/articoli';
+import { getDownloadsRecenti } from '../../lib/downloads';
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import EditorialImage from '../../components/EditorialImage.astro';
@@ -8,6 +9,8 @@ import CallToAction from '../../components/CallToAction.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import OverviewBanner from '../../components/OverviewBanner.astro';
 import '../../styles/pages/trust.scss';
+
+const [relatedArticles, relatedDocuments] = await Promise.all([getArticoliRecenti('it'), getDownloadsRecenti('it')]);
 
 const trustPrinciples = [
   'i beni conferiti in trust formano un patrimonio distinto e non fanno parte del patrimonio personale del trustee;',
@@ -227,8 +230,8 @@ const faqs = [
   <RelatedContent
     title="Per comprendere il trust e seguirne l’evoluzione"
     introduction="Normativa, giurisprudenza, guide e analisi selezionate da AG Trustees."
-    articles={relatedArticlesPlaceholder}
-    documents={relatedDocumentsPlaceholder}
+    articles={relatedArticles}
+    documents={relatedDocuments}
     showArticlesLink
   />
 

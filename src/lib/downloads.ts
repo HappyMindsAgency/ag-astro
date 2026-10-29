@@ -61,18 +61,29 @@ export function toDocumentPreview(download: Download, lang: Locale): DocumentPre
   };
 }
 
-export async function getDownloads(lang: Locale): Promise<DocumentPreview[]> {
-  const query = (page: number) => ({
-    locale: lang === 'en' ? 'en' : 'it-IT',
-    filters: { attivo: { $eq: true } },
-    sort: ['publishedAt:desc', 'documentId:asc'],
-    fields: ['titolo', 'attivo', 'publishedAt'],
-    populate: {
-      file: { fields: ['url', 'size', 'ext'] },
-      categoria_downloads: { fields: ['titolo', 'slug'] },
-    },
-    pagination: { page, pageSize: 100 },
+const downloadQuery = (lang: Locale) => ({
+  locale: lang === 'en' ? 'en' : 'it-IT',
+  filters: { attivo: { $eq: true } },
+  sort: ['publishedAt:desc', 'documentId:asc'],
+  fields: ['titolo', 'attivo', 'publishedAt'],
+  populate: {
+    file: { fields: ['url', 'size', 'ext'] },
+    categoria_downloads: { fields: ['titolo', 'slug'] },
+  },
+});
+
+export async function getDownloadsRecenti(lang: Locale): Promise<DocumentPreview[]> {
+  const query = downloadQuery(lang);
+  const { data } = await getCollectionDocuments('downloads', {
+    ...query,
+    filters: { ...query.filters, file: { url: { $notNull: true } } },
+    pagination: { pageSize: 2 },
   });
+  return data.map((download) => toDocumentPreview(download, lang)).filter((document): document is DocumentPreview => !!document);
+}
+
+export async function getDownloads(lang: Locale): Promise<DocumentPreview[]> {
+  const query = (page: number) => ({ ...downloadQuery(lang), pagination: { page, pageSize: 100 } });
   const first = await getCollectionDocuments('downloads', query(1));
   const pageCount = first.meta.pagination?.pageCount ?? 1;
   const rest = await Promise.all(Array.from({ length: Math.max(0, pageCount - 1) }, (_, index) => getCollectionDocuments('downloads', query(index + 2))));

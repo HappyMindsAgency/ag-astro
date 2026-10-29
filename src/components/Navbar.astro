@@ -9,9 +9,10 @@ interface Props {
   linkedinUrl?: string;
   heroId?: string;
   lang?: Locale;
+  languageUrls?: Partial<Record<Locale, string>>;
 }
 
-const { linkedinUrl, heroId, lang = getLangFromUrl(Astro.url) } = Astro.props;
+const { linkedinUrl, heroId, lang = getLangFromUrl(Astro.url), languageUrls } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const contactIsCurrent = currentPath === customSlug('contact', lang).replace(/\/$/, '');
 const LinkedIn = linkedinUrl ? 'a' : 'span';
@@ -110,7 +111,7 @@ const navigation: NavigationItem[] = [
           <span class="vr d-none d-xl-inline-block"></span>
           <LinkedIn class="header-icon d-none d-xl-inline-flex" {...linkedinAttributes}><img src="/assets/icone/linkedin.svg" width="16" height="17" alt="" /></LinkedIn>
           <span class="vr d-none d-xl-inline-block"></span>
-          <LanguageSwitch lang={lang} />
+          <LanguageSwitch lang={lang} urls={languageUrls} />
         </div>
       </div>
     </div>

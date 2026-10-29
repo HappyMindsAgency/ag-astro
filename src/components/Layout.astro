@@ -13,16 +13,17 @@ interface Props {
     description?: string;
     linkedinUrl?: string;
     headerHeroId?: string;
+    languageUrls?: Partial<Record<Locale, string>>;
 }
 
-const { lang = getLangFromUrl(Astro.url), title = 'AG Trustees', description, linkedinUrl, headerHeroId } = Astro.props;
+const { lang = getLangFromUrl(Astro.url), title = 'AG Trustees', description, linkedinUrl, headerHeroId, languageUrls } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang={lang}>
     <Head title={title} description={description} />
     <body>
         <a class="skip-link visually-hidden-focusable" href="#contenuto-principale">{customLabel('Vai al contenuto', lang)}</a>
-        <Navbar lang={lang} linkedinUrl={linkedinUrl} heroId={headerHeroId} />
+        <Navbar lang={lang} linkedinUrl={linkedinUrl} heroId={headerHeroId} languageUrls={languageUrls} />
         <main id="contenuto-principale" tabindex="-1">
             <slot />
         </main>

@@ -26,6 +26,7 @@ La build usa l’adapter Node standalone; in ambiente Vercel seleziona l’adapt
 
 - [Regole frontend, stile e componenti](wiki/frontend.md)
 - [Dubbi e domande per designer e team](wiki/dubbi-e-domande.md)
+- [Checklist dei contenuti ancora da completare](wiki/contenuti-da-completare.md)
 - [Architettura delle pagine e slug](wiki/AG_Trustees_Slug.xlsx)
 
 ## Stato delle pagine
@@ -45,19 +46,19 @@ Realizzati header, footer, le 15 pagine del design, la ricerca, la pagina Newsle
 | Ringraziamento contatti | [Apri](http://localhost:4321/grazie-contatti/) |
 | Team | [Apri](http://localhost:4321/chi-siamo/team/) |
 | AG Informa | [Apri](http://localhost:4321/ag-informa/) |
-| Dettaglio articolo | [Apri](http://localhost:4321/ag-informa/articolo-provvisorio/) |
+| Dettaglio articolo | [Apri](http://localhost:4321/ag-informa/fondo-patrimoniale-e-tutela-dellabitazione-del-fallito/) |
 | Eventi e formazione | [Apri](http://localhost:4321/eventi-in-agenda/) |
-| Dettaglio evento | [Apri](http://localhost:4321/eventi-in-agenda/evento-provvisorio/) |
+| Dettaglio evento | [Apri](http://localhost:4321/eventi-in-agenda/il-trust-in-italia-xi-congresso-nazionale-e-domenica-specialistica/) |
 | Knowledge Library | [Apri](http://localhost:4321/knowledge-library/) |
 | Ricerca | [Apri](http://localhost:4321/cerca/?q=trust) |
 | Newsletter | [Apri](http://localhost:4321/newsletter/) |
 | Ringraziamento Newsletter | [Apri](http://localhost:4321/grazie-newsletter/) |
 | Pagina 404 | [Apri](http://localhost:4321/404/) |
 
-Alcuni contenuti dinamici e servizi esterni restano da collegare. Dove i frame mobile sono incompleti o incoerenti, le pagine adattano i contenuti desktop con le regole comuni. I punti aperti sono nella wiki.
+Alcuni contenuti dinamici e servizi esterni restano da collegare. Dove i frame mobile sono incompleti o incoerenti, le pagine adattano i contenuti desktop con le regole comuni. I contenuti provvisori sono nella [checklist](wiki/contenuti-da-completare.md); le decisioni aperte sono in [Dubbi e domande](wiki/dubbi-e-domande.md).
 
-La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre si scrive e li elenca in `/cerca/`. Articoli e download arrivano da Strapi; gli eventi conservano gli esempi provvisori.
+La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre si scrive e li elenca in `/cerca/`. Articoli, eventi e download arrivano da Strapi.
 
-Team, archivio e dettaglio di AG Informa e Knowledge Library leggono i contenuti da Strapi. Configura `STRAPI_URL`, `STRAPI_API_URL` e `AUTH_READONLY` nel `.env.local` o nell’hosting, seguendo `.env.example`. Il token resta sul server e non va inserito in Git. Home e correlati di Trust e Patrimonio mantengono gli esempi ancora da collegare.
+Home, Team, archivio e dettaglio di AG Informa, Eventi, Knowledge Library e correlati di Trust e Patrimonio leggono i contenuti da Strapi. Configura `STRAPI_URL`, `STRAPI_API_URL` e `AUTH_READONLY` nel `.env.local` o nell’hosting, seguendo `.env.example`. Il token resta sul server e non va inserito in Git.
 
-La Privacy italiana legge titolo e contenuto da Strapi. Privacy inglese e Cookie mantengono il Lorem ipsum. Profili del team, tipologie e singole risorse della Library usano `PagePlaceholder`: layout e titolo predisposti, contenuti da sviluppare.
+La Privacy italiana legge titolo e contenuto da Strapi. Privacy inglese, Cookie e pagine solo predisposte sono tracciate nella checklist.

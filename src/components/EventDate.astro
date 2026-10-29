@@ -1,7 +1,4 @@
 ---
-import customLabel from '../lib/utility-customlabel';
-import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
-import { formatDate } from '../lib/utility-function';
 import type { EventPreview } from '../types/content';
 import '../styles/components/event-date.scss';
 
@@ -11,12 +8,11 @@ interface Props {
 }
 
 const { date, variant = 'card' } = Astro.props;
-const month = getLangFromUrl(Astro.url) === 'en' && date.dateTime ? formatDate(date.dateTime, 'en', { month: 'short' }) : customLabel(date.month, getLangFromUrl(Astro.url));
-const lang = getLangFromUrl(Astro.url);
-const t = (label: string) => customLabel(label, lang);
+const month = date.monthShort ?? date.month;
+const isRange = /[–-]/.test(date.days);
 ---
 
-<time class:list={['event-date', `event-date--${variant}`]} datetime={date.dateTime} aria-label={`${date.days} ${month} ${date.year}`}>
+<time class:list={['event-date', `event-date--${variant}`, { 'event-date--range': isRange }]} style={isRange ? `--event-date-characters: ${date.days.length}` : undefined} datetime={date.dateTime} aria-label={date.label ?? `${date.days} ${month} ${date.year}`}>
   <span class="event-date-day">{date.days}</span>
   <span class="event-date-month">{month}</span>
   <span class="event-date-year">{date.year}</span>

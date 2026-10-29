@@ -1,7 +1,7 @@
 import type { ArticleDetail, ArticlePreview, ContentImage } from '../types/content';
-import type { Locale } from './utility-customslug';
+import customSlug, { type Locale } from './utility-customslug';
+import type { API } from '@strapi/client';
 import { getCollectionDocuments } from './strapi-client';
-import { localizeHref } from './lang-switch/route-map';
 import { formatDate } from './utility-function';
 import customLabel from './utility-customlabel';
 import { toDocumentPreview } from './downloads';
@@ -38,7 +38,7 @@ const toPreview = (item: any, lang: Locale): ArticlePreview | undefined => {
   if (!image) return undefined;
   return {
     title: item.titolo,
-    href: localizeHref(`/ag-informa/${item.slug}/`, lang)!,
+    href: `${customSlug('news', lang)}${item.slug}/`,
     category: item.categorias?.[0]?.titolo?.trim() ?? '',
     date: formatDate(item.publishedAt, lang),
     dateTime: item.publishedAt.slice(0, 10),
@@ -50,13 +50,31 @@ const toPreview = (item: any, lang: Locale): ArticlePreview | undefined => {
 
 const toStrapiLocale = (lang: Locale) => (lang === 'en' ? 'en' : 'it-IT');
 const relatedPopulate = { fields: ['titolo', 'slug', 'anteprima', 'publishedAt'], populate: { cover: true, categorias: { fields: ['titolo'] } } };
+const articleSort = ['publishedAt:desc', 'documentId:asc'];
+
+export async function getArticoliRecenti(lang: Locale, filters: API.BaseQueryParams['filters'] = {}, limit = 3): Promise<ArticlePreview[]> {
+  const { data } = await getCollectionDocuments('articolis', {
+    ...relatedPopulate,
+    populate: { ...relatedPopulate.populate, inEvidenza: true },
+    locale: toStrapiLocale(lang),
+    filters: { ...filters, cover: { url: { $notNull: true } } },
+    sort: articleSort,
+    pagination: { pageSize: limit },
+  });
+  return data.map((item) => toPreview(item, lang)).filter((item): item is ArticlePreview => !!item);
+}
+
+export async function getArticoliHome(lang: Locale): Promise<ArticlePreview[]> {
+  const selected = await getArticoliRecenti(lang, { inEvidenza: { inHome: { $eq: true } } }, 7);
+  return selected.length ? selected : getArticoliRecenti(lang, {}, 7);
+}
 
 // Tutti gli articoli di una lingua, dal più recente. Strapi restituisce al massimo 100 elementi per pagina.
 // ponytail: scarica l'intero archivio a ogni richiesta (cache 5 min in produzione); paginare lato server se diventa lento.
 export async function getArticoli(lang: Locale): Promise<ArticlePreview[]> {
   const query = (page: number) => ({
     locale: toStrapiLocale(lang),
-    sort: ['publishedAt:desc'],
+    sort: articleSort,
     fields: relatedPopulate.fields,
     populate: { ...relatedPopulate.populate, inEvidenza: true },
     pagination: { page, pageSize: 100 },
@@ -76,8 +94,6 @@ export async function getArticolo(slug: string, lang: Locale) {
       categorias: { fields: ['titolo'] },
       autori: { populate: { foto: true } },
       domande: true,
-      correlato: relatedPopulate,
-      correlati: relatedPopulate,
       downloads: { populate: { file: true, categoria_downloads: { fields: ['titolo'] } } },
       seo: true,
     },
@@ -88,7 +104,7 @@ export async function getArticolo(slug: string, lang: Locale) {
   const words = blocksToText(item.contenuto).split(/\s+/).filter(Boolean).length;
   const article: ArticleDetail = {
     title: item.titolo,
-    href: localizeHref(`/ag-informa/${item.slug}/`, lang)!,
+    href: `${customSlug('news', lang)}${item.slug}/`,
     category: item.categorias?.[0]?.titolo?.trim() ?? '',
     date: formatDate(item.publishedAt, lang),
     dateTime: item.publishedAt.slice(0, 10),
@@ -111,9 +127,11 @@ export async function getArticolo(slug: string, lang: Locale) {
     return document ? [document] : [];
   });
 
-  // `correlato` e `correlati` sono i due lati della stessa relazione: li unisco senza duplicati.
-  const related = new Map([...(item.correlato ?? []), ...(item.correlati ?? [])].map((entry: any) => [entry.documentId, entry]));
-  const relatedArticles = [...related.values()].map((entry) => toPreview(entry, lang)).filter((entry): entry is ArticlePreview => !!entry);
+  const categoryIds = (item.categorias ?? []).map((category: { documentId: string }) => category.documentId);
+  const relatedArticles = categoryIds.length ? await getArticoliRecenti(lang, {
+    documentId: { $ne: item.documentId },
+    categorias: { documentId: { $in: categoryIds } },
+  }) : [];
 
   return {
     article,

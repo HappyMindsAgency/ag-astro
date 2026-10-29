@@ -33,7 +33,7 @@ Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/des
 
 I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura delle lettere `normal` tramite `.type-eyebrow`. Sul mobile, “Chi è AG Trustees” conserva 10 px; `.type-eyebrow--section` usa 12 px e maiuscole.
 
-`PageIntro` include breadcrumb, titolo e introduzione. Usa `wideTitle` per ampliare la colonna da `xxl`, `fitMobileTitle` per adattare i titoli lunghi sotto `lg` e `compact` prima di un modulo. `mobileTitleLeading` e `titleSize` conservano le varianti del design; misure e interlinee sono in `variables.scss`.
+`PageIntro` include breadcrumb, titolo e introduzione. Usa `wideTitle` per ampliare la colonna da `xxl`, `fitMobileTitle` per adattare i titoli lunghi sotto `lg` e `compact` prima di un modulo. `alignHeadingTop` mantiene il titolo in alto quando il testo accanto è più lungo, come in Patrimonio. `mobileTitleLeading` e `titleSize` conservano le varianti del design; misure e interlinee sono in `variables.scss`.
 
 Nei titoli iniziali IT/EN, lo slot `title` contiene la parte blu e `titleAccent` la parte finale rossa, senza punto. `PageIntro` aggiunge il punto rosso anche quando il titolo è solo blu. L’accento inizia su una nuova riga; `inlineTitleAccent` conserva la composizione continua. Le parole evidenziate restano le stesse a tutte le larghezze.
 
@@ -52,7 +52,7 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 | `ContactSection` | Modulo contatti; `.contact-form` condivide lo stile con il modulo Newsletter. Recapiti e sedi in `src/data/contacts.ts`. |
 | `OfficeMap` | Mappa Google attiva in vista satellitare nelle pagine Contatti IT/EN; i pulsanti cambiano sede nello stesso riquadro. Indirizzi e URL delle mappe sono in `src/data/contacts.ts`. |
 | `NewsArticleCard`, `NewsFeed` | Schede Home/archivio/hero; filtri e caricamento progressivo. `archive` mostra otto articoli da `lg`, quattro sotto. |
-| `EventCard`, `EventDate`, `EventList`, `FeaturedEvent` | Eventi e data condivisi; `compact` omette foto e descrizioni nell’elenco. |
+| `EventCard`, `EventDate`, `EventList`, `FeaturedEvent` | Eventi e data condivisi; `compact` omette foto e descrizioni nell’elenco. Solo gli intervalli di più giorni adattano il carattere alla larghezza della data; i giorni singoli mantengono le misure standard. |
 | `TeamMemberCard` | Schede `Direttivo`, `Operativo` e `Consulente` (valori di `ruolo` in Strapi), con gruppi di qualsiasi lunghezza. |
 | `RelatedContent`, `DocumentList` | Titoli comuni “Articoli correlati” e “Documenti correlati”, anche dove il foglio indica “in evidenza”. Intestazione opzionale per Trust e Patrimonio. `DocumentList` usa due colonne da `xl`, una con `compact`; `tone` distingue le categorie. |
 | `LibraryArchive`, `.content-filter` | Ricerca, categorie, date ISO inclusive, ordinamento e caricamento progressivo: 12 documenti da `lg`, quattro sotto. Filtri condivisi con AG Informa. |
@@ -77,7 +77,7 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 
 La navbar usa Bootstrap Dropdown: il testo apre la pagina, la freccia separata controlla il sottomenu. L’hover apre con il mouse sul menu esteso; clic, tastiera ed Escape funzionano anche nel compatto. Le voci riservano la larghezza del semibold per evitare spostamenti; la linea rossa indica hover e pagina corrente.
 
-Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo. `FocusTrap` mantiene la tastiera nella navbar. Sulla Home l’header resta fisso e chiaro sopra la hero (`headerHeroId`), poi torna normale; anche il menu aperto usa lo stile normale.
+Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo. `FocusTrap` mantiene la tastiera nella navbar. Sulla Home l’header resta trasparente fino a 8 px di scroll, poi usa lo stile normale con transizione di 150 ms; menu e ricerca aperti usano sempre lo stile normale. La transizione rispetta il movimento ridotto.
 
 - `.site-button--outline-light` diventa bianco con testo blu; `.service-list-row` evidenzia le righe senza spostare il contenuto.
 - I pulsanti chiari hanno un focus bianco sugli sfondi scuri. `.site-title-link` sottolinea i titoli al passaggio del mouse e al focus; le frecce dei pulsanti restano ferme.
@@ -86,7 +86,7 @@ Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo
 - `.contact-action-link` schiarisce testo e bordo; `.contact-action-arrow` avanza di 4 px anche al focus da tastiera.
 - Le transizioni usano `$interaction-duration` (150 ms) e `$interaction-easing`, rispettando il movimento ridotto. Gli effetti assenti dal prototipo si valutano separatamente.
 - Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership; `brand-watermark` la filigrana del logo di Home e Team.
-- `backgroundImage` cambia la foto di `CallToAction`, `ServiceOverview` e `OverviewBanner`, mantenendo lo stile comune. Gli sfondi usano `cover` per conservare le proporzioni. Le foto statiche sono quelle della cartella condivisa IMG PORTALE; articoli, eventi e correlati conservano gli esempi per Strapi.
+- `backgroundImage` cambia la foto di `CallToAction`, `ServiceOverview` e `OverviewBanner`, mantenendo lo stile comune. Gli sfondi usano `cover` per conservare le proporzioni. Le foto statiche sono quelle della cartella condivisa IMG PORTALE; foto di articoli, eventi e team arrivano da Strapi.
 - `$anchor-offset` (160 px) è lo `scroll-margin-top` delle ancore sotto l’header; lo ScrollSpy dell’articolo ne ricava la linea di lettura.
 - La linea superiore del footer sta dietro le sezioni e compare solo quando l’ultima non ha uno sfondo.
 
@@ -107,6 +107,10 @@ In Chi siamo, “Le origini” e “L’incontro” seguono A23 e A25. Il blocco
 Nei Link utili della Library, il gruppo di A11 usa il titolo “Altri siti di interesse” del riferimento Galvani in A26. Il link di Milano Finanza in A10 è corretto in `https://www.milanofinanza.it/`.
 
 I componenti ricevono dati tramite proprietà, senza API: le pagine leggono Strapi con `src/lib/strapi-client.ts` e passano i dati ai componenti. Usa i tipi in `src/types/content.ts`; i correlati vuoti non occupano spazio. I commenti `TODO Strapi` indicano gli esempi da sostituire e vanno rimossi dopo l’integrazione. Concorda con il backend formato editoriale e chiamate API.
+
+Gli articoli sono ordinati per `publishedAt` decrescente. Nel dettaglio, i tre correlati condividono almeno una categoria ed escludono l’articolo aperto. Trust e Patrimonio mostrano i tre articoli e i due download più recenti della propria lingua, senza esempi di riserva.
+
+La Home usa gli articoli selezionati con `inEvidenza.inHome`; in assenza di selezioni mostra i sette più recenti. L’evento della Home usa lo stesso indicatore. `src/lib/eventi.ts` condivide i dati di Home, elenchi, dettaglio e ricerca: ordine per `dataInizioEvento`, intervalli di più giorni e allegati reali. «Prossimi eventi» esclude gli appuntamenti conclusi nel fuso italiano; «Da non perdere» usa la categoria omonima. Le sezioni vuote restano nascoste. Il selettore del dettaglio usa gli URL delle localizzazioni Strapi tramite `languageUrls`, con il comportamento comune come ripiego.
 
 `src/lib/downloads.ts` condivide la lettura dei download e la conversione per Library e allegati degli articoli. Esclude i documenti disattivati o senza file valido; categorie, date e dimensioni arrivano da Strapi. I filtri considerano tutte le categorie associate a ciascun documento. I PDF si aprono in una nuova scheda, anche dalla ricerca. Senza contenuti inglesi pubblicati, la Library EN resta vuota.
 
