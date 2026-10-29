@@ -61,4 +61,4 @@ La ricerca parte dalla lente nell’header, suggerisce i primi risultati mentre 
 
 Home, Team, archivio e dettaglio di AG Informa, Eventi, Knowledge Library e correlati di Trust e Patrimonio leggono i contenuti da Strapi. Configura `STRAPI_URL`, `STRAPI_API_URL` e `AUTH_READONLY` nel `.env.local` o nell’hosting, seguendo `.env.example`. Il token resta sul server e non va inserito in Git.
 
-La Privacy italiana legge titolo e contenuto da Strapi. Privacy inglese, Cookie e pagine solo predisposte sono tracciate nella checklist.
+Le Privacy italiana e inglese leggono titolo e contenuto da Strapi. Cookie e pagine solo predisposte sono tracciate nella checklist.

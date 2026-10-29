@@ -66,6 +66,10 @@
   line-height: theme.$line-height-editorial-copy-mobile;
   overflow-wrap: anywhere;
 
+  li {
+    white-space: pre-line;
+  }
+
   h2 {
     margin-block: theme.$space-48 theme.$space-16;
     font-size: theme.$h4-font-size;

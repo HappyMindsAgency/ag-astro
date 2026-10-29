@@ -4,8 +4,6 @@ Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e
 
 ## Contenuti provvisori
 
-- [ ] **Banner finale degli articoli:** sostituire titolo e descrizione Lorem ipsum con i testi definitivi. Fonte: [ArticleDetail.astro](../src/components/pages/ArticleDetail.astro).
-- [ ] **Privacy inglese:** inserire il testo definitivo e collegarlo a Strapi. Fonte: [pagina EN](../src/pages/en/privacy-policy/index.astro).
 - [ ] **Cookie policy IT/EN:** sostituire i testi Lorem ipsum con le indicazioni definitive. Fonti: [pagina IT](../src/pages/cookie-policy/index.astro), [pagina EN](../src/pages/en/cookie-policy/index.astro).
 
 ## Altri contenuti da verificare
@@ -23,7 +21,8 @@ Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e
 - [x] Archivio e dettaglio articoli: contenuti, FAQ e allegati da Strapi.
 - [x] Knowledge Library e risultati di ricerca di articoli/PDF da Strapi.
 - [x] Correlati di articoli, Trust e Patrimonio da Strapi.
-- [x] Privacy italiana da Strapi.
+- [x] Privacy IT/EN da Strapi, verificate sui documenti forniti e nel layout comune.
+- [x] Banner finale degli articoli IT/EN con testi e CTA definitivi.
 - [x] Home — notizie, immagini, date e link da Strapi, con selezione «in Home» e ripiego sui sette più recenti.
 - [x] Home — evento selezionato «in Home», con dati e copertina da Strapi.
 - [x] Elenchi Eventi e risultati di ricerca da Strapi, distinti fra appuntamenti non conclusi e categoria «Da non perdere».
