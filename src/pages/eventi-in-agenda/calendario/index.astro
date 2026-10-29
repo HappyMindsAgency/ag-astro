@@ -1,0 +1,6 @@
+---
+import EventCalendar from '../../../components/pages/EventCalendar.astro';
+import { getEventi } from '../../../lib/eventi';
+const events = await getEventi('it');
+---
+<EventCalendar lang="it" events={events} />

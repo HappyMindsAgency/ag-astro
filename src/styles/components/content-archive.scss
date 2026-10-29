@@ -1,16 +1,16 @@
 @use '../variables' as theme;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
 
-.library-archive {
+.content-archive {
   padding-block: theme.$space-8 160px;
 }
 
-.library-categories {
+.archive-categories {
   margin-bottom: theme.$space-24;
 }
 
-.library-filter-title,
-.library-count {
+.archive-filter-title,
+.archive-count {
   color: theme.$footer-text;
   font-size: theme.$font-size-button;
   line-height: theme.$line-height-button;
@@ -18,11 +18,11 @@
   text-transform: uppercase;
 }
 
-.library-category-heading {
+.archive-category-heading {
   margin-bottom: theme.$space-16;
 }
 
-.library-reset {
+.archive-reset {
   display: inline-flex;
   align-items: center;
   gap: theme.$space-4;
@@ -42,13 +42,13 @@
   }
 }
 
-.library-category-heading > .library-reset {
+.archive-category-heading > .archive-reset {
   min-height: theme.$space-24;
   color: theme.$ink;
   font-size: theme.$font-size-content-meta;
 }
 
-.library-search {
+.archive-search {
   row-gap: theme.$space-16;
   border-block: 1px solid rgba(theme.$editorial-border, 0.25);
   padding-block: theme.$space-24;
@@ -86,7 +86,7 @@
   }
 }
 
-.library-query {
+.archive-query {
   position: relative;
 
   > img {
@@ -101,7 +101,7 @@
   }
 }
 
-.library-submit {
+.archive-submit {
   width: 100%;
 
   img {
@@ -109,17 +109,23 @@
   }
 }
 
-.library-count {
+.archive-count {
   margin-block: theme.$space-24;
 }
 
-.library-empty,
-.library-more {
+.archive-empty,
+.archive-more {
   margin-top: theme.$space-40;
 }
 
+@include bs.media-breakpoint-between(lg, xxl, theme.$grid-breakpoints) {
+  .content-archive.section-spacing {
+    padding-top: theme.$space-8;
+  }
+}
+
 @include bs.media-breakpoint-up(xl, theme.$grid-breakpoints) {
-  .library-search {
+  .archive-search {
     margin-inline: 0;
 
     > :first-child {
@@ -129,19 +135,19 @@
 }
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
-  .library-archive {
+  .content-archive {
     padding-block: theme.$space-24 theme.$space-64;
   }
 
-  .library-filter-title {
+  .archive-filter-title {
     letter-spacing: normal;
   }
 
-  .library-search {
+  .archive-search {
     border-bottom: 0;
   }
 
-  .library-count {
+  .archive-count {
     margin-top: theme.$space-48;
   }
 }

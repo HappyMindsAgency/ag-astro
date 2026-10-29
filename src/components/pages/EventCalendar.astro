@@ -1,0 +1,39 @@
+---
+import type { EventPreview } from '../../types/content';
+import type { Locale } from '../../lib/utility-customslug';
+import customSlug from '../../lib/utility-customslug';
+import Layout from '../Layout.astro';
+import PageIntro from '../PageIntro.astro';
+import EventArchive from '../EventArchive.astro';
+import NewsletterCallToAction from '../NewsletterCallToAction.astro';
+import '../../styles/pages/eventi.scss';
+
+interface Props { lang: Locale; events: EventPreview[]; notToMiss?: boolean; }
+const { lang, events, notToMiss = false } = Astro.props;
+const copy = lang === 'en' ? {
+  prefix: notToMiss ? 'Events' : 'Full',
+  accent: notToMiss ? 'not to be missed' : 'calendar',
+  breadcrumb: notToMiss ? 'Events not to be missed' : 'Full calendar',
+  parent: 'Events',
+  eyebrow: 'Events calendar',
+  introduction: 'Conferences, seminars and professional development events exploring trusts, taxation and long-term wealth planning.',
+} : {
+  prefix: notToMiss ? 'Eventi' : 'Calendario',
+  accent: notToMiss ? 'da non perdere' : 'completo',
+  breadcrumb: notToMiss ? 'Eventi da non perdere' : 'Calendario completo',
+  parent: 'Eventi',
+  eyebrow: 'Calendario eventi',
+  introduction: 'Convegni, seminari e appuntamenti formativi per approfondire i temi del trust, della fiscalità e della continuità patrimoniale.',
+};
+---
+
+<Layout lang={lang}>
+  <div class="events-page">
+    <PageIntro breadcrumb={copy.breadcrumb} parents={[{ label: copy.parent, href: customSlug('events', lang) }]} eyebrow={copy.eyebrow} titleAccent={copy.accent} compact wideTitle titleSize="compact">
+      <Fragment slot="title">{copy.prefix}</Fragment>
+      {copy.introduction}
+    </PageIntro>
+    <EventArchive events={events} initialPeriod={notToMiss ? 'all' : 'upcoming'} />
+    <NewsletterCallToAction />
+  </div>
+</Layout>

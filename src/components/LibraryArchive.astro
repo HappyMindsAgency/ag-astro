@@ -5,7 +5,7 @@ import { documentCount } from '../lib/utility-customlabel';
 import type { DocumentPreview } from '../types/content';
 import DocumentList from './DocumentList.astro';
 import '../styles/components/content-filter.scss';
-import '../styles/components/library-archive.scss';
+import '../styles/components/content-archive.scss';
 
 interface Props {
   id?: string;
@@ -18,25 +18,25 @@ const lang = getLangFromUrl(Astro.url);
 const t = (label: string) => customLabel(label, lang);
 ---
 
-<section id={id} class="library-archive section-spacing" aria-labelledby={`${id}-title`} data-library-archive>
+<section id={id} class="content-archive section-spacing" aria-labelledby={`${id}-title`} data-library-archive>
   <div class="container frame-container">
     <h2 id={`${id}-title`} class="visually-hidden">{t('Documenti della Knowledge Library')}</h2>
     <form role="search" aria-label={t('Cerca nella Knowledge Library')} data-library-form>
-      {categories.length > 0 && <fieldset class="library-categories">
+      {categories.length > 0 && <fieldset class="archive-categories">
         <legend class="visually-hidden">{t('Filtra per categoria')}</legend>
-        <div class="library-category-heading d-flex justify-content-between align-items-center gap-3">
-          <p class="library-filter-title mb-0" aria-hidden="true">{t('Filtra per categoria')}</p>
-          <button class="library-reset d-xl-none" type="reset"><span aria-hidden="true">×</span> {t("Cancella filtri")}</button>
+        <div class="archive-category-heading d-flex justify-content-between align-items-center gap-3">
+          <p class="archive-filter-title mb-0" aria-hidden="true">{t('Filtra per categoria')}</p>
+          <button class="archive-reset d-xl-none" type="reset"><span aria-hidden="true">×</span> {t("Cancella filtri")}</button>
         </div>
         <div class="d-flex flex-wrap gap-2">
           {categories.map(({ label, value }) => <button class="content-filter content-filter--compact" type="button" data-library-category={value} aria-pressed="false">{t(label)}</button>)}
         </div>
       </fieldset>}
 
-      <div class="row gx-3 align-items-end library-search">
+      <div class="row gx-3 align-items-end archive-search">
         <div class="col-12 col-xl-3">
           <label class="form-label" for={`${id}-query`}>{t('Cerca per titolo o per parola chiave')}</label>
-          <div class="library-query">
+          <div class="archive-query">
             <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" />
             <input id={`${id}-query`} class="form-control" name="query" type="search" placeholder={t('Cerca per titolo o categoria…')} />
           </div>
@@ -54,16 +54,16 @@ const t = (label: string) => customLabel(label, lang);
           <select id={`${id}-order`} class="form-select" name="order"><option value="recent">{t('Più recenti')}</option><option value="oldest">{t('Meno recenti')}</option></select>
         </div>
         <div class="col-12 col-md-3 col-xl-auto">
-          <button class="btn site-button site-button--blue site-button--small library-submit justify-content-center" type="submit">{t('Cerca')} <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+          <button class="btn site-button site-button--blue site-button--small archive-submit justify-content-center" type="submit">{t('Cerca')} <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
         </div>
-        <div class="col-auto d-none d-xl-block"><button class="library-reset" type="reset"><span aria-hidden="true">×</span> {t("Cancella filtri")}</button></div>
+        <div class="col-auto d-none d-xl-block"><button class="archive-reset" type="reset"><span aria-hidden="true">×</span> {t("Cancella filtri")}</button></div>
       </div>
     </form>
 
-    <p class="library-count" role="status" data-library-count>{documentCount(documents.length, lang)}</p>
+    <p class="archive-count" role="status" data-library-count>{documentCount(documents.length, lang)}</p>
     <DocumentList documents={documents} />
-    <p class="library-empty d-none" data-library-empty>{t('Nessun documento corrisponde ai filtri selezionati.')}</p>
-    <div class="library-more text-center d-none" data-library-more-wrapper><button class="btn site-button" type="button" data-library-more>{t('Carica altri documenti')} <span aria-hidden="true">↓</span></button></div>
+    <p class="archive-empty d-none" data-library-empty>{t('Nessun documento corrisponde ai filtri selezionati.')}</p>
+    <div class="archive-more text-center d-none" data-library-more-wrapper><button class="btn site-button" type="button" data-library-more>{t('Carica altri documenti')} <span aria-hidden="true">↓</span></button></div>
   </div>
 </section>
 

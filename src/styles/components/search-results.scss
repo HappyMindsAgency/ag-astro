@@ -12,7 +12,7 @@
     max-width: 960px;
   }
 
-  .library-search {
+  .archive-search {
     border-top: 0;
     padding-top: 0;
   }
@@ -21,7 +21,7 @@
 .search-results-filters {
   margin-top: theme.$space-24;
 
-  + .library-count {
+  + .archive-count {
     margin-top: theme.$space-24;
   }
 }

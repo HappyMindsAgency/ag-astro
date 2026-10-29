@@ -138,6 +138,16 @@ const english: Record<string, string> = {
   'Scarica PDF: {title}': 'Download PDF: {title}',
   'Si apre in una nuova scheda': 'Opens in a new tab',
   'Calendario completo': 'Full calendar',
+  'Cerca nel calendario eventi': 'Search the events calendar',
+  'Eventi del calendario': 'Calendar events',
+  'Periodo': 'Period',
+  'In programma': 'Upcoming',
+  'Passati': 'Past',
+  'Nessun evento corrisponde ai filtri selezionati.': 'No events match the selected filters.',
+  'Non ci sono eventi da mostrare.': 'There are no events to display.',
+  'Carica altri eventi': 'Load more events',
+  '{count} evento': '{count} event',
+  '{count} eventi': '{count} events',
   'Dettagli': 'Details',
   'Dettagli: {title}': 'Details: {title}',
   'Scopri tutti gli eventi': 'View all events',
@@ -193,4 +203,8 @@ export function resultCount(count: number, lang: Locale): string {
 
 export function documentCount(count: number, lang: Locale): string {
   return customLabel(count === 1 ? '{count} documento' : '{count} documenti', lang, { count });
+}
+
+export function eventCount(count: number, lang: Locale): string {
+  return customLabel(count === 1 ? '{count} evento' : '{count} eventi', lang, { count });
 }

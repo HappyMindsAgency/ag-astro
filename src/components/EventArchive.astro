@@ -1,0 +1,153 @@
+---
+import type { EventPreview } from '../types/content';
+import customLabel, { eventCount } from '../lib/utility-customlabel';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
+import { filterCalendarEvents, type EventPeriod } from '../lib/event-calendar';
+import EventCard from './EventCard.astro';
+import '../styles/components/content-filter.scss';
+import '../styles/components/content-archive.scss';
+
+interface Props {
+  events: EventPreview[];
+  initialPeriod?: EventPeriod;
+}
+
+const { events, initialPeriod = 'upcoming' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
+const categories = [...new Set(events.flatMap(event => event.categories ?? (event.format ? [event.format] : [])))];
+const entries = events.map(event => ({
+  event,
+  start: event.date.dateTime ?? '',
+  end: event.date.endDateTime ?? event.date.dateTime ?? '',
+  search: [event.title, event.location, event.description, event.format, ...(event.categories ?? [])].filter(Boolean).join(' '),
+  categories: event.categories ?? (event.format ? [event.format] : []),
+}));
+const initialMatches = filterCalendarEvents(entries, { query: '', category: '', from: '', to: '', period: initialPeriod });
+const initialVisible = new Set(initialMatches.slice(0, 12));
+const initiallyMatching = new Set(initialMatches);
+const orderedEntries = [...initialMatches, ...entries.filter(entry => !initiallyMatching.has(entry))];
+const emptyLabel = events.length ? 'Nessun evento corrisponde ai filtri selezionati.' : 'Non ci sono eventi da mostrare.';
+---
+
+<section id="calendario-eventi" class="content-archive section-spacing" aria-labelledby="calendar-title" data-event-archive data-initial-period={initialPeriod}>
+  <div class="container frame-container">
+    <h2 id="calendar-title" class="visually-hidden">{t('Eventi del calendario')}</h2>
+    <form role="search" aria-label={t('Cerca nel calendario eventi')} data-event-form>
+      {categories.length > 0 && <fieldset class="archive-categories">
+        <legend class="archive-filter-title archive-category-heading">{t('Filtra per categoria')}</legend>
+        <div class="d-flex flex-wrap gap-2">
+          {categories.map(category => <button class="content-filter content-filter--compact" type="button" data-event-category={category} aria-pressed="false">{category}</button>)}
+        </div>
+      </fieldset>}
+      <div class="row gx-3 align-items-end archive-search">
+        <div class="col-12 col-lg-6 col-xxl-3">
+          <label class="form-label" for="calendar-query">{t('Cerca per titolo o per parola chiave')}</label>
+          <div class="archive-query">
+            <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" />
+            <input id="calendar-query" class="form-control" type="search" name="query" placeholder={t('Cerca per titolo o categoria…')} />
+          </div>
+        </div>
+        <div class="col-12 col-md-4 col-lg-6 col-xxl-2">
+          <label class="form-label" for="calendar-period">{t('Periodo')}</label>
+          <select id="calendar-period" class="form-select" name="period">
+            <option value="upcoming" selected={initialPeriod === 'upcoming'}>{t('In programma')}</option>
+            <option value="past" selected={initialPeriod === 'past'}>{t('Passati')}</option>
+            <option value="all" selected={initialPeriod === 'all'}>{t('Tutti')}</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
+          <label class="form-label" for="calendar-from">{t('Dal')}</label>
+          <input id="calendar-from" class="form-control" type="date" name="from" />
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 col-xxl-2">
+          <label class="form-label" for="calendar-to">{t('Al')}</label>
+          <input id="calendar-to" class="form-control" type="date" name="to" />
+        </div>
+        <div class="col-6 col-lg-3 col-xxl-auto">
+          <button class="btn site-button site-button--blue site-button--small archive-submit justify-content-center" type="submit">{t('Cerca')} <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+        </div>
+        <div class="col-6 col-lg-3 col-xxl-auto"><button class="archive-reset" type="reset"><span aria-hidden="true">×</span> {t('Cancella filtri')}</button></div>
+      </div>
+    </form>
+
+    <p class="archive-count" role="status" data-event-count>{eventCount(initialMatches.length, lang)}</p>
+    <div class="row gx-4 gy-5" data-event-list>
+      {orderedEntries.map(entry => <div class:list={['col-md-6 col-xl-4', { 'd-none': !initialVisible.has(entry) }]} data-calendar-event data-event-start={entry.start} data-event-end={entry.end} data-event-search={entry.search} data-event-categories={JSON.stringify(entry.categories)}>
+        <EventCard event={entry.event} />
+      </div>)}
+    </div>
+    <p class:list={['archive-empty', { 'd-none': initialMatches.length > 0 }]} data-event-empty>{t(emptyLabel)}</p>
+    <div class:list={['archive-more text-center', { 'd-none': initialMatches.length <= 12 }]} data-event-more-wrapper>
+      <button class="btn site-button" type="button" data-event-more>{t('Carica altri eventi')} <span aria-hidden="true">↓</span></button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import customLabel, { eventCount } from '../lib/utility-customlabel';
+  import { getLangFromUrl } from '../lib/lang-switch/route-map';
+  import { filterCalendarEvents, type CalendarFilters, type EventPeriod } from '../lib/event-calendar';
+
+  const lang = getLangFromUrl(new URL(location.href));
+  document.querySelectorAll<HTMLElement>('[data-event-archive]').forEach(archive => {
+    const form = archive.querySelector<HTMLFormElement>('[data-event-form]')!;
+    const query = form.querySelector<HTMLInputElement>('[name="query"]')!;
+    const period = form.querySelector<HTMLSelectElement>('[name="period"]')!;
+    const from = form.querySelector<HTMLInputElement>('[name="from"]')!;
+    const to = form.querySelector<HTMLInputElement>('[name="to"]')!;
+    const list = archive.querySelector<HTMLElement>('[data-event-list]')!;
+    const count = archive.querySelector<HTMLElement>('[data-event-count]')!;
+    const empty = archive.querySelector<HTMLElement>('[data-event-empty]')!;
+    const moreWrapper = archive.querySelector<HTMLElement>('[data-event-more-wrapper]')!;
+    const more = archive.querySelector<HTMLButtonElement>('[data-event-more]')!;
+    const categoryButtons = form.querySelectorAll<HTMLButtonElement>('[data-event-category]');
+    const items = [...archive.querySelectorAll<HTMLElement>('[data-calendar-event]')].map(element => ({
+      element,
+      start: element.dataset.eventStart ?? '',
+      end: element.dataset.eventEnd ?? element.dataset.eventStart ?? '',
+      search: element.dataset.eventSearch ?? '',
+      categories: JSON.parse(element.dataset.eventCategories ?? '[]') as string[],
+    }));
+    const desktop = window.matchMedia(`(min-width: ${getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-lg')})`);
+    const pageSize = () => desktop.matches ? 12 : 4;
+    const initialPeriod = archive.dataset.initialPeriod as EventPeriod;
+    let limit = pageSize();
+    let criteria: CalendarFilters = { query: query.value, category: '', from: from.value, to: to.value, period: period.value as EventPeriod };
+
+    const render = () => {
+      const matching = filterCalendarEvents(items, criteria);
+      items.forEach(({ element }) => element.classList.add('d-none'));
+      matching.forEach(({ element }, index) => { list.append(element); element.classList.toggle('d-none', index >= limit); });
+      categoryButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.eventCategory === criteria.category)));
+      count.textContent = eventCount(matching.length, lang);
+      empty.classList.toggle('d-none', matching.length > 0);
+      moreWrapper.classList.toggle('d-none', matching.length <= limit);
+    };
+    const apply = (category = criteria.category) => {
+      to.setCustomValidity(from.value && to.value && from.value > to.value ? customLabel('La data finale deve essere uguale o successiva a quella iniziale.', lang) : '');
+      if (!form.reportValidity()) return;
+      criteria = { query: query.value, category, from: from.value, to: to.value, period: period.value as EventPeriod };
+      limit = pageSize();
+      render();
+    };
+    form.addEventListener('submit', event => { event.preventDefault(); apply(); });
+    period.addEventListener('change', () => apply());
+    categoryButtons.forEach(button => button.addEventListener('click', () => apply(criteria.category === button.dataset.eventCategory ? '' : button.dataset.eventCategory ?? '')));
+    [from, to].forEach(input => input.addEventListener('input', () => to.setCustomValidity('')));
+    form.addEventListener('reset', () => {
+      criteria = { query: '', category: '', from: '', to: '', period: initialPeriod };
+      to.setCustomValidity('');
+      limit = pageSize();
+      render();
+    });
+    more.addEventListener('click', () => {
+      const visible = new Set(items.filter(({ element }) => !element.classList.contains('d-none')).map(({ element }) => element));
+      limit += pageSize();
+      render();
+      [...list.querySelectorAll<HTMLElement>('[data-calendar-event]:not(.d-none)')].find(element => !visible.has(element))?.querySelector<HTMLAnchorElement>('.event-card-title a')?.focus();
+    });
+    desktop.addEventListener('change', () => { limit = pageSize(); render(); });
+    render();
+  });
+</script>

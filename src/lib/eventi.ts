@@ -3,6 +3,7 @@ import customSlug, { type Locale } from './utility-customslug';
 import { getCollectionDocuments } from './strapi-client';
 import { blocksToHtml, blocksToText } from './strapi-blocks';
 import { toDocumentPreview } from './downloads';
+import { getTodayInRome } from './utility-function';
 
 interface Category {
   titolo: string;
@@ -64,6 +65,7 @@ function toPreview(item: EventRecord, lang: Locale): EventPreview | undefined {
     image,
     location: item.luogo?.trim() ?? '',
     format: primary?.titolo.trim(),
+    categories: categories.filter(category => !notToMiss(category)).map(category => category.titolo.trim()),
     formatTone: primarySlugs.includes('webinar') ? 'webinar' : primarySlugs.includes('seminari-e-incontri') ? 'seminar' : undefined,
     inHome: !!item.inEvidenza?.inHome,
     notToMiss: categories.some(notToMiss),
@@ -87,8 +89,12 @@ export async function getEventi(lang: Locale): Promise<EventPreview[]> {
 }
 
 export function getProssimiEventi(events: EventPreview[], now = new Date()): EventPreview[] {
-  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+  const today = getTodayInRome(now);
   return events.filter(({ date }) => (date.endDateTime ?? date.dateTime ?? '') >= today);
+}
+
+export function getEventiDaNonPerdere(events: EventPreview[]): EventPreview[] {
+  return events.filter(event => event.notToMiss).sort((a, b) => (b.date.dateTime ?? '').localeCompare(a.date.dateTime ?? ''));
 }
 
 export async function getEvento(slug: string, lang: Locale) {

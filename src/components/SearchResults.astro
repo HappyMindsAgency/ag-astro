@@ -6,7 +6,7 @@ import type { SearchResult } from '../types/content';
 import { searchResultTypes } from '../data/search';
 import SearchHighlight from './SearchHighlight.astro';
 import '../styles/components/content-filter.scss';
-import '../styles/components/library-archive.scss';
+import '../styles/components/content-archive.scss';
 import '../styles/components/search-results.scss';
 
 interface Props {
@@ -27,16 +27,16 @@ const t = (label: string) => customLabel(label, lang);
 <section class="search-results section-spacing" aria-labelledby="search-results-title" data-search-results>
   <div class="container section-container">
     <h2 id="search-results-title" class="visually-hidden">{t('Risultati della ricerca')}</h2>
-    <form class="library-search d-flex flex-column flex-md-row align-items-md-end gap-3" action={localizeHref("/cerca/", lang)} method="get" role="search" aria-label={t('Cerca nel sito')}>
+    <form class="archive-search d-flex flex-column flex-md-row align-items-md-end gap-3" action={localizeHref("/cerca/", lang)} method="get" role="search" aria-label={t('Cerca nel sito')}>
       <div class="flex-grow-1">
         <label class="form-label" for="search-results-query">{t('Cerca per titolo o per parola chiave')}</label>
-        <div class="library-query">
+        <div class="archive-query">
           <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" />
           <input id="search-results-query" class="form-control" name="q" type="search" value={query} placeholder={t('Cerca nel sito…')} enterkeyhint="search" />
         </div>
       </div>
       <div>
-        <button class="btn site-button site-button--blue site-button--small library-submit justify-content-center" type="submit">{t('Cerca')} <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
+        <button class="btn site-button site-button--blue site-button--small archive-submit justify-content-center" type="submit">{t('Cerca')} <img src="/assets/icone/ricerca.svg" width="14" height="14" alt="" /></button>
       </div>
     </form>
 
@@ -48,7 +48,7 @@ const t = (label: string) => customLabel(label, lang);
             {filters.map(({ value, label, count }) => <button class="content-filter content-filter--compact" type="button" data-search-filter={value} aria-pressed="false">{label} ({count})</button>)}
           </div>
         )}
-        <p class="library-count" role="status" data-search-count>{countLabel(results.length)}</p>
+        <p class="archive-count" role="status" data-search-count>{countLabel(results.length)}</p>
         <ol class="search-results-list list-unstyled mb-0">
           {results.map(({ type, title, href, excerpt, category, dateTime }) => (
             <li class="search-result" data-search-result data-search-type={type}>
@@ -64,12 +64,12 @@ const t = (label: string) => customLabel(label, lang);
             </li>
           ))}
         </ol>
-        <div class="library-more text-center d-none" data-search-more-wrapper><button class="btn site-button" type="button" data-search-more>{t('Carica altri risultati')} <span aria-hidden="true">↓</span></button></div>
+        <div class="archive-more text-center d-none" data-search-more-wrapper><button class="btn site-button" type="button" data-search-more>{t('Carica altri risultati')} <span aria-hidden="true">↓</span></button></div>
       </Fragment>
     )}
     {query && results.length === 0 && (
       <Fragment>
-        <p class="library-count">{t('Nessun risultato')}</p>
+        <p class="archive-count">{t('Nessun risultato')}</p>
         <p class="mb-0">{t('Controlli l’ortografia o provi con un termine più generico.')}</p>
       </Fragment>
     )}

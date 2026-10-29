@@ -1,0 +1,6 @@
+---
+import EventCalendar from '../../../../components/pages/EventCalendar.astro';
+import { getEventi, getEventiDaNonPerdere } from '../../../../lib/eventi';
+const events = getEventiDaNonPerdere(await getEventi('en'));
+---
+<EventCalendar lang="en" events={events} notToMiss />

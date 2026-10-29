@@ -8,8 +8,9 @@ Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e
 
 ## Altri contenuti da verificare
 
+- [ ] **Eventi e calendari IT/EN:** dopo il caricamento degli eventi definitivi in Strapi, ricontrollare resa visiva, categorie, date, filtri e caricamento progressivo.
 - [ ] **Riquadro consulenza di articoli/eventi:** confermare titolo e descrizione IT/EN. Nell’evento il titolo è Lorem ipsum; nell’articolo è fisso: «Il tuo trust è conforme alla nuova normativa?».
-- [ ] **Ricerca EN:** tradurre le descrizioni delle pagine istituzionali, attualmente in italiano in [search.ts](../src/data/search.ts).
+- [ ] **Descrizioni nella ricerca:** collegare le meta description delle pagine quando la SEO sarà disponibile da Strapi. I riassunti IT/EN in [search.ts](../src/data/search.ts) resteranno come ripiego.
 - [ ] **Articoli e download EN:** verificare i contenuti localizzati quando saranno pubblicati in Strapi, anche nei correlati e nella ricerca. Il collegamento è pronto, senza esempi italiani di riserva.
 - [ ] **Profili individuali del Team:** pagine solo predisposte; confermare se vanno completate per il lancio.
 - [ ] **Tipologie e dettagli delle risorse Library:** pagine solo predisposte; confermare se servono oltre all’archivio e ai PDF.
@@ -26,6 +27,7 @@ Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e
 - [x] Home — notizie, immagini, date e link da Strapi, con selezione «in Home» e ripiego sui sette più recenti.
 - [x] Home — evento selezionato «in Home», con dati e copertina da Strapi.
 - [x] Elenchi Eventi e risultati di ricerca da Strapi, distinti fra appuntamenti non conclusi e categoria «Da non perdere».
+- [x] Calendari completi IT/EN: dati da Strapi, filtri per periodo, categoria, testo e intervallo di date.
 - [x] Dettaglio evento da slug: testo, foto, date, allegati e altri eventi da Strapi; cambio lingua tramite le localizzazioni pubblicate.
 
 I testi istituzionali e le FAQ approvati dell’Excel restano nei file Astro: non sono segnaposto. Il video di Chi siamo resta nascosto al lancio. Destinazioni mancanti, servizi e decisioni aperte sono in [Dubbi e domande](dubbi-e-domande.md).

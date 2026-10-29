@@ -33,7 +33,7 @@ Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/des
 
 I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura delle lettere `normal` tramite `.type-eyebrow`. Sul mobile, “Chi è AG Trustees” conserva 10 px; `.type-eyebrow--section` usa 12 px e maiuscole.
 
-`PageIntro` include breadcrumb, titolo e introduzione. Usa `wideTitle` per ampliare la colonna da `xxl`, `fitMobileTitle` per adattare i titoli lunghi sotto `lg` e `compact` prima di un modulo. `alignHeadingTop` mantiene il titolo in alto quando il testo accanto è più lungo, come in Patrimonio. `mobileTitleLeading` e `titleSize` conservano le varianti del design; misure e interlinee sono in `variables.scss`.
+`PageIntro` include breadcrumb, titolo e introduzione. Usa `wideTitle` per ampliare la colonna da `xxl`, `fitMobileTitle` per adattare i titoli lunghi sotto `lg` e `compact` prima di moduli o archivi con filtri. `alignHeadingTop` mantiene il titolo in alto quando il testo accanto è più lungo, come in Patrimonio. `mobileTitleLeading` e `titleSize` conservano le varianti del design; misure e interlinee sono in `variables.scss`.
 
 Nei titoli iniziali IT/EN, lo slot `title` contiene la parte blu e `titleAccent` la parte finale rossa, senza punto. `PageIntro` aggiunge il punto rosso anche quando il titolo è solo blu. L’accento inizia su una nuova riga; `inlineTitleAccent` conserva la composizione continua. Le parole evidenziate restano le stesse a tutte le larghezze.
 
@@ -56,6 +56,7 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 | `TeamMemberCard` | Schede `Direttivo`, `Operativo` e `Consulente` (valori di `ruolo` in Strapi), con gruppi di qualsiasi lunghezza. |
 | `RelatedContent`, `DocumentList` | Titoli comuni “Articoli correlati” e “Documenti correlati”, anche dove il foglio indica “in evidenza”. Intestazione opzionale per Trust e Patrimonio. `DocumentList` usa due colonne da `xl`, una con `compact`; `tone` distingue le categorie. |
 | `LibraryArchive`, `.content-filter` | Ricerca, categorie, date ISO inclusive, ordinamento e caricamento progressivo: 12 documenti da `lg`, quattro sotto. Filtri condivisi con AG Informa. |
+| `EventArchive`, `.content-archive` | Calendari con le card Eventi, ricerca, categorie, periodo e date. `content-archive.scss` condivide lo stile dei filtri con Library e ricerca; 12 risultati da `lg`, quattro sotto. |
 | `SiteSearch`, `SearchResults`, `SearchHighlight` | Lente dell’header e pagina `/cerca/`; suggerimenti da `xl`, sotto l’invio porta a `/cerca/`. `searchSite()` legge articoli e download da Strapi; `search-text.ts` condivide con la Library il confronto senza maiuscole e accenti. I profili del team restano fuori dall’indice finché non pronti. |
 | `.editorial-prose`, `ContentShare`, `EditorialContactCard`, `ArticleAuthor` | Stile e blocchi editoriali condivisi; l’indice dell’articolo usa Bootstrap Collapse e Scrollspy. |
 | `.type-editorial-list-title`, `.collapse-toggle`, `.site-button--small` | Titoli Notizie/Eventi, segno più/meno degli accordion e pulsanti con etichetta da 11 px. |
@@ -69,6 +70,7 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 - Fra `lg` e `xxl` (992–1399 px), usa `$*-tablet` e `.section-spacing` per 80 px di padding verticale. Le griglie a quattro card usano `col-6 col-xxl-3`.
 - I leader del Team restano impilati e centrati sotto `xxl`: larghezza massima di 640 px sotto `md`, 960 px da `md`. Fra `md` e `xxl` le card usano spazi compatti, un terzo per la foto e altezza legata al testo; le immagini restano ancorate in alto. Da 1400 px sono affiancati in tre colonne.
 - Navbar e footer sono centrati, con margini minimi di 24 px e limite `$frame-max-width`. La navbar si espande da `xl`; lo script legge `--bs-breakpoint-xl`, come Notizie e Library da `--bs-breakpoint-lg`. Logo, spazi e corpo crescono con `fluid()` fino a 1920 px.
+- Certificazioni affianca loghi e testata da `md`; sotto mantiene il titolo sopra i loghi. La griglia resta di due righe: Il Trust in Italia e STEP sopra, TPE e CTE sotto.
 - Nel menu compatto, Contatti compare nella barra da 390 px; le voci crescono da 22 a 28 px fra 360 e 430 px. Nel footer, Menu e Utility sono affiancate sotto `md`; da `md` le colonne automatiche usano `justify-content-between`.
 - Foto e testo, certificazioni, video e CTA ampie mantengono il limite `$wide-layout-max-width` ricavato dal desktop da 1920 px. Gli sfondi continuano a tutta larghezza. Sotto 390 px i margini delle CTA si riducono fino a 24 px.
 - Per gli a capo forzati usa il primo breakpoint Bootstrap in cui le righe entrano interamente, verificando anche subito prima e dopo la soglia. Nel paragrafo introduttivo dei contatti gli a capo valgono solo da `xxl`.
@@ -78,6 +80,8 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 La navbar usa Bootstrap Dropdown: il testo apre la pagina, la freccia separata controlla il sottomenu. L’hover apre con il mouse sul menu esteso; clic, tastiera ed Escape funzionano anche nel compatto. Le voci riservano la larghezza del semibold per evitare spostamenti; la linea rossa indica hover e pagina corrente.
 
 Il menu compatto oscura e blocca la pagina; si chiude con croce, Escape o sfondo. `FocusTrap` mantiene la tastiera nella navbar. Sulla Home l’header resta trasparente fino a 8 px di scroll, poi usa lo stile normale con transizione di 150 ms; menu e ricerca aperti usano sempre lo stile normale. La transizione rispetta il movimento ridotto.
+
+Il profilo LinkedIn in navbar e footer compare solo se `Layout` riceve `linkedinUrl`. I pulsanti di condivisione dei contenuti restano indipendenti.
 
 - `.site-button--outline-light` diventa bianco con testo blu; `.service-list-row` evidenzia le righe senza spostare il contenuto.
 - I pulsanti chiari hanno un focus bianco sugli sfondi scuri. `.site-title-link` sottolinea i titoli al passaggio del mouse e al focus; le frecce dei pulsanti restano ferme.
@@ -111,6 +115,8 @@ I componenti ricevono dati tramite proprietà, senza API: le pagine leggono Stra
 Gli articoli sono ordinati per `publishedAt` decrescente. Nel dettaglio, i tre correlati condividono almeno una categoria ed escludono l’articolo aperto. Trust e Patrimonio mostrano i tre articoli e i due download più recenti della propria lingua, senza esempi di riserva.
 
 La Home usa gli articoli selezionati con `inEvidenza.inHome`; in assenza di selezioni mostra i sette più recenti. L’evento della Home usa lo stesso indicatore. `src/lib/eventi.ts` condivide i dati di Home, elenchi, dettaglio e ricerca: ordine per `dataInizioEvento`, intervalli di più giorni e allegati reali. «Prossimi eventi» esclude gli appuntamenti conclusi nel fuso italiano; «Da non perdere» usa la categoria omonima. Le sezioni vuote restano nascoste. Il selettore del dettaglio usa gli URL delle localizzazioni Strapi tramite `languageUrls`, con il comportamento comune come ripiego.
+
+I collegamenti «Calendario completo» portano a `/eventi-in-agenda/calendario/` o `/eventi-in-agenda/da-non-perdere/` secondo l’elenco, con equivalenti inglesi in `utility-customslug.ts`. Il primo apre gli eventi in programma, il secondo tutti quelli della categoria «Da non perdere». Entrambi includono i passati tramite filtro: in programma dal più vicino, passati e tutti dal più recente. Le date filtrano gli eventi che intersecano l’intervallo, estremi inclusi; la logica comune è in `src/lib/event-calendar.ts`.
 
 `src/lib/downloads.ts` condivide la lettura dei download e la conversione per Library e allegati degli articoli. Esclude i documenti disattivati o senza file valido; categorie, date e dimensioni arrivano da Strapi. I filtri considerano tutte le categorie associate a ciascun documento. I PDF si aprono in una nuova scheda, anche dalla ricerca. Senza contenuti inglesi pubblicati, la Library EN resta vuota.
 

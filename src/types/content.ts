@@ -23,6 +23,7 @@ export interface EventPreview {
   organizer?: string;
   location: string;
   format?: string;
+  categories?: string[];
   formatTone?: 'webinar' | 'seminar';
   inHome?: boolean;
   notToMiss?: boolean;

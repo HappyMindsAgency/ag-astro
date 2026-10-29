@@ -11,6 +11,8 @@ export const routes = {
   wealth: { it: '/patrimonio/', en: '/en/wealth-and-assets/' },
   news: { it: '/ag-informa/', en: '/en/ag-informa/' },
   events: { it: '/eventi-in-agenda/', en: '/en/events/' },
+  eventCalendar: { it: '/eventi-in-agenda/calendario/', en: '/en/events/calendar/' },
+  eventsNotToMiss: { it: '/eventi-in-agenda/da-non-perdere/', en: '/en/events/not-to-be-missed/' },
   library: { it: '/knowledge-library/', en: '/en/knowledge-library/' },
   contact: { it: '/contatti/', en: '/en/contact-us/' },
   contactThanks: { it: '/grazie-contatti/', en: '/en/thank-you-contacts/' },

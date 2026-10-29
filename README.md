@@ -31,7 +31,7 @@ La build usa l’adapter Node standalone; in ambiente Vercel seleziona l’adapt
 
 ## Stato delle pagine
 
-Realizzati header, footer, le 15 pagine del design, la ricerca, la pagina Newsletter e le conferme di Contatti e Newsletter:
+Realizzati header, footer, le 15 pagine del design, i calendari eventi, la ricerca, la pagina Newsletter e le conferme di Contatti e Newsletter:
 
 | Pagina | Anteprima locale |
 | --- | --- |
@@ -48,6 +48,8 @@ Realizzati header, footer, le 15 pagine del design, la ricerca, la pagina Newsle
 | AG Informa | [Apri](http://localhost:4321/ag-informa/) |
 | Dettaglio articolo | [Apri](http://localhost:4321/ag-informa/fondo-patrimoniale-e-tutela-dellabitazione-del-fallito/) |
 | Eventi e formazione | [Apri](http://localhost:4321/eventi-in-agenda/) |
+| Calendario completo | [Apri](http://localhost:4321/eventi-in-agenda/calendario/) |
+| Eventi da non perdere | [Apri](http://localhost:4321/eventi-in-agenda/da-non-perdere/) |
 | Dettaglio evento | [Apri](http://localhost:4321/eventi-in-agenda/il-trust-in-italia-xi-congresso-nazionale-e-domenica-specialistica/) |
 | Knowledge Library | [Apri](http://localhost:4321/knowledge-library/) |
 | Ricerca | [Apri](http://localhost:4321/cerca/?q=trust) |

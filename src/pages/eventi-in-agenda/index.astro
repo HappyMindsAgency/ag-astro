@@ -1,5 +1,6 @@
 ---
-import { getEventi, getProssimiEventi } from '../../lib/eventi';
+import { getEventi, getProssimiEventi, getEventiDaNonPerdere } from '../../lib/eventi';
+import customSlug from '../../lib/utility-customslug';
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import EventList from '../../components/EventList.astro';
@@ -8,7 +9,7 @@ import '../../styles/pages/eventi.scss';
 
 const events = await getEventi('it');
 const upcomingEvents = getProssimiEventi(events);
-const highlightedEvents = events.filter(event => event.notToMiss);
+const highlightedEvents = getEventiDaNonPerdere(events);
 ---
 
 <Layout>
@@ -18,8 +19,8 @@ const highlightedEvents = events.filter(event => event.notToMiss);
       Convegni, seminari e appuntamenti formativi per approfondire i temi del trust, della fiscalità e della continuità patrimoniale.
     </PageIntro>
 
-    <EventList id="prossimi-eventi" title="Prossimi eventi" eyebrow="In agenda" events={upcomingEvents} />
-    <EventList id="eventi-da-non-perdere" title="Eventi da non perdere" eyebrow="In agenda" events={highlightedEvents} compact />
+    <EventList id="prossimi-eventi" title="Prossimi eventi" eyebrow="In agenda" events={upcomingEvents.slice(0, 6)} />
+    <EventList id="eventi-da-non-perdere" title="Eventi da non perdere" eyebrow="In agenda" events={highlightedEvents.slice(0, 6)} calendarHref={customSlug('eventsNotToMiss', 'it')} compact />
 
     <NewsletterCallToAction />
   </div>
