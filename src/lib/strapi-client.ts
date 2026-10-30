@@ -28,7 +28,7 @@ function cachedRequest<T>(key: string, fetcher: () => Promise<T>, fallback: T): 
 
   const promise: Promise<T> = fetcher().catch((error) => {
     if (cache.get(key)?.promise === promise) cache.delete(key);
-    console.warn(`[strapi] Richiesta non riuscita: ${key}`, error);
+    console.warn(`[strapi] Richiesta non riuscita: ${key}`, error instanceof Error ? error.message : 'Errore sconosciuto');
     return fallback;
   });
 

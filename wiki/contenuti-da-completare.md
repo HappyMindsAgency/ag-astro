@@ -9,7 +9,7 @@ Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e
 ## Altri contenuti da verificare
 
 - [ ] **Eventi e calendari IT/EN:** dopo il caricamento degli eventi definitivi in Strapi, ricontrollare resa visiva, categorie, date, filtri e caricamento progressivo.
-- [ ] **Riquadro consulenza di articoli/eventi:** confermare titolo e descrizione IT/EN. Nell’evento il titolo è Lorem ipsum; nell’articolo è fisso: «Il tuo trust è conforme alla nuova normativa?».
+- [ ] **Riquadro consulenza degli articoli:** confermare titolo e descrizione IT/EN; il titolo attuale è «Il tuo trust è conforme alla nuova normativa?».
 - [ ] **Descrizioni nella ricerca:** collegare le meta description delle pagine quando la SEO sarà disponibile da Strapi. I riassunti IT/EN in [search.ts](../src/data/search.ts) resteranno come ripiego.
 - [ ] **Articoli e download EN:** verificare i contenuti localizzati quando saranno pubblicati in Strapi, anche nei correlati e nella ricerca. Il collegamento è pronto, senza esempi italiani di riserva.
 - [ ] **Profili individuali del Team:** pagine solo predisposte; confermare se vanno completate per il lancio.
@@ -24,6 +24,7 @@ Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e
 - [x] Correlati di articoli, Trust e Patrimonio da Strapi.
 - [x] Privacy IT/EN da Strapi, verificate sui documenti forniti e nel layout comune.
 - [x] Banner finale degli articoli IT/EN con testi e CTA definitivi.
+- [x] Box Contatti del dettaglio evento IT/EN con testi e CTA definitivi, anche su mobile.
 - [x] Home — notizie, immagini, date e link da Strapi, con selezione «in Home» e ripiego sui sette più recenti.
 - [x] Home — evento selezionato «in Home», con dati e copertina da Strapi.
 - [x] Elenchi Eventi e risultati di ricerca da Strapi, distinti fra appuntamenti non conclusi e categoria «Da non perdere».

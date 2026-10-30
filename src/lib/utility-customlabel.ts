@@ -190,6 +190,7 @@ const english: Record<string, string> = {
   'Potrebbero interessarti': 'You may also be interested in',
   'Richiedi una consulenza': 'Request advice',
   'Richiedi un confronto': 'Request a consultation',
+  'Richiedi un appuntamento': 'Request an appointment',
 };
 
 export default function customLabel(label: string, lang: Locale = 'it', values: Record<string, string | number> = {}): string {

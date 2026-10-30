@@ -46,7 +46,13 @@ const facts = [
   ...(event.time ? [{ label: customLabel('Orario', lang), value: event.time, icon: clockIcon, dateTime: event.time }] : []),
   { label: customLabel('Luogo', lang), value: event.location, icon: locationIcon },
 ];
-const consultation = { eyebrow: 'Contatti', title: 'Lorem ipsum dolor sit amet?', description: 'I nostri esperti possono analizzare la tua struttura e guidarti nell’adeguamento.' };
+const consultation = {
+  eyebrow: 'Contatti',
+  title: lang === 'en' ? 'Do you have a wealth-related matter to address?' : 'Hai un’esigenza patrimoniale da affrontare?',
+  description: lang === 'en' ? 'Contact us for an initial discussion.' : 'Contattaci per un primo confronto.',
+  label: 'Richiedi un appuntamento',
+  buttonClass: 'mw-100 px-3',
+};
 ---
 
 <Layout lang={lang} title={event.title} description={event.description} seo={seo} languageUrls={languageUrls} jsonLd={[eventJsonLd]}>
@@ -69,7 +75,7 @@ const consultation = { eyebrow: 'Contatti', title: 'Lorem ipsum dolor sit amet?'
     <div class="event-detail-main section-spacing">
       <div class="container frame-container">
         <div class="row gx-lg-5 gy-5">
-          <aside class="col-lg-3 order-lg-2" aria-label={customLabel('Informazioni e condivisione dell’evento', lang)}>
+          <aside class="col-lg-4 col-xl-3 order-lg-2" aria-label={customLabel('Informazioni e condivisione dell’evento', lang)}>
             <dl class="event-detail-facts mb-0">
               {facts.map(({ label, value, icon, ...fact }) => <div class="event-detail-fact">
                 <dt class="d-flex align-items-center"><span class="event-detail-fact-icon d-inline-flex" aria-hidden="true" set:html={icon} />{label}</dt>
@@ -79,7 +85,7 @@ const consultation = { eyebrow: 'Contatti', title: 'Lorem ipsum dolor sit amet?'
             <ContentShare title={event.title} />
             <div class="d-none d-lg-block"><EditorialContactCard {...consultation} /></div>
           </aside>
-          <div class="col-lg-9 order-lg-1">
+          <div class="col-lg-8 col-xl-9 order-lg-1">
             <article class="editorial-prose" aria-label={event.title} set:html={content} />
             {documents.length > 0 && <section class="editorial-documents" aria-labelledby="event-documents-title"><h2 id="event-documents-title">{customLabel('Documenti correlati', lang)}</h2><DocumentList documents={documents} compact /></section>}
             <div class="event-detail-mobile-contact d-lg-none"><EditorialContactCard {...consultation} /></div>

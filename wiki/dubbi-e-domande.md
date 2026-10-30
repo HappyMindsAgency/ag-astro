@@ -21,6 +21,5 @@ Servono le destinazioni dei seguenti inviti. Se non previste al lancio, decidere
 ## Integrazioni e contenuti comuni
 
 - **Download:** completare le categorie dei PDF ancora senza associazione e confermare le date di pubblicazione.
-- **Disponibilità Strapi:** verificare i timeout al caricamento; in assenza di risposta la Library risulta vuota.
 - **Cookie e mappe:** Google Maps è attiva; resta da collegare il blocco e il comando per dare il consenso al futuro sistema dei cookie.
 - **Email dei contatti:** mancano credenziali SMTP e casella destinataria; l’invio delle email è ancora da implementare e configurare.

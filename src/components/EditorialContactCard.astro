@@ -7,15 +7,17 @@ interface Props {
   title: string;
   description: string;
   eyebrow?: string;
+  label?: string;
+  buttonClass?: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
-const { title, description, eyebrow = 'Consulenza' } = Astro.props;
+const { title, description, eyebrow = 'Consulenza', label = 'Contattaci', buttonClass } = Astro.props;
 ---
 
 <div class="editorial-contact-card">
   <p class="editorial-contact-label">{customLabel(eyebrow, lang)}</p>
   <h2>{title}</h2>
   <p>{description}</p>
-  <a class="btn site-button site-button--light site-button--small" href={localizeHref("/contatti/", lang)}>{customLabel("Contattaci", lang)} <span aria-hidden="true">→</span></a>
+  <a class:list={['btn site-button site-button--light site-button--small', buttonClass]} href={localizeHref("/contatti/", lang)}>{customLabel(label, lang)} <span aria-hidden="true">→</span></a>
 </div>

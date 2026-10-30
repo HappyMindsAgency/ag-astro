@@ -3,7 +3,7 @@
 
 .event-date {
   display: flex;
-  flex: 0 0 60px;
+  flex: 0 0 theme.$space-80;
   flex-direction: column;
   align-items: center;
   border-right: 1px solid rgba(theme.$editorial-border, 0.3);
@@ -33,6 +33,10 @@
   line-height: theme.$line-height-content-meta;
 }
 
+.event-date-month--range {
+  letter-spacing: normal;
+}
+
 .event-date.event-date--compact {
   flex-basis: 72px;
   min-height: 100px;
@@ -49,8 +53,13 @@
   }
 }
 
+.event-list--date-ranges .event-date.event-date--compact {
+  flex-basis: 96px;
+  padding-right: theme.$space-16;
+}
+
 .event-date.event-date--hero {
-  flex-basis: 84px;
+  flex-basis: theme.$event-date-hero-width;
   padding-right: theme.$space-16;
 
   .event-date-day {
@@ -71,7 +80,7 @@
 
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .event-date {
-    flex-basis: theme.$space-40;
+    flex-basis: theme.$space-64;
   }
 
   .event-date-day {
@@ -104,8 +113,13 @@
     }
   }
 
+  .event-list--date-ranges .event-date.event-date--compact {
+    flex-basis: theme.$space-80;
+    padding-right: theme.$space-12;
+  }
+
   .event-date.event-date--hero {
-    flex-basis: 64px;
+    flex-basis: theme.$event-date-hero-width-mobile;
     padding-right: theme.$space-12;
 
     .event-date-day {
@@ -130,5 +144,11 @@
   .event-date-day {
     font-size: min(var(--event-date-day-size), calc(160cqi / var(--event-date-characters)));
     line-height: 1;
+  }
+}
+
+@include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
+  .event-date.event-date--hero .event-date-month--range {
+    font-size: theme.$font-size-event-date-hero-label-range;
   }
 }

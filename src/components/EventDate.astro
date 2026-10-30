@@ -14,6 +14,6 @@ const isRange = /[–-]/.test(date.days);
 
 <time class:list={['event-date', `event-date--${variant}`, { 'event-date--range': isRange }]} style={isRange ? `--event-date-characters: ${date.days.length}` : undefined} datetime={date.dateTime} aria-label={date.label ?? `${date.days} ${month} ${date.year}`}>
   <span class="event-date-day">{date.days}</span>
-  <span class="event-date-month">{month}</span>
+  <span class:list={['event-date-month', { 'event-date-month--range': /[–-]/.test(month) }]}>{month}</span>
   <span class="event-date-year">{date.year}</span>
 </time>

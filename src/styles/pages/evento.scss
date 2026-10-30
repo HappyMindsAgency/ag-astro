@@ -4,7 +4,7 @@
 
 .event-detail-heading {
   display: grid;
-  grid-template-columns: 84px minmax(0, 1fr);
+  grid-template-columns: theme.$event-date-hero-width minmax(0, 1fr);
   align-items: start;
   gap: theme.$space-12 theme.$space-20;
   padding-block: theme.$space-40 theme.$space-32;
@@ -46,6 +46,10 @@
 
 .event-detail-main {
   padding-block: theme.$space-64 theme.$space-100;
+}
+
+.event-detail-main > .frame-container {
+  max-width: theme.$page-container-max-width;
 }
 
 .event-detail-facts {
@@ -113,7 +117,7 @@
   }
 
   .event-detail-heading {
-    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-columns: theme.$event-date-hero-width-mobile minmax(0, 1fr);
     padding-block: theme.$space-32 theme.$space-24;
   }
 

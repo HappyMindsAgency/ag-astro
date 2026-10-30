@@ -17,7 +17,7 @@ interface EventRecord {
   titolo: string;
   slug: string;
   dataInizioEvento: string;
-  dataFineEvento?: string;
+  dataFineEvento?: string | null;
   orario?: string;
   luogo?: string;
   descrizione?: Parameters<typeof blocksToHtml>[0];
@@ -34,7 +34,7 @@ const previewPopulate = {
 };
 const previewFields = ['titolo', 'slug', 'dataInizioEvento', 'dataFineEvento', 'luogo', 'descrizione'];
 
-function toDate(startValue: string, endValue: string | undefined, lang: Locale): EventPreview['date'] | undefined {
+function toDate(startValue: string, endValue: string | null | undefined, lang: Locale): EventPreview['date'] | undefined {
   const start = new Date(startValue);
   if (!Number.isFinite(start.getTime())) return undefined;
   const candidate = endValue ? new Date(endValue) : start;
