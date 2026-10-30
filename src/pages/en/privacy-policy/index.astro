@@ -2,16 +2,18 @@
 import Layout from '../../../components/Layout.astro';
 import { getSingleDocument } from '../../../lib/strapi-client';
 import { blocksToHtml } from '../../../lib/strapi-blocks';
+import { seoPopulate } from '../../../lib/seo';
 import '../../../styles/components/editorial-prose.scss';
 
 const { data } = await getSingleDocument('privacy-policy', {
   locale: 'en',
   fields: ['titolo', 'contenuto'],
+  populate: { seo: seoPopulate },
 });
 const content = blocksToHtml(data?.contenuto ?? []);
 ---
 
-<Layout lang="en">
+<Layout lang="en" title={data?.titolo ?? 'Privacy policy'} seo={data?.seo}>
   <section class="container section-container py-5" aria-labelledby="page-title">
     <h1 id="page-title" class="type-section-title mb-0">{data?.titolo ?? 'Privacy policy'}</h1>
     {content && <div class="row">

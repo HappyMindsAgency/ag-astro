@@ -1,17 +1,100 @@
 ---
+import { SEO } from 'astro-seo';
+import customSlug, { type Locale } from '../lib/utility-customslug';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
+import { DEFAULT_IMAGE, SITE_NAME, absoluteUrl, getSeo, toJsonLd, type StrapiSeo } from '../lib/seo';
+import { contacts, offices } from '../data/contacts';
+
 interface Props {
-    title: string;
+    title?: string;
     description?: string;
+    lang?: Locale;
+    seo?: StrapiSeo | null;
+    robots?: string;
+    languageUrls?: Partial<Record<Locale, string>>;
+    jsonLd?: object[];
+    article?: { publishedTime?: string; authors?: string[]; section?: string };
 }
 
-const { title, description } = Astro.props;
+const { title, description, lang = getLangFromUrl(Astro.url), seo: entry, robots, languageUrls, jsonLd = [], article } = Astro.props;
+const origin = (Astro.site ?? Astro.url).origin;
+const seo = await getSeo({ url: Astro.url, origin, lang, entry, title, description, robots });
+// astro-seo inserisce il titolo come HTML.
+const escapedTitle = seo.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const ogLocale = { it: 'it_IT', en: 'en_GB' } as const;
+
+const alternateUrls = (['it', 'en'] as const)
+    .map((locale) => ({ hrefLang: locale, href: absoluteUrl(languageUrls?.[locale] ?? (seo.key && customSlug(seo.key, locale)), origin) }))
+    .filter((item): item is { hrefLang: Locale; href: string } => !!item.href);
+const languageAlternates = seo.indexable && alternateUrls.length > 1
+    ? [...alternateUrls, { hrefLang: 'x-default', href: alternateUrls.find((item) => item.hrefLang === 'it')!.href }]
+    : undefined;
+
+const organizationId = `${origin}/#organization`;
+const websiteId = `${origin}/#website`;
+const graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+        {
+            '@type': 'Organization',
+            '@id': organizationId,
+            name: SITE_NAME,
+            url: new URL(customSlug('home', lang), origin).href,
+            logo: new URL(DEFAULT_IMAGE, origin).href,
+            email: contacts.email,
+            telephone: contacts.phone,
+            address: offices.map((office) => ({ '@type': 'PostalAddress', streetAddress: office.street, postalCode: office.postalCode, addressLocality: office.city, addressCountry: 'IT' })),
+        },
+        {
+            '@type': 'WebSite',
+            '@id': websiteId,
+            name: SITE_NAME,
+            url: new URL(customSlug('home', lang), origin).href,
+            inLanguage: lang,
+            publisher: { '@id': organizationId },
+            potentialAction: {
+                '@type': 'SearchAction',
+                target: { '@type': 'EntryPoint', urlTemplate: `${new URL(customSlug('search', lang), origin).href}?q={search_term_string}` },
+                'query-input': 'required name=search_term_string',
+            },
+        },
+        {
+            '@type': 'WebPage',
+            '@id': `${seo.canonical}#webpage`,
+            url: seo.canonical,
+            name: seo.title,
+            description: seo.description,
+            inLanguage: lang,
+            isPartOf: { '@id': websiteId },
+            primaryImageOfPage: { '@type': 'ImageObject', url: seo.image.url },
+        },
+        ...jsonLd,
+    ],
+};
 ---
 <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16 32x32 48x48" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="128x128" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content={seo.viewport ?? 'width=device-width, initial-scale=1'} />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <SEO
+        title={escapedTitle}
+        description={seo.description}
+        canonical={seo.canonical}
+        noindex={!seo.indexable}
+        nofollow={/nofollow/i.test(seo.robots)}
+        robotsExtras={seo.indexable ? 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' : undefined}
+        languageAlternates={languageAlternates}
+        openGraph={{
+            basic: { title: seo.facebook.title, type: article ? 'article' : 'website', image: seo.facebook.image, url: seo.canonical },
+            optional: { description: seo.facebook.description, locale: ogLocale[lang], siteName: SITE_NAME },
+            image: { alt: seo.image.alt, width: seo.image.width, height: seo.image.height },
+            article,
+        }}
+        twitter={{ card: 'summary_large_image', title: seo.twitter.title, description: seo.twitter.description, image: seo.twitter.image, imageAlt: seo.image.alt }}
+        extend={{ meta: seo.keywords ? [{ name: 'keywords', content: seo.keywords }] : [] }}
+    />
+    <script type="application/ld+json" set:html={toJsonLd(graph)} />
+    {seo.structuredData.map((data) => <script type="application/ld+json" set:html={toJsonLd(data)} />)}
 </head>

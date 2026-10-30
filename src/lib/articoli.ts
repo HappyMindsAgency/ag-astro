@@ -6,6 +6,7 @@ import { formatDate } from './utility-function';
 import customLabel from './utility-customlabel';
 import { toDocumentPreview } from './downloads';
 import { blockToHtml, blocksToText } from './strapi-blocks';
+import { seoPopulate, type StrapiSeo } from './seo';
 
 export { blocksToText } from './strapi-blocks';
 
@@ -95,7 +96,7 @@ export async function getArticolo(slug: string, lang: Locale) {
       autori: { populate: { foto: true } },
       domande: true,
       downloads: { populate: { file: true, categoria_downloads: { fields: ['titolo'] } } },
-      seo: true,
+      seo: seoPopulate,
     },
   });
   const item: any = data[0];
@@ -139,7 +140,9 @@ export async function getArticolo(slug: string, lang: Locale) {
     faqItems,
     documents,
     relatedArticles,
-    seo: { title: item.seo?.metaTitle ?? item.titolo, description: item.seo?.metaDescription ?? article.excerpt },
+    seo: (item.seo ?? null) as StrapiSeo | null,
+    publishedAt: item.publishedAt as string,
+    categories: (item.categorias ?? []).map((category: { titolo?: string }) => category.titolo?.trim()).filter(Boolean) as string[],
   };
 }
 

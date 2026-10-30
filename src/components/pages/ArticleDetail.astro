@@ -19,7 +19,22 @@ interface Props extends Articolo {
   lang?: Locale;
 }
 
-const { lang = 'it', article, sections: contentSections, faqItems, documents, relatedArticles, seo } = Astro.props;
+const { lang = 'it', article, sections: contentSections, faqItems, documents, relatedArticles, seo, publishedAt, categories } = Astro.props;
+const pageUrl = new URL(article.href, (Astro.site ?? Astro.url).origin).href;
+const authorName = [article.author?.firstName, article.author?.lastName].filter(Boolean).join(' ');
+const articleJsonLd = {
+  '@type': 'Article',
+  '@id': `${pageUrl}#article`,
+  mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+  headline: article.title,
+  description: article.excerpt || undefined,
+  image: article.image?.src,
+  datePublished: publishedAt,
+  inLanguage: lang,
+  articleSection: categories.length ? categories : undefined,
+  author: authorName ? { '@type': 'Person', name: authorName, jobTitle: article.author?.role } : { '@id': `${(Astro.site ?? Astro.url).origin}/#organization` },
+  publisher: { '@id': `${(Astro.site ?? Astro.url).origin}/#organization` },
+};
 const indexSections = [
   ...contentSections.filter((section) => section.id),
   ...(faqItems.length > 0 ? [{ id: 'faq-articolo', title: customLabel('Domande frequenti', lang) }] : []),
@@ -28,7 +43,7 @@ const indexSections = [
 const consultation = { title: 'Il tuo trust è conforme alla nuova normativa?', description: 'I nostri esperti possono analizzare la tua struttura e guidarti nell’adeguamento.' };
 ---
 
-<Layout lang={lang} title={seo.title} description={seo.description}>
+<Layout lang={lang} title={article.title} description={article.excerpt} seo={seo} jsonLd={[articleJsonLd]} article={{ publishedTime: publishedAt, authors: authorName ? [authorName] : undefined, section: article.category || undefined }}>
   <div class="article-page" data-article>
     <header class="article-hero">
       <div class="container frame-container">

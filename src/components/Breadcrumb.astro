@@ -3,6 +3,7 @@ import '../styles/components/breadcrumb.scss';
 import customLabel from '../lib/utility-customlabel';
 import customSlug from '../lib/utility-customslug';
 import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
+import { toJsonLd } from '../lib/seo';
 
 interface Props {
   current: string;
@@ -12,6 +13,18 @@ interface Props {
 
 const { current, parents = [], light = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const origin = (Astro.site ?? Astro.url).origin;
+const trail = [{ label: 'Home', href: customSlug('home', lang) }, ...parents.map(({ label, href }) => ({ label: customLabel(label, lang), href: localizeHref(href, lang) }))];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [...trail, { label: current, href: Astro.url.pathname }].map(({ label, href }, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: label,
+    item: href ? new URL(href, origin).href : undefined,
+  })),
+};
 ---
 
 <nav aria-label={customLabel('Percorso di navigazione', lang)}>
@@ -21,3 +34,4 @@ const lang = getLangFromUrl(Astro.url);
     <li class="breadcrumb-item active" aria-current="page">{current}</li>
   </ol>
 </nav>
+<script type="application/ld+json" set:html={toJsonLd(jsonLd)} />

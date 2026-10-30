@@ -4,6 +4,7 @@ import { getCollectionDocuments } from './strapi-client';
 import { blocksToHtml, blocksToText } from './strapi-blocks';
 import { toDocumentPreview } from './downloads';
 import { getTodayInRome } from './utility-function';
+import { seoPopulate, type StrapiSeo } from './seo';
 
 interface Category {
   titolo: string;
@@ -105,6 +106,7 @@ export async function getEvento(slug: string, lang: Locale) {
       ...previewPopulate,
       downloads: { populate: { file: true, categoria_downloads: { fields: ['titolo', 'slug'] } } },
       localizations: { fields: ['slug', 'locale'] },
+      seo: seoPopulate,
     },
   });
   const item = data[0];
@@ -121,7 +123,7 @@ export async function getEvento(slug: string, lang: Locale) {
     if (locale && localization.slug) languageUrls[locale] = `${customSlug('events', locale)}${localization.slug}/`;
   }
   const relatedEvents = (await getEventi(lang)).filter(other => other.href !== event.href).slice(0, 3);
-  return { event, content: blocksToHtml(item.descrizione ?? []), documents, relatedEvents, languageUrls };
+  return { event, content: blocksToHtml(item.descrizione ?? []), documents, relatedEvents, languageUrls, seo: ((item as any).seo ?? null) as StrapiSeo | null };
 }
 
 export type Evento = NonNullable<Awaited<ReturnType<typeof getEvento>>>;

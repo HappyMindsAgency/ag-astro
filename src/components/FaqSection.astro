@@ -1,5 +1,6 @@
 ---
 import '../styles/components/faq-section.scss';
+import { toJsonLd } from '../lib/seo';
 
 interface Props {
   id: string;
@@ -13,7 +14,14 @@ const { id, items, largeTitle = false, twoColumns = false, embedded = false } = 
 const half = Math.ceil(items.length / 2);
 const columns = twoColumns ? [items.slice(0, half), items.slice(half)] : [items];
 const listId = `${id}-list`;
+const validItems = items.filter(({ question, answer }) => question?.trim() && answer?.trim());
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: validItems.map(({ question, answer }) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
+};
 ---
+{validItems.length > 0 && <script type="application/ld+json" set:html={toJsonLd(jsonLd)} />}
 
 <section id={id} class:list={['faq-section', { 'section-spacing': !embedded, 'faq-section--large-title': largeTitle, 'faq-section--two-columns': twoColumns, 'faq-section--embedded': embedded }]} aria-labelledby={`${id}-title`}>
   <div class="container section-container px-lg-0">

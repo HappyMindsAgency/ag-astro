@@ -8,7 +8,7 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<Layout>
+<Layout title={title}>
   <section class="container py-5" aria-labelledby="page-title">
     <h1 id="page-title" class="type-section-title mb-0">{title}</h1>
     <slot />

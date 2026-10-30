@@ -131,7 +131,16 @@ Il modulo contatti usa `POST /api/contatti`, comune a Chi siamo, Team, Servizi e
 - Il modulo Newsletter ha per ora struttura e stile. Pulsanti e download senza destinazione restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL.
 - Gli elenchi descrittivi senza link non mostrano frecce o simboli di apertura; i singoli servizi non hanno pagine dedicate.
 - Il video di Chi siamo resta nascosto al lancio.
-- La SEO arriverà da Strapi, compreso `noindex, follow` della ricerca: non definirla nelle pagine.
+
+## SEO
+
+`Head` genera i meta con `astro-seo` tramite `getSeo()` in `src/lib/seo.ts`. Ogni campo ha un ripiego: un dato mancante o Strapi non raggiungibile non bloccano la pagina.
+
+- Priorità: SEO dell’oggetto (articolo, evento, Privacy) passata a `Layout` con `seo`; poi la voce di `pagine` con lo slug della pagina; poi `general`, che vale per intero solo sulla Home e altrove fornisce solo titolo, descrizione e immagine. Senza titolo SEO si usa `title` di `Layout` seguito da « | AG Trustees».
+- Slug di `pagine`: ultimo segmento del percorso localizzato in `utility-customslug.ts` (es. `team`, `visione-metodologia` / `vision-and-approach`).
+- `forcedRobots` impone `noindex, nofollow` a 404, Newsletter, ringraziamenti, Privacy e Cookie; `noindex, follow` alla ricerca. Prevale su Strapi.
+- JSON-LD: `Organization`, `WebSite` e `WebPage` in `Head`; `Article` ed `Event` nei dettagli; `BreadcrumbList` in `Breadcrumb`; `FAQPage` in `FaqSection`. Lo `structuredData` di Strapi si aggiunge.
+- `robots.txt`, `sitemap.xml` e `llms.txt` sono endpoint in `src/pages/`; con `MAINTENANCE_MODE` attivo `robots.txt` blocca tutto e gli altri due rispondono 404.
 
 ## Versione inglese
 

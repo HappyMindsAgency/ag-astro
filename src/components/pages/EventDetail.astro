@@ -21,7 +21,25 @@ interface Props extends Evento {
   lang?: Locale;
 }
 
-const { lang = 'it', event, content, documents, relatedEvents, languageUrls } = Astro.props;
+const { lang = 'it', event, content, documents, relatedEvents, languageUrls, seo } = Astro.props;
+const origin = (Astro.site ?? Astro.url).origin;
+const pageUrl = new URL(event.href, origin).href;
+const online = event.formatTone === 'webinar';
+const eventJsonLd = {
+  '@type': 'Event',
+  '@id': `${pageUrl}#event`,
+  mainEntityOfPage: { '@id': `${pageUrl}#webpage` },
+  name: event.title,
+  description: event.description || undefined,
+  image: event.cover?.src,
+  startDate: event.time && event.date.dateTime ? `${event.date.dateTime}T${event.time}` : event.date.dateTime,
+  endDate: event.date.endDateTime,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: online ? 'https://schema.org/OnlineEventAttendanceMode' : 'https://schema.org/OfflineEventAttendanceMode',
+  location: online ? { '@type': 'VirtualLocation', url: pageUrl } : event.location ? { '@type': 'Place', name: event.location, address: event.location } : undefined,
+  organizer: { '@id': `${origin}/#organization` },
+  inLanguage: lang,
+};
 const dateLabel = event.date.label ?? `${event.date.days} ${event.date.month} ${event.date.year}`;
 const facts = [
   { label: customLabel('Data', lang), value: dateLabel, icon: calendarIcon, dateTime: event.date.dateTime },
@@ -31,7 +49,7 @@ const facts = [
 const consultation = { eyebrow: 'Contatti', title: 'Lorem ipsum dolor sit amet?', description: 'I nostri esperti possono analizzare la tua struttura e guidarti nell’adeguamento.' };
 ---
 
-<Layout lang={lang} languageUrls={languageUrls}>
+<Layout lang={lang} title={event.title} description={event.description} seo={seo} languageUrls={languageUrls} jsonLd={[eventJsonLd]}>
   <div class="event-detail-page">
     <header class="event-detail-hero">
       <div class="container frame-container">

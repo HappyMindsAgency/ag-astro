@@ -4,6 +4,7 @@ import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
 import customLabel from '../lib/utility-customlabel';
 import { getLangFromUrl, type Locale } from '../lib/lang-switch/route-map';
+import type { StrapiSeo } from '../lib/seo';
 
 import '../styles/globals.scss';
 
@@ -11,16 +12,20 @@ interface Props {
     lang?: Locale;
     title?: string;
     description?: string;
+    seo?: StrapiSeo | null;
+    robots?: string;
+    jsonLd?: object[];
+    article?: { publishedTime?: string; authors?: string[]; section?: string };
     linkedinUrl?: string;
     headerHeroId?: string;
     languageUrls?: Partial<Record<Locale, string>>;
 }
 
-const { lang = getLangFromUrl(Astro.url), title = 'AG Trustees', description, linkedinUrl, headerHeroId, languageUrls } = Astro.props;
+const { lang = getLangFromUrl(Astro.url), title, description, seo, robots, jsonLd, article, linkedinUrl, headerHeroId, languageUrls } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang={lang}>
-    <Head title={title} description={description} />
+    <Head lang={lang} title={title} description={description} seo={seo} robots={robots} languageUrls={languageUrls} jsonLd={jsonLd} article={article} />
     <body>
         <a class="skip-link visually-hidden-focusable" href="#contenuto-principale">{customLabel('Vai al contenuto', lang)}</a>
         <Navbar lang={lang} linkedinUrl={linkedinUrl} heroId={headerHeroId} languageUrls={languageUrls} />
