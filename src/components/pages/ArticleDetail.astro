@@ -65,9 +65,9 @@ const consultation = { title: 'Il tuo trust è conforme alla nuova normativa?', 
     </header>
 
     <div class="article-main section-spacing">
-      <div class="container frame-container">
+      <div class="container frame-container frame-container--editorial">
         <div class="row gx-lg-5 gy-5">
-          <aside class="col-lg-3 order-lg-2 article-sidebar" aria-label={customLabel('Strumenti dell’articolo', lang)}>
+          <aside class="col-lg-4 col-xl-3 order-lg-2 article-sidebar" aria-label={customLabel('Strumenti dell’articolo', lang)}>
             {indexSections.length > 0 && <nav class="article-index article-sidebar-box" aria-label={customLabel('Indice dell’articolo', lang)}>
               <p class="article-sidebar-label d-none d-lg-block">{customLabel('Indice', lang)}</p>
               <button class="article-index-toggle d-flex d-lg-none align-items-center justify-content-between w-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#article-index-panel" aria-expanded="false" aria-controls="article-index-panel">{customLabel('Indice dell’articolo', lang)} <span class="collapse-toggle" aria-hidden="true"></span></button>
@@ -81,7 +81,7 @@ const consultation = { title: 'Il tuo trust è conforme alla nuova normativa?', 
             <div class="d-none d-lg-block"><EditorialContactCard {...consultation} /></div>
           </aside>
 
-          <div class="col-lg-9 order-lg-1 article-content">
+          <div class="col-lg-8 col-xl-9 order-lg-1 article-content">
             <article class="editorial-prose" aria-label={article.title}>
               {contentSections.map(({ id, title, html }) => (
                 <section id={id} aria-labelledby={id && `${id}-title`}>
@@ -102,7 +102,7 @@ const consultation = { title: 'Il tuo trust è conforme alla nuova normativa?', 
       </div>
     </div>
 
-    {relatedArticles.length > 0 && <RelatedContent articles={relatedArticles} eyebrow={customLabel('Continua a leggere', lang)} showLibraryLink={false}>
+    {relatedArticles.length > 0 && <RelatedContent editorial articles={relatedArticles} eyebrow={customLabel('Continua a leggere', lang)} showLibraryLink={false}>
       <a slot="articles-action" class="site-text-link" href={localizeHref('/ag-informa/', lang)}>{customLabel('Tutti gli articoli', lang)} <span aria-hidden="true">→</span></a>
     </RelatedContent>}
 
@@ -117,11 +117,13 @@ const consultation = { title: 'Il tuo trust è conforme alla nuova normativa?', 
   import ScrollSpy from 'bootstrap/js/dist/scrollspy';
 
   const article = document.querySelector<HTMLElement>('[data-article]');
-  if (article) {
-    const readingLine = parseFloat(getComputedStyle(article.querySelector('.editorial-prose section')!).scrollMarginTop);
+  const articleIndex = article?.querySelector<HTMLElement>('#article-index-links');
+  const readingSection = article?.querySelector<HTMLElement>('.editorial-prose section[id], #faq-articolo');
+  if (articleIndex && readingSection) {
+    const readingLine = parseFloat(getComputedStyle(readingSection).scrollMarginTop);
     const readingBand = 48;
     const createIndexSpy = () => new ScrollSpy(document.body, {
-      target: '#article-index-links',
+      target: articleIndex,
       rootMargin: `-${readingLine}px 0px -${Math.max(0, window.innerHeight - readingLine - readingBand)}px`,
       threshold: [0],
     });

@@ -14,9 +14,10 @@ interface Props {
   compact?: boolean;
   compactTitle?: boolean;
   calendarHref?: string;
+  editorial?: boolean;
 }
 
-const { id, title, eyebrow, events = [], compact = false, compactTitle = compact, calendarHref } = Astro.props;
+const { id, title, eyebrow, events = [], compact = false, compactTitle = compact, calendarHref, editorial = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = (label: string) => customLabel(label, lang);
 const calendarUrl = calendarHref ?? customSlug('eventCalendar', lang);
@@ -24,7 +25,7 @@ const hasDateRanges = compact && events.some(({ date }) => /[–-]/.test(date.da
 ---
 
 {events.length > 0 && <section id={id} class:list={['event-list section-spacing', { 'event-list--compact': compact, 'event-list--date-ranges': hasDateRanges }]} aria-labelledby={`${id}-title`}>
-  <div class="container frame-container">
+  <div class:list={['container frame-container', { 'frame-container--editorial': editorial }]}>
     <div class="event-list-header d-flex flex-wrap justify-content-between align-items-end">
       <div>
         {eyebrow && <p class="type-eyebrow type-eyebrow--section event-list-eyebrow">{t(eyebrow)}</p>}

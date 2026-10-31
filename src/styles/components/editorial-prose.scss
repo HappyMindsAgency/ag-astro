@@ -3,6 +3,7 @@
 
 .editorial-prose {
   color: theme.$ink;
+  overflow-wrap: anywhere;
   font-size: theme.$font-size-section-copy;
   line-height: theme.$line-height-section-copy;
 

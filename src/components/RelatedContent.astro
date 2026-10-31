@@ -14,9 +14,10 @@ interface Props {
   introduction?: string;
   showLibraryLink?: boolean;
   showArticlesLink?: boolean;
+  editorial?: boolean;
 }
 
-const { articles = [], documents = [], eyebrow = 'Approfondimenti', title, introduction, showLibraryLink = true, showArticlesLink = false } = Astro.props;
+const { articles = [], documents = [], eyebrow = 'Approfondimenti', title, introduction, showLibraryLink = true, showArticlesLink = false, editorial = false } = Astro.props;
 const SectionHeading = title ? 'h3' : 'h2';
 const ArticleHeading = title ? 'h4' : 'h3';
 const lang = getLangFromUrl(Astro.url);
@@ -25,7 +26,7 @@ const t = (label: string) => customLabel(label, lang);
 
 {(articles.length > 0 || documents.length > 0) && (
   <div class="related-content section-spacing">
-    <div class="container section-container">
+    <div class:list={['container section-container', { 'frame-container frame-container--editorial': editorial }]}>
       {title && (
         <div class="row gx-4 gy-4 align-items-end mb-5">
           <div class={introduction ? 'col-lg-7' : 'col-12'}>

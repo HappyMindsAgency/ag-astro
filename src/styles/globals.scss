@@ -29,6 +29,10 @@ body {
   max-width: theme.$frame-max-width + theme.$space-48;
 }
 
+.container.frame-container.frame-container--editorial {
+  max-width: theme.$page-container-max-width;
+}
+
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .container.section-container {
     max-width: none;

@@ -58,7 +58,7 @@ const consultation = {
 <Layout lang={lang} title={event.title} description={event.description} seo={seo} languageUrls={languageUrls} jsonLd={[eventJsonLd]}>
   <div class="event-detail-page">
     <header class="event-detail-hero">
-      <div class="container frame-container">
+      <div class="container frame-container frame-container--editorial">
         <Breadcrumb current={event.category ?? event.format ?? customLabel('Evento', lang)} parents={[{ label: 'AG Informa', href: localizeHref('/ag-informa/', lang)! }, { label: customLabel('Eventi', lang), href: localizeHref('/eventi-in-agenda/', lang)! }]} />
         <div class="event-detail-heading">
           <EventDate date={event.date} variant="hero" />
@@ -73,7 +73,7 @@ const consultation = {
     </header>
 
     <div class="event-detail-main section-spacing">
-      <div class="container frame-container">
+      <div class="container frame-container frame-container--editorial">
         <div class="row gx-lg-5 gy-5">
           <aside class="col-lg-4 col-xl-3 order-lg-2" aria-label={customLabel('Informazioni e condivisione dell’evento', lang)}>
             <dl class="event-detail-facts mb-0">
@@ -94,7 +94,7 @@ const consultation = {
       </div>
     </div>
 
-    <EventList id="eventi-correlati" title={customLabel('Potrebbero interessarti', lang)} eyebrow={customLabel('In agenda', lang)} events={relatedEvents} compact compactTitle={false} />
+    <EventList id="eventi-correlati" title={customLabel('Potrebbero interessarti', lang)} eyebrow={customLabel('In agenda', lang)} events={relatedEvents} compact editorial compactTitle={false} />
 
     <CallToAction eyebrow={customLabel('AG Trustees — Esperti in Trust e Pianificazione patrimoniale', lang)} href={localizeHref('/contatti/', lang)} label={customLabel('Parliamone', lang)}>
       <Fragment slot="title">{lang === 'en' ? customLabel('Dare continuità al valore richiede una visione chiara', lang) : <Fragment>Dare continuità al valore<br class="d-none d-xl-block" />{' '}richiede una visione chiara</Fragment>}</Fragment>

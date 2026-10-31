@@ -3,7 +3,7 @@ const escape = (text: string) => text.replace(/[&<>"]/g, (char) => ({ '&': '&amp
 const safeUrl = (url = '') => (/^(https?:|mailto:|tel:|\/|#)/i.test(url) ? url : '#');
 
 const nodeText = (node: any): string => node.children ? node.children.map(nodeText).join(node.type === 'list' ? '\n' : '') : node.text ?? '';
-export const blocksToText = (blocks: any[] = []) => blocks.map(nodeText).join('\n');
+export const blocksToText = (blocks: any[] | null = []) => (blocks ?? []).map(nodeText).join('\n');
 
 function inline(nodes: any[] = []): string {
   return nodes.map((node) => {
@@ -31,9 +31,9 @@ export function blockToHtml(block: any, headingShift = 0): string {
     }
     case 'quote': return `<blockquote>${inline(block.children)}</blockquote>`;
     case 'code': return `<pre><code>${escape(blocksToText(block.children))}</code></pre>`;
-    case 'image': return `<img src="${escape(safeUrl(block.image?.url))}" alt="${escape(block.image?.alternativeText ?? '')}" width="${block.image?.width}" height="${block.image?.height}" loading="lazy" />`;
+    case 'image': return `<img class="img-fluid" src="${escape(safeUrl(block.image?.url))}" alt="${escape(block.image?.alternativeText ?? '')}" width="${block.image?.width}" height="${block.image?.height}" loading="lazy" />`;
     default: return `<p>${inline(block.children)}</p>`;
   }
 }
 
-export const blocksToHtml = (blocks: any[] = []) => blocks.map((block) => blockToHtml(block)).join('');
+export const blocksToHtml = (blocks: any[] | null = []) => (blocks ?? []).map((block) => blockToHtml(block)).join('');

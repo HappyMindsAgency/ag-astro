@@ -136,7 +136,7 @@ export async function getArticolo(slug: string, lang: Locale) {
 
   return {
     article,
-    sections: toSections(item.contenuto),
+    sections: toSections(item.contenuto ?? []),
     faqItems,
     documents,
     relatedArticles,
