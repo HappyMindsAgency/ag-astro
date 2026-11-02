@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../variables' as theme;
 @use '../mixins' as shared;
 @use 'bootstrap/scss/mixins/breakpoints' as bs;
@@ -42,6 +43,10 @@
 @include bs.media-breakpoint-up(lg, theme.$grid-breakpoints) {
   .team-section--Direttivo > .container {
     max-width: theme.$frame-max-width - theme.$space-24;
+  }
+
+  .team-section--Consulente > .container {
+    max-width: map.get(theme.$container-max-widths, lg);
   }
 }
 
@@ -112,5 +117,23 @@
   .team-section--Direttivo .team-members,
   .team-section--Operativo .team-members {
     --bs-gutter-y: #{theme.$space-28};
+  }
+}
+
+@media (min-width: theme.$wide-layout-max-width) {
+  .team-section--Consulente {
+    > .container {
+      --bs-gutter-x: #{theme.$space-48};
+      max-width: theme.$frame-max-width + theme.$space-48;
+    }
+
+    .team-members > .col {
+      flex: 0 0 auto;
+      width: calc(100% / 6);
+    }
+
+    .team-member-card > .team-member-content {
+      padding: theme.$space-24;
+    }
   }
 }

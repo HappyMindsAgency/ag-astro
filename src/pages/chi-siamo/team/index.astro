@@ -46,7 +46,7 @@ const sections: TeamSection[] = [
           {
             'gx-0 gy-4 gy-xxl-0 row-cols-1 row-cols-xxl-3 justify-content-center': id === 'Direttivo',
             'gx-0 gy-4 row-cols-1 row-cols-xl-2': id === 'Operativo',
-            'g-3 g-lg-4 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xxl-5': id === 'Consulente',
+            'g-3 g-lg-4 row-cols-2 row-cols-sm-3 justify-content-center': id === 'Consulente',
           },
         ]}>
           {members.map((member) => <div class="col"><TeamMemberCard member={member} variant={id} /></div>)}
