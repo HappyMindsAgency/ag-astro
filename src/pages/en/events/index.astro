@@ -21,7 +21,7 @@ const lang = 'en';
       Conferences, seminars and professional development events exploring trusts, taxation and long-term wealth planning.
     </PageIntro>
 
-    <EventList id="prossimi-eventi" title="Upcoming events" eyebrow="Events calendar" events={upcomingEvents.slice(0, 6)} />
+    <EventList id="prossimi-eventi" title="Upcoming events" eyebrow="Events calendar" events={upcomingEvents.slice(0, 6)} showEmpty />
     <EventList id="eventi-da-non-perdere" title="Events not to be missed" eyebrow="Events calendar" events={highlightedEvents.slice(0, 6)} calendarHref={customSlug('eventsNotToMiss', lang)} compact />
 
     <NewsletterCallToAction title="AG Informa – News and updates">

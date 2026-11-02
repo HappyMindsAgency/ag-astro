@@ -15,16 +15,17 @@ interface Props {
   compactTitle?: boolean;
   calendarHref?: string;
   editorial?: boolean;
+  showEmpty?: boolean;
 }
 
-const { id, title, eyebrow, events = [], compact = false, compactTitle = compact, calendarHref, editorial = false } = Astro.props;
+const { id, title, eyebrow, events = [], compact = false, compactTitle = compact, calendarHref, editorial = false, showEmpty = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = (label: string) => customLabel(label, lang);
 const calendarUrl = calendarHref ?? customSlug('eventCalendar', lang);
 const hasDateRanges = compact && events.some(({ date }) => /[–-]/.test(date.days));
 ---
 
-{events.length > 0 && <section id={id} class:list={['event-list section-spacing', { 'event-list--compact': compact, 'event-list--date-ranges': hasDateRanges }]} aria-labelledby={`${id}-title`}>
+{(events.length > 0 || showEmpty) && <section id={id} class:list={['event-list section-spacing', { 'event-list--compact': compact, 'event-list--date-ranges': hasDateRanges }]} aria-labelledby={`${id}-title`}>
   <div class:list={['container frame-container', { 'frame-container--editorial': editorial }]}>
     <div class="event-list-header d-flex flex-wrap justify-content-between align-items-end">
       <div>
@@ -33,8 +34,8 @@ const hasDateRanges = compact && events.some(({ date }) => /[–-]/.test(date.da
       </div>
       <a class="site-text-link" href={localizeHref(calendarUrl, lang)}>{t('Calendario completo')} <span aria-hidden="true">→</span></a>
     </div>
-    <div class="row gx-4 gy-5">
+    {events.length > 0 ? <div class="row gx-4 gy-5">
       {events.map(event => <div class="col-md-6 col-xl-4"><EventCard event={event} compact={compact} /></div>)}
-    </div>
+    </div> : <p class="mb-0" role="status">{t('Non ci sono eventi da mostrare.')}</p>}
   </div>
 </section>}

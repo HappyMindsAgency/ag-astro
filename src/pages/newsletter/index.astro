@@ -1,10 +1,9 @@
 ---
 import Layout from '../../components/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
 import '../../styles/components/contact-section.scss';
 import '../../styles/pages/newsletter.scss';
-
-const professions = ['Notaio', 'Commercialista', 'Avvocato', 'Altro'];
 ---
 
 <Layout>
@@ -17,42 +16,7 @@ const professions = ['Notaio', 'Commercialista', 'Avvocato', 'Altro'];
     <div class="container section-container px-lg-0">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <form class="contact-form" method="post" aria-label="Iscrizione alla newsletter">
-            <div class="row g-4">
-              <div class="col-md-6">
-                <label class="form-label" for="signup-first-name">Nome *</label>
-                <input class="form-control" id="signup-first-name" name="firstName" type="text" autocomplete="given-name" required />
-              </div>
-              <div class="col-md-6">
-                <label class="form-label" for="signup-last-name">Cognome *</label>
-                <input class="form-control" id="signup-last-name" name="lastName" type="text" autocomplete="family-name" required />
-              </div>
-              <div class="col-md-6">
-                <label class="form-label" for="signup-email">Indirizzo email *</label>
-                <input class="form-control" id="signup-email" name="email" type="email" autocomplete="email" required />
-              </div>
-              <div class="col-md-6">
-                <label class="form-label" for="signup-city">Città *</label>
-                <input class="form-control" id="signup-city" name="city" type="text" autocomplete="address-level2" required />
-              </div>
-              <fieldset class="col-12">
-                <legend class="form-label">Professione *</legend>
-                <div class="d-flex flex-wrap gap-3 gap-md-4">
-                  {professions.map((profession, index) => (
-                    <div class="form-check mb-0">
-                      <input class="form-check-input" id={`signup-profession-${index}`} name="profession" type="radio" value={profession} required />
-                      <label class="form-check-label" for={`signup-profession-${index}`}>{profession}</label>
-                    </div>
-                  ))}
-                </div>
-              </fieldset>
-            </div>
-            <div class="form-check mt-4">
-              <input class="form-check-input" id="signup-privacy" name="privacy" type="checkbox" required />
-              <label class="form-check-label" for="signup-privacy">Acconsento al trattamento dei dati personali così come definito all’interno delle <a href="/privacy-policy/">Privacy Policy</a>. *</label>
-            </div>
-            <button class="btn site-button contact-form-submit" type="submit" disabled>Iscriviti alla newsletter <span aria-hidden="true">→</span></button>
-          </form>
+          <NewsletterForm />
         </div>
       </div>
     </div>

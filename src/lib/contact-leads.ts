@@ -1,6 +1,5 @@
 import { routes, type Locale } from './utility-customslug.ts';
-import { createHmac } from 'node:crypto';
-import { isIP } from 'node:net';
+export { validGoogleScriptConfig as validContactScriptConfig, saveFormLead as saveContactLead, type GoogleScriptConfig as ContactScriptConfig } from './google-form-leads.ts';
 
 export const contactFieldLimits = { name: 200, email: 254, phone: 80, profile: 200, message: 5000 } as const;
 
@@ -53,42 +52,4 @@ export function validateContactSubmission(input: unknown, now = Date.now()): Val
       message: (data.message as string).trim(), privacy: true, sourcePage, lang,
     },
   };
-}
-
-export interface ContactScriptConfig { url: string; secret: string; }
-
-export function validContactScriptConfig(config: ContactScriptConfig): boolean {
-  try {
-    const url = new URL(config.url);
-    return url.origin === 'https://script.google.com' && /^\/macros\/s\/[\w-]+\/exec$/.test(url.pathname)
-      && !url.search && !url.hash && config.secret.length >= 32;
-  } catch {
-    return false;
-  }
-}
-
-type SaveResult = { ok: true } | { ok: false; code: 'save_failed' } | { ok: false; code: 'rate_limited'; retryAfter: number };
-
-export async function saveContactLead(lead: ContactLead, config: ContactScriptConfig, address: string, send: typeof fetch = fetch): Promise<SaveResult> {
-  if (!validContactScriptConfig(config) || !isIP(address)) return { ok: false, code: 'save_failed' };
-  try {
-    const rateKey = createHmac('sha256', config.secret).update(address).digest('hex');
-    const response = await send(config.url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ secret: config.secret, lead, rateKey }),
-      signal: AbortSignal.timeout(15000),
-      redirect: 'follow',
-    });
-    if (!response.ok) return { ok: false, code: 'save_failed' };
-    const receipt = await response.json();
-    if (receipt?.ok === true && receipt.id === lead.id) return { ok: true };
-    if (receipt?.ok === false && receipt.code === 'rate_limited'
-      && Number.isInteger(receipt.retryAfter) && receipt.retryAfter > 0 && receipt.retryAfter <= 600) {
-      return { ok: false, code: 'rate_limited', retryAfter: receipt.retryAfter };
-    }
-  } catch {
-    // Nessuna conferma senza una ricevuta valida, anche in caso di timeout.
-  }
-  return { ok: false, code: 'save_failed' };
 }

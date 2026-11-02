@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import vm from 'node:vm';
-import { createHmac, randomUUID } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
+
+import { scriptRuntime } from './helpers/google-script-runtime.mjs';
 
 const source = readFileSync(new URL('../integrations/google-apps-script/contatti.gs', import.meta.url), 'utf8');
 const headers = ['Data e ora', 'Nome e cognome', 'Email', 'Telefono', 'Profilo', 'Messaggio', 'Privacy accettata', 'Pagina di provenienza', 'Lingua', 'ID richiesta'];
@@ -12,45 +13,12 @@ const sample = () => ({
   message: 'Dati sintetici per la verifica locale.', privacy: true, sourcePage: '/contatti/', lang: 'it',
 });
 
-function runtime({ failWrite = false, alteredHeader = false, busy = false, failFlushOnce = false } = {}) {
-  const rows = [alteredHeader ? ['Colonne modificate'] : [...headers]];
-  let spreadsheetAccesses = 0;
-  let locked = false;
-  let now = 1800000000000;
-  const properties = { CONTACT_SECRET: 'segreto-fittizio-test', SPREADSHEET_ID: 'foglio-fittizio-test' };
-  const sheet = {
-    getLastRow: () => rows.length,
-    appendRow: row => { if (failWrite) throw new Error('Salvataggio non riuscito'); rows.push(row); },
-    getRange: (row, column) => ({
-      getValues: () => [rows[row - 1]],
-      createTextFinder: value => ({ matchEntireCell: () => ({ findNext: () => rows.slice(row - 1).some(r => r[column - 1] === value) ? {} : null }) }),
-    }),
-  };
-  const context = vm.createContext({
-    Date: class extends Date {
-      constructor(value = now) { super(value); }
-      static now() { return now; }
-    },
-    Utilities: { computeHmacSha256Signature: (value, secret) => [...createHmac('sha256', secret).update(value).digest()] },
-    PropertiesService: { getScriptProperties: () => ({
-      getProperty: key => properties[key], getProperties: () => ({ ...properties }),
-      deleteProperty: key => { delete properties[key]; },
-      setProperties: values => Object.assign(properties, values),
-    }) },
-    SpreadsheetApp: {
-      openById: () => { spreadsheetAccesses++; return { getSheetByName: () => sheet }; },
-      flush: () => { if (failFlushOnce) { failFlushOnce = false; throw new Error('Risposta interrotta dopo la scrittura'); } },
-    },
-    LockService: { getScriptLock: () => ({ tryLock: () => busy ? false : (locked = true), hasLock: () => locked, releaseLock: () => { locked = false; } }) },
-    ContentService: { MimeType: { JSON: 'application/json' }, createTextOutput: text => ({ setMimeType: () => JSON.parse(text) }) },
-  });
-  vm.runInContext(source, context);
-  return {
-    rows, properties,
-    send: (lead = sample(), secret = 'segreto-fittizio-test', rateKey = 'a'.repeat(64)) => context.doPost({ postData: { contents: JSON.stringify({ secret, lead, rateKey }) } }),
-    accesses: () => spreadsheetAccesses, locked: () => locked, advance: ms => { now += ms; },
-  };
-}
+const runtime = options => {
+  const r = scriptRuntime({ source, headers, secretProperty: 'CONTACT_SECRET', ...options });
+  const send = r.send;
+  r.send = (lead = sample(), ...args) => send(lead, ...args);
+  return r;
+};
 
 test('una richiesta valida viene registrata con pagina, lingua e ricevuta', () => {
   const r = runtime();

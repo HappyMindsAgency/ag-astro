@@ -1,0 +1,58 @@
+---
+import customLabel from '../lib/utility-customlabel';
+import customSlug from '../lib/utility-customslug';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
+import { newsletterFieldLimits, newsletterProfessions } from '../lib/newsletter-leads';
+
+const lang = getLangFromUrl(Astro.url);
+const t = (label: string) => customLabel(label, lang);
+---
+
+<form class="contact-form" action="/api/newsletter" method="post" data-newsletter-form data-started-at={Date.now()} data-success-url={customSlug('newsletterThanks', lang)} aria-label={t('Iscrizione alla newsletter')}>
+  <input type="hidden" name="sourcePage" value={Astro.url.pathname} />
+  <input type="hidden" name="lang" value={lang} />
+  <div class="visually-hidden" aria-hidden="true">
+    <label for="signup-website">Website</label>
+    <input id="signup-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <label class="form-label" for="signup-first-name">{t('Nome')} *</label>
+      <input class="form-control" id="signup-first-name" name="firstName" type="text" autocomplete="given-name" maxlength={newsletterFieldLimits.firstName} required />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="signup-last-name">{t('Cognome')} *</label>
+      <input class="form-control" id="signup-last-name" name="lastName" type="text" autocomplete="family-name" maxlength={newsletterFieldLimits.lastName} required />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="signup-email">{t('Indirizzo email')} *</label>
+      <input class="form-control" id="signup-email" name="email" type="email" autocomplete="email" maxlength={newsletterFieldLimits.email} required />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="signup-city">{t('Città')} *</label>
+      <input class="form-control" id="signup-city" name="city" type="text" autocomplete="address-level2" maxlength={newsletterFieldLimits.city} required />
+    </div>
+    <fieldset class="col-12">
+      <legend class="form-label">{t('Professione')} *</legend>
+      <div class="d-flex flex-wrap gap-3 gap-md-4">
+        {newsletterProfessions.map((profession, index) => (
+          <div class="form-check mb-0">
+            <input class="form-check-input" id={`signup-profession-${index}`} name="profession" type="radio" value={profession} required />
+            <label class="form-check-label" for={`signup-profession-${index}`}>{t(profession)}</label>
+          </div>
+        ))}
+      </div>
+    </fieldset>
+  </div>
+  <div class="form-check mt-4">
+    <input class="form-check-input" id="signup-privacy" name="privacy" type="checkbox" required />
+    <label class="form-check-label" for="signup-privacy">{t('Acconsento al trattamento dei dati personali così come definito all’interno delle')} <a href={customSlug('privacy', lang)}>Privacy Policy</a>. *</label>
+  </div>
+  <button class="btn site-button contact-form-submit" type="submit" disabled><span data-submit-label>{t('Iscriviti alla newsletter')}</span> <span aria-hidden="true">→</span></button>
+  <p class="alert alert-danger mt-3 mb-0" data-form-status role="alert" tabindex="-1" hidden></p>
+</form>
+
+<script>
+  import { setupLeadForms } from '../scripts/lead-form';
+  setupLeadForms('[data-newsletter-form]');
+</script>

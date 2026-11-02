@@ -16,6 +16,7 @@ interface Props {
 const { id = 'library-archive', documents = [], categories = [...new Set(documents.map(({ category }) => category))].map(category => ({ label: category, value: category })) } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = (label: string) => customLabel(label, lang);
+const emptyLabel = documents.length ? 'Nessun documento corrisponde ai filtri selezionati.' : 'Non ci sono documenti da mostrare.';
 ---
 
 <section id={id} class="content-archive section-spacing" aria-labelledby={`${id}-title`} data-library-archive>
@@ -62,7 +63,7 @@ const t = (label: string) => customLabel(label, lang);
 
     <p class="archive-count" role="status" data-library-count>{documentCount(documents.length, lang)}</p>
     <DocumentList documents={documents} />
-    <p class="archive-empty d-none" data-library-empty>{t('Nessun documento corrisponde ai filtri selezionati.')}</p>
+    <p class:list={['archive-empty', { 'd-none': documents.length > 0 }]} data-library-empty>{t(emptyLabel)}</p>
     <div class="archive-more text-center d-none" data-library-more-wrapper><button class="btn site-button" type="button" data-library-more>{t('Carica altri documenti')} <span aria-hidden="true">↓</span></button></div>
   </div>
 </section>

@@ -26,7 +26,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = (label: string) => customLabel(label, lang);
 ---
 
-{articles.length > 0 && (
+{(articles.length > 0 || archive) && (
   <section id={archive ? 'notizie' : undefined} class:list={['news-feed section-spacing', { 'news-feed--archive': archive }]} aria-labelledby="news-feed-title" data-news-feed data-news-paginated={archive ? '' : undefined}>
     <div class="container section-container">
       <div class="d-flex flex-wrap justify-content-between align-items-end news-feed-header">
@@ -36,36 +36,42 @@ const t = (label: string) => customLabel(label, lang);
         </div>
         {!archive && <a class="site-text-link" href={localizeHref("/ag-informa/", lang)}>{t('Vai ad AG Informa')} <span aria-hidden="true">→</span></a>}
       </div>
-      <div class="d-flex flex-wrap news-feed-filters" role="group" aria-label={t('Filtra gli articoli')}>
-        {filters.map(({ value, label }, index) => (
-          <button class="content-filter" type="button" data-news-filter={value} aria-pressed={index === 0 ? 'true' : 'false'}>{t(label)}</button>
-        ))}
-      </div>
-      <div class="row news-feed-layout">
-        <div class={otherArticles.length > 0 ? 'col-xl-7' : 'col-12'} data-news-group>
-          {archive ? (
-            <div class="row gx-4 gy-4">
-              {mainArticles.map((article) => <div class="col-md-6" data-news-item><NewsArticleCard article={article} variant="compact" /></div>)}
-            </div>
-          ) : mainArticles.map((article) => <NewsArticleCard article={article} />)}
-        </div>
-        {otherArticles.length > 0 && (
-          <div class="col-xl-5" data-news-group>
-            <h3 class="news-other-heading">{t('Altri articoli')}</h3>
-            <ul class="list-unstyled mb-0">
-              {otherArticles.map(({ title, href, category, date, dateTime, featured }) => (
-                <li class:list={['news-other-article', { 'news-other-article--featured': featured }]} data-news-article data-news-category={category} data-news-featured={featured ? 'true' : 'false'}>
-                  <div class="news-other-content">
-                    <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{category}</span><time datetime={dateTime}>{lang === 'en' ? formatDate(dateTime, lang) : date}</time></p>
-                    <h4 class="news-other-title mb-0"><a href={localizeHref(href, lang)}>{title}</a></h4>
-                  </div>
-                </li>
-              ))}
-            </ul>
+      {articles.length > 0 ? (
+        <Fragment>
+          <div class="d-flex flex-wrap news-feed-filters" role="group" aria-label={t('Filtra gli articoli')}>
+            {filters.map(({ value, label }, index) => (
+              <button class="content-filter" type="button" data-news-filter={value} aria-pressed={index === 0 ? 'true' : 'false'}>{t(label)}</button>
+            ))}
           </div>
-        )}
-      </div>
-      {archive && <div class="news-feed-more text-center"><button class="btn site-button" type="button" data-news-more>{t('Carica altri articoli')} <span aria-hidden="true">↓</span></button></div>}
+          <div class="row news-feed-layout">
+            <div class={otherArticles.length > 0 ? 'col-xl-7' : 'col-12'} data-news-group>
+              {archive ? (
+                <div class="row gx-4 gy-4">
+                  {mainArticles.map((article) => <div class="col-md-6" data-news-item><NewsArticleCard article={article} variant="compact" /></div>)}
+                </div>
+              ) : mainArticles.map((article) => <NewsArticleCard article={article} />)}
+            </div>
+            {otherArticles.length > 0 && (
+              <div class="col-xl-5" data-news-group>
+                <h3 class="news-other-heading">{t('Altri articoli')}</h3>
+                <ul class="list-unstyled mb-0">
+                  {otherArticles.map(({ title, href, category, date, dateTime, featured }) => (
+                    <li class:list={['news-other-article', { 'news-other-article--featured': featured }]} data-news-article data-news-category={category} data-news-featured={featured ? 'true' : 'false'}>
+                      <div class="news-other-content">
+                        <p class="news-article-meta"><span class:list={{ 'news-article-category--featured': featured }}>{category}</span><time datetime={dateTime}>{lang === 'en' ? formatDate(dateTime, lang) : date}</time></p>
+                        <h4 class="news-other-title mb-0"><a href={localizeHref(href, lang)}>{title}</a></h4>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+          {archive && <div class="news-feed-more text-center"><button class="btn site-button" type="button" data-news-more>{t('Carica altri articoli')} <span aria-hidden="true">↓</span></button></div>}
+        </Fragment>
+      ) : (
+        <p class="mt-4 mb-0" role="status">{t('Non ci sono articoli da mostrare.')}</p>
+      )}
     </div>
   </section>
 )}

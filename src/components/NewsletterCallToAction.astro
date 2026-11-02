@@ -10,11 +10,12 @@ interface Props {
   title?: string;
 }
 
-const { contained = true, latestNewsletterUrl, plainBackground = false, title } = Astro.props;
+const { contained = true, latestNewsletterUrl = '', plainBackground = false, title } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const latestUrl = latestNewsletterUrl?.trim();
 ---
 
-<CallToAction contained={contained} plainBackground={plainBackground} backgroundImage="/assets/immagini/ag-trustees-servizi-professionali-newsletter.jpg" eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" href="/newsletter/" label="Iscriviti alla newsletter" secondaryAction={{ label: 'Leggi l’ultima newsletter', href: latestNewsletterUrl }}>
+<CallToAction contained={contained} plainBackground={plainBackground} backgroundImage="/assets/immagini/ag-trustees-servizi-professionali-newsletter.jpg" eyebrow="AG Trustees — esperti in trust e pianificazione patrimoniale" href="/newsletter/" label="Iscriviti alla newsletter" secondaryAction={latestUrl ? { label: 'Leggi l’ultima newsletter', href: latestUrl } : undefined}>
   <Fragment slot="title">{title ?? customLabel('AG informa - Ricevi notizie e aggiornamenti', lang)}</Fragment>
   <slot>{customLabel('Ricevi una selezione di notizie, approfondimenti e appuntamenti per seguire l’evoluzione del trust e delle questioni patrimoniali.', lang)}</slot>
 </CallToAction>

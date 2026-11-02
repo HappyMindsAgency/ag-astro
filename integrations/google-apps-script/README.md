@@ -21,6 +21,6 @@ L’IP proviene da `context.clientAddress` dell’adapter Astro, senza leggere i
 
 URL e chiave restano sul server. Non usare variabili `PUBLIC_*` per questi valori. Non registrare dati personali o chiavi nei log.
 
-L’invio SMTP e il modulo Newsletter non sono collegati a questo flusso.
+L’invio SMTP resta da integrare. Le iscrizioni usano un [registro newsletter separato](newsletter.md).
 
 Test locali: `node --test tests/contact-*.test.mjs tests/google-apps-script.test.mjs`. La prova sul foglio reale va eseguita separatamente con dati sintetici.

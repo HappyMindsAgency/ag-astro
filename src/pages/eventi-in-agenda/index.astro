@@ -19,7 +19,7 @@ const highlightedEvents = getEventiDaNonPerdere(events);
       Convegni, seminari e appuntamenti formativi per approfondire i temi del trust, della fiscalità e della continuità patrimoniale.
     </PageIntro>
 
-    <EventList id="prossimi-eventi" title="Prossimi eventi" eyebrow="In agenda" events={upcomingEvents.slice(0, 6)} />
+    <EventList id="prossimi-eventi" title="Prossimi eventi" eyebrow="In agenda" events={upcomingEvents.slice(0, 6)} showEmpty />
     <EventList id="eventi-da-non-perdere" title="Eventi da non perdere" eyebrow="In agenda" events={highlightedEvents.slice(0, 6)} calendarHref={customSlug('eventsNotToMiss', 'it')} compact />
 
     <NewsletterCallToAction />

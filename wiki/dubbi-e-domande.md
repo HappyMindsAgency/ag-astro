@@ -15,7 +15,7 @@ Servono le destinazioni dei seguenti inviti. Se non previste al lancio, decidere
 
 | Invito | Dove manca la destinazione |
 | --- | --- |
-| Leggi l’ultima newsletter | Manca il link all’ultima newsletter pubblicata, da collegare al pulsante nei banner newsletter. |
+| Leggi l’ultima newsletter | Pulsante nascosto fino alla prima pubblicazione; poi collegare il suo URL nei banner newsletter. |
 | LinkedIn | Profilo da creare; icone in header e footer temporaneamente nascoste, da riattivare quando sarà disponibile l’URL. |
 
 ## Integrazioni e contenuti comuni
