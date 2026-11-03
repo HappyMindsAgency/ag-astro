@@ -1,24 +1,50 @@
 ---
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import Layout from '../../components/Layout.astro';
+import '../../styles/components/editorial-prose.scss';
 ---
 
-<PagePlaceholder title="Cookie policy">
-  <div class="row mt-4">
-    <div class="col-lg-8">
-      <h2 class="h4 mb-3">Lorem ipsum dolor sit amet</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui.</p>
-      <p>Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+<Layout title="Informativa Cookie Policy">
+  <section class="container section-container py-5" aria-labelledby="page-title">
+    <h1 id="page-title" class="type-section-title mb-0">Informativa Cookie Policy</h1>
+    <div class="row">
+      <article class="col-lg-8 editorial-prose editorial-prose--legal">
+        <h2 class="mt-0">Titolare del trattamento e informazioni sui cookies</h2>
+        <p>Queste informazioni sono rese da Across Galvani Trustees S.r.l., con sede legale in Milano, Corso Matteotti, 1, in qualità di titolare unico del trattamento. È sempre possibile contattare Across Galvani Trustees S.r.l. ai seguenti recapiti:</p>
+        <ul>
+          <li>all’indirizzo e-mail: <a href="mailto:segreteria@agtrustees.it">segreteria@agtrustees.it</a></li>
+          <li>all’indirizzo Corso Matteotti, 1, Milano</li>
+        </ul>
+        <p>Sono responsabili del trattamento dati raccolti per l’erogazione dei servizi elencati</p>
+        <ul>
+          <li>Happy Minds, società con sede legale in Ravenna (RA), Via Angelo Mariani 7, C.F. e P.IVA 02350590390, per quanto riguarda i servizi di Google Inc. e Facebook Inc.</li>
+        </ul>
+        <p>La presente Cookie Policy ha lo scopo specifico di:</p>
+        <ul>
+          <li>illustrare i tipi di cookies presenti sul sito web <a href="/">www.agtrustees.it</a> (il “Sito”) e le modalità del loro utilizzo; nonché</li>
+          <li>fornire indicazioni agli utenti del Sito (gli “Utenti”) sulle azioni per rifiutare o eliminare, se lo si desidera, tali cookies.</li>
+        </ul>
+        <p>I cookie sono stringhe di testo di piccole dimensioni che i siti visitati inviano al browser del terminale degli Utenti, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla successiva visita dei medesimi. Nel corso della navigazione su un sito, gli utenti possono ricevere sul vostro terminale cookie di “prima parte”, quando sono gestiti direttamente dal proprietario e/o dal gestore del sito, e anche cookie che vengono inviati da siti o da web server diversi (c.d. cookie di “terze parti”); ciò accade perché sul sito web visitato possono essere presenti elementi che risiedono su server diversi da quello sul quale si trova il Sito, impostati da un sito web diverso da quello che si sta attualmente visitando.</p>
+        <p>Per impostazione predefinita, AG Trustees tratta solamente i dati necessari per la corretta funzionalità del Sito.</p>
+        <p>Al primo accesso al Sito, verranno quindi posizionati all’interno del dispositivo dell’Utente solamente cookie o altri strumenti di tracciamento tecnici o funzionali, che non richiedono alcun consenso. L’Utente potrà, attraverso l’apposito banner, acconsentire o negare l’installazione di ulteriori cookie, utili ad AG Trustees per monitorare le prestazioni del Sito, migliorare i propri servizi e fornire servizi sempre più personalizzati.</p>
+        <!-- Cookiebot: inserire qui la dichiarazione del dominio AG Trustees. -->
 
-      <h2 class="h4 mt-5 mb-3">Aenean lacinia bibendum</h2>
-      <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Sed posuere consectetur est at lobortis.</p>
-      <ul>
-        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-        <li>Curabitur blandit tempus porttitor.</li>
-        <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
-      </ul>
-
-      <h2 class="h4 mt-5 mb-3">Nulla vitae elit libero</h2>
-      <p class="mb-0">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>
+        <h2>Natura del conferimento dei dati da parte degli utenti</h2>
+        <p>Il conferimento dei dati è facoltativo.</p>
+        <p>È possibile modificare le preferenze relative ai cookie in qualsiasi momento mediante specifiche configurazioni del browser, secondo le specifiche procedure di seguito descritte. Tramite le preferenze del browser è inoltre possibile eliminare i cookie installati in passato, incluso il cookie in cui venga eventualmente salvato il consenso all’installazione di cookie da parte di uno del Sito.</p>
+        <p>L’utente può esprimere il proprio consenso all’utilizzo dei cookie del Sito. È possibile accettare tutti i cookie, solo alcuni, oppure rifiutarli tutti. Nel caso in cui l’utente decida di disattivare i cookie (anche quelli tecnici), non avrà accesso a molte caratteristiche che rendono il Sito più efficiente e alcuni dei nostri servizi non funzioneranno in modo corretto.</p>
+        <p>Per quanto concerne i cookie di terze parti, l’utente può inoltre esercitare il proprio diritto ad opporsi al trattamento informandosi tramite la privacy policy della terza parte, tramite il link di opt out se esplicitamente fornito nella suddetta privacy policy o nella cookie policy, o contattando direttamente la stessa terza parte. </p>
+        <h2>Opzioni in merito all’uso dei cookie</h2>
+        <p>È possibile controllare i cookie attraverso le impostazioni del browser utilizzato. Poiché ciascun browser ha delle funzioni differenti, l’utente dovrà controllare sul menu di “aiuto” del proprio browser per capire come modificare correttamente le impostazioni relative ai cookie.</p>
+        <p>L’utente può quindi modificare le impostazioni del browser in modo che i cookie siano cancellati o non vengano salvati nel computer o dispositivo mobile senza il proprio consenso esplicito. Ai seguenti link l’utente può capire meglio come impostare il proprio browser:</p>
+        <ul>
+          <li><a href="https://support.microsoft.com/it-it/help/17442/windows-internet-explorer-delete-manage-cookies">Internet Explorer</a>  </li>
+          <li><a href="https://support.mozilla.com/en-US/kb/cookies-information-websites-store-on-your-computer#w_cookie-settings">Mozilla Firefox</a></li>
+          <li><a href="https://support.google.com/chrome/answer/95647?hl=en">Google Chrome</a>   </li>
+          <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac">Safari</a></li>
+        </ul>
+        <p>Fermo restando quanto precede, l’utente può consultare il sito <a href="https://www.allaboutcookies.org/">www.allaboutcookies.org</a> . </p>
+        <p>Per tutte le altre informazioni sul trattamento dei dati personali raccolti sul Sito, (ad esempio, diritti degli utenti, destinatari dei dati, trasferimenti all’estero) si prega di leggere l’informativa relativa al trattamento dei dati personali del Sito <a href="/privacy-policy/">alla pagina Privacy Policy</a>.</p>
+      </article>
     </div>
-  </div>
-</PagePlaceholder>
+  </section>
+</Layout>

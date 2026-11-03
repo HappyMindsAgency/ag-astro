@@ -1,24 +1,50 @@
 ---
-import PagePlaceholder from '../../../components/PagePlaceholder.astro';
+import Layout from '../../../components/Layout.astro';
+import '../../../styles/components/editorial-prose.scss';
 ---
 
-<PagePlaceholder title="Cookie policy">
-  <div class="row mt-4">
-    <div class="col-lg-8">
-      <h2 class="h4 mb-3">Lorem ipsum dolor sit amet</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui.</p>
-      <p>Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+<Layout lang="en" title="Cookie Policy Notice">
+  <section class="container section-container py-5" aria-labelledby="page-title">
+    <h1 id="page-title" class="type-section-title mb-0">Cookie Policy Notice</h1>
+    <div class="row">
+      <article class="col-lg-8 editorial-prose editorial-prose--legal">
+        <h2 class="mt-0">Data Controller and Information on Cookies</h2>
+        <p>This information is provided by Across Galvani Trustees S.r.l., with its registered office at Corso Matteotti 1, Milan, Italy, as the sole Data Controller. You can contact Across Galvani Trustees S.r.l. at the following addresses:</p>
+        <ul>
+          <li>Email: <a href="mailto:segreteria@agtrustees.it">segreteria@agtrustees.it</a></li>
+          <li>Postal address: Corso Matteotti 1, Milan, Italy</li>
+        </ul>
+        <p>The following company acts as Data Processor for the collection of data required to provide certain services:</p>
+        <ul>
+          <li>Happy Minds, based in Ravenna (RA), Via Angelo Mariani 7, VAT and Tax Code 02350590390, for services connected with Google Inc. and Facebook Inc.</li>
+        </ul>
+        <p>This Cookie Policy has the specific purpose of:</p>
+        <ul>
+          <li>explaining the types of cookies used on the website <a href="/en/">www.agtrustees.it</a> (the “Site”) and how they are employed; and</li>
+          <li>providing users of the Site (“Users”) with guidance on how to refuse or delete cookies, should they wish to do so.</li>
+        </ul>
+        <p>Cookies are small text strings that websites visited by users send to their browsers, where they are stored and then retransmitted to the same sites upon subsequent visits. During browsing, users may receive “first-party” cookies—managed directly by the website owner and/or operator—as well as “third-party” cookies, which are set by domains or web servers different from the one being visited. This happens because certain elements present on the site (for example, images, maps, or social media plugins) may reside on external servers.</p>
+        <p>By default, AG Trustees processes only the data necessary for the proper functioning of the website.</p>
+        <p>When you first access the Site, only technical or functional cookies — which do not require consent — will be placed on your device. Through the cookie banner, users can choose whether to allow additional cookies that help AG Trustees monitor site performance, improve its services and provide more personalised experiences.</p>
+        <!-- Cookiebot: inserire qui la dichiarazione del dominio AG Trustees. -->
 
-      <h2 class="h4 mt-5 mb-3">Aenean lacinia bibendum</h2>
-      <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Sed posuere consectetur est at lobortis.</p>
-      <ul>
-        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-        <li>Curabitur blandit tempus porttitor.</li>
-        <li>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</li>
-      </ul>
-
-      <h2 class="h4 mt-5 mb-3">Nulla vitae elit libero</h2>
-      <p class="mb-0">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>
+        <h2>Nature of Data Provision by Users</h2>
+        <p>Providing data is optional.</p>
+        <p>Users can change their cookie preferences at any time via browser settings, as described below. Through these settings, it is also possible to delete cookies previously installed, including any used to record consent to cookie installation on the Site.</p>
+        <p>Users may consent to the use of cookies on the Site by choosing to accept all, some, or none. However, if cookies (including technical ones) are disabled, many features that make the Site more efficient may not be available, and some services may not function correctly.</p>
+        <p>Regarding third-party cookies, users may also exercise their right to object to processing by consulting the third party’s privacy policy, using the relevant opt-out link (if provided), or contacting the third party directly.</p>
+        <h2>Options for Managing Cookies</h2>
+        <p>Users can control cookies through their browser settings. Since each browser functions differently, please refer to your browser’s “Help” menu to learn how to modify cookie settings properly.</p>
+        <p>You can adjust your browser to delete cookies or to prevent them from being stored on your computer or mobile device without your explicit consent. To learn more about managing cookie settings, visit the following links:</p>
+        <ul>
+          <li><a href="https://support.microsoft.com/it-it/help/17442/windows-internet-explorer-delete-manage-cookies">Internet Explorer</a>  </li>
+          <li><a href="https://support.mozilla.com/en-US/kb/cookies-information-websites-store-on-your-computer#w_cookie-settings">Mozilla Firefox</a></li>
+          <li><a href="https://support.google.com/chrome/answer/95647?hl=en">Google Chrome</a>   </li>
+          <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac">Safari</a></li>
+        </ul>
+        <p>For further general information on cookies, please visit <a href="https://www.allaboutcookies.org/">www.allaboutcookies.org</a></p>
+        <p>For all other details regarding the processing of personal data collected through the Site (for example, users’ rights, data recipients, and international data transfers), please refer to the <a href="/en/privacy-policy/">Privacy Policy</a>.</p>
+      </article>
     </div>
-  </div>
-</PagePlaceholder>
+  </section>
+</Layout>

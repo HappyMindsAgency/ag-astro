@@ -2,22 +2,20 @@
 
 Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e responsive in IT e EN. Prima del lancio, ricontrollare anche il sito pubblicato.
 
-## Contenuti provvisori
-
-- [ ] **Cookie policy IT/EN:** sostituire i testi Lorem ipsum con le indicazioni definitive. Fonti: [pagina IT](../src/pages/cookie-policy/index.astro), [pagina EN](../src/pages/en/cookie-policy/index.astro).
-
 ## Altri contenuti da verificare
 
+- [ ] **Cookiebot:** integrare banner, dichiarazione e consenso delle mappe con gli script ricevuti. Il dominio finale è autorizzato; l’anteprima resta da abilitare nel gruppo Cookiebot.
+- [ ] **Cookie sul dominio finale:** dopo la pubblicazione, verificare prima visita, rifiuto, accettazione, modifica e revoca del consenso, blocco delle mappe e dichiarazione IT/EN.
 - [ ] **Eventi e calendari IT/EN:** dopo il caricamento degli eventi definitivi in Strapi, ricontrollare resa visiva, categorie, date, filtri e caricamento progressivo.
 - [ ] **Riquadro consulenza degli articoli:** confermare titolo e descrizione IT/EN; il titolo attuale è «Il tuo trust è conforme alla nuova normativa?».
 - [ ] **Descrizioni nella ricerca:** collegare le meta description delle pagine quando la SEO sarà disponibile da Strapi. I riassunti IT/EN in [search.ts](../src/data/search.ts) resteranno come ripiego.
 - [ ] **Articoli e download EN:** verificare i contenuti localizzati quando saranno pubblicati in Strapi, anche nei correlati e nella ricerca. Il collegamento è pronto, senza esempi italiani di riserva.
-- [ ] **Profili individuali del Team:** pagine solo predisposte; confermare se vanno completate per il lancio.
-- [ ] **Tipologie e dettagli delle risorse Library:** pagine solo predisposte; confermare se servono oltre all’archivio e ai PDF.
 - [ ] **Pulizia finale:** dopo le integrazioni, rimuovere dati e immagini di esempio inutilizzati, commenti `TODO Strapi` risolti e riferimenti ai vecchi percorsi provvisori.
 
 ## Collegamenti già completati
 
+- [x] Cookie policy IT/EN: testi adattati ad AG Trustees e rimosso il riferimento al consenso tramite prosecuzione della navigazione.
+- [x] Contatti e Newsletter: salvataggio Google e ringraziamenti verificati in locale e online; rimossi i dati sintetici delle prove.
 - [x] Elenco Team: persone, ruoli, biografie e foto da Strapi.
 - [x] Archivio e dettaglio articoli: contenuti, FAQ e allegati da Strapi.
 - [x] Knowledge Library e risultati di ricerca di articoli/PDF da Strapi.

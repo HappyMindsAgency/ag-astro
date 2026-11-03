@@ -101,6 +101,8 @@ Il profilo LinkedIn in navbar e footer compare solo se `Layout` riceve `linkedin
 
 Organizza le pagine in cartelle con `index.astro`, seguendo **Percorso IT** nel file degli slug. I dettagli usano un modello dinamico, come `/ag-informa/[slugArt]/` e `/eventi-in-agenda/[slugEvento]/`. `PagePlaceholder` mantiene layout e titolo delle pagine solo predisposte.
 
+Per i percorsi già realizzati fa fede `utility-customslug.ts`: gli URL attuali restano invariati salvo nuove indicazioni. Le pagine soltanto predisposte non rientrano nel lancio.
+
 Per ogni testo, segui queste priorità:
 
 1. Commenti e precisazioni confermate.
@@ -124,6 +126,8 @@ I collegamenti «Calendario completo» portano a `/eventi-in-agenda/calendario/`
 `src/lib/downloads.ts` condivide la lettura dei download e la conversione per Library e allegati degli articoli. Esclude i documenti disattivati o senza file valido; categorie, date e dimensioni arrivano da Strapi. I filtri considerano tutte le categorie associate a ciascun documento. I PDF si aprono in una nuova scheda, anche dalla ricerca. Senza contenuti inglesi pubblicati, la Library EN resta vuota.
 
 Le Privacy IT/EN leggono titolo e contenuto dal Single Type `privacy-policy`, ciascuna nella propria lingua. `src/lib/strapi-blocks.ts` condivide la conversione del testo formattato con gli articoli; `.editorial-prose--legal` usa corpo 16 px, interlinea 25 px, titoli compatti e conserva gli a capo negli elenchi. Il contenitore comune mantiene i margini di 24 px sotto `lg`.
+
+Le Cookie policy IT/EN riusano lo stesso stile legale. I testi sono adattati da Visit Cesenatico, con i dati del titolare della Privacy AG; i riferimenti Happy Minds restano invariati. La dichiarazione Cookiebot va collegata allo script del dominio AG Trustees.
 
 Il modulo di iscrizione è solo in `/newsletter/`: `NewsletterForm` condivide campi, stile e logica fra IT/EN. Le altre pagine usano `NewsletterCallToAction`: “Leggi l’ultima newsletter” resta nascosto finché non si imposta l’URL predefinito `latestNewsletterUrl` nel componente comune.
 
