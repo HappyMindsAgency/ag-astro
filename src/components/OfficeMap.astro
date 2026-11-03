@@ -34,30 +34,16 @@ const [initialLocation] = locations;
     </div>
   </div>
   <div class="office-location-map">
-    <iframe id="office-map-frame" src={initialLocation.src} title={initialLocation.title} width="1920" height="550" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <div class="office-location-consent" data-map-placeholder>
+      <p class="type-section-copy mb-0">{customLabel('Per visualizzare la mappa, consenti i cookie di marketing.', lang)}</p>
+      <button class="btn site-button" type="button" data-map-consent>{customLabel('Consenti i cookie di marketing', lang)}</button>
+      <p class="mb-0" data-map-consent-error role="status" hidden>{customLabel('Le preferenze cookie non sono al momento disponibili. Riprova tra poco.', lang)}</p>
+    </div>
+    <iframe id="office-map-frame" data-map-src={initialLocation.src} title={initialLocation.title} width="1920" height="550" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" hidden></iframe>
   </div>
 </section>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-office-map]').forEach((section) => {
-    const frame = section.querySelector<HTMLIFrameElement>('iframe');
-    const buttons = section.querySelectorAll<HTMLButtonElement>('[data-map-src]');
-    if (!frame) return;
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        if (button.getAttribute('aria-pressed') === 'true') return;
-        const { mapSrc, mapTitle } = button.dataset;
-        if (!mapSrc || !mapTitle) return;
-
-        frame.src = mapSrc;
-        frame.title = mapTitle;
-        buttons.forEach((item) => {
-          const selected = item === button;
-          item.classList.toggle('active', selected);
-          item.setAttribute('aria-pressed', String(selected));
-        });
-      });
-    });
-  });
+  import { setupOfficeMaps } from '../scripts/office-map';
+  setupOfficeMaps();
 </script>

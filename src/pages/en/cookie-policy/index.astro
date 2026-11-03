@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../components/Layout.astro';
+import CookieDeclaration from '../../../components/CookieDeclaration.astro';
 import '../../../styles/components/editorial-prose.scss';
 ---
 
@@ -26,7 +27,7 @@ import '../../../styles/components/editorial-prose.scss';
         <p>Cookies are small text strings that websites visited by users send to their browsers, where they are stored and then retransmitted to the same sites upon subsequent visits. During browsing, users may receive “first-party” cookies—managed directly by the website owner and/or operator—as well as “third-party” cookies, which are set by domains or web servers different from the one being visited. This happens because certain elements present on the site (for example, images, maps, or social media plugins) may reside on external servers.</p>
         <p>By default, AG Trustees processes only the data necessary for the proper functioning of the website.</p>
         <p>When you first access the Site, only technical or functional cookies — which do not require consent — will be placed on your device. Through the cookie banner, users can choose whether to allow additional cookies that help AG Trustees monitor site performance, improve its services and provide more personalised experiences.</p>
-        <!-- Cookiebot: inserire qui la dichiarazione del dominio AG Trustees. -->
+        <CookieDeclaration />
 
         <h2>Nature of Data Provision by Users</h2>
         <p>Providing data is optional.</p>

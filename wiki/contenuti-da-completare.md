@@ -4,7 +4,6 @@ Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e
 
 ## Altri contenuti da verificare
 
-- [ ] **Cookiebot:** integrare banner, dichiarazione e consenso delle mappe con gli script ricevuti. Il dominio finale è autorizzato; l’anteprima resta da abilitare nel gruppo Cookiebot.
 - [ ] **Cookie sul dominio finale:** dopo la pubblicazione, verificare prima visita, rifiuto, accettazione, modifica e revoca del consenso, blocco delle mappe e dichiarazione IT/EN.
 - [ ] **Eventi e calendari IT/EN:** dopo il caricamento degli eventi definitivi in Strapi, ricontrollare resa visiva, categorie, date, filtri e caricamento progressivo.
 - [ ] **Riquadro consulenza degli articoli:** confermare titolo e descrizione IT/EN; il titolo attuale è «Il tuo trust è conforme alla nuova normativa?».
@@ -14,6 +13,7 @@ Spuntare una voce dopo aver sostituito gli esempi e verificato contenuti, link e
 
 ## Collegamenti già completati
 
+- [x] Cookiebot: integrati banner, dichiarazione IT/EN e consenso delle mappe con gli script ricevuti.
 - [x] Cookie policy IT/EN: testi adattati ad AG Trustees e rimosso il riferimento al consenso tramite prosecuzione della navigazione.
 - [x] Contatti e Newsletter: salvataggio Google e ringraziamenti verificati in locale e online; rimossi i dati sintetici delle prove.
 - [x] Elenco Team: persone, ruoli, biografie e foto da Strapi.

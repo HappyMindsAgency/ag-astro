@@ -1,6 +1,9 @@
 import type { Locale } from './utility-customslug';
 
 const english: Record<string, string> = {
+  'Per visualizzare la mappa, consenti i cookie di marketing.': 'Allow marketing cookies to view the map.',
+  'Consenti i cookie di marketing': 'Allow marketing cookies',
+  'Le preferenze cookie non sono al momento disponibili. Riprova tra poco.': 'Cookie preferences are currently unavailable. Please try again shortly.',
   'L’iscrizione è stata salvata, ma non è stato possibile confermare l’invio dell’email. I dati sono ancora nel modulo: riprova da qui senza compilare una nuova iscrizione.': 'Your subscription has been saved, but we could not confirm that the email was sent. Your details are still in the form: retry here without creating a new subscription.',
   'La richiesta è stata salvata, ma non è stato possibile confermare l’invio delle email. I dati sono ancora nel modulo: riprova da qui senza compilare una nuova richiesta.': 'Your enquiry has been saved, but we could not confirm that the emails were sent. Your details are still in the form: retry here without creating a new enquiry.',
   'Eventi e formazione': 'Events and training',

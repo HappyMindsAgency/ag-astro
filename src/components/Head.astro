@@ -4,6 +4,7 @@ import customSlug, { type Locale } from '../lib/utility-customslug';
 import { getLangFromUrl } from '../lib/lang-switch/route-map';
 import { DEFAULT_IMAGE, SITE_NAME, absoluteUrl, getSeo, toJsonLd, type StrapiSeo } from '../lib/seo';
 import { contacts, offices } from '../data/contacts';
+import { cookiebotId } from '../data/cookies';
 
 interface Props {
     title?: string;
@@ -75,18 +76,31 @@ const graph = {
 const GA_ID = 'G-YCLR1Z3WEG';
 ---
 <head>
+    <script is:inline id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid={cookiebotId} data-blockingmode="auto" data-level="strict" data-culture={lang.toUpperCase()} type="text/javascript"></script>
+    <script is:inline data-cookieconsent="ignore" define:vars={{ GA_ID }}>
+        const syncAnalyticsConsent = () => {
+            window[`ga-disable-${GA_ID}`] = window.Cookiebot?.consent?.statistics !== true;
+        };
+        ['CookiebotOnConsentReady', 'CookiebotOnAccept', 'CookiebotOnDecline'].forEach((event) => {
+            window.addEventListener(event, syncAnalyticsConsent);
+        });
+        syncAnalyticsConsent();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script 
-        is:inline 
+        is:inline
+        type="text/plain"
+        data-cookieconsent="statistics"
         async 
-        src="https://www.googletagmanager.com/gtag/js?id=G-YCLR1Z3WEG">
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}>
     </script>
-    <script is:inline define:vars={{ GA_ID }}>
+    <script is:inline type="text/plain" data-cookieconsent="statistics" define:vars={{ GA_ID }}>
+        window[`ga-disable-${GA_ID}`] = window.Cookiebot?.consent?.statistics !== true;
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+        window.gtag('js', new Date());
 
-        gtag('config', GA_ID);
+        window.gtag('config', GA_ID);
     </script>
     <meta charset="utf-8" />
     <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16 32x32 48x48" href="/favicon.ico" />

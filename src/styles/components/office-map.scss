@@ -66,6 +66,17 @@
   }
 }
 
+.office-location-consent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: theme.$space-24;
+  height: 550px;
+  padding: theme.$space-32;
+  text-align: center;
+}
+
 @include bs.media-breakpoint-down(xxl, theme.$grid-breakpoints) {
   .office-location-options {
     gap: theme.$space-12;
@@ -88,7 +99,8 @@
     padding-block: theme.$space-64 theme.$space-32;
   }
 
-  .office-location-map iframe {
+  .office-location-map iframe,
+  .office-location-consent {
     height: 360px;
   }
 }

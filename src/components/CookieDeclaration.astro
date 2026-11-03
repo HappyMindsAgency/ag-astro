@@ -1,0 +1,7 @@
+---
+import { cookiebotId } from '../data/cookies';
+import { getLangFromUrl } from '../lib/lang-switch/route-map';
+const lang = getLangFromUrl(Astro.url);
+---
+
+<script is:inline id="CookieDeclaration" src={`https://consent.cookiebot.com/${cookiebotId}/cd.js`} data-culture={lang.toUpperCase()} type="text/javascript" async></script>
