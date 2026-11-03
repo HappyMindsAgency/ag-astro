@@ -129,7 +129,7 @@ Le Privacy IT/EN leggono titolo e contenuto dal Single Type `privacy-policy`, ci
 
 Le Cookie policy IT/EN riusano lo stesso stile legale. I testi sono adattati da Visit Cesenatico, con i dati del titolare della Privacy AG; i riferimenti Happy Minds restano invariati. `CookieDeclaration` inserisce la dichiarazione nella lingua della pagina.
 
-Cookiebot è il primo script di `Head`, con il gruppo in `src/data/cookies.ts`, blocco automatico e consenso esplicito. Analytics usa anche il blocco manuale della categoria statistiche. Le mappe non hanno `src` prima del consenso marketing: il riquadro permette di abilitarlo conservando le altre preferenze; la revoca rimuove l’iframe remoto. Negli ambienti non autorizzati o con il servizio irraggiungibile, i contenuti restano bloccati.
+Cookiebot è il primo script di `Head`, con il gruppo in `src/data/cookies.ts`, blocco automatico e consenso esplicito. Analytics usa anche il blocco manuale della categoria statistiche; il rifiuto e la revoca rimuovono i suoi cookie, compresi quelli precedenti all’integrazione. Le mappe non hanno `src` prima del consenso marketing: il riquadro permette di abilitarlo conservando le altre preferenze; la revoca rimuove il contenuto remoto. I contenuti restano bloccati finché non è disponibile il relativo consenso.
 
 Il modulo di iscrizione è solo in `/newsletter/`: `NewsletterForm` condivide campi, stile e logica fra IT/EN. Le altre pagine usano `NewsletterCallToAction`: “Leggi l’ultima newsletter” resta nascosto finché non si imposta l’URL predefinito `latestNewsletterUrl` nel componente comune.
 

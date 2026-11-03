@@ -14,6 +14,6 @@ Pulsanti e icone restano nascosti finché non sono disponibili le destinazioni.
 ## Integrazioni e contenuti comuni
 
 - **Download:** completare le categorie dei PDF ancora senza associazione e confermare le date di pubblicazione.
-- **Cookie e mappe:** integrazione completata; resta il collaudo sul dominio finale.
+- **Cookiebot (manager):** verificare le Statistiche preselezionate al primo accesso, correggere il riferimento al consenso tramite prosecuzione della navigazione nei testi IT/EN e avviare una nuova scansione: la dichiarazione attuale elenca solo `CookieConsent`.
 - **Email dei moduli:** configurare SMTP su Vercel e collaudare contatti e newsletter con `assistenzaweb@happyminds.it` come unico destinatario, senza copie. Attivare segreteria, CCN e invii agli utenti solo dopo l'ok.
 - **Proprietà Google:** serve l’indirizzo HappyMinds a cui trasferire fogli e script di Contatti e Newsletter.

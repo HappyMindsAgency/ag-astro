@@ -78,8 +78,19 @@ const GA_ID = 'G-YCLR1Z3WEG';
 <head>
     <script is:inline id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid={cookiebotId} data-blockingmode="auto" data-level="strict" data-culture={lang.toUpperCase()} type="text/javascript"></script>
     <script is:inline data-cookieconsent="ignore" define:vars={{ GA_ID }}>
-        const syncAnalyticsConsent = () => {
-            window[`ga-disable-${GA_ID}`] = window.Cookiebot?.consent?.statistics !== true;
+        const syncAnalyticsConsent = (event) => {
+            const allowed = window.Cookiebot?.consent?.statistics === true;
+            window[`ga-disable-${GA_ID}`] = !allowed;
+            if (event && !allowed) {
+                // Rimuove anche i cookie Analytics precedenti all'integrazione del consenso.
+                const parts = window.location.hostname.split('.');
+                const domains = ['', ...parts.slice(0, -1).map((_, index) => parts.slice(index).join('.'))];
+                ['_ga', `_ga_${GA_ID.slice(2)}`].forEach((name) => {
+                    domains.forEach((domain) => {
+                        document.cookie = `${name}=; Max-Age=0; Path=/${domain ? `; Domain=${domain}` : ''}`;
+                    });
+                });
+            }
         };
         ['CookiebotOnConsentReady', 'CookiebotOnAccept', 'CookiebotOnDecline'].forEach((event) => {
             window.addEventListener(event, syncAnalyticsConsent);
