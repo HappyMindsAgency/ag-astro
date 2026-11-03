@@ -27,7 +27,7 @@ const t = (label: string) => customLabel(label, lang);
             <Heading class="related-document-title">{title}</Heading>
             <p class="related-document-meta mb-0"><span>{category}</span>{' | '}{metadata}</p>
           </div>
-          <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download={downloadUrl ? '' : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={customLabel('Scarica PDF: {title}', lang, { title })}>
+          <a class="btn site-button site-button--outline-blue related-document-download" href={downloadUrl} download={downloadUrl ? '' : undefined} target={downloadUrl ? '_blank' : undefined} rel={downloadUrl ? 'noopener' : undefined} aria-disabled={downloadUrl ? undefined : 'true'} aria-label={`${customLabel('Scarica PDF: {title}', lang, { title })}${downloadUrl ? ` (${t('Se non viene scaricato, si apre in una nuova scheda')})` : ''}`}>
             <span class="d-inline-flex" aria-hidden="true" set:html={downloadIcon} /> {t("Scarica PDF")}
           </a>
         </div>

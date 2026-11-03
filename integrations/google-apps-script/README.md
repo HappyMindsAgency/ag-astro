@@ -5,6 +5,8 @@
 - [Registro contatti](https://docs.google.com/spreadsheets/d/1PGGaOY7If1t1QJlraiRJtJHWEafrJ7XbPDWHmDXdzFw/edit).
 - [Progetto Apps Script](https://script.google.com/home/projects/19ocYkHZv5KPwKVOC5uR7Gi560N_Q80u9_TRYZ5tmahiMIxbzRJnmSsg8/edit).
 
+Fogli e script di Contatti e Newsletter appartengono a `assistenzaweb@happyminds.it`; `e.baccianti@happyminds.it` mantiene l’accesso in modifica. Lo script Newsletter è collegato al suo foglio e ne eredita proprietà e permessi. I deployment attivi restano eseguiti da `e.baccianti@happyminds.it`, con URL invariati; per cambiare l’account di esecuzione occorreranno nuovi deployment e l’aggiornamento degli URL sull’hosting.
+
 1. Crea un foglio Google privato e una scheda `Contatti`.
 2. Nelle proprietà dello script imposta `SPREADSHEET_ID` e `CONTACT_SECRET` (chiave casuale di almeno 32 caratteri).
 3. Esegui `initializeContacts`: prepara le colonne senza sovrascrivere dati esistenti. Non spostare o rinominare le intestazioni.

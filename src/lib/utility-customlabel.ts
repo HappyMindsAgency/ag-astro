@@ -156,6 +156,7 @@ const english: Record<string, string> = {
   'Scarica PDF': 'Download PDF',
   'Scarica PDF: {title}': 'Download PDF: {title}',
   'Si apre in una nuova scheda': 'Opens in a new tab',
+  'Se non viene scaricato, si apre in una nuova scheda': 'Opens in a new tab if the download does not start',
   'Calendario completo': 'Full calendar',
   'Cerca nel calendario eventi': 'Search the events calendar',
   'Eventi del calendario': 'Calendar events',
