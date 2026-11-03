@@ -20,7 +20,7 @@ test('tutte le pagine previste conservano percorso e lingua', () => {
 });
 
 test('i campi obbligatori non possono essere aggirati inviando direttamente al server', () => {
-  for (const change of [{ name: '' }, { email: 'non-valida' }, { privacy: false }, { name: [] }, { sourcePage: '/newsletter/' }, { lang: 'en' }, { id: 'non-valido' }]) {
+  for (const change of [{ name: '' }, { email: 'non-valida' }, { email: 'prima,seconda@example.com' }, { email: '<utente@example.com>' }, { privacy: false }, { name: [] }, { sourcePage: '/newsletter/' }, { lang: 'en' }, { id: 'non-valido' }]) {
     assert.equal(validateContactSubmission({ ...input(), ...change }, now).ok, false);
   }
 });

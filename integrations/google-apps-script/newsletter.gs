@@ -4,6 +4,7 @@ const NEWSLETTER_HEADERS = [
 ];
 
 const NEWSLETTER_SOURCES = { '/newsletter/': 'it', '/en/newsletter/': 'en' };
+const NEWSLETTER_MAIL_KINDS = ['welcome'];
 const NEWSLETTER_RATE_WINDOW = 10 * 60 * 1000;
 
 function initializeNewsletter() {
@@ -38,6 +39,8 @@ function doPost(event) {
       return newsletterResponse_({ ok: false, code: 'unauthorized' });
     }
 
+    if (input.action === 'mail_result') return completeFormMail_(input, properties, NEWSLETTER_MAIL_KINDS);
+
     const lead = input.lead;
     if (!validNewsletterLead_(lead) || typeof input.rateKey !== 'string' || !/^[a-f0-9]{64}$/.test(input.rateKey)) {
       return newsletterResponse_({ ok: false, code: 'invalid_data' });
@@ -54,7 +57,14 @@ function doPost(event) {
     const lastRow = sheet.getLastRow();
     const existing = lastRow > 1 && sheet.getRange(2, NEWSLETTER_HEADERS.length, lastRow - 1, 1)
       .createTextFinder(lead.id).matchEntireCell(true).findNext();
-    if (existing) return newsletterResponse_({ ok: true, id: lead.id });
+    if (existing) {
+      if (input.delivery) {
+        const saved = sheet.getRange(existing.getRow(), 1, 1, NEWSLETTER_HEADERS.length).getValues()[0];
+        const expected = [lead.email, lead.firstName, lead.lastName, lead.city, lead.profession, 'Sì', lead.lang, lead.id];
+        if (expected.some((value, index) => value !== saved[index + 1])) return newsletterResponse_({ ok: false, code: 'id_conflict' });
+      }
+      return newsletterResponse_({ ok: true, id: lead.id, ...(input.delivery ? { delivery: claimFormMail_(spreadsheet, lead.id, input.delivery, NEWSLETTER_MAIL_KINDS) } : {}) });
+    }
 
     const retryAfter = applyNewsletterRateLimit_(properties, input.rateKey, lead.email, secret);
     if (retryAfter) return newsletterResponse_({ ok: false, code: 'rate_limited', retryAfter });
@@ -65,7 +75,7 @@ function doPost(event) {
       'Sì', lead.lang, lead.id,
     ]);
     SpreadsheetApp.flush();
-    return newsletterResponse_({ ok: true, id: lead.id });
+    return newsletterResponse_({ ok: true, id: lead.id, ...(input.delivery ? { delivery: claimFormMail_(spreadsheet, lead.id, input.delivery, NEWSLETTER_MAIL_KINDS) } : {}) });
   } catch (error) {
     return newsletterResponse_({ ok: false, code: 'write_failed' });
   } finally {
@@ -104,7 +114,7 @@ function validNewsletterLead_(lead) {
   for (const field of Object.keys(limits)) {
     if (typeof lead[field] !== 'string' || lead[field].length > limits[field] || !lead[field].trim()) return false;
   }
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)
+  return /^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/.test(lead.email)
     && ['Notaio', 'Commercialista', 'Avvocato', 'Altro'].includes(lead.profession)
     && lead.privacy === true
     && typeof lead.sourcePage === 'string'

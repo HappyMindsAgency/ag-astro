@@ -135,6 +135,8 @@ Prima di Brevo, `POST /api/newsletter` salva le iscrizioni in un [foglio Google 
 
 Il modulo contatti usa `POST /api/contatti`, comune a Chi siamo, Team, Servizi e Contatti, anche in inglese. Registra pagina e lingua della richiesta; apre `/grazie-contatti/` o `/en/thank-you-contacts/` solo dopo la conferma del salvataggio. Configurazione e sorgente Google Apps Script sono in [integrations/google-apps-script](../integrations/google-apps-script/README.md).
 
+Con SMTP attivo, il ringraziamento dei contatti attende anche la notifica interna e la copia di cortesia IT/EN; quello della newsletter attende la conferma inviata all’iscritto. `mail.ts` condivide SMTP, cornice HTML e logo; `contact-email.ts` e `newsletter-email.ts` contengono i testi; `lead-delivery.ts` coordina gli esiti con i registri Google. Il collaudo usa `MAIL_MODE=test` e `MAIL_TEST_TO=assistenzaweb@happyminds.it`: tutte le email e le risposte restano sull’assistenza, senza CC/CCN. Segreteria e invii agli utenti si attivano solo dopo l’ok. Quando Brevo invierà la conferma newsletter, disattivare quella SMTP con `NEWSLETTER_MAIL_MODE=off`.
+
 - Gli archivi di articoli, documenti ed eventi mostrano un messaggio quando sono vuoti; gli elenchi accessori e i correlati senza contenuti restano nascosti.
 - Pulsanti e download senza destinazione restano inattivi; le frecce dei collegamenti compaiono solo quando è presente l’URL.
 - Gli elenchi descrittivi senza link non mostrano frecce o simboli di apertura; i singoli servizi non hanno pagine dedicate.

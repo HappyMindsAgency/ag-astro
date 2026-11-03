@@ -1,7 +1,7 @@
 import { defineMiddleware } from 'astro:middleware';
 
-// Imposta a false per riaprire il sito a tutti.
-export const MAINTENANCE_MODE = true;
+// Imposta a true per riattivare la pagina di manutenzione.
+export const MAINTENANCE_MODE = false;
 
 const BYPASS_VALUE = 'agtrustees';
 const BYPASS_COOKIE = 'ag_maintenance_bypass';

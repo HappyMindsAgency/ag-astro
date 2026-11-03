@@ -15,5 +15,5 @@ Pulsanti e icone restano nascosti finché non sono disponibili le destinazioni.
 
 - **Download:** completare le categorie dei PDF ancora senza associazione e confermare le date di pubblicazione.
 - **Cookie e mappe:** script Cookiebot ricevuti; resta da integrarli con il blocco delle mappe. L’anteprima `ag-astro.vercel.app` deve essere autorizzata nel gruppo Cookiebot.
-- **Email dei contatti:** mancano credenziali SMTP e casella destinataria; l’invio delle email è ancora da implementare e configurare.
+- **Email dei moduli:** configurare SMTP su Vercel e collaudare contatti e newsletter con `assistenzaweb@happyminds.it` come unico destinatario, senza copie. Attivare segreteria, CCN e invii agli utenti solo dopo l'ok.
 - **Proprietà Google:** serve l’indirizzo HappyMinds a cui trasferire fogli e script di Contatti e Newsletter.

@@ -20,9 +20,11 @@
     "astro-seo": "^1.2.0",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
+    "nodemailer": "^10.3.1",
     "sass": "^1.105.2"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.11"
+    "@types/bootstrap": "^5.2.11",
+    "@types/nodemailer": "^8.0.2"
   }
 }

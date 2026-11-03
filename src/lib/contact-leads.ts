@@ -34,7 +34,7 @@ export function validateContactSubmission(input: unknown, now = Date.now()): Val
   }
   const name = (data.name as string).trim();
   const email = (data.email as string).trim();
-  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.privacy !== true) {
+  if (!name || !/^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/.test(email) || data.privacy !== true) {
     return { ok: false, code: 'invalid_data' };
   }
   if (typeof data.id !== 'string' || !uuid.test(data.id) || typeof data.sourcePage !== 'string') {

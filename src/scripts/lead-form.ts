@@ -52,7 +52,7 @@ export function setupLeadForms(selector: string) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ...data, id: requestId, startedAt }),
-          signal: AbortSignal.timeout(20000),
+          signal: AbortSignal.timeout(35000),
         });
         const receipt = await response.json();
         if (response.ok && receipt.ok === true && receipt.id === requestId) {
@@ -61,6 +61,9 @@ export function setupLeadForms(selector: string) {
         }
         if (receipt.code === 'too_fast') error = 'Attendi qualche secondo prima di inviare la richiesta.';
         if (receipt.code === 'invalid_data') error = 'Controlla i campi e il consenso privacy prima di riprovare.';
+        if (receipt.code === 'email_failed' || receipt.code === 'email_pending') error = newsletter
+          ? 'L’iscrizione è stata salvata, ma non è stato possibile confermare l’invio dell’email. I dati sono ancora nel modulo: riprova da qui senza compilare una nuova iscrizione.'
+          : 'La richiesta è stata salvata, ma non è stato possibile confermare l’invio delle email. I dati sono ancora nel modulo: riprova da qui senza compilare una nuova richiesta.';
         if (response.status === 429) error = 'Hai inviato diverse richieste in poco tempo. Attendi qualche minuto prima di riprovare.';
       } catch {
         // Manteniamo campi e ID: il salvataggio potrebbe essere riuscito prima dell'interruzione.

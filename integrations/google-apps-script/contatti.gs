@@ -9,6 +9,7 @@ const CONTACT_SOURCES = {
 };
 
 const CONTACT_RATE_WINDOW = 10 * 60 * 1000;
+const CONTACT_MAIL_KINDS = ['internal', 'courtesy'];
 
 function initializeContacts() {
   const properties = PropertiesService.getScriptProperties();
@@ -42,6 +43,8 @@ function doPost(event) {
       return contactResponse_({ ok: false, code: 'unauthorized' });
     }
 
+    if (input.action === 'mail_result') return completeFormMail_(input, properties, CONTACT_MAIL_KINDS);
+
     const lead = input.lead;
     if (!validContactLead_(lead) || typeof input.rateKey !== 'string' || !/^[a-f0-9]{64}$/.test(input.rateKey)) {
       return contactResponse_({ ok: false, code: 'invalid_data' });
@@ -58,7 +61,16 @@ function doPost(event) {
     const lastRow = sheet.getLastRow();
     const existing = lastRow > 1 && sheet.getRange(2, CONTACT_HEADERS.length, lastRow - 1, 1)
       .createTextFinder(lead.id).matchEntireCell(true).findNext();
-    if (existing) return contactResponse_({ ok: true, id: lead.id });
+    if (existing) {
+      if (input.delivery) {
+        const saved = sheet.getRange(existing.getRow(), 1, 1, CONTACT_HEADERS.length).getValues()[0];
+        const expected = [lead.name, lead.email, lead.phone, lead.profile, lead.message, 'Sì', lead.sourcePage, lead.lang, lead.id];
+        if (expected.some((value, index) => value !== saved[index + 1])) {
+          return contactResponse_({ ok: false, code: 'id_conflict' });
+        }
+      }
+      return contactResponse_({ ok: true, id: lead.id, ...(input.delivery ? { delivery: claimFormMail_(spreadsheet, lead.id, input.delivery, CONTACT_MAIL_KINDS) } : {}) });
+    }
 
     const retryAfter = applyContactRateLimit_(properties, input.rateKey, lead.email, secret);
     if (retryAfter) return contactResponse_({ ok: false, code: 'rate_limited', retryAfter });
@@ -69,7 +81,7 @@ function doPost(event) {
       'Sì', lead.sourcePage, lead.lang, lead.id,
     ]);
     SpreadsheetApp.flush();
-    return contactResponse_({ ok: true, id: lead.id });
+    return contactResponse_({ ok: true, id: lead.id, ...(input.delivery ? { delivery: claimFormMail_(spreadsheet, lead.id, input.delivery, CONTACT_MAIL_KINDS) } : {}) });
   } catch (error) {
     return contactResponse_({ ok: false, code: 'write_failed' });
   } finally {
@@ -109,7 +121,7 @@ function validContactLead_(lead) {
     if (typeof lead[field] !== 'string' || lead[field].length > limits[field]) return false;
   }
   return Boolean(lead.name.trim())
-    && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)
+    && /^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/.test(lead.email)
     && lead.privacy === true
     && typeof lead.sourcePage === 'string'
     && Object.prototype.hasOwnProperty.call(CONTACT_SOURCES, lead.sourcePage)

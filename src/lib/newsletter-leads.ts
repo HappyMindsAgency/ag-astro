@@ -29,7 +29,7 @@ export function validateNewsletterSubmission(input: unknown, now = Date.now()): 
     if (typeof data[field] !== 'string' || data[field].length > limit || !data[field].trim()) return { ok: false, code: 'invalid_data' };
   }
   const email = (data.email as string).trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.privacy !== true) return { ok: false, code: 'invalid_data' };
+  if (!/^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/.test(email) || data.privacy !== true) return { ok: false, code: 'invalid_data' };
   if (!newsletterProfessions.some(value => value === data.profession)) return { ok: false, code: 'invalid_data' };
   const lang = data.lang;
   if ((lang !== 'it' && lang !== 'en') || typeof data.sourcePage !== 'string') return { ok: false, code: 'invalid_data' };
