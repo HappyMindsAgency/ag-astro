@@ -19,7 +19,7 @@ export const GET: APIRoute = async ({ site, url }) => {
 
   // In caso di errore Strapi le liste sono vuote: la sitemap contiene comunque le pagine statiche.
   const dynamic = await Promise.all(locales.flatMap((lang) => [getArticoli(lang), getEventi(lang)]))
-    .then((lists) => lists.flat().map((item) => ({ href: item.href, lastmod: 'dateTime' in item && typeof item.dateTime === 'string' ? item.dateTime : undefined })))
+    .then((lists) => lists.flat().map((item) => ({ href: item.href, lastmod: 'dateTime' in item ? item.modifiedDateTime || item.dateTime || undefined : undefined })))
     .catch(() => []);
 
   const body = [...pages, ...dynamic]

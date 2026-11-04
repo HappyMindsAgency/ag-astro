@@ -15,7 +15,7 @@ interface Props {
     seo?: StrapiSeo | null;
     robots?: string;
     jsonLd?: object[];
-    article?: { publishedTime?: string; authors?: string[]; section?: string };
+    article?: { publishedTime?: string; modifiedTime?: string; authors?: string[]; section?: string };
     linkedinUrl?: string;
     headerHeroId?: string;
     languageUrls?: Partial<Record<Locale, string>>;

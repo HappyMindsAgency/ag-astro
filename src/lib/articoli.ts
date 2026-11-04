@@ -34,15 +34,31 @@ function toSections(blocks: any[] = []): ArticleSection[] {
 const toImage = (media: any, fallbackAlt = ''): ContentImage | undefined =>
   media?.url ? { src: media.url, alt: media.alternativeText ?? fallbackAlt, width: media.width, height: media.height } : undefined;
 
+const validDate = (value: unknown) => (typeof value === 'string' && Number.isFinite(Date.parse(value)) ? value : undefined);
+
+// Date editoriali con ripiego sulle date tecniche di Strapi; mai la data corrente.
+export function getArticleDates(item: any): { published?: string; modified?: string } {
+  return {
+    published: validDate(item?.originalPublishedAt) ?? validDate(item?.publishedAt) ?? validDate(item?.createdAt),
+    modified: validDate(item?.editorialUpdatedAt) ?? validDate(item?.updatedAt),
+  };
+}
+
+// Strapi non ordina per la data di ripiego: riordina qui, a parità di data conserva l'ordine ricevuto.
+const sortByPublished = (items: any[]) =>
+  [...items].sort((a, b) => (getArticleDates(b).published ?? '').localeCompare(getArticleDates(a).published ?? ''));
+
 const toPreview = (item: any, lang: Locale): ArticlePreview | undefined => {
   const image = toImage(item.cover);
   if (!image) return undefined;
+  const { published, modified } = getArticleDates(item);
   return {
     title: item.titolo,
     href: `${customSlug('news', lang)}${item.slug}/`,
     category: item.categorias?.[0]?.titolo?.trim() ?? '',
-    date: formatDate(item.publishedAt, lang),
-    dateTime: item.publishedAt.slice(0, 10),
+    date: published ? formatDate(published, lang) : '',
+    dateTime: published?.slice(0, 10) ?? '',
+    modifiedDateTime: modified?.slice(0, 10),
     excerpt: blocksToText(item.anteprima),
     image,
     featured: !!item.inEvidenza?.generico,
@@ -50,8 +66,9 @@ const toPreview = (item: any, lang: Locale): ArticlePreview | undefined => {
 };
 
 const toStrapiLocale = (lang: Locale) => (lang === 'en' ? 'en' : 'it-IT');
-const relatedPopulate = { fields: ['titolo', 'slug', 'anteprima', 'publishedAt'], populate: { cover: true, categorias: { fields: ['titolo'] } } };
-const articleSort = ['publishedAt:desc', 'documentId:asc'];
+const dateFields = ['originalPublishedAt', 'editorialUpdatedAt', 'publishedAt', 'createdAt', 'updatedAt'];
+const relatedPopulate = { fields: ['titolo', 'slug', 'anteprima', ...dateFields], populate: { cover: true, categorias: { fields: ['titolo'] } } };
+const articleSort = ['originalPublishedAt:desc', 'publishedAt:desc', 'documentId:asc'];
 
 export async function getArticoliRecenti(lang: Locale, filters: API.BaseQueryParams['filters'] = {}, limit = 3): Promise<ArticlePreview[]> {
   const { data } = await getCollectionDocuments('articolis', {
@@ -60,9 +77,10 @@ export async function getArticoliRecenti(lang: Locale, filters: API.BaseQueryPar
     locale: toStrapiLocale(lang),
     filters: { ...filters, cover: { url: { $notNull: true } } },
     sort: articleSort,
-    pagination: { pageSize: limit },
+    // ponytail: 100 candidati riordinati in JS; se oltre 100 articoli filtrati non hanno originalPublishedAt, uno recente può restare fuori.
+    pagination: { pageSize: 100 },
   });
-  return data.map((item) => toPreview(item, lang)).filter((item): item is ArticlePreview => !!item);
+  return sortByPublished(data).map((item) => toPreview(item, lang)).filter((item): item is ArticlePreview => !!item).slice(0, limit);
 }
 
 export async function getArticoliHome(lang: Locale): Promise<ArticlePreview[]> {
@@ -83,7 +101,7 @@ export async function getArticoli(lang: Locale): Promise<ArticlePreview[]> {
   const first = await getCollectionDocuments('articolis', query(1));
   const pageCount = (first.meta as any).pagination?.pageCount ?? 1;
   const rest = await Promise.all(Array.from({ length: pageCount - 1 }, (_, index) => getCollectionDocuments('articolis', query(index + 2))));
-  return [first, ...rest].flatMap(({ data }) => data).map((item) => toPreview(item, lang)).filter((item): item is ArticlePreview => !!item);
+  return sortByPublished([first, ...rest].flatMap(({ data }) => data)).map((item) => toPreview(item, lang)).filter((item): item is ArticlePreview => !!item);
 }
 
 export async function getArticolo(slug: string, lang: Locale) {
@@ -102,13 +120,14 @@ export async function getArticolo(slug: string, lang: Locale) {
   const item: any = data[0];
   if (!item) return null;
 
+  const dates = getArticleDates(item);
   const words = blocksToText(item.contenuto).split(/\s+/).filter(Boolean).length;
   const article: ArticleDetail = {
     title: item.titolo,
     href: `${customSlug('news', lang)}${item.slug}/`,
     category: item.categorias?.[0]?.titolo?.trim() ?? '',
-    date: formatDate(item.publishedAt, lang),
-    dateTime: item.publishedAt.slice(0, 10),
+    date: dates.published ? formatDate(dates.published, lang) : '',
+    dateTime: dates.published?.slice(0, 10) ?? '',
     readingTime: customLabel('{minutes} min di lettura', lang, { minutes: Math.max(1, Math.round(words / 200)) }),
     image: toImage(item.cover, item.titolo),
     excerpt: blocksToText(item.anteprima),
@@ -141,7 +160,8 @@ export async function getArticolo(slug: string, lang: Locale) {
     documents,
     relatedArticles,
     seo: (item.seo ?? null) as StrapiSeo | null,
-    publishedAt: item.publishedAt as string,
+    datePublished: dates.published,
+    dateModified: dates.modified,
     categories: (item.categorias ?? []).map((category: { titolo?: string }) => category.titolo?.trim()).filter(Boolean) as string[],
   };
 }

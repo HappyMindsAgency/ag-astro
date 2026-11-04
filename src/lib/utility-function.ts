@@ -1,7 +1,9 @@
 import type { Locale } from './utility-customslug';
 
 export function formatDate(value: string, lang: Locale, options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' }): string {
-  return new Intl.DateTimeFormat(lang === 'en' ? 'en-GB' : 'it-IT', { ...options, timeZone: 'UTC' }).format(new Date(value));
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) return '';
+  return new Intl.DateTimeFormat(lang === 'en' ? 'en-GB' : 'it-IT', { ...options, timeZone: 'UTC' }).format(date);
 }
 
 export function getTodayInRome(now = new Date()): string {

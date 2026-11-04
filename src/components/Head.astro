@@ -14,7 +14,7 @@ interface Props {
     robots?: string;
     languageUrls?: Partial<Record<Locale, string>>;
     jsonLd?: object[];
-    article?: { publishedTime?: string; authors?: string[]; section?: string };
+    article?: { publishedTime?: string; modifiedTime?: string; authors?: string[]; section?: string };
 }
 
 const { title, description, lang = getLangFromUrl(Astro.url), seo: entry, robots, languageUrls, jsonLd = [], article } = Astro.props;

@@ -12,6 +12,7 @@ export interface ArticlePreview {
   category: string;
   date: string;
   dateTime: string;
+  modifiedDateTime?: string;
   excerpt: string;
   featured?: boolean;
 }
