@@ -38,7 +38,7 @@
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
   .image-overview .type-section-title {
     font-size: clamp(theme.$font-size-section-title-tablet, 3.75vw, theme.$font-size-section-title);
-    line-height: clamp(theme.$line-height-section-title-tablet, 3.75vw, theme.$line-height-section-title);
+    line-height: clamp(theme.$line-height-section-title-tablet, calc(3.75vw + (theme.$line-height-section-title - theme.$font-size-section-title)), theme.$line-height-section-title);
   }
 }
 

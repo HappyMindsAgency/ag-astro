@@ -13,6 +13,7 @@ interface Props {
   fitMobileTitle?: boolean;
   alignHeadingTop?: boolean;
   compact?: boolean;
+  shortContent?: boolean;
   titleSize?: 'default' | 'compact';
 }
 
@@ -27,13 +28,14 @@ const {
   fitMobileTitle = wideTitle,
   alignHeadingTop = false,
   compact = false,
+  shortContent = false,
   titleSize = 'default',
 } = Astro.props;
 const headingColumnClass = wideTitle ? 'col-md-6 col-xxl' : 'col-md-6';
 const copyColumnClass = wideTitle ? 'col-md-6 col-xxl-auto' : 'col-md-6';
 ---
 
-<section class:list={['page-intro', { 'page-intro--wide-title': wideTitle, 'page-intro--fit-mobile-title': fitMobileTitle, 'page-intro--compact': compact }]} aria-labelledby="page-title">
+<section class:list={['page-intro', { 'page-intro--wide-title': wideTitle, 'page-intro--fit-mobile-title': fitMobileTitle, 'page-intro--compact': compact, 'page-intro--short-content': shortContent }]} aria-labelledby="page-title">
   <div class="container section-container">
     <Breadcrumb current={breadcrumb} parents={parents} />
 

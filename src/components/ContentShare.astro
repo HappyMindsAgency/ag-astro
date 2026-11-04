@@ -16,7 +16,7 @@ const lang = getLangFromUrl(Astro.url);
 <div class="content-share" data-content-share data-share-title={title} data-share-url={url}>
   <p class="content-share-label">{customLabel('Condividi', lang)}</p>
   <div class="d-flex align-items-center">
-    <a class="content-share-control" data-share-linkedin href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer" aria-label={customLabel('Condividi su LinkedIn', lang)}><img src="/assets/icone/condividi-linkedin.svg" width="44" height="34" alt="" /></a>
+    <a class="content-share-control" data-share-linkedin href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer"><img src="/assets/icone/condividi-linkedin.svg" width="44" height="34" alt="" /><span class="visually-hidden">{customLabel('Condividi su LinkedIn', lang)} ({customLabel('Si apre in una nuova scheda', lang).toLowerCase()})</span></a>
     <a class="content-share-control" data-share-email href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}`} aria-label={customLabel('Condividi via email', lang)}><img src="/assets/icone/condividi-email.svg" width="44" height="34" alt="" /></a>
     <button class="content-share-control" type="button" data-copy-link aria-label={customLabel('Copia il link', lang)}><img src="/assets/icone/copia-link.svg" width="40" height="34" alt="" /></button>
   </div>

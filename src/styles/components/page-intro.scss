@@ -51,6 +51,14 @@
 }
 
 @include bs.media-breakpoint-up(xxl, theme.$grid-breakpoints) {
+  .page-intro.page-intro--short-content {
+    min-height: 0;
+
+    .row {
+      padding-bottom: 200px;
+    }
+  }
+
   .page-intro.page-intro--compact .row {
     padding-bottom: theme.$space-80;
   }

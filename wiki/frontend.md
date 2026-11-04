@@ -24,7 +24,7 @@ Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/des
 - Mantieni lo stesso stile per lo stesso ruolo sulle diverse pagine. Confronta le occorrenze Figma prima di introdurre varianti; evita correzioni locali di elementi condivisi nei fogli pagina.
 - Preferisci griglia, breakpoint e utilità Bootstrap quando lo scostamento da Figma è trascurabile. Normalizza differenze minime se migliora la coerenza o riduce il codice, verificando la resa nel browser.
 - Rispetta colori e proporzioni degli asset. Verifica le proprietà dei livelli Figma, comprese unità e bordi sui singoli lati; non importare valori anomali senza confrontarli con la grafica.
-- Le correzioni di contrasto approvate riguardano bianchi e grigi; i titoli rossi sui fondi scuri mantengono i colori del design.
+- Le correzioni di contrasto approvate riguardano bianchi e grigi; i titoli rossi sui fondi scuri e i bordi dei campi dei moduli mantengono i colori del design, come concordato.
 - Mantieni le varianti concordate, comprese le interlinee 121, 37.8 e 25.5 px. Per i frame mobile incoerenti già segnalati, usa Jost e contenuti desktop con gli adattamenti approvati.
 - Estrai struttura e stile quando una sezione viene riutilizzata, passando i contenuti tramite proprietà o slot. Evita componenti vuoti o astrazioni preventive.
 - Compila Bootstrap **solo in `globals.scss`**. Le personalizzazioni dei figli di `.row` e delle varianti `.site-button` devono prevalere sui reset Bootstrap senza dipendere dall’ordine dei fogli CSS.
@@ -33,11 +33,11 @@ Riferimento visivo: **3° Release** del [design Figma](https://www.figma.com/des
 
 I sopratitoli desktop sono **16 px**, confermati dal designer, con spaziatura delle lettere `normal` tramite `.type-eyebrow`. Sul mobile, “Chi è AG Trustees” conserva 10 px; `.type-eyebrow--section` usa 12 px e maiuscole.
 
-`PageIntro` include breadcrumb, titolo e introduzione. Usa `wideTitle` per ampliare la colonna da `xxl`, `fitMobileTitle` per adattare i titoli lunghi sotto `lg` e `compact` prima di moduli o archivi con filtri. `alignHeadingTop` mantiene il titolo in alto quando il testo accanto è più lungo, come in Patrimonio. `mobileTitleLeading` e `titleSize` conservano le varianti del design; misure e interlinee sono in `variables.scss`.
+`PageIntro` include breadcrumb, titolo e introduzione. Usa `wideTitle` per ampliare la colonna da `xxl`, `fitMobileTitle` per adattare i titoli lunghi sotto `lg` e `compact` prima di moduli o archivi con filtri. `shortContent` è la variante per introduzioni brevi: da `xxl` usa l’altezza naturale e 200 px sotto il contenuto, come in Trust IT/EN. `alignHeadingTop` mantiene il titolo in alto quando il testo accanto è più lungo, come in Patrimonio. `mobileTitleLeading` e `titleSize` conservano le varianti del design; misure e interlinee sono in `variables.scss`.
 
 Nei titoli iniziali IT/EN, lo slot `title` contiene la parte blu e `titleAccent` la parte finale rossa, senza punto. `PageIntro` aggiunge il punto rosso anche quando il titolo è solo blu. L’accento inizia su una nuova riga; `inlineTitleAccent` conserva la composizione continua. Le parole evidenziate restano le stesse a tutte le larghezze.
 
-Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo il ruolo. Le varianti `--compact` e `--relaxed` mantengono gli adattamenti condivisi, senza correzioni nei fogli pagina.
+Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo il ruolo. I titoli standard desktop usano 72/76 px; `ImageOverview` mantiene 4 px di respiro anche nel ridimensionamento fluido. Le varianti `--compact` e `--relaxed` mantengono gli adattamenti condivisi, senza correzioni nei fogli pagina.
 
 `CallToAction` mantiene lo stesso stile su tutte le pagine, con titolo bilanciato, sopratitolo senza maiuscolo forzato e descrizione bianca. `contained` limita il frame; `plainBackground` usa il gradiente senza foto. `NewsletterCallToAction` riusa il componente: in Home, Team e Contatti usa `contained={false}`, nella Library `plainBackground`.
 
@@ -49,7 +49,7 @@ Usa `.type-section-title`, `.type-section-lead` e `.type-section-copy` secondo i
 | `ImageOverview`, `EditorialImage` | Foto e testo di Home/Visione; almeno 48 px tra le colonne da `lg`. `EditorialImage` condivide gli effetti; `plain` li omette. |
 | `ServiceOverview`, `OverviewBanner` | Panoramica servizi e fascia introduttiva di Trust/Patrimonio. |
 | `CompanyHistory`, `Certifications` | Storia e certificazioni condivise. |
-| `ContactSection` | Modulo contatti; `.contact-form` condivide lo stile con il modulo Newsletter. Recapiti e sedi in `src/data/contacts.ts`. |
+| `ContactSection` | Modulo contatti; `.contact-form` condivide lo stile con il modulo Newsletter. Etichette a 14 px con interlinea 20 px, anche su mobile, tramite un’unica coppia di variabili. Recapiti e sedi in `src/data/contacts.ts`. |
 | `OfficeMap` | Mappa Google in vista satellitare nelle pagine Contatti IT/EN, caricata dopo il consenso marketing. I pulsanti cambiano sede nello stesso riquadro. Indirizzi e URL sono in `src/data/contacts.ts`. |
 | `NewsArticleCard`, `NewsFeed` | Schede Home/archivio/hero; filtri e caricamento progressivo. `archive` mostra otto articoli da `lg`, quattro sotto. |
 | `EventCard`, `EventDate`, `EventList`, `FeaturedEvent` | Eventi e data condivisi; `compact` omette foto e descrizioni nell’elenco. Solo gli intervalli di più giorni adattano il carattere alla larghezza della data; i giorni singoli mantengono le misure standard. Gli elenchi compatti ampliano la colonna della data solo se contengono intervalli, mantenendo tutte le righe allineate. |
@@ -90,6 +90,7 @@ Il profilo LinkedIn in navbar e footer compare solo se `Layout` riceve `linkedin
 - I pulsanti chiari hanno un focus bianco sugli sfondi scuri. `.site-title-link` sottolinea i titoli al passaggio del mouse e al focus; le frecce dei pulsanti restano ferme.
 - Le card Eventi allineano “Dettagli” in fondo; titolo fino a 3 righe e descrizione fino a 4 (5 sotto `lg`), poi puntini di sospensione. Foto e titolo aprono il dettaglio.
 - `ContentShare` conferma la copia con un Tooltip Bootstrap e un messaggio accessibile; Escape chiude il feedback. Il segno più/meno degli accordion usa la transizione comune.
+- I Link utili della Library aprono una nuova scheda. Questi collegamenti e la condivisione LinkedIn includono l’avviso IT/EN in un testo `visually-hidden`; il selettore lingua conserva ITA/ENG anche nel nome accessibile.
 - `.contact-action-link` schiarisce testo e bordo; `.contact-action-arrow` avanza di 4 px anche al focus da tastiera.
 - Le transizioni usano `$interaction-duration` (150 ms) e `$interaction-easing`, rispettando il movimento ridotto. Gli effetti assenti dal prototipo si valutano separatamente.
 - Il mixin `brand-gradient` condivide lo sfondo di CTA e newsletter; `architectural-gradient` quello di servizi e leadership; `brand-watermark` la filigrana del logo di Home e Team.
@@ -117,7 +118,7 @@ Nei Link utili della Library, il gruppo di A11 usa il titolo “Altri siti di in
 
 I componenti ricevono dati tramite proprietà, senza API: le pagine leggono Strapi con `src/lib/strapi-client.ts` e passano i dati ai componenti. Usa i tipi in `src/types/content.ts`; i correlati vuoti non occupano spazio. I commenti `TODO Strapi` indicano gli esempi da sostituire e vanno rimossi dopo l’integrazione. Concorda con il backend formato editoriale e chiamate API.
 
-Gli articoli sono ordinati per `publishedAt` decrescente. Nel dettaglio, i tre correlati condividono almeno una categoria ed escludono l’articolo aperto. Trust e Patrimonio mostrano i tre articoli e i due download più recenti della propria lingua, senza esempi di riserva.
+Gli articoli sono ordinati per data editoriale `originalPublishedAt` decrescente, con ripiego su `publishedAt` e `createdAt`. L’ultima modifica usa `editorialUpdatedAt` o `updatedAt`. Nel dettaglio, i tre correlati condividono almeno una categoria ed escludono l’articolo aperto. Trust e Patrimonio mostrano i tre articoli e i due download più recenti della propria lingua, senza esempi di riserva.
 
 La Home usa gli articoli selezionati con `inEvidenza.inHome`; in assenza di selezioni mostra i sette più recenti. L’evento della Home usa lo stesso indicatore. `src/lib/eventi.ts` condivide i dati di Home, elenchi, dettaglio e ricerca: ordine per `dataInizioEvento`, intervalli di più giorni e allegati reali. La data di fine è facoltativa: assente o uguale all’inizio indica un giorno singolo; successiva indica più giorni. «Prossimi eventi» esclude gli appuntamenti conclusi nel fuso italiano; «Da non perdere» usa la categoria omonima. Le sezioni vuote restano nascoste. Il selettore del dettaglio usa gli URL delle localizzazioni Strapi tramite `languageUrls`, con il comportamento comune come ripiego.
 

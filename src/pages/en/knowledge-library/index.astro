@@ -60,7 +60,7 @@ const usefulLinks = [
             <div class="col-lg-4">
               <h3 class="type-section-lead fw-medium mb-4">{title}</h3>
               <ul class="list-unstyled type-section-copy d-grid gap-3 mb-0">
-                {links.map(({ label, href }) => <li><a class="site-title-link text-decoration-underline" href={href}>{label}</a></li>)}
+                {links.map(({ label, href }) => <li><a class="site-title-link text-decoration-underline" href={href} target="_blank" rel="noopener">{label}<span class="visually-hidden"> (opens in a new tab)</span></a></li>)}
               </ul>
             </div>
           ))}
