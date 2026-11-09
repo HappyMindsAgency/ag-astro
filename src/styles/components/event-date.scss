@@ -78,6 +78,47 @@
   }
 }
 
+.event-date.event-date--featured {
+  --event-date-fit-width: 145cqi;
+  container-type: inline-size;
+  flex: none;
+  justify-content: center;
+  width: 186px;
+  min-height: 201px;
+  border: 0;
+  border-radius: theme.$space-16;
+  padding: theme.$space-24;
+  color: theme.$brand-blue;
+  background: white;
+
+  .event-date-day {
+    --event-date-day-size: #{theme.$font-size-section-title-compact};
+    font-weight: theme.$font-weight-bold;
+    line-height: theme.$line-height-section-title-compact;
+  }
+
+  .event-date-month {
+    order: 0;
+    max-width: 100%;
+    margin-top: theme.$space-4;
+    font-size: theme.$font-size-body;
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-body;
+    letter-spacing: normal;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .event-date-year {
+    --event-date-year-size: #{theme.$font-size-section-title-mobile};
+    color: theme.$editorial-muted;
+    font-size: min(var(--event-date-year-size), calc(var(--event-date-fit-width) / var(--event-date-year-characters, 1)));
+    font-weight: theme.$font-weight-semibold;
+    line-height: theme.$line-height-section-title-mobile;
+    white-space: nowrap;
+  }
+}
+
 @include bs.media-breakpoint-down(lg, theme.$grid-breakpoints) {
   .event-date {
     flex-basis: theme.$space-64;
@@ -136,13 +177,36 @@
       line-height: theme.$line-height-content-meta;
     }
   }
+
+  .event-date.event-date--featured {
+    width: 107px;
+    min-height: 121px;
+    border-radius: theme.$space-12;
+    padding: theme.$space-16;
+
+    .event-date-day {
+      --event-date-day-size: #{theme.$font-size-event-days-mobile};
+      line-height: theme.$line-height-list-title;
+    }
+
+    .event-date-month {
+      margin-top: 0;
+      font-size: theme.$font-size-content-meta;
+      line-height: theme.$line-height-content-meta;
+    }
+
+    .event-date-year {
+      --event-date-year-size: #{theme.$font-size-office-title};
+      line-height: theme.$line-height-card-title;
+    }
+  }
 }
 
 .event-date.event-date--range {
   container-type: inline-size;
 
   .event-date-day {
-    font-size: min(var(--event-date-day-size), calc(160cqi / var(--event-date-characters)));
+    font-size: min(var(--event-date-day-size), calc(var(--event-date-fit-width, 160cqi) / var(--event-date-characters)));
     line-height: 1;
   }
 }

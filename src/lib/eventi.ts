@@ -94,6 +94,10 @@ export function getProssimiEventi(events: EventPreview[], now = new Date()): Eve
   return events.filter(({ date }) => (date.endDateTime ?? date.dateTime ?? '') >= today);
 }
 
+export function getEventoHome(events: EventPreview[], now = new Date()): EventPreview | undefined {
+  return getProssimiEventi(events, now).find(event => event.inHome);
+}
+
 export function getEventiDaNonPerdere(events: EventPreview[]): EventPreview[] {
   return events.filter(event => event.notToMiss).sort((a, b) => (b.date.dateTime ?? '').localeCompare(a.date.dateTime ?? ''));
 }

@@ -52,41 +52,6 @@
   row-gap: theme.$space-24;
 }
 
-.featured-event-date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 186px;
-  min-height: 201px;
-  border-radius: theme.$space-16;
-  padding: theme.$space-24;
-  color: theme.$brand-blue;
-  background: white;
-}
-
-.featured-event-days {
-  font-size: theme.$font-size-section-title-compact;
-  font-weight: theme.$font-weight-bold;
-  line-height: theme.$line-height-section-title-compact;
-}
-
-.featured-event-month {
-  margin-top: theme.$space-4;
-  color: theme.$brand-red;
-  font-size: theme.$font-size-body;
-  font-weight: theme.$font-weight-semibold;
-  line-height: theme.$line-height-body;
-  text-transform: uppercase;
-}
-
-.featured-event-year {
-  color: theme.$editorial-muted;
-  font-size: theme.$font-size-section-title-mobile;
-  font-weight: theme.$font-weight-semibold;
-  line-height: theme.$line-height-section-title-mobile;
-}
-
 .featured-event-content {
   min-width: 0;
 }
@@ -176,29 +141,6 @@
   .featured-event-layout {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .featured-event-date {
-    width: 107px;
-    min-height: 121px;
-    border-radius: theme.$space-12;
-    padding: theme.$space-16;
-  }
-
-  .featured-event-days {
-    font-size: theme.$font-size-event-days-mobile;
-    line-height: theme.$line-height-list-title;
-  }
-
-  .featured-event-month {
-    margin-top: 0;
-    font-size: theme.$font-size-content-meta;
-    line-height: theme.$line-height-content-meta;
-  }
-
-  .featured-event-year {
-    font-size: theme.$font-size-office-title;
-    line-height: theme.$line-height-card-title;
   }
 
   .featured-event-meta {

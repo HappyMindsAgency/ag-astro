@@ -4,15 +4,15 @@ import '../styles/components/event-date.scss';
 
 interface Props {
   date: EventPreview['date'];
-  variant?: 'card' | 'compact' | 'hero';
+  variant?: 'card' | 'compact' | 'hero' | 'featured';
 }
 
 const { date, variant = 'card' } = Astro.props;
-const month = date.monthShort ?? date.month;
+const month = variant === 'featured' ? date.month : date.monthShort ?? date.month;
 const isRange = /[–-]/.test(date.days);
 ---
 
-<time class:list={['event-date', `event-date--${variant}`, { 'event-date--range': isRange }]} style={isRange ? `--event-date-characters: ${date.days.length}` : undefined} datetime={date.dateTime} aria-label={date.label ?? `${date.days} ${month} ${date.year}`}>
+<time class:list={['event-date', `event-date--${variant}`, { 'event-date--range': isRange }]} style={isRange ? `--event-date-characters: ${date.days.length}; --event-date-year-characters: ${date.year.length}` : undefined} datetime={date.dateTime} aria-label={date.label ?? `${date.days} ${month} ${date.year}`}>
   <span class="event-date-day">{date.days}</span>
   <span class:list={['event-date-month', { 'event-date-month--range': /[–-]/.test(month) }]}>{month}</span>
   <span class="event-date-year">{date.year}</span>

@@ -1,6 +1,6 @@
 ---
 import { getArticoliHome } from '../../lib/articoli';
-import { getEventi } from '../../lib/eventi';
+import { getEventi, getEventoHome } from '../../lib/eventi';
 import Layout from '../../components/Layout.astro';
 import ImageOverview from '../../components/ImageOverview.astro';
 import EditorialImage from '../../components/EditorialImage.astro';
@@ -11,7 +11,7 @@ import NewsletterCallToAction from '../../components/NewsletterCallToAction.astr
 import '../../styles/pages/home.scss';
 
 const [articles, events] = await Promise.all([getArticoliHome('en'), getEventi('en')]);
-const featuredEvent = events.find(event => event.inHome);
+const featuredEvent = getEventoHome(events);
 
 const companyDescription = "AG Trustees acts as trustee, co-trustee or trust protector, administering assets in accordance with the purposes and terms of each trust.\n\nThe company brings together legal, tax, administrative and accounting expertise, supported by extensive experience in professional trusteeship.\n\nThis combined expertise is guided by a shared commitment: to fulfil every appointment with responsibility, sound judgement and genuine consideration for the people involved.";
 const servicesIntroduction = "AG Trustees provides support from the initial planning and establishment of a trust through to its ongoing administration.";

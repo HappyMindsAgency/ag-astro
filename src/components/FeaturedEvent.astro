@@ -2,6 +2,7 @@
 import customLabel from '../lib/utility-customlabel';
 import { getLangFromUrl, localizeHref } from '../lib/lang-switch/route-map';
 import type { EventPreview } from '../types/content';
+import EventDate from './EventDate.astro';
 import '../styles/components/featured-event.scss';
 
 interface Props {
@@ -23,11 +24,7 @@ const t = (label: string) => customLabel(label, lang);
         {event.image && <img class="featured-event-image" src={event.image.src} alt={event.image.alt} width={event.image.width} height={event.image.height} loading="lazy" />}
         <div class="row gx-0 featured-event-layout">
           <div class="col-auto">
-            <div class="featured-event-date">
-              <span class="featured-event-days">{event.date.days}</span>
-              <span class="featured-event-month">{t(event.date.month)}</span>
-              <span class="featured-event-year">{event.date.year}</span>
-            </div>
+            <EventDate date={event.date} variant="featured" />
           </div>
           <div class="col featured-event-content">
             <div class="d-flex flex-wrap featured-event-meta">
